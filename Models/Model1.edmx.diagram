@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="26837d68a5344328867cd54b4705cd2d" Name="Diagram1">
+        <EntityTypeShape EntityType="ELFDatabaseModel.BaiDangSanPham" Width="1.5" PointX="12.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.BaiDangThongTin" Width="1.5" PointX="9.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.BaiQuiz" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.BinhLuan" Width="1.5" PointX="18" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.CauHoi" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.CauHoi_BaiQuiz" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.ChucNangTaiKhoan" Width="1.5" PointX="12" PointY="39" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.ChuDeBaiQuiz" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.DapAn" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.DiemTichLuy" Width="1.5" PointX="18" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.DonQua" Width="1.5" PointX="9.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.DonThuGom" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.DonViThuGom" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.KetQua" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.LoaiDiemTichLuy" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.LoaiQuyenGop" Width="1.5" PointX="10.5" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.LoaiSanPham" Width="1.5" PointX="10.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.LoaiTaiKhoan" Width="1.5" PointX="9.75" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.NguoiDung" Width="1.5" PointX="7.5" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.PhuongThiTran" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.QuanHuyen" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.QuaTang" Width="1.5" PointX="7.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.QuyenGop" Width="1.5" PointX="12.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.TaiKhoan" Width="1.5" PointX="9.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.ThongBao" Width="1.5" PointX="15" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.Tinh_ThanhPho" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.TrangThaiBaiDang" Width="1.5" PointX="10.5" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFDatabaseModel.TraoDoi" Width="1.5" PointX="15" PointY="17.625" IsExpanded="true" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangSanPham_LoaiSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangSanPham_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangSanPham_TrangThaiBaiDang" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_BinhLuan_BaiDangSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DiemTichLuy_BaiDangSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_BaiDangSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_TraoDoi_BaiDangSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangThongTin_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangThongTin_TrangThaiBaiDang" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_BinhLuan_BaiDangThongTin" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DiemTichLuy_BaiDangThongTin" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_BaiDangThongTin" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_CauHoi_BaiQuiz_BaiQuiz" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_BinhLuan_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_BinhLuan" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_CauHoi_BaiQuiz_CauHoi" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_CauHoi_ChuDeBaiQuiz" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DapAn_CauHoi" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_KetQua_CauHoi_BaiQuiz" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_KetQua_DapAn" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DiemTichLuy_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DiemTichLuy_QuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DonQua_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DonQua_PhuongThiTran" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DonQua_QuaTang" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_DonQua" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_DonThuGom_DonViThuGom" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_KetQua_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_QuyenGop_LoaiQuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_NguoiDung_PhuongThiTran" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_QuyenGop_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_TaiKhoan_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_TraoDoi_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_TraoDoi_NguoiDung1" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_PhuongThiTran_QuanHuyen" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_QuanHuyen_ThanhPho" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_QuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_TraoDoi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

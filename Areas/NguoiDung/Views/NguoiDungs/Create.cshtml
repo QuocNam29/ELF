@@ -1,0 +1,165 @@
+﻿@model ELF.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@*  @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>NguoiDung</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.hoVaTen, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.hoVaTen, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.gioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.gioiTinh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.gioiTinh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dienThoai, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.maP, "maP", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("maP", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.maP, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.diaChi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.avatar, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.avatar, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.avatar, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ngaySinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ngaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ghiChu, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ghiChu, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ghiChu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }*@
+<head>
+    <meta charset="utf-8">
+    <title>Đăng ký ELF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="~/fonts/DangKy/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/css/DangKy/style.css">
+</head>
+
+
+
+    
+
+    <body>
+
+        <div class="wrapper" style="background-image: url('~/images/bg-registration-form-1.jpg');">
+            <div class="inner">
+                <div class="image-holder">
+                    <img src="~/images/registration-form-1.jpg" alt="">
+                </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <form action="">
+                        <h3>Đăng Ký Tài Khoản ELF</h3>
+
+                        <div class="form-group">
+                            @*<input type="text" placeholder="Họ và tên" class="form-control" >*@
+                            @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { placeholder = "Họ và tên", @class = "form-control" } })
+                            @*<input type="text" placeholder="Số điện thoại" class="form-control">*@
+                            @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { placeholder = "Số điện thoại", @class = "form-control" } })
+                        </div>
+                        <div class="form-wrapper">
+                            <input type="text" placeholder="Email" class="form-control" name="email">
+
+                            <i class="zmdi zmdi-account"></i>
+                        </div>
+                        <div class="form-wrapper">
+                            @*<input type="text" placeholder="Địa chỉ" class="form-control">*@
+                            @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { placeholder = "Địa chỉ", @class = "form-control" } })
+                            <i class="zmdi zmdi-email"></i>
+                        </div>
+                        <div class="form-wrapper">
+                            <select name="" id="" class="form-control">
+                                <option value="" disabled selected>Giới tính </option>
+                                <option value="male">Nam</option>
+                                <option value="femal">Nữ</option>
+                                <option value="other">Khác</option>
+                            </select>
+                            <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+                        </div>
+                        <div class="form-wrapper">
+                            <input type="password" placeholder="Mật khẩu" class="form-control" name="password">
+                            <i class="zmdi zmdi-lock"></i>
+                        </div>
+                        <div class="form-wrapper">
+                            <input type="password" placeholder="Xác nhận mật khẩu" class="form-control">
+                            <i class="zmdi zmdi-lock"></i>
+                        </div>
+                        <button value="Create">
+                            Đăng Ký
+                            <i class="zmdi zmdi-arrow-right"></i>
+                        </button>
+                        
+                    </form>
+                }
+                </div>
+        </div>
+
+    </body>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

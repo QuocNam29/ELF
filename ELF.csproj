@@ -233,9 +233,6 @@
     <Compile Include="Models\QuyenGop.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TaiKhoan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1493,13 +1490,13 @@
     <Content Include="fonts\DangKy\poppins\Poppins-SemiBold.ttf" />
     <Content Include="css\DangKy\style.css.map" />
     <Content Include="css\DangKy\style.scss" />
-    <Content Include="Areas\NguoiDung\Views\_ViewStart.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TrangChu\DangKyTaiKhoan.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Create.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DangNhap\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1507,7 +1504,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\NguoiDung\Views\DangNhap\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

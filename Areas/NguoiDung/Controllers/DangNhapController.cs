@@ -12,10 +12,11 @@ namespace ELF.Areas.NguoiDung.Controllers
 {
     public class DangNhapController : Controller
     {
-        ELFDatabaseEntities model;
+        ELFVanLang2021Entities model;
+        
         public DangNhapController()
         {
-            model = new ELFDatabaseEntities();
+            model = new ELFVanLang2021Entities();
         }
         // GET: NguoiDung/DangNhap
         public ActionResult Index()
@@ -26,7 +27,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         [HttpPost]
         public ActionResult Index(string email, string matKhau)
         {
-            using (var context = new ELFDatabaseEntities())
+            using (var context = new ELFVanLang2021Entities())
             {
                 var f_password = GetMD5(matKhau);
                 var account = context.TaiKhoans.Where(acc => acc.email.Equals(email) && acc.matKhau.Equals(f_password)).FirstOrDefault();

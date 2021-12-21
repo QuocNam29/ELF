@@ -9,7 +9,7 @@ namespace ELF.Areas.NguoiDung.Controllers
 {
     public class TrangChuController : Controller
     {
-        ELFDatabaseEntities model = new ELFDatabaseEntities();
+        ELFVanLang2021Entities model = new ELFVanLang2021Entities();
         // GET: NguoiDung/TrangChu
         public ActionResult Index()
         {

@@ -13,10 +13,10 @@ namespace ELF.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ELFDatabaseEntities : DbContext
+    public partial class ELFVanLang2021Entities : DbContext
     {
-        public ELFDatabaseEntities()
-            : base("name=ELFDatabaseEntities")
+        public ELFVanLang2021Entities()
+            : base("name=ELFVanLang2021Entities")
         {
         }
     
@@ -48,7 +48,6 @@ namespace ELF.Models
         public virtual DbSet<QuanHuyen> QuanHuyens { get; set; }
         public virtual DbSet<QuaTang> QuaTangs { get; set; }
         public virtual DbSet<QuyenGop> QuyenGops { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<Tinh_ThanhPho> Tinh_ThanhPho { get; set; }

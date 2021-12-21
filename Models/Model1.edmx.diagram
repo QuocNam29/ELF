@@ -4,78 +4,77 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="87b2a15b7b594961a044811758258b83" Name="Diagram1">
-        <EntityTypeShape EntityType="ELFDatabaseModel.BaiDangSanPham" Width="1.5" PointX="9.75" PointY="20.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.BaiDangThongTin" Width="1.5" PointX="12.75" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.BaiQuiz" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.BinhLuan" Width="1.5" PointX="15" PointY="21.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.CauHoi" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.CauHoi_BaiQuiz" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.ChucNangTaiKhoan" Width="1.5" PointX="12" PointY="44.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.ChuDeBaiQuiz" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.DapAn" Width="1.5" PointX="10.5" PointY="27" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.DiemTichLuy" Width="1.5" PointX="15" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.DonQua" Width="1.5" PointX="12.75" PointY="26" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.DonThuGom" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.DonViThuGom" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.KetQua" Width="1.5" PointX="12.75" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.LoaiDiemTichLuy" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.LoaiQuyenGop" Width="1.5" PointX="7.5" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.LoaiSanPham" Width="1.5" PointX="7.5" PointY="27" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.LoaiTaiKhoan" Width="1.5" PointX="9.75" PointY="41.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.NguoiDung" Width="1.5" PointX="7.5" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.PhuongThiTran" Width="1.5" PointX="5.25" PointY="25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.QuanHuyen" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.QuaTang" Width="1.5" PointX="10.5" PointY="30.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.QuyenGop" Width="1.5" PointX="9.75" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.TaiKhoan" Width="1.5" PointX="9.75" PointY="43.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.ThongBao" Width="1.5" PointX="17.25" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.Tinh_ThanhPho" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.TrangThaiBaiDang" Width="1.5" PointX="7.5" PointY="29.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFDatabaseModel.TraoDoi" Width="1.5" PointX="15" PointY="25.5" IsExpanded="true" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangSanPham_LoaiSanPham" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangSanPham_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangSanPham_TrangThaiBaiDang" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_BinhLuan_BaiDangSanPham" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DiemTichLuy_BaiDangSanPham" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_BaiDangSanPham" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_TraoDoi_BaiDangSanPham" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangThongTin_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_BaiDangThongTin_TrangThaiBaiDang" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_BinhLuan_BaiDangThongTin" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DiemTichLuy_BaiDangThongTin" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_BaiDangThongTin" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_CauHoi_BaiQuiz_BaiQuiz" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_BinhLuan_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_BinhLuan" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_CauHoi_BaiQuiz_CauHoi" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_CauHoi_ChuDeBaiQuiz" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DapAn_CauHoi" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_KetQua_CauHoi_BaiQuiz" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_KetQua_DapAn" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DiemTichLuy_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DiemTichLuy_QuyenGop" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DonQua_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DonQua_PhuongThiTran" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DonQua_QuaTang" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_DonQua" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_DonThuGom_DonViThuGom" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_KetQua_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_QuyenGop_LoaiQuyenGop" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_NguoiDung_PhuongThiTran" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_NguoiDung_QuanHuyen" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_NguoiDung_Tinh_ThanhPho" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_QuyenGop_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_TaiKhoan_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_TraoDoi_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_TraoDoi_NguoiDung1" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_PhuongThiTran_QuanHuyen" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_QuanHuyen_ThanhPho" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_QuyenGop" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFDatabaseModel.FK_ThongBao_TraoDoi" ManuallyRouted="false" />
+      <Diagram DiagramId="c8ec70dee3674359ac0b707575232761" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiDangSanPham" Width="1.5" PointX="9.75" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiDangThongTin" Width="1.5" PointX="12.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiQuiz" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BinhLuan" Width="1.5" PointX="15" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.CauHoi" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.CauHoi_BaiQuiz" Width="1.5" PointX="10.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.ChucNangTaiKhoan" Width="1.5" PointX="12" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.ChuDeBaiQuiz" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.DapAn" Width="1.5" PointX="10.5" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.DiemTichLuy" Width="1.5" PointX="15" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.DonQua" Width="1.5" PointX="12.75" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.DonThuGom" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.DonViThuGom" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.KetQua" Width="1.5" PointX="12.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiDiemTichLuy" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiQuyenGop" Width="1.5" PointX="7.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiSanPham" Width="1.5" PointX="7.5" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiTaiKhoan" Width="1.5" PointX="9.75" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.NguoiDung" Width="1.5" PointX="7.5" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.PhuongThiTran" Width="1.5" PointX="5.25" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.QuanHuyen" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.QuaTang" Width="1.5" PointX="10.5" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.QuyenGop" Width="1.5" PointX="9.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.TaiKhoan" Width="1.5" PointX="9.75" PointY="43.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.ThongBao" Width="1.5" PointX="17.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.Tinh_ThanhPho" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.TrangThaiBaiDang" Width="1.5" PointX="7.5" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.TraoDoi" Width="1.5" PointX="15" PointY="25.5" IsExpanded="true" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaiDangSanPham_LoaiSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaiDangSanPham_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaiDangSanPham_TrangThaiBaiDang" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BinhLuan_BaiDangSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DiemTichLuy_BaiDangSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_BaiDangSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_TraoDoi_BaiDangSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaiDangThongTin_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaiDangThongTin_TrangThaiBaiDang" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BinhLuan_BaiDangThongTin" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DiemTichLuy_BaiDangThongTin" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_BaiDangThongTin" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_CauHoi_BaiQuiz_BaiQuiz" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BinhLuan_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_BinhLuan" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_CauHoi_BaiQuiz_CauHoi" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_CauHoi_ChuDeBaiQuiz" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DapAn_CauHoi" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_KetQua_CauHoi_BaiQuiz" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_KetQua_DapAn" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DiemTichLuy_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DiemTichLuy_QuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DonQua_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DonQua_PhuongThiTran" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DonQua_QuaTang" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_DonQua" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_DonThuGom_DonViThuGom" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_KetQua_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_QuyenGop_LoaiQuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_NguoiDung_PhuongThiTran" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_NguoiDung_QuanHuyen" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_NguoiDung_Tinh_ThanhPho" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_QuyenGop_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_TaiKhoan_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_TraoDoi_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_TraoDoi_NguoiDung1" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_PhuongThiTran_QuanHuyen" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_QuanHuyen_ThanhPho" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_QuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_TraoDoi" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

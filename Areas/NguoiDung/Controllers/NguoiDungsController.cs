@@ -13,7 +13,7 @@ namespace ELF.Areas.NguoiDung.Controllers
 {
     public class NguoiDungsController : Controller
     {
-        private ELFDatabaseEntities db = new ELFDatabaseEntities();
+        private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: NguoiDung/NguoiDungs
         public ActionResult Index()

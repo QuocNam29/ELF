@@ -36,7 +36,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                 {
                     Session["hoVaTen"] = account.NguoiDung.hoVaTen;
                     Session["email"] = account.email;
-                    Session["MaND"] = account.maND;
+                    Session["maND"] = account.maND;
                     FormsAuthentication.SetAuthCookie(email, false);
                     return RedirectToAction("Index", "TrangChu");
                 }
@@ -66,7 +66,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             Session.Clear();
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("Index", "TrangChu");
+            return RedirectToAction("Index", "DangNhap");
         }
     }
 }

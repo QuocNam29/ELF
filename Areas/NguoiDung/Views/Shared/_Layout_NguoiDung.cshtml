@@ -279,7 +279,7 @@
                         <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
                         <a href="#" title=""><i class="ti-target"></i>activity log</a>
                         <a href="#" title=""><i class="ti-settings"></i>account setting</a>
-                        <a href="#" title=""><i class="ti-power-off"></i>log out</a>
+                        <a href="@Url.Action("LogOut", "DangNhap")" title=""><i class="ti-power-off"></i>log out</a>
                     </div>
                 </div>
                 <span class="ti-menu main-menu" data-ripple=""></span>
@@ -316,7 +316,7 @@
                                                 </li>
                                                 <li>
                                                     <i class="ti-power-off"></i>
-                                                    <a href="landing.html" title="">Đăng xuất</a>
+                                                    <a href="@Url.Action("LogOut", "DangNhap")" title="">Đăng xuất</a>
                                                 </li>
                                             </ul>
                                         </div><!-- Shortcuts -->
@@ -405,10 +405,13 @@
                                                         <a href="#" title=""><img src="~/images/resources/friend-avatar9.jpg" alt=""></a>
                                                     </figure>
                                                     <div class="page-meta">
-                                                        <a href="#" title="" class="underline">My page</a>
-                                                        <span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
-                                                        <span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
-                                                    </div>
+                                                        @if (Session["hoVaTen"] != null)
+                                                        {
+                                                        <a href="#" title="" class="underline">@Session["HoVaTen"].ToString()</a>
+                                                         }
+                                                            <span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
+                                                            <span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
+                                                        </div>
                                                     <div class="page-likes">
                                                         <ul class="nav nav-tabs likes-btn">
                                                             <li class="nav-item"><a class="active" href="#link1" data-toggle="tab">Đổi quà</a></li>

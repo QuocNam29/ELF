@@ -9,12 +9,11 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using ELF.Models;
-
 namespace ELF.Areas.NguoiDung.Controllers
 {
     public class NguoiDungsController : Controller
     {
-        private ELFDatabaseEntities6 db = new ELFDatabaseEntities6();
+        private ELFDatabaseEntities db = new ELFDatabaseEntities();
 
         // GET: NguoiDung/NguoiDungs
         public ActionResult Index()
@@ -41,30 +40,52 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/NguoiDungs/Create
         public ActionResult Create()
         {
-            ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong");
+            
+            ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP");
             return View();
         }
+        public List<Tinh_ThanhPho> GetTinh_ThanhPhosList()
+        {
+            List<Tinh_ThanhPho> tinh_ThanhPhos = db.Tinh_ThanhPho.ToList();
+            return tinh_ThanhPhos;
+        }
+        public ActionResult GetQuanHuyenList (int maTinh_TP)
+        {
+            List<QuanHuyen> quanHuyens = db.QuanHuyens.Where(x => x.maTP == maTinh_TP).ToList();
+            ViewBag.maQuan = new SelectList(quanHuyens, "maQuan", "tenQuan");
+            return PartialView("HienThiQuan");
+        }
+        public ActionResult GetPhuongThiTranList(int maQuan)
+        {
+            List<PhuongThiTran> phuongThiTrans = db.PhuongThiTrans.Where(x => x.maQuan == maQuan).ToList();
+            ViewBag.maP = new SelectList(phuongThiTrans, "maPhuong", "tenPhuong");
+            return PartialView("HienThiPhuong");
+        }
+
+
 
         // POST: NguoiDung/NguoiDungs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, string email, string password)
+        public ActionResult Create([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, string email, string matKhau, string xacNhanMatKhau, string gioiTinh)
         {
             if (ModelState.IsValid)
             {
                 var check = db.TaiKhoans.FirstOrDefault(s => s.email == email);
                 if (check == null)
                 {
-
+                    
+                    nguoiDung.gioiTinh = int.Parse(gioiTinh);
                     db.NguoiDungs.Add(nguoiDung);
                     db.SaveChanges();
 
                     int maND = nguoiDung.maND;
                     TaiKhoan taiKhoan = new TaiKhoan();
                     taiKhoan.email = email;
-                    taiKhoan.matKhau = GetMD5(password);
+                    taiKhoan.matKhau = GetMD5(matKhau);
+                    taiKhoan.xacNhanMatKhau = xacNhanMatKhau;
                     taiKhoan.trangThai = true;
                     taiKhoan.maND = maND;
                     db.Configuration.ValidateOnSaveEnabled = false;
@@ -84,7 +105,8 @@ namespace ELF.Areas.NguoiDung.Controllers
                 }
                 return RedirectToAction("Index");
             }
-
+            ViewBag.maTinh_TP = new SelectList(db.Tinh_ThanhPho, "maTinh_TP", "tenTinh_TP");
+            ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan");
             ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
             return View(nguoiDung);
         }
@@ -101,7 +123,10 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
+            ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan", nguoiDung.maQuan);
+            ViewBag.maTinh_TP = new SelectList(db.Tinh_ThanhPho, "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
             return View(nguoiDung);
         }
 
@@ -110,7 +135,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung)
+        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung)
         {
             if (ModelState.IsValid)
             {
@@ -119,6 +144,8 @@ namespace ELF.Areas.NguoiDung.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
+            ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan", nguoiDung.maQuan);
+            ViewBag.maTinh_TP = new SelectList(db.Tinh_ThanhPho, "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
             return View(nguoiDung);
         }
 

@@ -17,6 +17,7 @@ namespace ELF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public QuanHuyen()
         {
+            this.NguoiDungs = new HashSet<NguoiDung>();
             this.PhuongThiTrans = new HashSet<PhuongThiTran>();
         }
     
@@ -24,6 +25,8 @@ namespace ELF.Models
         public string tenQuan { get; set; }
         public Nullable<int> maTP { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NguoiDung> NguoiDungs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhuongThiTran> PhuongThiTrans { get; set; }
         public virtual Tinh_ThanhPho Tinh_ThanhPho { get; set; }

@@ -33,6 +33,8 @@ namespace ELF.Models
         public string hoVaTen { get; set; }
         public int gioiTinh { get; set; }
         public string dienThoai { get; set; }
+        public Nullable<int> maTinh_TP { get; set; }
+        public Nullable<int> maQuan { get; set; }
         public Nullable<int> maP { get; set; }
         public string diaChi { get; set; }
         public string avatar { get; set; }
@@ -52,6 +54,8 @@ namespace ELF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQua> KetQuas { get; set; }
         public virtual PhuongThiTran PhuongThiTran { get; set; }
+        public virtual QuanHuyen QuanHuyen { get; set; }
+        public virtual Tinh_ThanhPho Tinh_ThanhPho { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuyenGop> QuyenGops { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -17,12 +17,15 @@ namespace ELF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tinh_ThanhPho()
         {
+            this.NguoiDungs = new HashSet<NguoiDung>();
             this.QuanHuyens = new HashSet<QuanHuyen>();
         }
     
         public int maTinh_TP { get; set; }
         public string tenTinh_TP { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NguoiDung> NguoiDungs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuanHuyen> QuanHuyens { get; set; }
     }

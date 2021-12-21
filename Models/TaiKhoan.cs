@@ -23,6 +23,7 @@ namespace ELF.Models
         public string email { get; set; }
         public int maND { get; set; }
         public string matKhau { get; set; }
+        public string xacNhanMatKhau { get; set; }
         public Nullable<System.DateTime> ngayTao { get; set; }
         public bool trangThai { get; set; }
     

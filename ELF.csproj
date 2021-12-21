@@ -141,6 +141,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TrangChuController.cs" />
     <Compile Include="Areas\NguoiDung\NguoiDungAreaRegistration.cs" />
@@ -1493,7 +1494,6 @@
     <Content Include="css\DangKy\style.css.map" />
     <Content Include="css\DangKy\style.scss" />
     <Content Include="Areas\NguoiDung\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TrangChu\DangKyTaiKhoan.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Create.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Delete.cshtml" />
@@ -1507,6 +1507,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\NguoiDung\Views\DangNhap\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

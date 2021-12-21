@@ -99,7 +99,7 @@
 
     <body>
 
-        <div class="wrapper" style="background-image: url('~/images/bg-registration-form-1.jpg');">
+        <div class="wrapper" style="background-image: url('@Url.Content("~/images/bg-registration-form-1.jpg")')">
             <div class="inner">
                 <div class="image-holder">
                     <img src="~/images/registration-form-1.jpg" alt="">
@@ -107,70 +107,70 @@
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-            <form action="">
-                <h3>Đăng Ký Tài Khoản ELF</h3>
+                    <form action="">
+                        <h3>Đăng Ký Tài Khoản ELF</h3>
 
-                <div class="form-group">
-                    @*<input type="text" placeholder="Họ và tên" class="form-control" >*@
-                    @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { placeholder = "Họ và tên", @class = "form-control" } })
-                    @*<input type="text" placeholder="Số điện thoại" class="form-control">*@
-                    @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { placeholder = "Số điện thoại", @class = "form-control" } })
-                </div>
-                <div class="form-wrapper">
-                    <input type="text" placeholder="Email" class="form-control" name="email">
+                        <div class="form-group">
+                            @*<input type="text" placeholder="Họ và tên" class="form-control" >*@
+                            @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { placeholder = "Họ và tên", @class = "form-control" } })
+                            @*<input type="text" placeholder="Số điện thoại" class="form-control">*@
+                            @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { placeholder = "Số điện thoại", @class = "form-control" } })
+                        </div>
+                        <div class="form-wrapper">
+                            <input type="text" placeholder="Email" class="form-control" name="email">
 
-                    <i class="zmdi zmdi-account"></i>
-                </div>
-               
-                <div class="form-wrapper">
-                    @if (ViewBag.maTinh_TP != null)
-                    {
-                        @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố", htmlAttributes: new { @class = "form-control" })
-                    }
+                            <i class="zmdi zmdi-account"></i>
+                        </div>
 
-                    <i class="zmdi zmdi-email"></i>
-                </div>
+                        <div class="form-wrapper">
+                            @if (ViewBag.maTinh_TP != null)
+                            {
+                                @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố", htmlAttributes: new { @class = "form-control" })
+                            }
 
-                <div class="form-wrapper">
-                    @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện", htmlAttributes: new { @class = "form-control" })
-                    <i class="zmdi zmdi-email"></i>
-                </div>
+                            <i class="zmdi zmdi-email"></i>
+                        </div>
 
-                <div class="form-wrapper">
-                    @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn", htmlAttributes: new { @class = "form-control" })
-                    <i class="zmdi zmdi-email"></i>
-                </div>
+                        <div class="form-wrapper">
+                            @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện", htmlAttributes: new { @class = "form-control" })
+                            <i class="zmdi zmdi-email"></i>
+                        </div>
 
-                <div class="form-wrapper">
-                    @*<input type="text" placeholder="Địa chỉ" class="form-control">*@
-                    @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { placeholder = "Địa chỉ", @class = "form-control" } })
-                    <i class="zmdi zmdi-email"></i>
-                </div>
-                <div class="form-wrapper">
-                    <select name="gioiTinh" id="" class="form-control">
-                        <option value="" disabled selected>Giới tính </option>
-                        <option value="1">Nam</option>
-                        <option value="0">Nữ</option>
-                        <option value="2">Khác</option>
-                    </select>
-                    <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
-                </div>
-                <div class="form-wrapper">
-                    <input type="password" placeholder="Mật khẩu" class="form-control" name="matKhau" required>
-                    <i class="zmdi zmdi-lock"></i>
-                </div>
-                <div class="form-wrapper">
-                    <input type="password" placeholder="Xác nhận mật khẩu" class="form-control" name="xacNhanMatKhau" required>
-                    <i class="zmdi zmdi-lock"></i>
-                </div>
-                <button value="Create">
-                    Đăng Ký
-                    <i class="zmdi zmdi-arrow-right"></i>
-                </button>
+                        <div class="form-wrapper">
+                            @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn", htmlAttributes: new { @class = "form-control" })
+                            <i class="zmdi zmdi-email"></i>
+                        </div>
 
-            </form>
+                        <div class="form-wrapper">
+                            @*<input type="text" placeholder="Địa chỉ" class="form-control">*@
+                            @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { placeholder = "Địa chỉ", @class = "form-control" } })
+                            <i class="zmdi zmdi-email"></i>
+                        </div>
+                        <div class="form-wrapper">
+                            <select name="gioiTinh" id="" class="form-control">
+                                <option value="" disabled selected>Giới tính </option>
+                                <option value="1">Nam</option>
+                                <option value="0">Nữ</option>
+                                <option value="2">Khác</option>
+                            </select>
+                            <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+                        </div>
+                        <div class="form-wrapper">
+                            <input type="password" placeholder="Mật khẩu" class="form-control" name="matKhau" required>
+                            <i class="zmdi zmdi-lock"></i>
+                        </div>
+                        <div class="form-wrapper">
+                            <input type="password" placeholder="Xác nhận mật khẩu" class="form-control" name="xacNhanMatKhau" required>
+                            <i class="zmdi zmdi-lock"></i>
+                        </div>
+                        <button value="Create">
+                            Đăng Ký
+                            <i class="zmdi zmdi-arrow-right"></i>
+                        </button>
+
+                    </form>
                 }
-                </div>
+            </div>
         </div>
 
     </body>

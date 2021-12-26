@@ -1,112 +1,64 @@
-﻿@{
-    Layout = null;
-}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Đăng Nhập ELF</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="~/images/favicon.ico" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/fonts/DangNhap/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/fonts/DangNhap/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/css/DangNhap/main.css">
-    <link rel="stylesheet" type="text/css" href="~/css/DangNhap/util.css">
-
-    <!--===============================================================================================-->
-</head>
-<body>
-
-
+﻿<head>
     
-    <div class="container-login100" style="background-image: url('~/images/bg-01.jpg'); ">
-        <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-            <form class="login100-form validate-form">
-                <span class="login100-form-title p-b-37">
-                    Đăng Nhập
-                </span>
 
-                <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-                    <input class="input100" type="text" name="username" placeholder="Email">
-                    <span class="focus-input100"></span>
+    <link rel="stylesheet" href="~/css/main.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/color.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+
+
+</head>
+<div class="central-meta">
+    <div class="editing-info">
+        <h5 class="f-title"><i class="ti-info-alt"></i>Đăng bài</h5>
+        <form method="post">
+            <div class="form-group half" style="width:250px">
+                <input type="text" id="input" required="required" style="width:200px" />
+                <label class="control-label" for="input">Tên sản phẩm</label><i class="mtrl-select" style="width:200px"></i>
+            </div>
+            <div class="form-group half" style="width:250px">
+                <select>
+                    <option value="country">Country</option>
+                    <option value="AFG">Afghanistan</option>
+                    <option value="ZWE">Zimbabwe</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-group half">
+                    <input type="text" id="input" required="required" />
+                    <label class="control-label" for="input">Giá sản phẩm</label><i class="mtrl-select"></i>
                 </div>
-
-                <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
-                    <input class="input100" type="password" name="pass" placeholder="Mật khẩu">
-                    <span class="focus-input100"></span>
+                <div class="form-group half">
+                    <input type="text" id="input" required="required" />
+                    <label class="control-label" for="input">Số lượng</label><i class="mtrl-select"></i>
                 </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" onclick="location.href = '@Url.Action("Index", "TrangChu")'; return false;">
-                        Đăng Nhập
-                    </button>
+            </div>
+            <div class="form-group">
+                <textarea rows="4" id="textarea" required="required"></textarea>
+                <label class="control-label" for="textarea">Mô tả</label><i class="mtrl-select"></i>
+            </div>
+            <div class="form-group">
+                <div class="name">Upload hình ảnh</div>
+                <div class="value">
+                    <div class="input-group js-input-file">
+                        @*<input class="input-file" type="file" name="file_cv" id="file">*@
+                        <input accept="image/*" type="file" name="img" id="imgInp"><br>
+                        <img id="blah" src="#" width="200" alt="Image preview...">
+                        <script>
+                            imgInp.onchange = evt => {
+                                const [file] = imgInp.files
+                                if (file) {
+                                    blah.src = URL.createObjectURL(file)
+                                }
+                            }
+                        </script>
+                    </div>
                 </div>
-
-                <div class="text-center p-t-57 p-b-20">
-                    <span class="txt1">
-                        Hoặc đăng nhập với
-                    </span>
-                </div>
-
-                <div class="flex-c p-b-112">
-                    <a href="#" class="login100-social-item">
-                        <i class="fa fa-facebook-f"></i>
-                    </a>
-
-                    <a href="#" class="login100-social-item">
-                        <img src="~/images/icon-google.png" alt="GOOGLE">
-                    </a>
-                </div>
-
-                <div class="text-center">
-                    <a href=@Url.Action("DangKy", "TrangChu") class="txt2 hov1">
-                        Đăng Ký
-                    </a>
-                </div>
-            </form>
-
-
-        </div>
+            </div>
+            <div class="submit-btns">
+                <button type="button" class="mtr-btn"><span>Cancel</span></button>
+                <button type="button" class="mtr-btn"><span>Save</span></button>
+            </div>
+        </form>
     </div>
-
-
-
-    <div id="dropDownSelect1"></div>
-
-    <!--===============================================================================================-->
-    <script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/vendor/bootstrap/js/popper.js"></script>
-    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/vendor/daterangepicker/moment.min.js"></script>
-    <script src="~/vendor/daterangepicker/daterangepicker.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/vendor/countdowntime/countdowntime.js"></script>
-    <!--===============================================================================================-->
-
-    <script src="~/js/DangNhap/main.js"></script>
-    <script src="~/js/DangNhap/map-custom.js"></script>
-
-</body>
-</html>
+    </div>

@@ -19,13 +19,13 @@ namespace ELF.Areas.NguoiDung.Controllers
             model = new ELFVanLang2021Entities();
         }
         // GET: NguoiDung/DangNhap
-        public ActionResult Index()
+        public ActionResult DangNhap()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(string email, string matKhau)
+        public ActionResult DangNhap(string email, string matKhau)
         {
             using (var context = new ELFVanLang2021Entities())
             {
@@ -39,7 +39,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     Session["email"] = account.email;
                     Session["maND"] = account.maND;
                     FormsAuthentication.SetAuthCookie(email, false);
-                    return RedirectToAction("Index", "TrangChu");
+                    return RedirectToAction("Index", "BaiDangSanPhams");
                 }
             }
             ModelState.AddModelError("", "Invalid email and password!!");

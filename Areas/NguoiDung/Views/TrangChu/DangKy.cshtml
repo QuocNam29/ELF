@@ -1,17 +1,23 @@
-﻿@model ELF.Models.NguoiDung
+﻿<!DOCTYPE html>
+<html lang="en">
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="utf-8">
-    <title>Đăng ký ELF</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
 
-    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <!-- Title Page-->
+    <title>Apply for job by Colorlib</title>
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="~/css/DangBai/main.css" rel="stylesheet" media="all">
+
     <link rel="stylesheet" href="~/fonts/DangKy/material-design-iconic-font/css/material-design-iconic-font.min.css">
 
     <!-- STYLE CSS -->
@@ -19,55 +25,96 @@
 </head>
 
 <body>
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">Đăng bài</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="name">Tên sản phẩm</div>
+                                <input class="input--style-6" type="text" name="full_name">
+                                <div class="name"></div>
+                                <div class="name">Loại sản phẩm</div>
+                                <input class="input--style-6" type="text" name="full_name">
+                            </div>
+                            
+                            @*<div class="value">
+                                <input class="input--style-6" type="text" name="full_name">
+                            </div>
+                            
+                            <div class="value">
+                                <input class="input--style-6" type="text" name="full_name">
+                            </div>*@
 
-    <div class="wrapper" style="background-image: url('~/images/bg-registration-form-1.jpg');">
-        <div class="inner">
-            <div class="image-holder">
-                <img src="~/images/registration-form-1.jpg" alt="">
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <div class="name">Giá sản phẩm</div>
+                                <input class="input--style-6" type="text" name="full_name">
+                                <div class="name"></div>
+                                <div class="name">Số lượng</div>
+                                <input class="input--style-6" type="text" name="full_name">
+                            </div>
+
+                            @*<div class="name">Email address</div>
+        <div class="value">
+            <div class="input-group">
+                <input class="input--style-6" type="email" name="email" placeholder="example@email.com">
             </div>
-            <form action="">
-                <h3>Đăng Ký Tài Khoản ELF</h3>
-                <div class="form-group">
-                    @*<input type="text" placeholder="Họ và tên" class="form-control" >*@
-                    @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { placeholder = "Họ và tên", @class = "form-control" } })
-                    @*<input type="text" placeholder="Số điện thoại" class="form-control">*@
-                    @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { placeholder = "Số điện thoại", @class = "form-control" } })
+        </div>*@
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Mô tả</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <textarea class="textarea--style-6" name="message" placeholder="Thêm mô tả"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Upload hình ảnh</div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    @*<input class="input-file" type="file" name="file_cv" id="file">*@
+                                    <input accept="image/*" type="file" name="img" id="imgInp"><br>
+                                    <img id="blah" src="#" width="200" alt="Image preview...">
+                                    <script>
+                                        imgInp.onchange = evt => {
+                                            const [file] = imgInp.files
+                                            if (file) {
+                                                blah.src = URL.createObjectURL(file)
+                                            }
+                                        }
+                                    </script>
+                                    @*<label class="label--file" for="file">Choose file</label>
+                                    <span class="input-file__info">No file chosen</span>*@
+                                </div>
+                                @*<div class="label--desc">Upload your CV/Resume or any other relevant file. Max file size 50 MB</div>*@
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-wrapper">
-                    <input type="text" placeholder="Email" class="form-control">
-                   
-                    <i class="zmdi zmdi-account"></i>
+                <div class="card-footer">
+                    <button class="btn btn--radius-2 btn--blue-2" type="submit">Đăng bài</button>
                 </div>
-                <div class="form-wrapper">
-                    @*<input type="text" placeholder="Địa chỉ" class="form-control">*@
-                    @Html.EditorFor(model => model.maP, new { htmlAttributes = new { placeholder = "Địa chỉ", @class = "form-control" } })
-                    <i class="zmdi zmdi-email"></i>
-                </div>
-                <div class="form-wrapper">
-                    <select name="" id="" class="form-control">
-                        <option value="" disabled selected>Giới tính </option>
-                        <option value="male">Nam</option>
-                        <option value="femal">Nữ</option>
-                        <option value="other">Khác</option>
-                    </select>
-                    <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
-                </div>
-                <div class="form-wrapper">
-                    <input type="password" placeholder="Mật khẩu" class="form-control">
-                    <i class="zmdi zmdi-lock"></i>
-                </div>
-                <div class="form-wrapper">
-                    <input type="password" placeholder="Xác nhận mật khẩu" class="form-control">
-                    <i class="zmdi zmdi-lock"></i>
-                </div>
-                <button value="Create">
-                    Đăng Ký
-                    <i class="zmdi zmdi-arrow-right"></i>
-                </button>
-
-            </form>
+            </div>
         </div>
     </div>
 
-</body>
+    <!-- Jquery JS-->
+    <script src="~/vendor/DangBai/jquery/jquery.min.js"></script>
+
+
+    <!-- Main JS-->
+    <script src="~/js/DangBai/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>
+<!-- end document-->

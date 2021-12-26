@@ -141,6 +141,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\BaiDangSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TrangChuController.cs" />
@@ -1496,7 +1497,7 @@
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DangNhap\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DangNhap\Dangnhap.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1505,6 +1506,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\NguoiDung\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

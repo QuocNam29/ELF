@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    int maND = int.Parse(Session["maND"].ToString());
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -350,49 +353,6 @@
                                     </aside>
                                 </div><!-- sidebar -->
                                 <div class="col-lg-6">
-                                    @*<div class="central-meta">
-                                        <div class="new-postbox">
-                                            <figure>
-                                                <img src="~/images/resources/admin2.jpg" alt="">
-                                            </figure>
-                                            <div class="newpst-input">
-                                                <form method="post">
-                                                    <textarea rows="2" placeholder="write something"></textarea>
-                                                    <div class="attachments">
-                                                        <ul>
-                                                            <li>
-                                                                <i class="fa fa-music"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file">
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <i class="fa fa-image"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file">
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <i class="fa fa-video-camera"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file">
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <i class="fa fa-camera"></i>
-                                                                <label class="fileContainer">
-                                                                    <input type="file">
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <button type="submit">Post</button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>*@<!-- add post new box -->
                                     <div class="loadMore">
                                         @RenderBody()
                                     </div>                                    
@@ -408,7 +368,7 @@
                                                     <div class="page-meta">
                                                         @if (Session["hoVaTen"] != null)
                                                         {
-                                                        <a href="#" title="" class="underline">@Session["HoVaTen"].ToString()</a>
+                                                        <a href="@Url.Action("Edit","NguoiDungs",new { id = maND })" title="" class="underline">@Session["HoVaTen"].ToString()</a>
                                                          }
                                                             <span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
                                                             <span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>

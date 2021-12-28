@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -50,16 +52,62 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maBDSP,maND,maLSP,tenSP,noiDung,hinhAnh,video,maTT,gia,soLuong,ngayDang,ngayThayDoi,ghiChu")] BaiDangSanPham baiDangSanPham, int maND)
+        public ActionResult Create([Bind(Include = "maBDSP,maND,maLSP,tenSP,noiDung,hinhAnh,video,maTT,gia,soLuong,ngayDang,ngayThayDoi,ghiChu")] BaiDangSanPham baiDangSanPham, int maND, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
-                baiDangSanPham.maND = maND;
-                baiDangSanPham.maTT = 1;
-                baiDangSanPham.ngayDang = DateTime.Now;
-                db.BaiDangSanPhams.Add(baiDangSanPham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    string filePath = "";
+                    if (img != null)
+                    {
+                        string fileName = System.IO.Path.GetFileName(img.FileName);
+                        filePath = "~/images/" + fileName;
+                        Console.WriteLine(filePath);
+                        img.SaveAs(Server.MapPath(filePath));
+                        /*string path = System.IO.Path.Combine(
+                                 Server.MapPath("~/images/"), fileName);*/
+                        
+                        /* img.SaveAs(path);*/
+                        baiDangSanPham.maND = maND;
+                        baiDangSanPham.maTT = 1;
+                        baiDangSanPham.ngayDang = DateTime.Now;
+                        baiDangSanPham.hinhAnh = filePath;
+                        db.BaiDangSanPhams.Add(baiDangSanPham);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        db.BaiDangSanPhams.Add(new BaiDangSanPham
+                        {
+                            maND = maND,
+                            maLSP = baiDangSanPham.maLSP,
+                            tenSP = baiDangSanPham.tenSP,
+                            noiDung= baiDangSanPham.noiDung,
+                            maTT = 1,
+                            gia = baiDangSanPham.gia,
+                            soLuong = baiDangSanPham.soLuong,
+                            ngayDang = DateTime.Now,
+                        }) ;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+
+                    }
+                    ViewBag.FileStatus = "File uploaded successfully.";
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                        }
+                    }
+                }
+               
             }
 
             ViewBag.maLSP = new SelectList(db.LoaiSanPhams, "maLSP", "tenLSP", baiDangSanPham.maLSP);

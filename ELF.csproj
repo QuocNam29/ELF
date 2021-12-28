@@ -144,6 +144,7 @@
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TrangChuController.cs" />
     <Compile Include="Areas\NguoiDung\NguoiDungAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -232,6 +233,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QuyenGop.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoan.cs">
@@ -1187,6 +1191,7 @@
     <Content Include="images\book-icon.png" />
     <Content Include="images\credit-cards.png" />
     <Content Include="images\dot-pattern.png" />
+    <Content Include="images\ELF_LOGO.jpg" />
     <Content Include="images\envelop.png" />
     <Content Include="images\faq.png" />
     <Content Include="images\fav.png" />
@@ -1383,6 +1388,7 @@
     <Content Include="images\resources\userlist-5.jpg" />
     <Content Include="images\resources\userlist-6.jpg" />
     <Content Include="images\resources\userlist-7.jpg" />
+    <Content Include="images\thumbnail_POSTER Done 2.png" />
     <Content Include="images\welcome-sign.png" />
     <Content Include="images\wink.png" />
     <Content Include="js\backgroundVideo.js" />
@@ -1498,6 +1504,14 @@
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DangNhap\Dangnhap.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1505,12 +1519,11 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\NguoiDung\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1576,6 +1589,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\NguoiDung\Data\" />
+    <Folder Include="Areas\NguoiDung\images\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>

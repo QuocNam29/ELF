@@ -36,8 +36,12 @@ namespace ELF.Areas.NguoiDung.Controllers
                 if (isValid)
                 {
                     Session["hoVaTen"] = account.NguoiDung.hoVaTen;
-                    Session["email"] = account.email;
+                    Session["ID"] = account.ID;
                     Session["maND"] = account.maND;
+                    Session["matKhau"] = account.matKhau;
+                    Session["avatar"] = account.NguoiDung.avatar;
+                    Session["email"] = account.email;
+                    Session["ngayTao"] = account.ngayTao;
                     FormsAuthentication.SetAuthCookie(email, false);
                     return RedirectToAction("Index", "BaiDangSanPhams");
                 }
@@ -67,7 +71,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             Session.Clear();
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("Index", "DangNhap");
+            return RedirectToAction("DangNhap", "DangNhap");
         }
     }
 }

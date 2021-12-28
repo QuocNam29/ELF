@@ -1,5 +1,7 @@
 ﻿@model ELF.Models.BaiDangSanPham
-
+@{
+    int maND = int.Parse(Session["maND"].ToString());
+}
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,72 +17,96 @@
     <link rel="stylesheet" href="~/css/responsive.css">
 
 </head>
-<div class="modal-dialog">
-    <div class="modal-content" style="width:700px">
-        <div class="modal-header">
-            <h5 class="f-title"><i class="ti-info-alt"></i>Đăng bài</h5>
-        </div>
-        <div class="modal-body">
-            <div class="form-group half" style="width:320px">
-                @Html.EditorFor(model => model.tenSP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tenSP, "", new { @class = "text-danger" })
-                <label class="control-label" for="input">Tên sản phẩm</label>
-                <i class="mtrl-select" style="width:300px"></i>
+@using (Html.BeginForm("Create", "BaiDangSanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:700px">
+            <div class="modal-header">
+                <h5 class="f-title"><i class="ti-info-alt"></i>Đăng bài</h5>
             </div>
-            <div class="form-group half" style="width:320px">
-                @Html.DropDownList("maLSP", null, htmlAttributes: new { style = "height: 30.4px;", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.maLSP, "", new { @class = "text-danger" })
-                <label class="control-label" for="input">Loại sản phẩm</label>
-                <i class="mtrl-select" style="width:320px"></i>
-            </div>
-            <div class="form-group">
+            <div class="modal-body">
                 <div class="form-group half" style="width:320px">
-                   @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Giá sản phẩm</label>
+                    @Html.EditorFor(model => model.tenSP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tenSP, "", new { @class = "text-danger" })
+                    <label class="control-label" for="input">Tên sản phẩm</label>
                     <i class="mtrl-select" style="width:300px"></i>
                 </div>
                 <div class="form-group half" style="width:320px">
-                    @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new {  @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Số lượng</label>
+                    @Html.DropDownList("maLSP", null, htmlAttributes: new { style = "height: 30.4px;", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.maLSP, "", new { @class = "text-danger" })
+                    <label class="control-label" for="input">Loại sản phẩm</label>
                     <i class="mtrl-select" style="width:320px"></i>
                 </div>
-            </div>
-            <div class="form-group">
-                @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { style = "height: 50px;", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
-                <label class="control-label" for="textarea">Mô tả</label>
-                <i class="mtrl-select"></i>
-            </div>
-            <div class="form-group">
-
-                
-
-                <div class="input-group js-input-file">
-                    @*<input class="input-file" type="file" name="file_cv" id="file">*@
-                    <input accept="image/*" type="file" name="img" id="imgInp"><br>
-                    <img id="blah" src="#" width="200" alt="Image preview...">
-                    <label class="control-label" for="textarea">Hình ảnh</label>
-                    <script>
-                        imgInp.onchange = evt => {
-                            const [file] = imgInp.files
-                            if (file) {
-                                blah.src = URL.createObjectURL(file)
-                            }
-                        }
-                    </script>
+                <div class="form-group">
+                    <div class="form-group half" style="width:320px">
+                        @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+                        <label class="control-label" for="input">Giá sản phẩm</label>
+                        <i class="mtrl-select" style="width:300px"></i>
+                    </div>
+                    <div class="form-group half" style="width:320px">
+                        @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
+                        <label class="control-label" for="input">Số lượng</label>
+                        <i class="mtrl-select" style="width:320px"></i>
+                    </div>
                 </div>
+                <div class="form-group">
+                    @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { style = "height: 50px;", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
+                    <label class="control-label" for="textarea">Mô tả</label>
+                    <i class="mtrl-select"></i>
+                </div>
+                <div class="form-group">
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="mtr-btn"><span>Hủy</span></button>
-                <button type="button" class="mtr-btn"><span>Đăng</span></button>
+
+
+                    <div class="input-group js-input-file">
+                        @*<input class="input-file" type="file" name="file_cv" id="file">*@
+                        <input accept="image/*" type="file" name="img" id="imgInp"><br>
+                        <img id="blah" src="#" width="200" alt="Image preview...">
+                        <label class="control-label" for="textarea">Hình ảnh</label>
+                        <script>
+                            imgInp.onchange = evt => {
+                                const [file] = imgInp.files
+                                if (file) {
+                                    blah.src = URL.createObjectURL(file)
+                                }
+                            }
+                        </script>
+
+                    </div>
+                    <div class="modal-footer">
+                        @Html.Hidden("maND", maND)
+                        <button type="button" class="mtr-btn" data-dismiss="modal"><span>Hủy</span></button>
+                        <button type="submit" class="mtr-btn"><span>Đăng</span></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script>
+    const image = document.getElementById("ImagePath");
+    const vunganh = document.getElementById("image_aria");
+    const anh = vunganh.querySelector(".anh");
+    const anhtext = vunganh.querySelector(".them_image");
+    image.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            anhtext.style.display = "none";
+            anh.style.display = "block";
+            reader.addEventListener("load", function () {
+                anh.setAttribute("src", this.result);
+            });
+            reader.readAsDataURL(file);
+        }
+    });
+</script>*@
 
 @*
     @using (Html.BeginForm())

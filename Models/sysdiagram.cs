@@ -12,13 +12,12 @@ namespace ELF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ChucNangTaiKhoan
+    public partial class sysdiagram
     {
-        public int ID { get; set; }
-        public int ID_TaiKhoan { get; set; }
-        public int maLoaiTK { get; set; }
-    
-        public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

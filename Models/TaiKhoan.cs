@@ -20,6 +20,7 @@ namespace ELF.Models
             this.ChucNangTaiKhoans = new HashSet<ChucNangTaiKhoan>();
         }
     
+        public int ID { get; set; }
         public string email { get; set; }
         public int maND { get; set; }
         public string matKhau { get; set; }

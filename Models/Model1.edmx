@@ -14,7 +14,7 @@
           <Property Name="maLSP" Type="int" Nullable="false" />
           <Property Name="tenSP" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="noiDung" Type="varchar(max)" Nullable="false" />
-          <Property Name="hinhAnh" Type="varchar(max)" Nullable="false" />
+          <Property Name="hinhAnh" Type="nvarchar(max)" Nullable="false" />
           <Property Name="video" Type="nvarchar(max)" />
           <Property Name="maTT" Type="int" Nullable="false" />
           <Property Name="gia" Type="money" Nullable="false" />
@@ -81,9 +81,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="maLoaiTK" Type="int" Nullable="false" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_TaiKhoan" Type="int" Nullable="false" />
+          <Property Name="maLoaiTK" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ChuDeBaiQuiz">
           <Key>
@@ -255,10 +255,21 @@
           <Property Name="hinhAnh" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
-            <PropertyRef Name="email" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="maND" Type="int" Nullable="false" />
           <Property Name="matKhau" Type="varchar" MaxLength="50" Nullable="false" />
@@ -683,10 +694,10 @@
           <End Role="ChucNangTaiKhoan" Type="Self.ChucNangTaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
-              <PropertyRef Name="email" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ChucNangTaiKhoan">
-              <PropertyRef Name="Email" />
+              <PropertyRef Name="ID_TaiKhoan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -834,6 +845,7 @@
           <EntitySet Name="QuanHuyen" EntityType="Self.QuanHuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuaTang" EntityType="Self.QuaTang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuyenGop" EntityType="Self.QuyenGop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" Schema="dbo" store:Type="Tables" />
@@ -1022,7 +1034,7 @@
           <Property Name="maLSP" Type="Int32" Nullable="false" />
           <Property Name="tenSP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="noiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="hinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="video" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="maTT" Type="Int32" Nullable="false" />
           <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
@@ -1112,9 +1124,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="maLoaiTK" Type="Int32" Nullable="false" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_TaiKhoan" Type="Int32" Nullable="false" />
+          <Property Name="maLoaiTK" Type="Int32" Nullable="false" />
           <NavigationProperty Name="LoaiTaiKhoan" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan" FromRole="ChucNangTaiKhoan" ToRole="LoaiTaiKhoan" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" FromRole="ChucNangTaiKhoan" ToRole="TaiKhoan" />
         </EntityType>
@@ -1331,10 +1343,21 @@
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_QuyenGop_NguoiDung" FromRole="QuyenGop" ToRole="NguoiDung" />
           <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_QuyenGop" FromRole="QuyenGop" ToRole="ThongBao" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
-            <PropertyRef Name="email" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="maND" Type="Int32" Nullable="false" />
           <Property Name="matKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1643,10 +1666,10 @@
           <End Role="ChucNangTaiKhoan" Type="Self.ChucNangTaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
-              <PropertyRef Name="email" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ChucNangTaiKhoan">
-              <PropertyRef Name="Email" />
+              <PropertyRef Name="ID_TaiKhoan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1926,6 +1949,7 @@
           <EntitySet Name="QuanHuyens" EntityType="Self.QuanHuyen" />
           <EntitySet Name="QuaTangs" EntityType="Self.QuaTang" />
           <EntitySet Name="QuyenGops" EntityType="Self.QuyenGop" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
           <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
           <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" />
@@ -2187,9 +2211,9 @@
           <EntitySetMapping Name="ChucNangTaiKhoans">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.ChucNangTaiKhoan">
               <MappingFragment StoreEntitySet="ChucNangTaiKhoan">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="maLoaiTK" ColumnName="maLoaiTK" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_TaiKhoan" ColumnName="ID_TaiKhoan" />
+                <ScalarProperty Name="maLoaiTK" ColumnName="maLoaiTK" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2379,9 +2403,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TaiKhoans">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.TaiKhoan">
               <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="maND" ColumnName="maND" />
                 <ScalarProperty Name="matKhau" ColumnName="matKhau" />

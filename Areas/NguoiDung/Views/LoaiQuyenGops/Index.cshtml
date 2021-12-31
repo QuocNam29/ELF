@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ELF.Models.LoaiQuyenGop>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+}
+<head>
+    @* thẻ style dùng để chỉnh stylr ((màu, font, ....)) *@
+    <style>
+        /*ví dụ h8{bên trong là style định dạnh cho h8}*/
+        /*chỉnh màu h8*/
+        h8 {
+            color: #FF0000; /*Chỉnh sang màu đỏ*/
+        }
+    </style>
+</head>
+
+<h3>DANH SÁCH LOẠI SẢN PHẨM CÓ THỂ QUYÊN GÓP</h3>
+
+<h8>
+    Lưu ý:....
+</h8>
+<div class="central-meta item">
+    <div class="user-post">
+        @*Thẻ <table> xác định phần tử là một cái bảng.*@
+        <table class="table">
+            @* Thẻ <tr> xác định phần tử là một hàng trong bảng. *@
+            <tr>
+                @* Thẻ <td> xác định phần tử là một ô tiêu đề trong hàng. *@
+                <th>
+                    LOẠI SẢN PHẨM
+                </th>
+                <th>
+                    VỊ TRÍ NHẬN QUYÊN GÓP
+                </th>
+                <th>
+                    GHI CHÚ
+                </th>
+                <th>
+                    TRẠNG THÁI
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+        <tr>
+            @* Thẻ <td> xác định phần tử là một ô trong hàng (dữ liệu). *@
+            <td>
+                @Html.DisplayFor(modelItem => item.noiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.viTriQP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ghiChu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.trangThai)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.maLQG }) |
+                <a href="@Url.Action("Create", "QuyenGops", new {maLQG=item.maLQG })" class='sidebar-link'>
+                    <i Class="ti-write" width="20"></i>
+                    <span>Đăng Ký Quyên Góp</span>
+                </a>
+            </td>
+        </tr>
+            }
+
+        </table>
+    </div>
+</div>

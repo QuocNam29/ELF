@@ -112,7 +112,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     ViewBag.error = "Địa chỉ email này đã được đăng ký rồi";
                     return View();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("DangNhap","DangNhap");
             }
             ViewBag.maTinh_TP = new SelectList(db.Tinh_ThanhPho, "maTinh_TP", "tenTinh_TP");
             ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan");

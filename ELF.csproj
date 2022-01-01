@@ -166,11 +166,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\BaiDangSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\LoaiQuyenGopsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
-    <Compile Include="Areas\NguoiDung\Controllers\QuyenGops1Controller.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\QuyenGopsController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TrangChuController.cs" />
     <Compile Include="Areas\NguoiDung\NguoiDungAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -259,6 +260,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QuyenGop.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoan.cs">
@@ -1571,9 +1575,6 @@
     <Content Include="fonts\themify9f24.woff" />
     <Content Include="fonts\themifyd41d.eot" />
     <Content Include="Areas\NguoiDung\Views\web.config" />
-    <Content Include="Areas\NguoiDung\Views\TrangChu\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TrangChu\View.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TrangChu\DangNhap.cshtml" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
@@ -1633,7 +1634,6 @@
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-Regular.ttf" />
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-SemiBold.ttf" />
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-SemiBoldItalic.ttf" />
-    <Content Include="Areas\NguoiDung\Views\TrangChu\DangKy.cshtml" />
     <Content Include="fonts\DangKy\material-design-iconic-font\fonts\Material-Design-Iconic-Font.eot" />
     <Content Include="fonts\DangKy\material-design-iconic-font\fonts\Material-Design-Iconic-Font.ttf" />
     <Content Include="fonts\DangKy\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff" />
@@ -1642,13 +1642,14 @@
     <Content Include="fonts\DangKy\poppins\Poppins-SemiBold.ttf" />
     <Content Include="css\DangKy\style.css.map" />
     <Content Include="css\DangKy\style.scss" />
-    <Content Include="Areas\NguoiDung\Views\TrangChu\DangKyTaiKhoan.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DangNhap\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Shared\_Layout.cshtml" />
+    <Content Include="js\resources\chrome\axure-chrome-extension.crx" />
+    <Content Include="js\resources\css\previewfonts\SourceSansPro-Regular.woff2" />
+    <Content Include="js\resources\css\previewfonts\SourceSansPro-Semibold.woff2" />
+    <Content Include="Areas\NguoiDung\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\QuyenGops\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\QuyenGops\View.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1656,28 +1657,30 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\NguoiDung\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGop\Index.cshtml" />
-    <Content Include="js\resources\chrome\axure-chrome-extension.crx" />
-    <Content Include="js\resources\css\previewfonts\SourceSansPro-Regular.woff2" />
-    <Content Include="js\resources\css\previewfonts\SourceSansPro-Semibold.woff2" />
-    <Content Include="Areas\NguoiDung\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\View.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\View.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops1\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops1\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops1\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops1\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops1\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DangNhap\Dangnhap.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TrangChu\DangKy.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TrangChu\DangKyTaiKhoan.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TrangChu\DangNhap.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TrangChu\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TrangChu\View.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

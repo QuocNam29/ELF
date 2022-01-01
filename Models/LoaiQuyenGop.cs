@@ -21,6 +21,7 @@ namespace ELF.Models
         }
     
         public int maLQG { get; set; }
+        public string tenLoai { get; set; }
         public string noiDung { get; set; }
         public string viTriQP { get; set; }
         public string ghiChu { get; set; }

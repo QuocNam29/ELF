@@ -9831,6 +9831,7 @@ aside.sidebar.full-style {
 }
 
 .forum-open .table tr td p {
+    counter-increment: rowNumber;
     font-size: 13px;
     margin: 0;
 }

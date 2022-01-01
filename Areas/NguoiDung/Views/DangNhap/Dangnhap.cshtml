@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Đăng Nhập";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -39,7 +40,7 @@
 
     <div class="container-login100" style="background-image:  url('@Url.Content("~/images/bg-01.jpg")')">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-            @using (Html.BeginForm("Index", "DangNhap", FormMethod.Post))
+            @using (Html.BeginForm("DangNhap", "DangNhap", FormMethod.Post))
             {
                 <form class="login100-form validate-form">
                     @if (Session["Message"] != null)
@@ -79,7 +80,7 @@
 
                         <a href="#" class="login100-social-item">
                             <img src="~/images/icon-google.png" alt="GOOGLE">
-                         </a>
+                        </a>
                     </div>
 
                     <div class="text-center">

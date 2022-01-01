@@ -5,14 +5,16 @@
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>LoaiQuyenGop</h4>
-    <hr />
+<div class="central-meta item">
+    <div class="user-post">
+        <div class="f-title">
+            <h3>Thông tin chi tiết về việc thu gom @Html.DisplayFor(model => model.tenLoai)</h3>
+            <h10>tiêu đều nhỏ gì đó chẳng hạn</h10>
+        </div>
+    </div>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.noiDung)
+            Nội Dung:
         </dt>
 
         <dd>
@@ -20,7 +22,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.viTriQP)
+            Vị Trí Thu Gom:
         </dt>
 
         <dd>
@@ -28,15 +30,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ghiChu)
+            Ghi Chú:
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ghiChu)
-        </dd>
+        @if (Model.ghiChu == null)
+        {
+            <dd>
+                Không có thông tin ghi chú
+            </dd>
+        }
+        else
+        { @Html.DisplayFor(model => model.ghiChu)}
 
         <dt>
-            @Html.DisplayNameFor(model => model.trangThai)
+            Trạng Thái:
         </dt>
 
         <dd>
@@ -44,8 +51,17 @@
         </dd>
 
     </dl>
+    <div class="submit-btns">
+        <button type="button" class="mtr-btn">
+            <a href="@Url.Action("Create", "QuyenGops", new {maLQG=Model.maLQG })" class='sidebar-link'>
+                <i Class="ti-write" width="20"></i>
+                <span>Đăng Ký Quyên Góp</span>
+            </a>
+        </button>
+        <button type="button" class="mtr-btn">
+            <a href="@Url.Action("Index", "LoaiQuyenGops")" class='sidebar-link'>
+                <span>Trở Về</span>
+            </a>
+        </button>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maLQG }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -76,34 +76,43 @@ namespace ELF.Areas.NguoiDung.Controllers
                 var check = db.TaiKhoans.FirstOrDefault(s => s.email == email);
                 if (check == null)
                 {
-                    
-                    nguoiDung.gioiTinh = int.Parse(gioiTinh);
-                    db.NguoiDungs.Add(nguoiDung);
-                    db.SaveChanges();
+                    if (GetMD5(matKhau) == GetMD5(xacNhanMatKhau))
+                    {
+                        nguoiDung.gioiTinh = int.Parse(gioiTinh);
+                        db.NguoiDungs.Add(nguoiDung);
+                        db.SaveChanges();
 
-                    int maND = nguoiDung.maND;
-                    TaiKhoan taiKhoan = new TaiKhoan();
-                    taiKhoan.email = email;
-                    taiKhoan.matKhau = GetMD5(matKhau);
-                    taiKhoan.xacNhanMatKhau = xacNhanMatKhau;
-                    taiKhoan.trangThai = true;
-                    taiKhoan.maND = maND;
-                    db.Configuration.ValidateOnSaveEnabled = false;
-                    db.TaiKhoans.Add(taiKhoan);
-                    db.SaveChanges();
+                        int maND = nguoiDung.maND;
+                        TaiKhoan taiKhoan = new TaiKhoan();
+                        taiKhoan.email = email;
+                        taiKhoan.matKhau = GetMD5(matKhau);
+                        taiKhoan.xacNhanMatKhau = xacNhanMatKhau;
+                        taiKhoan.trangThai = true;
+                        taiKhoan.maND = maND;
+                        taiKhoan.ngayTao = DateTime.Now;
+                        db.Configuration.ValidateOnSaveEnabled = false;
+                        db.TaiKhoans.Add(taiKhoan);
+                        db.SaveChanges();
 
-                    ChucNangTaiKhoan chucNangTaiKhoan = new ChucNangTaiKhoan();
-                    chucNangTaiKhoan.Email = email;
-                    chucNangTaiKhoan.maLoaiTK = 2;
-                    db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
-                    db.SaveChanges();
+                        int id_taiKhoan = taiKhoan.ID;
+                        ChucNangTaiKhoan chucNangTaiKhoan = new ChucNangTaiKhoan();
+                        chucNangTaiKhoan.ID_TaiKhoan = id_taiKhoan;
+                        chucNangTaiKhoan.maLoaiTK = 2;
+                        db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        ViewBag.error = "Mật khẩu không chính xác";
+                        return View();
+                    }
                 }
                 else
                 {
                     ViewBag.error = "Địa chỉ email này đã được đăng ký rồi";
                     return View();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("DangNhap","DangNhap");
             }
             ViewBag.maTinh_TP = new SelectList(db.Tinh_ThanhPho, "maTinh_TP", "tenTinh_TP");
             ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan");
@@ -118,6 +127,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Models.NguoiDung nguoiDung = db.NguoiDungs.Find(id);
             if (nguoiDung == null)
             {
@@ -164,7 +174,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             return View(nguoiDung);
         }
 
-        // POST: NguoiDung/NguoiDungs/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -174,6 +184,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

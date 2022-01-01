@@ -14,9 +14,9 @@ namespace ELF.Models
     
     public partial class ChucNangTaiKhoan
     {
-        public string Email { get; set; }
-        public int maLoaiTK { get; set; }
         public int ID { get; set; }
+        public int ID_TaiKhoan { get; set; }
+        public int maLoaiTK { get; set; }
     
         public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }

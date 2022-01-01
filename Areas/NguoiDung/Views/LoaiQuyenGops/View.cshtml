@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ELF.Models.LoaiQuyenGop>
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenLoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.viTriQP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ghiChu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noiDung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.viTriQP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ghiChu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trangThai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maLQG }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maLQG }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maLQG })
+        </td>
+    </tr>
+}
+
+</table>

@@ -42,6 +42,19 @@ namespace ELF.Areas.NguoiDung.Controllers
                     Session["avatar"] = account.NguoiDung.avatar;
                     Session["email"] = account.email;
                     Session["ngayTao"] = account.ngayTao;
+                    Session["gioiTinh"] = account.NguoiDung.gioiTinh;
+                    if (account.NguoiDung.gioiTinh == 1)
+                    {
+                        Session["loaiGioiTinh"] = "Nam";
+                    }
+                    else if (account.NguoiDung.gioiTinh == 0)
+                    {
+                        Session["loaiGioiTinh"] = "Nữ";
+                    }
+                    else
+                    {
+                        Session["loaiGioiTinh"] = "Khác";
+                    }
                     FormsAuthentication.SetAuthCookie(email, false);
                     return RedirectToAction("Index", "BaiDangSanPhams");
                 }

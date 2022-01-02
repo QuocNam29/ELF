@@ -112,6 +112,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     ViewBag.error = "Địa chỉ email này đã được đăng ký rồi";
                     return View();
                 }
+                
                 return RedirectToAction("DangNhap","DangNhap");
             }
             ViewBag.maTinh_TP = new SelectList(db.Tinh_ThanhPho, "maTinh_TP", "tenTinh_TP");
@@ -145,10 +146,28 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung)
+        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, HttpPostedFileBase avt, int gioiTinh)
         {
             if (ModelState.IsValid)
             {
+                
+                string oldfilePath = nguoiDung.avatar;
+                if (avt != null && avt.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(avt.FileName);
+                    string path = System.IO.Path.Combine(
+                    Server.MapPath("~/images/"), fileName);
+                    avt.SaveAs(path);
+                    nguoiDung.avatar = "~/images/" + avt.FileName;
+                    string fullPath = Request.MapPath(oldfilePath);
+
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                }
+                nguoiDung.maND = int.Parse(Session["maND"].ToString());
+                nguoiDung.gioiTinh = gioiTinh;
                 db.Entry(nguoiDung).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -1377,6 +1377,7 @@
     <Content Include="images\resources\timeline-1.jpg" />
     <Content Include="images\resources\timeline-4.jpg" />
     <Content Include="images\resources\user-avatar.jpg" />
+    <Content Include="images\resources\User-avatar.svg.png" />
     <Content Include="images\resources\user-avatar2.jpg" />
     <Content Include="images\resources\user-post.jpg" />
     <Content Include="images\resources\user-post6.jpg" />

@@ -1,5 +1,14 @@
 ﻿@{
     int ID = int.Parse(Session["ID"].ToString());
+    string avt = "";
+    if (Session["avatar"] != null)
+    {
+        avt = Session["avatar"].ToString();
+    }
+    else
+    {
+        avt = "~/images/resources/User-avatar.svg.png";
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <title>Winku Social Network Toolkit</title>
+    <title>ELF</title>
     <link rel="icon" href="~/images/fav.png" type="image/png" sizes="16x16">
 
     <link rel="stylesheet" href="~/css/main.min.css">
@@ -381,7 +390,7 @@
 
                 </ul>
                 <div class="user-img">
-                    <img src="~/images/resources/admin.jpg" alt="">
+                    <img src="@*@Url.Content(avt)*@" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <a href="#" title=""><span class="status f-online"></span>online</a>
@@ -400,21 +409,14 @@
 
         <section>
             <div class="feature-photo">
-                <figure><img src="~/images/resources/timeline-1.jpg" alt=""></figure>
+                <figure><img src="@Url.Content(avt)" alt=""></figure>
 
-                <form class="edit-phto">
-                    <i class="fa fa-camera-retro"></i>
-                    <label class="fileContainer">
-                        Edit Cover Photo
-                        <input type="file" />
-                    </label>
-                </form>
                 <div class="container-fluid">
                     <div class="row merged">
                         <div class="col-lg-2 col-sm-3">
                             <div class="user-avatar">
                                 <figure>
-                                    <img src="~/images/resources/user-avatar.jpg" alt="">
+                                    <img src=" ~/images/resources/timeline-1.jpg" />
                                     <form class="edit-phto">
                                         <i class="fa fa-camera-retro"></i>
                                         <label class="fileContainer">
@@ -429,8 +431,8 @@
                             <div class="timeline-info">
                                 <ul>
                                     <li class="admin-name">
-                                        <h5>Janice Griffith</h5>
-                                        <span>Group Admin</span>
+                                        <h5>@Session["hoVaTen"].ToString()</h5>
+                                        @*<span>Group Admin</span>*@
                                     </li>
                                     <li>
                                         <a class="" href="time-line.html" title="" data-ripple="">Trang cá nhân</a>
@@ -512,8 +514,7 @@
                                 </div><!-- sidebar -->
                                 <div class="col-lg-6">
                                     <div class="central-meta">
-                                        @RenderBody();
-
+                                        @RenderBody()
                                     </div>
                                 </div><!-- centerl meta -->
                                 <div class="col-lg-3">

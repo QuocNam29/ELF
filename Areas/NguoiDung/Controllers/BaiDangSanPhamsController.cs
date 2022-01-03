@@ -23,6 +23,14 @@ namespace ELF.Areas.NguoiDung.Controllers
             return View(baiDangSanPhams.ToList());
         }
 
+        public ActionResult Index_TrangCaNhan(int maND)
+        {
+            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND);
+
+            
+            return View(baiDangSanPhams.ToList());
+        }
+
         // GET: NguoiDung/BaiDangSanPhams/Details/5
         public ActionResult Details(int? id)
         {

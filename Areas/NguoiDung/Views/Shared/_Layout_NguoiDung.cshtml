@@ -122,7 +122,7 @@
 
         <div class="topbar stick">
             <div class="logo">
-                <a title="" href="newsfeed.html"><img src="~/images/logo.png" alt=""></a>
+                <a title="" href="@Url.Action("Index","BaiDangSanPhams")"><img src="~/images/logo.png" alt=""></a>
             </div>
             
             <div class="top-area">
@@ -334,31 +334,6 @@
                                                 </li>
                                             </ul>
                                         </div><!-- Shortcuts -->
-                                        <div class="widget">
-                                            <h4 class="widget-title">Hoạt động gần đây</h4>
-                                            <ul class="activitiez">
-                                                <li>
-                                                    <div class="activity-meta">
-                                                        <i>10 hours Ago</i>
-                                                        <span><a href="#" title="">Commented on Video posted </a></span>
-                                                        <h6>by <a href="time-line.html">black demon.</a></h6>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="activity-meta">
-                                                        <i>30 Days Ago</i>
-                                                        <span><a href="#" title="">Posted your status. “Hello guys, how are you?”</a></span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="activity-meta">
-                                                        <i>2 Years Ago</i>
-                                                        <span><a href="#" title="">Share a video on her timeline.</a></span>
-                                                        <h6>"<a href="#">you are so funny mr.been.</a>"</h6>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div><!-- recent activites -->
 
                                     </aside>
                                 </div><!-- sidebar -->
@@ -373,12 +348,12 @@
                                                 <h4 class="widget-title">Trang cá nhân</h4>
                                                 <div class="your-page">
                                                     <figure>
-                                                        <a href="#" title=""><img src="~/images/resources/friend-avatar9.jpg" alt=""></a>
+                                                        <a href="@Url.Action("Index_TrangCaNhan","BaiDangSanPhams",new { maND = maND  })" title=""><img src="@Url.Content(avt)" alt=""></a>
                                                     </figure>
                                                     <div class="page-meta">
                                                         @if (Session["hoVaTen"] != null)
                                                         {
-                                                        <a href="@Url.Action("Edit","NguoiDungs",new { id = maND })" title="" class="underline">@Session["HoVaTen"].ToString()</a>
+                                                        <a href="@Url.Action("Index_TrangCaNhan","BaiDangSanPhams",new { maND = maND  })" title="" class="underline">@Session["HoVaTen"].ToString()</a>
                                                          }
                                                             <span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
                                                             <span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>

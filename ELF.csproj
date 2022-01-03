@@ -1525,6 +1525,7 @@
     <Content Include="Areas\NguoiDung\Views\TaiKhoans\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TaiKhoans\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TaiKhoans\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_TrangCaNhan.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

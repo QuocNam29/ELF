@@ -1,70 +1,14 @@
 ﻿@model IEnumerable<ELF.Models.BaiDangSanPham>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
-    string avt = "";
-    if (Session["avatar"] != null)
-    {
-        avt = Session["avatar"].ToString();
-    }
-    else
-    {
-        avt = "~/images/resources/User-avatar.svg.png";
-    }
+    ViewBag.Title = "Index_TrangCaNhan";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+    int maND = int.Parse(Session["maND"].ToString());
 }
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-<div class="central-meta">
-    <div class="new-postbox">
-        <figure>
-            <img src="@Url.Content(avt)" alt="">
-        </figure>
-        <div class="newpst-input">
-            <form method="post">
-                <textarea rows="2" placeholder="write something"></textarea>
-                <div class="attachments">
-                    <ul>
-                        <li>
-                            <i class="fa fa-music"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <i class="fa fa-image"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <i class="fa fa-video-camera"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <i class="fa fa-camera"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <button type="button" class="btn-block">Open Modal</button>
-                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangSanPhams")"></div>
-                        </li>
-                    </ul>
-                </div>
-            </form>
-            @*<button type="button" class="btn-block">Open Modal</button>
-                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangSanPhams")"></div>*@
-
-        </div>
-    </div>
-</div> <!-- add post new box -->
 @foreach (var item in Model)
 {
+
     string avt_BD = "";
     if (item.NguoiDung.avatar != null)
     {
@@ -255,17 +199,4 @@
     </div>
 }
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.btn-block').click(function () {
 
-                var url = $('#myModal').data('url');
-                $.get(url, function (data) {
-
-                    $("#myModal").html(data);
-                    $("#myModal").modal('show')
-
-                });
-            });
-        });
-    </script>

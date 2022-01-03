@@ -166,6 +166,10 @@ namespace ELF.Areas.NguoiDung.Controllers
                         System.IO.File.Delete(fullPath);
                     }
                 }
+                else
+                {
+                    nguoiDung.avatar = Session["avatar"].ToString();
+                }
                 nguoiDung.maND = int.Parse(Session["maND"].ToString());
                 nguoiDung.gioiTinh = gioiTinh;
                 db.Entry(nguoiDung).State = EntityState.Modified;

@@ -2,82 +2,59 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+    string avt = "";
 }
 
-<h2>Details</h2>
+@if (Model.avatar != null)
+{
+    avt = Model.avatar;
+}
+else
+{
+    avt = "~/images/resources/User-avatar.svg.png";
+}
+<div class="editing-info">
+    <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin cá nhân</h5>
+        <div class="form-group">
+            <img src="@Url.Content(avt)" alt="">
+        </div> 
+    </div>
+       
+<div class="onoff-options">
+    <div class="setting-row">
+        <span>Họ và Tên</span>
+        <p>@Html.DisplayFor(model => model.hoVaTen)</p>
+    </div>
+    <div class="setting-row">
+        <span>Giới tính</span>
+        <p> @Session["loaiGioiTinh"]</p>
+    </div>
+    <div class="setting-row">
+        <span>Số điện thoại</span>
+        <p>@Html.DisplayFor(model => model.dienThoai)</p>
 
-<div>
-    <h4>NguoiDung</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.hoVaTen)
-        </dt>
+    </div>
+    <div class="setting-row">
+        <span>Tỉnh/Thành phố</span>
+        <p>@Html.DisplayFor(model => model.Tinh_ThanhPho.tenTinh_TP)</p>
+    </div>
+    <div class="setting-row">
+        <span>Quận/Huyện</span>
+        <p>@Html.DisplayFor(model => model.QuanHuyen.tenQuan)</p>
+    </div>
+    <div class="setting-row">
+        <span>Phường/Thị Trấn</span>
+        <p>@Html.DisplayFor(model => model.PhuongThiTran.tenPhuong)</p>
+    </div>
+    <div class="setting-row">
+        <span>Địa chỉ</span>
+        <p>@Html.DisplayFor(model => model.diaChi)</p>
+    </div>
+    <div class="submit-btns">
+        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Edit", "NguoiDungs",  new { id = Model.maND })'" ><span>Chỉnh sửa</span></button>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.hoVaTen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gioiTinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gioiTinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.dienThoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dienThoai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.diaChi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.diaChi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.avatar)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.avatar)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ngaySinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ngaySinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ghiChu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhuongThiTran.tenPhuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhuongThiTran.tenPhuong)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maND }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+    

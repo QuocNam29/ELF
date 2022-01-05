@@ -150,7 +150,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 string oldfilePath = nguoiDung.avatar;
                 if (avt != null && avt.ContentLength > 0)
                 {
@@ -170,11 +170,28 @@ namespace ELF.Areas.NguoiDung.Controllers
                 {
                     nguoiDung.avatar = Session["avatar"].ToString();
                 }
-                nguoiDung.maND = int.Parse(Session["maND"].ToString());
+                int maND_ss = int.Parse(Session["maND"].ToString());
+                nguoiDung.maND = maND_ss;
                 nguoiDung.gioiTinh = gioiTinh;
                 db.Entry(nguoiDung).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                Session["hoVaTen"] = nguoiDung.hoVaTen;
+                Session["avatar"] = nguoiDung.avatar;
+                Session["gioiTinh"] = nguoiDung.gioiTinh;
+                if (nguoiDung.gioiTinh == 1)
+                {
+                    Session["loaiGioiTinh"] = "Nam";
+                }
+                else if (nguoiDung.gioiTinh == 0)
+                {
+                    Session["loaiGioiTinh"] = "Nữ";
+                }
+                else
+                {
+                    Session["loaiGioiTinh"] = "Khác";
+                }
+                return RedirectToAction("Details", "NguoiDungs", new { id = maND_ss });
             }
             ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
             ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan", nguoiDung.maQuan);

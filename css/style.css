@@ -1374,21 +1374,23 @@ form button {
     width: 90%;
 }
 
-.friend-name > ins {
-    float: left;
-    font-weight: 700;
-    width: 100%;
-    font-size: 18px;
-    text-decoration: none;
-}
+    .friend-name > ins {
+        float: left;
+        font-weight: 500;
+        width: 100%;
+        font-size: 14.5px;
+        text-decoration: none;
+    }
 
-.friend-name > span {
-    color: #999;
-    float: left;
-    font-size: 12px;
-    text-transform: capitalize;
-    width: 100%;
-}
+    .friend-name > span {
+        color: #999;
+        float: left;
+        font-size: 12px;
+        text-transform: capitalize;
+        width: 100%;
+    }
+
+
 
 .post-meta {
     float: left;
@@ -10045,5 +10047,64 @@ aside.sidebar.full-style {
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
+.friend-name .more {
+    float: right;
+    margin-top: -35px;
+}
+
+.more-post-optns > ul {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0;
+    opacity: 0;
+    padding: 15px;
+    position: absolute;
+    right: -100px;
+    top: -220%;
+    transform: scale(0);
+    transition: all 0.2s linear 0s;
+    visibility: hidden;
+    width: 175px;
+    z-index: 9;
+}
+
+.more-post-optns {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+    .more-post-optns > ul > li {
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        margin-bottom: 7px;
+        transition: all 0.2s linear 0s;
+        width: 100%;
+    }
+
+        .more-post-optns > ul > li i {
+            color: #222;
+            display: inline-block;
+            font-size: 14px;
+            margin-right: 8px;
+            transition: all 0.1s linear 0s;
+            vertical-align: middle;
+        }
+
+        .more-post-optns > ul > li:hover i {
+            transform: scale(1.1);
+        }
+
+    .more-post-optns:hover > ul {
+        opacity: 1;
+        right: -1px;
+        top: 100%;
+        transform: scale(1);
+        visibility: visible;
+    }
 
 

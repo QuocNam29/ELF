@@ -40,6 +40,7 @@ namespace ELF.Models
         public string avatar { get; set; }
         public Nullable<System.DateTime> ngaySinh { get; set; }
         public string ghiChu { get; set; }
+        public string maTK { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaiDangSanPham> BaiDangSanPhams { get; set; }

@@ -147,13 +147,33 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maBDSP,maND,maLSP,tenSP,noiDung,hinhAnh,video,maTT,gia,soLuong,ngayDang,ngayThayDoi,ghiChu")] BaiDangSanPham baiDangSanPham)
+        public ActionResult Edit([Bind(Include = "maBDSP,maND,maLSP,tenSP,noiDung,hinhAnh,video,maTT,gia,soLuong,ngayDang,ngayThayDoi,ghiChu")] BaiDangSanPham baiDangSanPham, HttpPostedFileBase img, string hinhAnh)
         {
             if (ModelState.IsValid)
             {
+                string oldfilePath = baiDangSanPham.hinhAnh;
+                if (img != null && img.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(img.FileName);
+                    string path = System.IO.Path.Combine(
+                    Server.MapPath("~/images/"), fileName);
+                    img.SaveAs(path);
+                    baiDangSanPham.hinhAnh = "~/images/" + img.FileName;
+                    string fullPath = Request.MapPath(oldfilePath);
+
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                }
+                else
+                {
+                    baiDangSanPham.hinhAnh = hinhAnh;
+                }
+               baiDangSanPham.ngayThayDoi = DateTime.Now;
                 db.Entry(baiDangSanPham).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = baiDangSanPham.maND });
             }
             ViewBag.maLSP = new SelectList(db.LoaiSanPhams, "maLSP", "tenLSP", baiDangSanPham.maLSP);
             ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", baiDangSanPham.maND);

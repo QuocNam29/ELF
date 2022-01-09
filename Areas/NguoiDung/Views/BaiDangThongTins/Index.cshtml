@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ELF.Models.BaiDangSanPham>
+﻿@model IEnumerable<ELF.Models.BaiDangThongTin>
 
 @{
     ViewBag.Title = "Index";
@@ -52,11 +52,14 @@
                         </li>
                         <li>
                             <button type="button" class="btn-block">Open Modal</button>
-                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangSanPhams")"></div>
+                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangThongTins")"></div>
                         </li>
                     </ul>
                 </div>
             </form>
+            @*<button type="button" class="btn-block">Open Modal</button>
+                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangSanPhams")"></div>*@
+
         </div>
     </div>
 </div> <!-- add post new box -->
@@ -80,22 +83,19 @@
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
                     <span>published: @item.ngayDang</span>
-
-                
-
                     @* <div class="more">
-            <div class="more-post-optns">
-                <i class="ti-more-alt"></i>
-                <ul>
-                    <li><i class="fa fa-pencil-square-o"></i>Embed</li>
-                    <li><i class="fa fa-share-square-o"></i>Share</li>
-                    <li><i class="fa fa-bell-slash-o"></i>Mute</li>
-                    <li><i class="fa fa-folder"></i>view hidden replies</li>
-                    <li><i class="fa fa-wpexplorer"></i>Report post</li>
-                    <li><i class="fa fa-bell-slash-o"></i>Block</li>
-                </ul>
-            </div>
-        </div>*@
+                            <div class="more-post-optns">
+                                <i class="ti-more-alt"></i>
+                                <ul>
+                                    <li><i class="fa fa-pencil-square-o"></i>Embed</li>
+                                    <li><i class="fa fa-share-square-o"></i>Share</li>
+                                    <li><i class="fa fa-bell-slash-o"></i>Mute</li>
+                                    <li><i class="fa fa-folder"></i>view hidden replies</li>
+                                    <li><i class="fa fa-wpexplorer"></i>Report post</li>
+                                    <li><i class="fa fa-bell-slash-o"></i>Block</li>
+                                </ul>
+                            </div>
+                        </div>*@
                 </div>
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
@@ -268,7 +268,7 @@
     </div>
 }
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $('.btn-block').click(function () {
 
@@ -281,4 +281,74 @@
                 });
             });
         });
-    </script>
+</script>
+
+
+<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.noiDung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hinhAnh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.video)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ngayDang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ngayThayDoi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ghiChu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThaiBaiDang.trangThai)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.noiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hinhAnh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.video)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngayDang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngayThayDoi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ghiChu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguoiDung.hoVaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrangThaiBaiDang.trangThai)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.maBDTT }) |
+                @Html.ActionLink("Details", "Details", new { id=item.maBDTT }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.maBDTT })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

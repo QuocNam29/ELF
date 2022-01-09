@@ -24,6 +24,7 @@ namespace ELF.Models
     
         public int maBDTT { get; set; }
         public int maND { get; set; }
+        public string tieuDe { get; set; }
         public string noiDung { get; set; }
         public string hinhAnh { get; set; }
         public string video { get; set; }

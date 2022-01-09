@@ -1,8 +1,10 @@
-﻿@model ELF.Models.BaiDangSanPham
+﻿@model ELF.Models.BaiDangThongTin
+
 @{
     int maND = int.Parse(Session["maND"].ToString());
     Layout = null;
 }
+
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,7 +20,7 @@
     <link rel="stylesheet" href="~/css/responsive.css">
 
 </head>
-@using (Html.BeginForm("Create", "BaiDangSanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "BaiDangThongTins", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="modal-dialog">
@@ -28,31 +30,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group half" style="width:320px">
-                    @Html.EditorFor(model => model.tenSP, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.tenSP, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.tieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tieuDe, "", new { @class = "text-danger" })
                     <label class="control-label" for="input">Tên sản phẩm</label>
                     <i class="mtrl-select" style="width:300px"></i>
                 </div>
-                <div class="form-group half" style="width:320px">
-                    @Html.DropDownList("maLSP", null, htmlAttributes: new { style = "height: 30.4px;", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.maLSP, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Loại sản phẩm</label>
-                    <i class="mtrl-select" style="width:320px"></i>
-                </div>
-                <div class="form-group">
-                    <div class="form-group half" style="width:320px">
-                        @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
-                        <label class="control-label" for="input">Giá sản phẩm</label>
-                        <i class="mtrl-select" style="width:300px"></i>
-                    </div>
-                    <div class="form-group half" style="width:320px">
-                        @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
-                        <label class="control-label" for="input">Số lượng</label>
-                        <i class="mtrl-select" style="width:320px"></i>
-                    </div>
-                </div>
+               
                 <div class="form-group">
                     @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { style = "height: 50px;", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
@@ -60,9 +43,6 @@
                     <i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
-
-
-
                     <div class="input-group js-input-file">
                         @*<input class="input-file" type="file" name="file_cv" id="file">*@
                         <input accept="image/*" type="file" name="img" id="imgInp"><br>
@@ -90,34 +70,13 @@
 }
 
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script>
-    const image = document.getElementById("ImagePath");
-    const vunganh = document.getElementById("image_aria");
-    const anh = vunganh.querySelector(".anh");
-    const anhtext = vunganh.querySelector(".them_image");
-    image.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            anhtext.style.display = "none";
-            anh.style.display = "block";
-            reader.addEventListener("load", function () {
-                anh.setAttribute("src", this.result);
-            });
-            reader.readAsDataURL(file);
-        }
-    });
-</script>*@
-
 @*
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>BaiDangSanPham</h4>
+            <h4>BaiDangThongTin</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -125,22 +84,6 @@
                 <div class="col-md-10">
                     @Html.DropDownList("maND", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.maND, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.maLSP, "maLSP", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("maLSP", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.maLSP, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.tenSP, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.tenSP, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.tenSP, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -177,22 +120,6 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.gia, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.soLuong, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
                 @Html.LabelFor(model => model.ngayDang, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ngayDang, new { htmlAttributes = new { @class = "form-control" } })
@@ -223,7 +150,11 @@
             </div>
         </div>
     }
-*@
-@*<div>
+
+    <div>
         @Html.ActionLink("Back to List", "Index")
-    </div>*@
+    </div>
+*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

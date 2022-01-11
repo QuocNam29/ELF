@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<ELF.Models.BaiDangSanPham>
- @{
-        ViewBag.Title = "Index_TrangCaNhan";
-        Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
-        int maND = int.Parse(Session["maND"].ToString());
+@{
+    ViewBag.Title = "Index_TrangCaNhan";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+    int maND = int.Parse(Session["maND"].ToString());
+
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -11,14 +12,17 @@
 
 @foreach (var item in Model)
 {
+
     string avt_BD = "";
     if (item.NguoiDung.avatar != null)
     {
         avt_BD = item.NguoiDung.avatar;
+
     }
     else
     {
         avt_BD = "~/images/resources/User-avatar.svg.png";
+
     }
     <div class="central-meta item">
         <div class="user-post">
@@ -29,23 +33,27 @@
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
                     <span>published: @item.ngayDang</span>
+                    <div>
+                        <button type="button" class="btn-block" data-id="@item.maBDSP">Open Modal</button>
+                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
 
-                    <button type="button" class="btn-block">Open Modal</button>
-                    <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams", new { id = item.maBDSP  })"></div>
+                    </div>
+
+
 
                     @* <div class="more">
-            <div class="more-post-optns">
-                <i class="ti-more-alt"></i>
-                <ul>
-                    <li><i class="fa fa-pencil-square-o"></i>Embed</li>
-                    <li><i class="fa fa-share-square-o"></i>Share</li>
-                    <li><i class="fa fa-bell-slash-o"></i>Mute</li>
-                    <li><i class="fa fa-folder"></i>view hidden replies</li>
-                    <li><i class="fa fa-wpexplorer"></i>Report post</li>
-                    <li><i class="fa fa-bell-slash-o"></i>Block</li>
-                </ul>
-            </div>
-        </div>*@
+                            <div class="more-post-optns">
+                                <i class="ti-more-alt"></i>
+                                <ul>
+                                    <li><i class="fa fa-pencil-square-o"></i>Embed</li>
+                                    <li><i class="fa fa-share-square-o"></i>Share</li>
+                                    <li><i class="fa fa-bell-slash-o"></i>Mute</li>
+                                    <li><i class="fa fa-folder"></i>view hidden replies</li>
+                                    <li><i class="fa fa-wpexplorer"></i>Report post</li>
+                                    <li><i class="fa fa-bell-slash-o"></i>Block</li>
+                                </ul>
+                            </div>
+                        </div>*@
                 </div>
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
@@ -218,17 +226,30 @@
     </div>
 }
 
-<script type="text/javascript">
+<script>
     $(document).ready(function () {
         $('.btn-block').click(function () {
+            var url = $("#myModal").attr('data-url');
+            var id = $(this).attr('data-id');
 
-            var url = $('#myModal').data('url');
-            $.get(url, function (data) {
-
+            $.get(url + '/' + id, function (data) {
                 $("#myModal").html(data);
                 $("#myModal").modal('show')
-
             });
         });
     });
 </script>
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $('.btn-block').click(function () {
+
+                var url = $('#myModal').data('url');
+                $.get(url, function (data) {
+
+                    $("#myModal").html(data);
+                    $("#myModal").modal('show')
+
+                });
+            });
+        });
+    </script>*@

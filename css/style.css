@@ -606,11 +606,11 @@ header.sticky {
     width: 100%;
 }
 
-.form-radio > .radio {
-    display: inline-block;
-    margin-bottom: 0;
-    width: 20%;
-}
+    .form-radio > .radio {
+        display: inline-block;
+        margin-bottom: 0;
+        width: 20%;
+    }
 
 .form-radio {
     margin: 0;
@@ -10075,6 +10075,7 @@ aside.sidebar.full-style {
     cursor: pointer;
     display: inline-block;
     position: relative;
+
 }
 
     .more-post-optns > ul > li {
@@ -10084,15 +10085,25 @@ aside.sidebar.full-style {
         margin-bottom: 7px;
         transition: all 0.2s linear 0s;
         width: 100%;
+        text-align: center;
     }
 
         .more-post-optns > ul > li i {
-            color: #222;
+            color: dimgrey;
+            text-align: center;
             display: inline-block;
             font-size: 14px;
             margin-right: 8px;
             transition: all 0.1s linear 0s;
             vertical-align: middle;
+            
+        }
+        .more-post-optns > ul > li button {
+            background-color: white;
+            color: dimgrey;
+            /*text-align: left;*/
+            outline: none;
+            border: 0;
         }
 
         .more-post-optns > ul > li:hover i {

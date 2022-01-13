@@ -33,11 +33,11 @@
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
                     <span>published: @item.ngayDang</span>
-                   @*<div>
-                        <button type="button" class="btn-block" data-id="@item.maBDSP">Open Modal</button>
+                   <div>
+                        <button hidden type="button" class="btn-block" data-id="@item.maBDSP">Open Modal</button>
                         <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
 
-                    </div>*@
+                    </div>
 
 
 
@@ -46,16 +46,16 @@
                                 <i class="ti-more-alt"></i>
                                 <ul>
                                     <li>
-                                        <div class="submit-btns">
-                                            <button type="button" class="btn-block" data-id="@item.maBDSP">Chỉnh sửa</button>
+                                        
+                                            <button type="button" class="btn-block" data-id="@item.maBDSP"><span>Chỉnh sửa</span> </button>
                                             <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
-                                        </div>         
+                                        
                                     </li>
-                                    <li><i class="fa fa-share-square-o"></i>Share</li>
-                                    <li><i class="fa fa-bell-slash-o"></i>Mute</li>
-                                    <li><i class="fa fa-folder"></i>view hidden replies</li>
-                                    <li><i class="fa fa-wpexplorer"></i>Report post</li>
-                                    <li><i class="fa fa-bell-slash-o"></i>Block</li>
+                                    <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDSP })</li>
+                                    <li>Mute</li>
+                                    <li>view hidden replies</li>
+                                    <li>Report post</li>
+                                    <li>Block</li>
                                 </ul>
                             </div>
                         </div>

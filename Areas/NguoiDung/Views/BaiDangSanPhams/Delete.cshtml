@@ -40,9 +40,10 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="submit-btns">
-            <button type="submit" class="mtr-btn"><span>Xóa</span></button>
-        </div>
+<div class="submit-btns">
+    <button type="button" class="mtr-btn"  onclick="location.href='@Url.Action("Index_TrangCaNhan","BaiDangSanPhams",new { maND = Session["maND"].ToString() })'" ><span>Hủy</span></button>
+    <button type="submit" class="mtr-btn" onclick="return confirm('Bạn có chắc muốn xoá ?');"><span>Xóa</span></button>
+</div>
     }
 </div>
 @*<div class="modal-dialog">

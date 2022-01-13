@@ -19,7 +19,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/BaiDangSanPhams
         public ActionResult Index()
         {
-            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang);
+            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT != 3); ;
             return View(baiDangSanPhams.ToList());
         }
 
@@ -193,20 +193,60 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 return HttpNotFound();
             }
-            return View(baiDangSanPham);
-        }
-
-        // POST: NguoiDung/BaiDangSanPhams/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(id);
+           
             db.BaiDangSanPhams.Remove(baiDangSanPham);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = int.Parse(Session["maND"].ToString()) });
+
         }
 
+        /*    
+            [HttpPost, ActionName("Delete")]
+            [ValidateAntiForgeryToken]
+            public ActionResult DeleteConfirmed(int id)
+            {
+                BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(id);
+                db.BaiDangSanPhams.Remove(baiDangSanPham);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+    */
+
+        public ActionResult Hidden(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(id);
+            if (baiDangSanPham == null)
+            {
+                return HttpNotFound();
+            }
+            baiDangSanPham.maTT = 3;
+            db.Entry(baiDangSanPham).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = int.Parse(Session["maND"].ToString()) });
+
+        }
+
+        public ActionResult Appear(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(id);
+            if (baiDangSanPham == null)
+            {
+                return HttpNotFound();
+            }
+            baiDangSanPham.maTT = 2;
+            db.Entry(baiDangSanPham).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = int.Parse(Session["maND"].ToString()) });
+
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

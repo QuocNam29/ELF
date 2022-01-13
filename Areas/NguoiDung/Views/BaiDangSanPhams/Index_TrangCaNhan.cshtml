@@ -33,19 +33,24 @@
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
                     <span>published: @item.ngayDang</span>
-                    <div>
+                   @*<div>
                         <button type="button" class="btn-block" data-id="@item.maBDSP">Open Modal</button>
                         <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
 
-                    </div>
+                    </div>*@
 
 
 
-                    @* <div class="more">
+                     <div class="more">
                             <div class="more-post-optns">
                                 <i class="ti-more-alt"></i>
                                 <ul>
-                                    <li><i class="fa fa-pencil-square-o"></i>Embed</li>
+                                    <li>
+                                        <div class="submit-btns">
+                                            <button type="button" class="btn-block" data-id="@item.maBDSP">Chỉnh sửa</button>
+                                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
+                                        </div>         
+                                    </li>
                                     <li><i class="fa fa-share-square-o"></i>Share</li>
                                     <li><i class="fa fa-bell-slash-o"></i>Mute</li>
                                     <li><i class="fa fa-folder"></i>view hidden replies</li>
@@ -53,7 +58,7 @@
                                     <li><i class="fa fa-bell-slash-o"></i>Block</li>
                                 </ul>
                             </div>
-                        </div>*@
+                        </div>
                 </div>
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">

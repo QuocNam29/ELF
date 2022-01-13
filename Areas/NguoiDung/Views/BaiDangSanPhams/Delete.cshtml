@@ -2,120 +2,101 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
 }
+<div class="editing-info">
+    <h5 class="f-title"><i class="ti-info-alt"></i>Xóa bài đăng</h5>
+</div>
+<div class="onoff-options">
+    <div class="setting-row">
+        <span>Tên sản phẩm</span>
+        <p>@Html.DisplayFor(model => model.tenSP)</p>
+    </div>
+    <div class="setting-row">
+        <span>Loại sản phẩm </span>
+        <p> @Html.DisplayFor(model => model.LoaiSanPham.tenLSP)</p>
+    </div>
+    <div class="setting-row">
+        <span>Đơn giá</span>
+        <p>@Html.DisplayFor(model => model.gia)</p>
 
-<h2>Delete</h2>
+    </div>
+    <div class="setting-row">
+        <span>Số lượng</span>
+        <p>@Html.DisplayFor(model => model.soLuong)</p>
+    </div>
+    <div class="setting-row">
+        <span>Mô tả</span>
+        <p>@Html.DisplayFor(model => model.noiDung)</p>
+    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>BaiDangSanPham</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tenSP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tenSP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.noiDung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.noiDung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.hinhAnh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hinhAnh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.video)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.video)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.soLuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.soLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayDang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ngayDang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayThayDoi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ngayThayDoi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ghiChu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiSanPham.tenLSP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiSanPham.tenLSP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NguoiDung.hoVaTen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThaiBaiDang.trangThai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrangThaiBaiDang.trangThai)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    <div class="setting-row">
+        <span>Hình ảnh</span>
+        <div class="input-group js-input-file">
+            <img id="blah" src="@Url.Content(Model.hinhAnh)" width="200" alt="Image preview...">
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="submit-btns">
+            <button type="submit" class="mtr-btn"><span>Xóa</span></button>
         </div>
     }
 </div>
+@*<div class="modal-dialog">
+        <div class="modal-content" style="width:700px">
+            <div class="modal-header">
+                <h5 class="f-title"><i class="ti-info-alt"></i>Chỉnh sửa bài viết</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group half" style="width:320px">
+                    @Html.DisplayFor(model => model.tenSP)
+                    <label class="control-label" for="input">Tên sản phẩm</label>
+                    <i class="mtrl-select" style="width:300px"></i>
+                </div>
+                <div class="form-group half" style="width:320px">
+                    @Html.DisplayFor(model => model.LoaiSanPham.tenLSP)
+                    <label class="control-label" for="input">Loại sản phẩm</label>
+                    <i class="mtrl-select" style="width:320px"></i>
+                </div>
+                <div class="form-group">
+                    <div class="form-group half" style="width:320px">
+                        @Html.DisplayFor(model => model.gia)
+                        <label class="control-label" for="input">Giá sản phẩm</label>
+                        <i class="mtrl-select" style="width:300px"></i>
+                    </div>
+                    <div class="form-group half" style="width:320px">
+                        @Html.DisplayFor(model => model.soLuong)
+                        <label class="control-label" for="input">Số lượng</label>
+                        <i class="mtrl-select" style="width:320px"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.DisplayFor(model => model.noiDung)
+                    <label class="control-label" for="textarea">Mô tả</label>
+                    <i class="mtrl-select"></i>
+                </div>
+                <div class="form-group">
+                    <div class="input-group js-input-file">
+                        <img id="blah" src="@Url.Content(Model.hinhAnh)" width="200" alt="Image preview...">
+                        <label class="control-label" for="textarea">Hình ảnh</label>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="mtr-btn" data-dismiss="modal"><span>Hủy</span></button>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-default" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+*@

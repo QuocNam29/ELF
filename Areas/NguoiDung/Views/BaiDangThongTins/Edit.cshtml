@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+    Layout = null;
 }
 
 <head>
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="~/css/responsive.css">
 
 </head>
-@using (Html.BeginForm("Create", "BaiDangThongTins", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "BaiDangThongTins", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.maBDTT)
@@ -31,7 +31,7 @@
     <div class="modal-dialog">
         <div class="modal-content" style="width:700px">
             <div class="modal-header">
-                <h5 class="f-title"><i class="ti-info-alt"></i>Đăng bài</h5>
+                <h5 class="f-title"><i class="ti-info-alt"></i>Chỉnh sửa bài đăng thông tin</h5>
             </div>
             <div class="modal-body">
                 <div class="form-group">

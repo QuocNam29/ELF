@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
     string avt = "";
     int hidden = 0;
     if (Session["avatar"] != null)
@@ -46,18 +46,21 @@
                         {
                             <span>published: @item.ngayDang</span>
                         }
-                        <div>
-                            <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+                    <div>
+                        <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
 
-                        </div>
+                    </div>
                         <div class="more">
                             <div class="more-post-optns">
                                 <i class="ti-more-alt"></i>
                                 <ul>
                                     <li>
-                                        <button type="button" class="btn-block" data-id="@item.maBDTT"><span>Chỉnh sửa</span> </button>
-                                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+                                       
+                                            <button type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+
+                                      
                                     </li>
                                     <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
                                     @if (hidden == 3)
@@ -68,6 +71,7 @@
                                     {
                                         <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Thông tin?');" })</li>
                                     }
+                                   
 
                                     @*<li>view hidden replies</li>
                     <li>Report post</li>

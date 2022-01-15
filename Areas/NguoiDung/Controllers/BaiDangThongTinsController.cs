@@ -166,7 +166,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                 baiDangThongTin.ngayThayDoi = DateTime.Now;
                 db.Entry(baiDangThongTin).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_TrangCaNhan", "BaiDangThongTins", new { maND = int.Parse(Session["maND"].ToString()) });
             }
             ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", baiDangThongTin.maND);
             ViewBag.maTT = new SelectList(db.TrangThaiBaiDangs, "maTT", "trangThai", baiDangThongTin.maTT);

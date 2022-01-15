@@ -1,7 +1,6 @@
 ﻿@model ELF.Models.BaiDangThongTin
 
 @{
-    int maND = int.Parse(Session["maND"].ToString());
     Layout = null;
 }
 
@@ -29,15 +28,15 @@
                 <h5 class="f-title"><i class="ti-info-alt"></i>Đăng bài</h5>
             </div>
             <div class="modal-body">
-                <div class="form-group half" style="width:320px">
+                <div class="form-group">
                     @Html.EditorFor(model => model.tieuDe, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.tieuDe, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Tên sản phẩm</label>
-                    <i class="mtrl-select" style="width:300px"></i>
+                    <label class="control-label" for="input">Tiêu đề</label>
+                    <i class="mtrl-select" ></i>
                 </div>
                
                 <div class="form-group">
-                    @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { style = "height: 50px;", @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { style = "height: 100px;", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
                     <label class="control-label" for="textarea">Mô tả</label>
                     <i class="mtrl-select"></i>
@@ -59,7 +58,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        @Html.Hidden("maND", maND)
+                        
                         <button type="button" class="mtr-btn" data-dismiss="modal"><span>Hủy</span></button>
                         <button type="submit" class="mtr-btn"><span>Đăng</span></button>
                     </div>

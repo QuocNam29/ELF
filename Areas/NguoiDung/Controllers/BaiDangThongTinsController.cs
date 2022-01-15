@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,6 +20,12 @@ namespace ELF.Areas.NguoiDung.Controllers
         public ActionResult Index()
         {
             var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang);
+            return View(baiDangThongTins.ToList());
+        }
+
+        public ActionResult Index_TrangCaNhan(int maND)
+        {
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND);
             return View(baiDangThongTins.ToList());
         }
 
@@ -49,11 +57,61 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maBDTT,maND,noiDung,hinhAnh,video,maTT,ngayDang,ngayThayDoi,ghiChu")] BaiDangThongTin baiDangThongTin)
+        public ActionResult Create([Bind(Include = "maBDTT,maND,tieuDe,noiDung,hinhAnh,video,maTT,ngayDang,ngayThayDoi,ghiChu")] BaiDangThongTin baiDangThongTin, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
-                db.BaiDangThongTins.Add(baiDangThongTin);
+                try
+                {
+                    string filePath = "";
+                    if (img != null)
+                    {
+                        string fileName = System.IO.Path.GetFileName(img.FileName);
+                        filePath = "~/images/" + fileName;
+                        Console.WriteLine(filePath);
+                        img.SaveAs(Server.MapPath(filePath));
+                        /*string path = System.IO.Path.Combine(
+                                 Server.MapPath("~/images/"), fileName);*/
+
+                        /* img.SaveAs(path);*/
+                        baiDangThongTin.maND = int.Parse(Session["maND"].ToString());
+                        baiDangThongTin.maTT = 1;
+                        baiDangThongTin.ngayDang = DateTime.Now;
+                        baiDangThongTin.hinhAnh = filePath;
+                        db.BaiDangThongTins.Add(baiDangThongTin);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        db.BaiDangThongTins.Add(new BaiDangThongTin
+                        {
+                            maND = int.Parse(Session["maND"].ToString()),
+                            tieuDe = baiDangThongTin.tieuDe,
+                            noiDung = baiDangThongTin.noiDung,
+                            maTT = 1,
+                            ngayDang = DateTime.Now,
+                        });
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+
+                    }
+                    ViewBag.FileStatus = "File uploaded successfully.";
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                        }
+                    }
+                }
+
+            
+            db.BaiDangThongTins.Add(baiDangThongTin);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -85,10 +143,27 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maBDTT,maND,noiDung,hinhAnh,video,maTT,ngayDang,ngayThayDoi,ghiChu")] BaiDangThongTin baiDangThongTin)
+        public ActionResult Edit([Bind(Include = "maBDTT,maND,tieuDe,noiDung,hinhAnh,video,maTT,ngayDang,ngayThayDoi,ghiChu")] BaiDangThongTin baiDangThongTin, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
+                string oldfilePath = baiDangThongTin.hinhAnh;
+                if (img != null && img.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(img.FileName);
+                    string path = System.IO.Path.Combine(
+                    Server.MapPath("~/images/"), fileName);
+                    img.SaveAs(path);
+                    baiDangThongTin.hinhAnh = "~/images/" + img.FileName;
+                    string fullPath = Request.MapPath(oldfilePath);
+
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                }
+                
+                baiDangThongTin.ngayThayDoi = DateTime.Now;
                 db.Entry(baiDangThongTin).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,10 +185,12 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 return HttpNotFound();
             }
-            return View(baiDangThongTin);
+            db.BaiDangThongTins.Remove(baiDangThongTin);
+            db.SaveChanges();
+            return RedirectToAction("Index_TrangCaNhan", "BaiDangThongTins", new { maND = int.Parse(Session["maND"].ToString()) });
         }
 
-        // POST: NguoiDung/BaiDangThongTins/Delete/5
+       /*
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -122,6 +199,42 @@ namespace ELF.Areas.NguoiDung.Controllers
             db.BaiDangThongTins.Remove(baiDangThongTin);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+*/
+        public ActionResult Hidden(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangThongTin baiDangThongTin = db.BaiDangThongTins.Find(id);
+            if (baiDangThongTin == null)
+            {
+                return HttpNotFound();
+            }
+            baiDangThongTin.maTT = 3;
+            db.Entry(baiDangThongTin).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index_TrangCaNhan", "BaiDangThongTins", new { maND = int.Parse(Session["maND"].ToString()) });
+
+        }
+
+        public ActionResult Appear(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangThongTin baiDangThongTin = db.BaiDangThongTins.Find(id);
+            if (baiDangThongTin == null)
+            {
+                return HttpNotFound();
+            }
+            baiDangThongTin.maTT = 2;
+            db.Entry(baiDangThongTin).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index_TrangCaNhan", "BaiDangThongTins", new { maND = int.Parse(Session["maND"].ToString()) });
+
         }
 
         protected override void Dispose(bool disposing)

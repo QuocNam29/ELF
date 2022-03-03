@@ -1414,14 +1414,14 @@ form button {
 }
 
 .description > span {
-    color: #2a2a2a;
-    font-size: 18px;
+    color: red;
+    font-size: 14px;
     font-weight: 600;
     line-height: 28px;
     display: inline-block;
     margin-bottom: 5px;
 }
-
+    
 .description > p a {
     font-weight: 600;
 }

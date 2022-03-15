@@ -1,0 +1,59 @@
+﻿@model ELF.Models.TraoDoi
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TraoDoi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayDangKyTD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayDangKyTD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BaiDangSanPham.tenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaiDangSanPham.tenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung.hoVaTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung1.hoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung1.hoVaTen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maTD }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
     string avt = "";
+    int maND = int.Parse(Session["maND"].ToString());
     if (Session["avatar"] != null)
     {
         avt = Session["avatar"].ToString();
@@ -12,11 +13,17 @@
     {
         avt = "~/images/resources/User-avatar.svg.png";
     }
+
+
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 <div class="central-meta">
+    
+    
+
+    
     <div class="new-postbox">
         <figure>
             <img src="@Url.Content(avt)" alt="">
@@ -62,6 +69,7 @@
 </div> <!-- add post new box -->
 @foreach (var item in Model)
 {
+
     string avt_BD = "";
     if (item.NguoiDung.avatar != null)
     {
@@ -71,6 +79,9 @@
     {
         avt_BD = "~/images/resources/User-avatar.svg.png";
     }
+
+    int flat = item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td).Count();
+    String maTD = (item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString());
     <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
@@ -165,9 +176,33 @@
                         </ul>
                     </div>
                     <div class="description">
-                        <span> Tên sản phẩm: @item.tenSP</span>
+                        <span style="color: orangered ; font-size: 16px">
+                            Tên sản phẩm: @item.tenSP
+
+                            @if (flat == 1)
+                            {
+                                using (Html.BeginForm("Delete", "TraoDois"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("id", maTD)
+                                    <button type="submit"> Đã đăng kí </button>
+                                }
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("Create", "TraoDois"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("maND", maND)
+                                    @Html.Hidden("maNDKhac", item.maND)
+                                    @Html.Hidden("maBDSP", item.maBDSP)
+                                    <button type="submit"> Đăng kí </button>
+                                }
+
+                            }
+                        </span>
                         <p></p>
-                        <span> Giá sản phẩm: @item.gia đ</span>
+                        <span style="color: red; font-size: 16px"  > Giá sản phẩm: @item.gia đ</span>
                         <p>
                             @item.noiDung
                         </p>

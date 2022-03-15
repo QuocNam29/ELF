@@ -147,6 +147,7 @@
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TrangChuController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\TraoDoisController.cs" />
     <Compile Include="Areas\NguoiDung\NguoiDungAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1547,6 +1548,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_TrangCaNhan.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

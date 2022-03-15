@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ELF.Models.TraoDoi>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ngayDangKyTD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaiDangSanPham.tenSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiDung1.hoVaTen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngayDangKyTD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaiDangSanPham.tenSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiDung.hoVaTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiDung1.hoVaTen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maTD }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maTD }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maTD })
+        </td>
+    </tr>
+}
+
+</table>

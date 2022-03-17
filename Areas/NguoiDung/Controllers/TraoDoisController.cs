@@ -35,7 +35,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             }
             return View(traoDoi);
         }
-       
+
 
         // GET: NguoiDung/TraoDois/Create
         public ActionResult Create()

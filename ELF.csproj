@@ -264,6 +264,9 @@
     <Compile Include="Models\Tinh_ThanhPho.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TinNhan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TrangThaiBaiDang.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1542,6 +1545,12 @@
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_TrangCaNhan.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\TraoDois\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1549,12 +1558,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_TrangCaNhan.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

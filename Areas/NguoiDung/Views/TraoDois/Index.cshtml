@@ -3,56 +3,126 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+    int maND = int.Parse(Session["maND"].ToString());
+
+    
 }
 
-<h2>Index</h2>
+<div class="frnds">
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">Đã đăng ký</a> 
+        <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Danh sách người đăng ký</a>
+        <li class="nav-item"><a class="" href="#frends-req1" data-toggle="tab">Đã xác nhận</a>
+    </ul>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayDangKyTD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.trangThai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BaiDangSanPham.tenSP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NguoiDung1.hoVaTen)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active fade show " id="frends">
+            <ul class="nearby-contct">
+                @foreach (var item in Model)
+                {
+                    if (item.maND == maND)
+                    {
+                        string avt_BD = "";
+                        if (item.NguoiDung1.avatar != null)
+                        {
+                            avt_BD = item.NguoiDung1.avatar;
+                        }
+                        else
+                        {
+                            avt_BD = "~/images/resources/User-avatar.svg.png";
+                        }
+                        <li>
+                            <div class="nearly-pepls">
+                                <figure>
+                                    <a href="time-line.html" title=""><img src="@Url.Content(avt_BD)" alt=""></a>
+                                </figure>
+                                <div class="pepl-info">
+                                    <h4><a href="time-line.html" title="">@item.BaiDangSanPham.tenSP</a></h4>
+                                    <span>@item.NguoiDung1.hoVaTen</span>
+                                    <a href="#" title="" class="add-butn more-action" data-ripple="" onclick="location.href='@Url.Action("Delete","TraoDois",new { id = item.maTD })'">Hủy đăng ký</a>
+                                    <a href="#" title="" class="add-butn" data-ripple="">chi tiết</a>
+                                </div>
+                            </div>
+                        </li>
+                    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayDangKyTD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BaiDangSanPham.tenSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NguoiDung.hoVaTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NguoiDung1.hoVaTen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maTD }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maTD }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maTD })
-        </td>
-    </tr>
-}
+                }
 
-</table>
+            </ul>
+            <div class="lodmore"><button class="btn-view btn-load-more"></button></div>
+        </div>
+        <div class="tab-pane fade" id="frends-req">
+            <ul class="nearby-contct">
+                @foreach (var item in Model)
+                {
+                    if (item.maNDKhac == maND && item.trangThai == "Đăng ký")
+                    {
+
+                        string avt_BD = "";
+                        if (item.NguoiDung.avatar != null)
+                        {
+                            avt_BD = item.NguoiDung.avatar;
+                        }
+                        else
+                        {
+                            avt_BD = "~/images/resources/User-avatar.svg.png";
+                        }
+                        <li>
+                            <div class="nearly-pepls">
+                                <figure>
+                                    <a href="time-line.html" title=""><img src="@Url.Content(avt_BD)" alt=""></a>
+                                </figure>
+                                <div class="pepl-info">
+                                    <h4><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h4>
+                                    <span>Sản phẩm: @item.BaiDangSanPham.tenSP</span>
+                                    <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-ripple="" onclick="location.href='@Url.Action("Delete","TraoDois",new { id = item.maTD })'">xóa đăng ký</a>
+
+                                    <a href="#" title="" class="add-butn" data-ripple="" onclick="location.href='@Url.Action("EditTranngThai","TraoDois",new { id = item.maTD })'">Xác nhận </a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                }
+            </ul>
+            <button class="btn-view btn-load-more"></button>
+        </div>
+
+        <div class="tab-pane fade" id="frends-req1">
+            <ul class="nearby-contct">
+                @foreach (var item in Model)
+                {
+                    if (item.maNDKhac == maND && item.trangThai == "Xác nhận")
+                    {
+
+                        string avt_BD = "";
+                        if (item.NguoiDung.avatar != null)
+                        {
+                            avt_BD = item.NguoiDung.avatar;
+                        }
+                        else
+                        {
+                            avt_BD = "~/images/resources/User-avatar.svg.png";
+                        }
+                        <li>
+                            <div class="nearly-pepls">
+                                <figure>
+                                    <a href="time-line.html" title=""><img src="@Url.Content(avt_BD)" alt=""></a>
+                                </figure>
+                                <div class="pepl-info">
+                                    <h4><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h4>
+                                    <span>Sản phẩm: @item.BaiDangSanPham.tenSP</span>
+                                    
+                                    <a href="#" title="" class="add-butn" data-ripple="">Liên hệ</a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                }
+            </ul>
+            <button class="btn-view btn-load-more"></button>
+        </div>
+    </div>
+</div>

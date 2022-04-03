@@ -16,11 +16,12 @@
 
 
 }
-<link href="~/css/style_btn.css" rel="stylesheet" />
-<script src='https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js'></script>
-<script src="~/js/script_btn.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<head>
+    <link href="~/css/style_btn.css" rel="stylesheet" />
+    <script src='https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js'></script>
+    <script src="~/js/script_btn.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
 
 
@@ -85,9 +86,14 @@
         avt_BD = "~/images/resources/User-avatar.svg.png";
     }
 
-    int flat = item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td).Count();
-    String maTD = (item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString());
-    <div class="central-meta item">
+    int flat = -100;
+    string maTD = "";
+    if (item.maND != maND)
+    {
+        flat = item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td).Count();
+         maTD = (item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString());
+
+    } <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -181,49 +187,57 @@
                         </ul>
                     </div>
 
-                    <button class="truck-button">
-                        <span class="default">Đăng ký trao đổi</span>
-                        <span class="success">
-                            đã đăng ký
-                            <svg viewBox="0 0 12 10">
-                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                            </svg>
-                        </span>
-                        <div class="truck">
-                            <div class="wheel"></div>
-                            <div class="back"></div>
-                            <div class="front"></div>
-                            <div class="box"></div>
-                        </div>
-                    </button>
+
+                    <div>
+                        <button class="truck-button">
+                            <span class="default">Complete Order</span>
+                            <span class="success">
+                                Order Placed
+                                <svg viewBox="0 0 12 10">
+                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                </svg>
+                            </span>
+                            <div class="truck">
+                                <div class="wheel"></div>
+                                <div class="back"></div>
+                                <div class="front"></div>
+                                <div class="box"></div>
+                            </div>
+                        </button>
+                    </div>
+
+                    @if (flat == 1)
+                    {
+                        using (Html.BeginForm("Delete", "TraoDois"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("id", maTD)
+                            <button type="submit"> Đã đăng kí </button>
+                        }
+                    }
+                    else if (flat == -100)
+                    {
+
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("Create", "TraoDois"))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("maND", maND)
+                            @Html.Hidden("maNDKhac", item.maND)
+                            @Html.Hidden("maBDSP", item.maBDSP)
+                            <button type="submit"> Đăng kí </button>
+                        }
+
+                    }
 
                     <div class="description">
 
                         <span style="color: orangered ; font-size: 16px">
                             Tên sản phẩm: @item.tenSP
-                            @if (flat == 1)
-                            {
-                                using (Html.BeginForm("Delete", "TraoDois"))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    @Html.Hidden("id", maTD)
-                                    <button type="submit"> Đã đăng kí </button>
-                                }
-                            }
-                            else
-                            {
-                                using (Html.BeginForm("Create", "TraoDois"))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    @Html.Hidden("maND", maND)
-                                    @Html.Hidden("maNDKhac", item.maND)
-                                    @Html.Hidden("maBDSP", item.maBDSP)
-                                    <button type="submit"> Đăng kí </button>
-                                }
-
-                            }
                         </span>
-                        <p></p>
+                        <br />
                         <span style="color: red; font-size: 16px"> Giá sản phẩm: @item.gia đ</span>
                         <p>
                             @item.noiDung

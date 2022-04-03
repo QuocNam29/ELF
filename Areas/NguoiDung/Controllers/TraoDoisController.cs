@@ -13,11 +13,12 @@ namespace ELF.Areas.NguoiDung.Controllers
     public class TraoDoisController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
-
+        
         // GET: NguoiDung/TraoDois
         public ActionResult Index()
         {
-            var traoDois = db.TraoDois.Include(t => t.BaiDangSanPham).Include(t => t.NguoiDung).Include(t => t.NguoiDung1);
+           
+            var traoDois = db.TraoDois.Include(t => t.BaiDangSanPham).Include(t => t.NguoiDung).Include(t => t.NguoiDung1).OrderBy(td => td.maBDSP);
             return View(traoDois.ToList());
         }
 
@@ -117,18 +118,41 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 return HttpNotFound();
             }
-            return View(traoDoi);
-        }
-
-        // POST: NguoiDung/TraoDois/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TraoDoi traoDoi = db.TraoDois.Find(id);
+           
             db.TraoDois.Remove(traoDoi);
             db.SaveChanges();
-            return RedirectToAction("Index", "BaiDangSanPhams");
+            return RedirectToAction("Index", "TraoDois");
+        }
+
+        /* // POST: NguoiDung/TraoDois/Delete/5
+         [HttpPost, ActionName("Delete")]
+         [ValidateAntiForgeryToken]
+         public ActionResult DeleteConfirmed(int id)
+         {
+             TraoDoi traoDoi = db.TraoDois.Find(id);
+             db.TraoDois.Remove(traoDoi);
+             db.SaveChanges();
+             return RedirectToAction("Index", "BaiDangSanPhams");
+         }*/
+
+        public ActionResult EditTranngThai(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TraoDoi traoDoi = db.TraoDois.Find(id);
+            if (traoDoi == null)
+            {
+                return HttpNotFound();
+            }
+            traoDoi.trangThai = "Xác nhận";
+            db.Entry(traoDoi).State = EntityState.Modified;
+            db.SaveChanges();
+            ViewBag.maBDSP = new SelectList(db.BaiDangSanPhams, "maBDSP", "tenSP", traoDoi.maBDSP);
+            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", traoDoi.maND);
+            ViewBag.maNDKhac = new SelectList(db.NguoiDungs, "maND", "hoVaTen", traoDoi.maNDKhac);
+            return RedirectToAction("Index", "TraoDois");
         }
 
         protected override void Dispose(bool disposing)

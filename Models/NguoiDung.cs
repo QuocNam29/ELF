@@ -25,6 +25,7 @@ namespace ELF.Models
             this.KetQuas = new HashSet<KetQua>();
             this.QuyenGops = new HashSet<QuyenGop>();
             this.TaiKhoans = new HashSet<TaiKhoan>();
+            this.TinNhans = new HashSet<TinNhan>();
             this.TraoDois = new HashSet<TraoDoi>();
             this.TraoDois1 = new HashSet<TraoDoi>();
         }
@@ -61,6 +62,8 @@ namespace ELF.Models
         public virtual ICollection<QuyenGop> QuyenGops { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TinNhan> TinNhans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TraoDoi> TraoDois { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

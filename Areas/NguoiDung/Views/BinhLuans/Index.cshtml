@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ELF.Models.BinhLuan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.noiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngayBL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaiDangSanPham.tenSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaiDangThongTin.tieuDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.noiDung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngayBL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaiDangSanPham.tenSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaiDangThongTin.tieuDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiDung.hoVaTen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maBL }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maBL }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maBL })
+        </td>
+    </tr>
+}
+
+</table>

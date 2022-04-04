@@ -143,6 +143,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangThongTinsController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\BinhLuansController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TaiKhoansController.cs" />
@@ -1558,6 +1559,11 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

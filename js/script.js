@@ -1,4 +1,5 @@
-jQuery(document).ready(function($) {
+
+jQuery(document).ready(function ($) {
 	
 	"use strict";
 	
@@ -313,12 +314,26 @@ $(function() {
 	}
 	
 /** Post a Comment **/
-jQuery(".post-comt-box textarea").on("keydown", function(event) {
-
+	jQuery(".post-comt-box textarea").on("keydown", function (event) {
+		var value = "";
+		var avt = "";
 	if (event.keyCode == 13) {
+		$('#name_cmt')
+				.keypress(function () {
+					value = $(this).val();
+					
+				})
+			.keypress();
+		$('#avt_cmt')
+			.keypress(function () {
+				avt = $(this).val();
+
+			})
+			.keypress();
+
 		var comment = jQuery(this).val();
 		var parent = jQuery(".showmore").parent("li");
-		var comment_HTML = '	<li><div class="comet-avatar"><img src="images/resources/comet-1.jpg" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">Jason borne</a></h5><span>1 year ago</span><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>'+comment+'</p></div></li>';
+		var comment_HTML = '	<li><div class="comet-avatar"><img src="' + avt +'" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">' + value +'</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' + comment + '</p></div></li>';
 		$(comment_HTML).insertBefore(parent);
 		jQuery(this).val('');
 	}

@@ -245,6 +245,7 @@
           <Property Name="viTriQP" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
           <Property Name="trangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hinhAnh" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="LoaiSanPham">
           <Key>
@@ -341,6 +342,27 @@
           <Property Name="ngayTao" Type="datetime" />
           <Property Name="trangThai" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="TinNhan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConnectionIDUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="Msg" Type="ntext" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgDuration" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Tinh_ThanhPho">
+          <Key>
+            <PropertyRef Name="maTinh_TP" />
+          </Key>
+          <Property Name="maTinh_TP" Type="int" Nullable="false" />
+          <Property Name="tenTinh_TP" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="ThongBao">
           <Key>
             <PropertyRef Name="maTB" />
@@ -355,27 +377,6 @@
           <Property Name="noiDung" Type="nvarchar" MaxLength="500" />
           <Property Name="ngayTB" Type="datetime" Nullable="false" />
           <Property Name="tinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tinh_ThanhPho">
-          <Key>
-            <PropertyRef Name="maTinh_TP" />
-          </Key>
-          <Property Name="maTinh_TP" Type="int" Nullable="false" />
-          <Property Name="tenTinh_TP" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TinNhan">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ConnectionIDUser" Type="nvarchar" MaxLength="100" />
-          <Property Name="UserGroup" Type="nvarchar" MaxLength="100" />
-          <Property Name="Msg" Type="ntext" />
-          <Property Name="StartTime" Type="nvarchar" MaxLength="50" />
-          <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
-          <Property Name="MsgDate" Type="nvarchar" MaxLength="50" />
-          <Property Name="MsgDuration" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="TrangThaiBaiDang">
           <Key>
@@ -847,6 +848,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TinNhan_NguoiDung1">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="TinNhan" Type="Self.TinNhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="TinNhan">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ThongBao_BaiDangSanPham">
           <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="1" />
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -919,18 +932,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TinNhan_NguoiDung1">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
-          <End Role="TinNhan" Type="Self.TinNhan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="maND" />
-            </Principal>
-            <Dependent Role="TinNhan">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TraoDoi_BaiDangSanPham">
           <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="1" />
           <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="*" />
@@ -999,9 +1000,9 @@
           <EntitySet Name="QuyenGop" EntityType="Self.QuyenGop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinNhan" EntityType="Self.TinNhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrangThaiBaiDang" EntityType="Self.TrangThaiBaiDang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TraoDoi" EntityType="Self.TraoDoi" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BaiDangSanPham_LoaiSanPham" Association="Self.FK_BaiDangSanPham_LoaiSanPham">
@@ -1152,6 +1153,10 @@
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
           </AssociationSet>
+          <AssociationSet Name="FK_TinNhan_NguoiDung1" Association="Self.FK_TinNhan_NguoiDung1">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="TinNhan" EntitySet="TinNhan" />
+          </AssociationSet>
           <AssociationSet Name="FK_ThongBao_BaiDangSanPham" Association="Self.FK_ThongBao_BaiDangSanPham">
             <End Role="BaiDangSanPham" EntitySet="BaiDangSanPham" />
             <End Role="ThongBao" EntitySet="ThongBao" />
@@ -1175,10 +1180,6 @@
           <AssociationSet Name="FK_ThongBao_TraoDoi" Association="Self.FK_ThongBao_TraoDoi">
             <End Role="TraoDoi" EntitySet="TraoDoi" />
             <End Role="ThongBao" EntitySet="ThongBao" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TinNhan_NguoiDung1" Association="Self.FK_TinNhan_NguoiDung1">
-            <End Role="NguoiDung" EntitySet="NguoiDung" />
-            <End Role="TinNhan" EntitySet="TinNhan" />
           </AssociationSet>
           <AssociationSet Name="FK_TraoDoi_BaiDangSanPham" Association="Self.FK_TraoDoi_BaiDangSanPham">
             <End Role="BaiDangSanPham" EntitySet="BaiDangSanPham" />
@@ -1477,6 +1478,7 @@
           <Property Name="viTriQP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ghiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="trangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hinhAnh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="QuyenGops" Relationship="Self.FK_QuyenGop_LoaiQuyenGop" FromRole="LoaiQuyenGop" ToRole="QuyenGop" />
         </EntityType>
         <EntityType Name="LoaiSanPham">
@@ -1603,6 +1605,30 @@
           <NavigationProperty Name="ChucNangTaiKhoans" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" FromRole="TaiKhoan" ToRole="ChucNangTaiKhoan" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TaiKhoan_NguoiDung" FromRole="TaiKhoan" ToRole="NguoiDung" />
         </EntityType>
+        <EntityType Name="TinNhan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConnectionIDUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MsgDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MsgDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TinNhan_NguoiDung1" FromRole="TinNhan" ToRole="NguoiDung" />
+        </EntityType>
+        <EntityType Name="Tinh_ThanhPho">
+          <Key>
+            <PropertyRef Name="maTinh_TP" />
+          </Key>
+          <Property Name="maTinh_TP" Type="Int32" Nullable="false" />
+          <Property Name="tenTinh_TP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_Tinh_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="NguoiDung" />
+          <NavigationProperty Name="QuanHuyens" Relationship="Self.FK_QuanHuyen_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="QuanHuyen" />
+        </EntityType>
         <EntityType Name="ThongBao">
           <Key>
             <PropertyRef Name="maTB" />
@@ -1623,30 +1649,6 @@
           <NavigationProperty Name="DonQua" Relationship="Self.FK_ThongBao_DonQua" FromRole="ThongBao" ToRole="DonQua" />
           <NavigationProperty Name="QuyenGop" Relationship="Self.FK_ThongBao_QuyenGop" FromRole="ThongBao" ToRole="QuyenGop" />
           <NavigationProperty Name="TraoDoi" Relationship="Self.FK_ThongBao_TraoDoi" FromRole="ThongBao" ToRole="TraoDoi" />
-        </EntityType>
-        <EntityType Name="Tinh_ThanhPho">
-          <Key>
-            <PropertyRef Name="maTinh_TP" />
-          </Key>
-          <Property Name="maTinh_TP" Type="Int32" Nullable="false" />
-          <Property Name="tenTinh_TP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_Tinh_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="NguoiDung" />
-          <NavigationProperty Name="QuanHuyens" Relationship="Self.FK_QuanHuyen_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="QuanHuyen" />
-        </EntityType>
-        <EntityType Name="TinNhan">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ConnectionIDUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MsgDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MsgDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TinNhan_NguoiDung1" FromRole="TinNhan" ToRole="NguoiDung" />
         </EntityType>
         <EntityType Name="TrangThaiBaiDang">
           <Key>
@@ -2220,7 +2222,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="ELFVanLang2021Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ELFVanLang2021Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
@@ -2251,9 +2253,9 @@
           <EntitySet Name="QuyenGops" EntityType="Self.QuyenGop" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
-          <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
-          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" />
           <EntitySet Name="TinNhans" EntityType="Self.TinNhan" />
+          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" />
+          <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
           <EntitySet Name="TrangThaiBaiDangs" EntityType="Self.TrangThaiBaiDang" />
           <EntitySet Name="TraoDois" EntityType="Self.TraoDoi" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -2446,7 +2448,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ELFVanLang2021ModelStoreContainer" CdmEntityContainer="ELFVanLang2021Entities1">
+        <EntityContainerMapping StorageEntityContainer="ELFVanLang2021ModelStoreContainer" CdmEntityContainer="ELFVanLang2021Entities">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -2695,6 +2697,7 @@
                 <ScalarProperty Name="viTriQP" ColumnName="viTriQP" />
                 <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
                 <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+                <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2802,6 +2805,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TinNhans">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.TinNhan">
+              <MappingFragment StoreEntitySet="TinNhan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ConnectionIDUser" ColumnName="ConnectionIDUser" />
+                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
+                <ScalarProperty Name="MsgDuration" ColumnName="MsgDuration" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tinh_ThanhPho">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.Tinh_ThanhPho">
+              <MappingFragment StoreEntitySet="Tinh_ThanhPho">
+                <ScalarProperty Name="maTinh_TP" ColumnName="maTinh_TP" />
+                <ScalarProperty Name="tenTinh_TP" ColumnName="tenTinh_TP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ThongBaos">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.ThongBao">
               <MappingFragment StoreEntitySet="ThongBao">
@@ -2815,29 +2841,6 @@
                 <ScalarProperty Name="noiDung" ColumnName="noiDung" />
                 <ScalarProperty Name="ngayTB" ColumnName="ngayTB" />
                 <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tinh_ThanhPho">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.Tinh_ThanhPho">
-              <MappingFragment StoreEntitySet="Tinh_ThanhPho">
-                <ScalarProperty Name="maTinh_TP" ColumnName="maTinh_TP" />
-                <ScalarProperty Name="tenTinh_TP" ColumnName="tenTinh_TP" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TinNhans">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.TinNhan">
-              <MappingFragment StoreEntitySet="TinNhan">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ConnectionIDUser" ColumnName="ConnectionIDUser" />
-                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
-                <ScalarProperty Name="Msg" ColumnName="Msg" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
-                <ScalarProperty Name="MsgDuration" ColumnName="MsgDuration" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

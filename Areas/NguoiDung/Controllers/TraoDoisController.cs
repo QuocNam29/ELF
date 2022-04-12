@@ -121,7 +121,7 @@ namespace ELF.Areas.NguoiDung.Controllers
            
             db.TraoDois.Remove(traoDoi);
             db.SaveChanges();
-            return RedirectToAction("Index", "TraoDois");
+            return RedirectToAction("Index", "BaiDangSanPhams");
         }
 
         /* // POST: NguoiDung/TraoDois/Delete/5

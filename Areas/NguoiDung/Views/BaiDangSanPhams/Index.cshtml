@@ -123,7 +123,7 @@
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
 
-                    <div>
+                   @* <div>
                         <button class="truck-button">
                             <span class="default">Complete Order</span>
                             <span class="success">
@@ -139,7 +139,7 @@
                                 <div class="box"></div>
                             </div>
                         </button>
-                    </div>
+                    </div>*@
 
                     @if (flat == 1)
                     {
@@ -183,46 +183,20 @@
 
             <div class="coment-area">
                 <ul class="we-comet">
-              
                     <li>
-                        <div class="comet-avatar">
-                            <img src="~/images/resources/comet-1.jpg" alt="">
-                        </div>
-                        <div class="we-comment">
-                            <div class="coment-head">
-                                <h5><a href="time-line.html" title="">Donald Trump</a></h5>
-                                <span>1 week ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                            </div>
-                            <p>
-                                we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel
-                                <i class="em em-smiley"></i>
-                            </p>
-                        </div>
+                        <a href="@Url.Action("Index","BinhLuans",
+                                new { maBDSP = item.maBDSP, 
+                                tenNguoiDang = item.NguoiDung.hoVaTen,
+                                ngayDang = item.ngayDang,
+                                tenSP=item.tenSP,
+                                noiDung=item.noiDung,
+                                hinhAnh=item.hinhAnh,
+                                giaBan = item.gia,
+                                avt_BD = avt_BD,
+                                flat = flat,
+                                maTD = maTD})" title="" class="showmore underline">more comments</a>
                     </li>
-                    <li>
-                        <a href="#" title="" class="showmore underline">more comments</a>
-                    </li>
-                    <li class="post-comment">
-                        <div class="comet-avatar">
-                            <img src="@Url.Content(avt)" alt="">
-                        </div>
-                        <div class="post-comt-box">
-                            @using (Html.BeginForm("CreateBLBDSP", "BinhLuans"))
-                            {
-                                @Html.AntiForgeryToken()
-                            <form method="post">
-                                <textarea placeholder="Post your comment" name="coment"></textarea>
-                                @Html.Hidden("maND", maND)
-                                @Html.Hidden("maBDSP", item.maBDSP)
-                               
-                                    <input hidden type="text" id="name_cmt" value="@name">
-                                    <input hidden type="text" id="avt_cmt" value="@Url.Content(avt)">
-                                        <button type="submit">hihi</button>
-                            </form>
-                             }
-                            </div>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -243,4 +217,5 @@
         });
     });
 </script>
+
 

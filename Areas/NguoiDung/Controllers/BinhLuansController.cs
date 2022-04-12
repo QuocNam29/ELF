@@ -10,14 +10,36 @@ using ELF.Models;
 
 namespace ELF.Areas.NguoiDung.Controllers
 {
+    
+    [Route("api/ImportExport")]
     public class BinhLuansController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: NguoiDung/BinhLuans
-        public ActionResult Index()
+        public ActionResult Index(int maBDSP, string tenNguoiDang,
+            DateTime ngayDang, string tenSP, 
+            string noiDung, string hinhAnh, 
+            string giaBan, string avt_BD,
+             int flat, string maTD)
         {
-            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung);
+            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP==maBDSP).OrderByDescending(bl=> bl.maBL);
+           
+
+            Session["tenNguoiDang"] = tenNguoiDang;
+            Session["ngayDang"] = ngayDang;
+            Session["tenSP"] = tenSP;
+            Session["noiDung"] = noiDung;
+            Session["hinhAnh"] = hinhAnh;
+            Session["giaBan"] = giaBan;
+            Session["avt_BD"] = avt_BD;
+
+            Session["flat"] = flat;
+            Session["maTD"] = maTD;
+            Session["maBDSP"] = maBDSP;
+
+
+
             return View(binhLuans.ToList());
         }
 
@@ -37,7 +59,10 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
         // GET: NguoiDung/BinhLuans/Create
-        public void CreateBLBDSP(string coment, int maND, int maBDSP)
+        [Route("GeneratePDF")]
+        [HttpPost]
+       
+        public ActionResult CreateBLBDSP(string coment, int maND, int maBDSP)
         {
             BinhLuan binhLuan = new BinhLuan();
             binhLuan.noiDung = coment;
@@ -47,7 +72,31 @@ namespace ELF.Areas.NguoiDung.Controllers
             binhLuan.trangThai = "Hien";
             db.BinhLuans.Add(binhLuan);
             db.SaveChanges();
-            
+
+            string tenNguoiDang = Session["tenNguoiDang"].ToString();
+            string ngayDang = Session["ngayDang"].ToString();
+            string tenSP = Session["tenSP"].ToString();
+            string noiDung = Session["noiDung"].ToString();
+            string hinhAnh = Session["hinhAnh"].ToString();
+            string giaBan = Session["giaBan"].ToString();
+            string avt_BD = Session["avt_BD"].ToString();
+
+            int flat = int.Parse(Session["flat"].ToString());
+            string maTD = Session["maTD"].ToString();
+
+            return RedirectToAction("Index", new {
+                maBDSP = maBDSP,
+                tenNguoiDang = tenNguoiDang,
+                ngayDang = ngayDang,
+                tenSP = tenSP,
+                noiDung = noiDung,
+                hinhAnh = hinhAnh,
+                giaBan = giaBan,
+                avt_BD = avt_BD,
+                flat = flat,
+                maTD = maTD
+            });
+
         }
 
         /*// POST: NguoiDung/BinhLuans/Create
@@ -119,18 +168,116 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 return HttpNotFound();
             }
-            return View(binhLuan);
-        }
-
-        // POST: NguoiDung/BinhLuans/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
             db.BinhLuans.Remove(binhLuan);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            string tenNguoiDang = Session["tenNguoiDang"].ToString();
+            string ngayDang = Session["ngayDang"].ToString();
+            string tenSP = Session["tenSP"].ToString();
+            string noiDung = Session["noiDung"].ToString();
+            string hinhAnh = Session["hinhAnh"].ToString();
+            string giaBan = Session["giaBan"].ToString();
+            string avt_BD = Session["avt_BD"].ToString();
+
+            int flat = int.Parse(Session["flat"].ToString());
+            string maTD = Session["maTD"].ToString();
+            int maBDSP = int.Parse(Session["maBDSP"].ToString());
+
+            return RedirectToAction("Index", new
+            {
+                maBDSP = maBDSP,
+                tenNguoiDang = tenNguoiDang,
+                ngayDang = ngayDang,
+                tenSP = tenSP,
+                noiDung = noiDung,
+                hinhAnh = hinhAnh,
+                giaBan = giaBan,
+                avt_BD = avt_BD,
+                flat = flat,
+                maTD = maTD
+            });
+        }
+
+       
+
+        public ActionResult Hidden(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BinhLuan binhLuan = db.BinhLuans.Find(id);
+            if (binhLuan == null)
+            {
+                return HttpNotFound();
+            }
+            binhLuan.trangThai = "An";
+            db.Entry(binhLuan).State = EntityState.Modified;
+            db.SaveChanges();
+            string tenNguoiDang = Session["tenNguoiDang"].ToString();
+            string ngayDang = Session["ngayDang"].ToString();
+            string tenSP = Session["tenSP"].ToString();
+            string noiDung = Session["noiDung"].ToString();
+            string hinhAnh = Session["hinhAnh"].ToString();
+            string giaBan = Session["giaBan"].ToString();
+            string avt_BD = Session["avt_BD"].ToString();
+
+            int flat = int.Parse(Session["flat"].ToString());
+            string maTD = Session["maTD"].ToString();
+            int maBDSP = int.Parse(Session["maBDSP"].ToString());
+            return RedirectToAction("Index", new
+            {
+                maBDSP = maBDSP,
+                tenNguoiDang = tenNguoiDang,
+                ngayDang = ngayDang,
+                tenSP = tenSP,
+                noiDung = noiDung,
+                hinhAnh = hinhAnh,
+                giaBan = giaBan,
+                avt_BD = avt_BD,
+                flat = flat,
+                maTD = maTD
+            });
+
+        }
+
+        public ActionResult Appear(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BinhLuan binhLuan = db.BinhLuans.Find(id);
+            if (binhLuan == null)
+            {
+                return HttpNotFound();
+            }
+            binhLuan.trangThai = "Hien";
+            db.Entry(binhLuan).State = EntityState.Modified;
+            db.SaveChanges();
+            string tenNguoiDang = Session["tenNguoiDang"].ToString();
+            string ngayDang = Session["ngayDang"].ToString();
+            string tenSP = Session["tenSP"].ToString();
+            string noiDung = Session["noiDung"].ToString();
+            string hinhAnh = Session["hinhAnh"].ToString();
+            string giaBan = Session["giaBan"].ToString();
+            string avt_BD = Session["avt_BD"].ToString();
+
+            int flat = int.Parse(Session["flat"].ToString());
+            string maTD = Session["maTD"].ToString();
+            int maBDSP = int.Parse(Session["maBDSP"].ToString());
+            return RedirectToAction("Index", new
+            {
+                maBDSP = maBDSP,
+                tenNguoiDang = tenNguoiDang,
+                ngayDang = ngayDang,
+                tenSP = tenSP,
+                noiDung = noiDung,
+                hinhAnh = hinhAnh,
+                giaBan = giaBan,
+                avt_BD = avt_BD,
+                flat = flat,
+                maTD = maTD
+            });
         }
 
         protected override void Dispose(bool disposing)

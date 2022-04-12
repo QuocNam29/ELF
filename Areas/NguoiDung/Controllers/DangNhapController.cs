@@ -43,6 +43,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     Session["email"] = account.email;
                     Session["ngayTao"] = account.ngayTao;
                     Session["gioiTinh"] = account.NguoiDung.gioiTinh;
+
                     if (account.NguoiDung.gioiTinh == 1)
                     {
                         Session["loaiGioiTinh"] = "Nam";

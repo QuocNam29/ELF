@@ -1409,9 +1409,10 @@ form button {
     width: 100%;
 }
 
-.description > p {
-    margin-bottom: 20px;
-}
+    .description > p {
+        margin-bottom: 20px;
+        color: black;
+    }
 
 .description > span {
     color: red;
@@ -1854,6 +1855,10 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
     display: inline-block;
     width: 100%;
 }
+.coment-head .more {
+        float: right;
+       
+    }
 
 .coment-head > h5 {
     font-size: 15px;
@@ -1906,10 +1911,11 @@ li.post-comment .comet-avatar {
     border-color: transparent;
     border-radius: 3px;
     color: #000000;
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 500;
     height: 40px;
     line-height: 16px;
+   
 }
 
 .add-smiles {

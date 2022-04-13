@@ -37,10 +37,11 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
         // GET: NguoiDung/QuyenGops/Create
-        public ActionResult Create()
+        public ActionResult Create(int maLQG)
         {
-            ViewBag.maLQG = new SelectList(db.LoaiQuyenGops, "maLQG", "tenLoai");
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen");
+            int mand = int.Parse(Session["maND"].ToString());
+            ViewBag.maLQG = new SelectList(db.LoaiQuyenGops, "maLQG", "tenLoai", maLQG);
+            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", mand);
             return View();
         }
 
@@ -49,13 +50,40 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maQG,maND,ngayQG,maLQG,soLuong,donVi,trangThai,hinhAnh,ghiChu")] QuyenGop quyenGop)
+        public ActionResult Create([Bind(Include = "maQG,maND,ngayQG,maLQG,soLuong,donVi,trangThai,hinhAnh,ghiChu")] QuyenGop quyenGop, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
-                db.QuyenGops.Add(quyenGop);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    if (img != null)
+                    {
+                        string fileName = System.IO.Path.GetFileName(img.FileName);
+                        string path = System.IO.Path.Combine(
+                        Server.MapPath("~/images/"), fileName);
+                        img.SaveAs(path);
+                        db.QuyenGops.Add(new QuyenGop
+                        {
+                            maQG = quyenGop.maQG,
+                            maND = quyenGop.maND,
+                            ngayQG = quyenGop.ngayQG,
+                            maLQG = quyenGop.maLQG,
+                            soLuong = quyenGop.soLuong,
+                            donVi = quyenGop.donVi,
+                            trangThai = "Chờ duyệt",
+                            hinhAnh = "~/images/" + img.FileName,                        
+                            ghiChu = quyenGop.ghiChu
+                        });
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "LoaiQuyenGops");
+                    }
+                    ViewBag.FileStatus = "File uploaded successfully";
+                }
+                catch (Exception)
+                {
+
+                }
+              
             }
 
             ViewBag.maLQG = new SelectList(db.LoaiQuyenGops, "maLQG", "tenLoai", quyenGop.maLQG);

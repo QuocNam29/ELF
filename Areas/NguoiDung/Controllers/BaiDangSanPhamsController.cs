@@ -19,14 +19,24 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/BaiDangSanPhams
         public ActionResult Index()
         {
-            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT != 3); ;
+            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT != 3).OrderByDescending(B => B.maBDSP); 
             return View(baiDangSanPhams.ToList());
         }
 
         public ActionResult Index_TrangCaNhan(int maND)
         {
-            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND);
+            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND).OrderByDescending(B => B.maBDSP);
 
+            
+            return View(baiDangSanPhams.ToList());
+        }
+
+        public ActionResult Index_TrangCaNhan_NDK(int maND_K, string hoVaTen_NDK, string avartar_NDK)
+        {
+            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND_K).OrderByDescending(B => B.maBDSP);
+            Session["maND_K"] = maND_K;
+            Session["hoVaTen_NguoiDungKhac"] = hoVaTen_NDK;
+            Session["avatar_NguoiDungKhac"] = avartar_NDK;
             
             return View(baiDangSanPhams.ToList());
         }
@@ -200,17 +210,7 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         }
 
-        /*    
-            [HttpPost, ActionName("Delete")]
-            [ValidateAntiForgeryToken]
-            public ActionResult DeleteConfirmed(int id)
-            {
-                BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(id);
-                db.BaiDangSanPhams.Remove(baiDangSanPham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-    */
+     
 
         public ActionResult Hidden(int? id)
         {

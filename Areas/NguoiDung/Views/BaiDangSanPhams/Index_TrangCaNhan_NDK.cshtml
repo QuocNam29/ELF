@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<ELF.Models.BaiDangSanPham>
 @{
-    ViewBag.Title = "Index_TrangCaNhan";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+    ViewBag.Title = "Index_TrangCaNhan_NDK";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan_NguoiDungKhac.cshtml";
     int maND = int.Parse(Session["maND"].ToString());
-    int hidden = 0;
+
 
 }
 
@@ -12,7 +12,7 @@
 
 @foreach (var item in Model)
 {
-    hidden = item.maTT;
+
     string avt_BD = "";
     if (item.NguoiDung.avatar != null)
     {
@@ -38,44 +38,7 @@
                 </figure>
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
-                    @if (hidden == 3)
-                    {
-                        <span>Đã ẩn </span>
-                    }
-                    else
-                    {
-                        <span>published: @item.ngayDang</span>
-                    }
-                    <div>
-                        <button hidden type="button" class="btn-block" data-id="@item.maBDSP">Chỉnh sửa</button>
-                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
-
-                    </div>
-                    <div class="more">
-                        <div class="more-post-optns">
-                            <i class="ti-more-alt"></i>
-                            <ul>
-                                <li>
-
-                                    <button type="button" class="btn-block" data-id="@item.maBDSP">Chỉnh sửa</button>
-                                    <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
-
-
-                                </li>
-                                <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDSP }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
-                                @if (hidden == 3)
-                                {
-                                    <li> @Html.ActionLink("Hiện bài đăng", "Appear", new { id = item.maBDSP }, new { onclick = "return confirm('Bạn có chắc chắn muốn hiện bài Thông tin?');" })</li>
-                                }
-                                else
-                                {
-                                    <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDSP }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Thông tin?');" })</li>
-                                }
-
-                            </ul>
-                        </div>
-                    </div>
-
+                    <span>published: @item.ngayDang</span>
 
                 </div>
                 <div class="post-meta">
@@ -156,4 +119,6 @@
         });
     });
 </script>
+
+
 

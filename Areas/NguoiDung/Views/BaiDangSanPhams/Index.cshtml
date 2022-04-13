@@ -41,31 +41,7 @@
                 <div class="attachments">
                     <ul>
                         <li>
-                            <i class="fa fa-music"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <i class="fa fa-image"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <i class="fa fa-video-camera"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <i class="fa fa-camera"></i>
-                            <label class="fileContainer">
-                                <input type="file">
-                            </label>
-                        </li>
-                        <li>
-                            <button type="button" class="btn-block">Open Modal</button>
+                            <button type="button" class="btn-block" id="New-box" hidden></button>
                             <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangSanPhams")"></div>
                         </li>
                     </ul>
@@ -101,7 +77,15 @@
                     <img src="@Url.Content(avt_BD)" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
+                    @if (maND != item.maND)
+                    {
+                        <ins><a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangSanPhams", new { maND_k = item.maND, hoVaTen_NDK = item.NguoiDung.hoVaTen, avartar_NDK = item.NguoiDung.avatar })" title="">@item.NguoiDung.hoVaTen</a></ins>
+                    }
+                    else
+                    {
+                        <ins><a href="@Url.Action("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = item.maND })" title="">@item.NguoiDung.hoVaTen</a></ins>
+                    }
+                    
                     <span>published: @item.ngayDang</span>
 
                 </div>

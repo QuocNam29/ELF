@@ -19,15 +19,17 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/BaiDangThongTins
         public ActionResult Index()
         {
-            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang);
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT != 3).OrderByDescending(B => B.maBDTT);
             return View(baiDangThongTins.ToList());
         }
 
         public ActionResult Index_TrangCaNhan(int maND)
         {
-            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND);
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND).OrderByDescending(B => B.maBDTT);
             return View(baiDangThongTins.ToList());
         }
+
+
 
         // GET: NguoiDung/BaiDangThongTins/Details/5
         public ActionResult Details(int? id)

@@ -321,7 +321,14 @@ $(function() {
 		jQuery(this).blur();
 		jQuery('#submit_cmt').focus().click();
 	}
-}); 
+	}); 
+
+	jQuery(".newpst-input textarea").on("click", function (event) {
+
+			jQuery(this).blur();
+		jQuery('#New-box').focus().click();
+		
+	}); 
 	
 //inbox page 	
 //***** Message Star *****//  

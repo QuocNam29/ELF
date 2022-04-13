@@ -6,6 +6,7 @@
     string avt = "";
     int maND = int.Parse(Session["maND"].ToString());
     string name = Session["HoVaTen"].ToString();
+
     if (Session["avatar"] != null)
     {
         avt = Session["avatar"].ToString();
@@ -19,6 +20,7 @@
     string ngayDang = Session["ngayDang"].ToString();
     string noiDung = Session["noiDung"].ToString();
     string hinhAnh = Session["hinhAnh"].ToString();
+    string tieuDe = Session["tieuDe"].ToString();
     string avt_BD = Session["avt_BD"].ToString();
     int maBDTT = int.Parse(Session["maBDTT"].ToString());
 
@@ -39,7 +41,7 @@
             </div>
             <div class="post-meta">
                 <img src="@Url.Content(hinhAnh)" alt="">
-
+                <span style="color: red; font-size: 16px; font-weight: bold"> @tieuDe</span>
                 <div class="description">
                     <p>
                         @noiDung

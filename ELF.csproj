@@ -1695,9 +1695,11 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BL_TrangCaNhan.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDSP_TrangCaNhan.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BDTT.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDTT_TrangCaNhan.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan_NguoiDungKhac.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_TrangCaNhan_NDK.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

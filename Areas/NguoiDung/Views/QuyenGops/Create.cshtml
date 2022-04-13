@@ -6,8 +6,9 @@
     string img = "";
 }
 
+<h2>@ViewBag.FileStatus</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "QuyenGops", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -16,12 +17,13 @@
             <h5 class="f-title"><i class="ti-info-alt"></i> Đăng ký quyên góp</h5>
             <form method="post">
                 <div class="form-group">
-                    <input type="text" required="required" value="@Session["hoVaTen"]" />
+                    @Html.DropDownList("maND", null, htmlAttributes: new { @class = "form-control" })
+                    @*<input type="text" required="required" value="@Session["hoVaTen"]" />*@
                     <label class="control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>
                     @Html.ValidationMessageFor(model => model.maND, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <input type="date" required="required">
+                    @Html.EditorFor(model => model.ngayQG, new { htmlAttributes = new { @type = "date", @required = "required" } })
                     <label class="control-label" for="input">Ngày quyên góp</label><i class="mtrl-select"></i>
                     @Html.ValidationMessageFor(model => model.ngayQG, "", new { @class = "text-danger" })
                 </div>
@@ -36,17 +38,19 @@
                     <label class="control-label" for="input">Số lượng</label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
-                    <select>
-                        <option value="Cái">Cái</option>
-                        <option value="Viên">Viên</option>
-                        <option value="Kg">Kg</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.donVi,
+                 new List<SelectListItem> {
+                      new SelectListItem { Value = "Cái" , Text = "Cái" },
+                      new SelectListItem { Value = "Viên" , Text = "Viên" },
+                      new SelectListItem { Value = "Kg" , Text = "Kg" }
+                   },
+                 new { @class = "form-control" })
                     <label class="control-label" for="input">Đơn vị</label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
                     @*<img src="@Url.Content(avt)" alt="">*@
                     <label class="fileContainer">
-                        <input accept="image/*" type="file" name="avt" id="imgInp"><br>
+                        <input accept="image/*" type="file" name="img" id="imgInp"><br>
                         <img id="blah" src="#" width="200" alt="Image preview...">
                         <label class="control-label" for="input">Chọn hình</label>
                         <script>

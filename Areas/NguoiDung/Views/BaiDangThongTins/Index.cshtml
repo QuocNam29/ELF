@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
     string avt = "";
+    int maND = int.Parse(Session["maND"].ToString());
+    string name = Session["HoVaTen"].ToString();
     if (Session["avatar"] != null)
     {
         avt = Session["avatar"].ToString();
@@ -65,6 +67,7 @@
 </div> <!-- add post new box -->
 @foreach (var item in Model)
 {
+
     string avt_BD = "";
     if (item.NguoiDung.avatar != null)
     {
@@ -74,7 +77,8 @@
     {
         avt_BD = "~/images/resources/User-avatar.svg.png";
     }
-    <div class="central-meta item">
+
+   <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -83,185 +87,33 @@
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
                     <span>published: @item.ngayDang</span>
-                    @* <div class="more">
-                            <div class="more-post-optns">
-                                <i class="ti-more-alt"></i>
-                                <ul>
-                                    <li><i class="fa fa-pencil-square-o"></i>Embed</li>
-                                    <li><i class="fa fa-share-square-o"></i>Share</li>
-                                    <li><i class="fa fa-bell-slash-o"></i>Mute</li>
-                                    <li><i class="fa fa-folder"></i>view hidden replies</li>
-                                    <li><i class="fa fa-wpexplorer"></i>Report post</li>
-                                    <li><i class="fa fa-bell-slash-o"></i>Block</li>
-                                </ul>
-                            </div>
-                        </div>*@
+
                 </div>
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
-                    <div class="we-video-info">
-                        <ul>
 
-                            <li>
-                                <span class="views" data-toggle="tooltip" title="views">
-                                    <i class="fa fa-eye"></i>
-                                    <ins>1.2k</ins>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="comment" data-toggle="tooltip" title="Comments">
-                                    <i class="fa fa-comments-o"></i>
-                                    <ins>52</ins>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="like" data-toggle="tooltip" title="like">
-                                    <i class="ti-heart"></i>
-                                    <ins>2.2k</ins>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="dislike" data-toggle="tooltip" title="dislike">
-                                    <i class="ti-heart-broken"></i>
-                                    <ins>200</ins>
-                                </span>
-                            </li>
-                            <li class="social-media">
-                                <div class="menu">
-                                    <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon">
-                                            <a href="#" title=""><i class="fa fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon">
-                                            <a href="#" title=""><i class="fa fa-dribbble"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="rotater">
-                                        <div class="btn btn-icon">
-                                            <a href="#" title=""><i class="fa fa-pinterest"></i></a>
-                                        </div>
-                                    </div>
+                   
 
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="description">
-
                         <p>
                             @item.noiDung
                         </p>
                     </div>
                 </div>
             </div>
+
             <div class="coment-area">
                 <ul class="we-comet">
                     <li>
-                        <div class="comet-avatar">
-                            <img src="~/images/resources/comet-1.jpg" alt="">
-                        </div>
-                        <div class="we-comment">
-                            <div class="coment-head">
-                                <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                                <span>1 year ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                            </div>
-                            <p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
-                        </div>
-                        <ul>
-                            <li>
-                                <div class="comet-avatar">
-                                    <img src="~/images/resources/comet-2.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
-                                        <span>1 month ago</span>
-                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    </div>
-                                    <p>yes, really very awesome car i see the features of this car in the official website of <a href="#" title="">#Mercedes-Benz</a> and really impressed :-)</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="comet-avatar">
-                                    <img src="~/images/resources/comet-3.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">Olivia</a></h5>
-                                        <span>16 days ago</span>
-                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    </div>
-                                    <p>i like lexus cars, lexus cars are most beautiful with the awesome features, but this car is really outstanding than lexus</p>
-                                </div>
-                            </li>
-                        </ul>
+                        <a href="@Url.Action("Index_BDTT","BinhLuans",
+                                new { maBDTT = item.maBDTT,
+                                tenNguoiDang = item.NguoiDung.hoVaTen,
+                                ngayDang = item.ngayDang,
+                                noiDung=item.noiDung,
+                                hinhAnh=item.hinhAnh,
+                                avt_BD = avt_BD})" title="" class="showmore underline">more comments</a>
                     </li>
-                    <li>
-                        <div class="comet-avatar">
-                            <img src="~/images/resources/comet-1.jpg" alt="">
-                        </div>
-                        <div class="we-comment">
-                            <div class="coment-head">
-                                <h5><a href="time-line.html" title="">Donald Trump</a></h5>
-                                <span>1 week ago</span>
-                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                            </div>
-                            <p>
-                                we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel
-                                <i class="em em-smiley"></i>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" title="" class="showmore underline">more comments</a>
-                    </li>
-                    <li class="post-comment">
-                        <div class="comet-avatar">
-                            <img src="~/images/resources/comet-1.jpg" alt="">
-                        </div>
-                        <div class="post-comt-box">
-                            <form method="post">
-                                <textarea placeholder="Post your comment"></textarea>
-                                <div class="add-smiles">
-                                    <span class="em em-expressionless" title="add icon"></span>
-                                </div>
-                                <div class="smiles-bunch">
-                                    <i class="em em---1"></i>
-                                    <i class="em em-smiley"></i>
-                                    <i class="em em-anguished"></i>
-                                    <i class="em em-laughing"></i>
-                                    <i class="em em-angry"></i>
-                                    <i class="em em-astonished"></i>
-                                    <i class="em em-blush"></i>
-                                    <i class="em em-disappointed"></i>
-                                    <i class="em em-worried"></i>
-                                    <i class="em em-kissing_heart"></i>
-                                    <i class="em em-rage"></i>
-                                    <i class="em em-stuck_out_tongue"></i>
-                                </div>
-                                <button type="submit"></button>
-                            </form>
-                        </div>
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -269,86 +121,17 @@
 }
 
 <script type="text/javascript">
-        $(document).ready(function () {
-            $('.btn-block').click(function () {
+    $(document).ready(function () {
+        $('.btn-block').click(function () {
 
-                var url = $('#myModal').data('url');
-                $.get(url, function (data) {
+            var url = $('#myModal').data('url');
+            $.get(url, function (data) {
 
-                    $("#myModal").html(data);
-                    $("#myModal").modal('show')
+                $("#myModal").html(data);
+                $("#myModal").modal('show')
 
-                });
             });
         });
+    });
 </script>
 
-
-<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    @*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.noiDung)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.hinhAnh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.video)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ngayDang)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ngayThayDoi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ghiChu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrangThaiBaiDang.trangThai)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.noiDung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hinhAnh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.video)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ngayDang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ngayThayDoi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ghiChu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NguoiDung.hoVaTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrangThaiBaiDang.trangThai)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.maBDTT }) |
-                @Html.ActionLink("Details", "Details", new { id=item.maBDTT }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.maBDTT })
-            </td>
-        </tr>
-    }
-
-    </table>
-*@

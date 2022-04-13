@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
     string avt = "";
     int maND = int.Parse(Session["maND"].ToString());
     string name = Session["HoVaTen"].ToString();
@@ -63,9 +63,9 @@
                     using (Html.BeginForm("Create", "TraoDois"))
                     {
                         @Html.AntiForgeryToken()
-                       @* @Html.Hidden("maND", maND)
-                        @Html.Hidden("maNDKhac", item.maND)
-                        @Html.Hidden("maBDSP", item.maBDSP)*@
+                        @* @Html.Hidden("maND", maND)
+                            @Html.Hidden("maNDKhac", item.maND)
+                            @Html.Hidden("maBDSP", item.maBDSP)*@
                         <button type="submit"> Đăng kí </button>
                     }
 
@@ -93,7 +93,7 @@
                     </div>
                     <div class="post-comt-box">
 
-                        @using (Html.BeginForm("CreateBLBDSP", "BinhLuans"))
+                        @using (Html.BeginForm("CreateBLBDSP_TrangCaNhan", "BinhLuans"))
                         {
 
                             @Html.AntiForgeryToken()
@@ -110,9 +110,9 @@
                 </li>
                 @foreach (var item in Model)
                 {
-                   
+
                     hidden = item.trangThai;
-                    if (hidden == "Hien" )
+                    if (hidden == "Hien")
                     {
                         <li>
                             <div class="comet-avatar">
@@ -150,7 +150,7 @@
                             </div>
                         </li>
                     }
-                     else if (hidden == "An" && (item.maND == maND || item.BaiDangSanPham.maND == maND))
+                    else if (hidden == "An" && (item.maND == maND || item.BaiDangSanPham.maND == maND))
                     {
                         <li>
                             <div class="comet-avatar">
@@ -201,4 +201,6 @@
         </div>
     </div>
 </div>
+
+
 

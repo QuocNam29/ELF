@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
     string avt = "";
     int maND = int.Parse(Session["maND"].ToString());
     string name = Session["HoVaTen"].ToString();
@@ -17,15 +17,11 @@
 
     string tenNguoiDang = Session["tenNguoiDang"].ToString();
     string ngayDang = Session["ngayDang"].ToString();
-    string tenSP = Session["tenSP"].ToString();
     string noiDung = Session["noiDung"].ToString();
     string hinhAnh = Session["hinhAnh"].ToString();
-    string giaBan = Session["giaBan"].ToString();
     string avt_BD = Session["avt_BD"].ToString();
+    int maBDTT = int.Parse(Session["maBDTT"].ToString());
 
-    int flat = int.Parse(Session["flat"].ToString());
-    int maBDSP = int.Parse(Session["maBDSP"].ToString());
-    int maTD = int.Parse(Session["maTD"].ToString());
 
     string hidden = "";
 }
@@ -44,40 +40,7 @@
             <div class="post-meta">
                 <img src="@Url.Content(hinhAnh)" alt="">
 
-
-                @if (flat == 1)
-                {
-                    using (Html.BeginForm("Delete", "TraoDois"))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.Hidden("id", maTD)
-                        <button type="submit"> Đã đăng kí </button>
-                    }
-                }
-                else if (flat == -100)
-                {
-
-                }
-                else
-                {
-                    using (Html.BeginForm("Create", "TraoDois"))
-                    {
-                        @Html.AntiForgeryToken()
-                       @* @Html.Hidden("maND", maND)
-                        @Html.Hidden("maNDKhac", item.maND)
-                        @Html.Hidden("maBDSP", item.maBDSP)*@
-                        <button type="submit"> Đăng kí </button>
-                    }
-
-                }
-
                 <div class="description">
-
-                    <span style="color: orangered ; font-size: 16px">
-                        Tên sản phẩm: tenSP
-                    </span>
-                    <br />
-                    <span style="color: red; font-size: 16px"> Giá sản phẩm: @giaBan đ</span>
                     <p>
                         @noiDung
                     </p>
@@ -93,14 +56,14 @@
                     </div>
                     <div class="post-comt-box">
 
-                        @using (Html.BeginForm("CreateBLBDSP", "BinhLuans"))
+                        @using (Html.BeginForm("CreateBLBDTT", "BinhLuans"))
                         {
 
                             @Html.AntiForgeryToken()
                             <form method="post" action="" id="myform">
                                 <textarea placeholder="Post your comment" name="coment"></textarea>
                                 @Html.Hidden("maND", maND)
-                                @Html.Hidden("maBDSP", maBDSP)
+                                @Html.Hidden("maBDTT", maBDTT)
 
 
                                 <button type="submit" id="submit_cmt"></button>
@@ -110,9 +73,9 @@
                 </li>
                 @foreach (var item in Model)
                 {
-                   
+
                     hidden = item.trangThai;
-                    if (hidden == "Hien" )
+                    if (hidden == "Hien")
                     {
                         <li>
                             <div class="comet-avatar">
@@ -122,7 +85,7 @@
                                 <div class="coment-head">
                                     <h5><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h5>
                                     <span>@item.ngayBL</span>
-                                    @if (item.maND == maND || item.BaiDangSanPham.maND == maND)
+                                    @if (item.maND == maND || item.BaiDangThongTin.maND == maND)
                                     {
                                         <div class="more">
                                             <div class="more-post-optns">
@@ -150,7 +113,7 @@
                             </div>
                         </li>
                     }
-                     else if (hidden == "An" && (item.maND == maND || item.BaiDangSanPham.maND == maND))
+                    else if (hidden == "An" && (item.maND == maND || item.BaiDangThongTin.maND == maND))
                     {
                         <li>
                             <div class="comet-avatar">
@@ -161,7 +124,7 @@
                                     <h5><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h5>
                                     <span>@item.ngayBL </span>
                                     <span> Đã Ẩn </span>
-                                    @if (item.maND == maND || item.BaiDangSanPham.maND == maND)
+                                    @if (item.maND == maND || item.BaiDangThongTin.maND == maND)
                                     {
                                         <div class="more">
                                             <div class="more-post-optns">
@@ -201,4 +164,8 @@
         </div>
     </div>
 </div>
+
+
+
+
 

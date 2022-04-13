@@ -21,7 +21,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             DateTime ngayDang, string tenSP, 
             string noiDung, string hinhAnh, 
             string giaBan, string avt_BD,
-             int flat, string maTD)
+             int flat, int maTD)
         {
             var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP==maBDSP).OrderByDescending(bl=> bl.maBL);
            
@@ -42,6 +42,72 @@ namespace ELF.Areas.NguoiDung.Controllers
 
             return View(binhLuans.ToList());
         }
+
+        public ActionResult Index_BLBDSP_TrangCaNhan(int maBDSP, string tenNguoiDang,
+            DateTime ngayDang, string tenSP,
+            string noiDung, string hinhAnh,
+            string giaBan, string avt_BD,
+             int flat, int maTD)
+        {
+            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP == maBDSP).OrderByDescending(bl => bl.maBL);
+
+
+            Session["tenNguoiDang"] = tenNguoiDang;
+            Session["ngayDang"] = ngayDang;
+            Session["tenSP"] = tenSP;
+            Session["noiDung"] = noiDung;
+            Session["hinhAnh"] = hinhAnh;
+            Session["giaBan"] = giaBan;
+            Session["avt_BD"] = avt_BD;
+
+            Session["flat"] = flat;
+            Session["maTD"] = maTD;
+            Session["maBDSP"] = maBDSP;
+
+
+
+            return View(binhLuans.ToList());
+        }
+
+
+        public ActionResult Index_BDTT(int maBDTT, string tenNguoiDang,
+           DateTime ngayDang,string noiDung, 
+           string hinhAnh, string avt_BD)
+        {
+            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDTT == maBDTT).OrderByDescending(bl => bl.maBL);
+
+
+            Session["tenNguoiDang"] = tenNguoiDang;
+            Session["ngayDang"] = ngayDang;
+            Session["noiDung"] = noiDung;
+            Session["hinhAnh"] = hinhAnh;
+            Session["avt_BD"] = avt_BD;
+            Session["maBDTT"] = maBDTT;
+
+
+
+            return View(binhLuans.ToList());
+        }
+
+        public ActionResult Index_BLBDTT_TrangCaNhan(int maBDTT, string tenNguoiDang,
+           DateTime ngayDang, string noiDung,
+           string hinhAnh, string avt_BD)
+            {
+            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDTT == maBDTT).OrderByDescending(bl => bl.maBL);
+
+
+            Session["tenNguoiDang"] = tenNguoiDang;
+            Session["ngayDang"] = ngayDang;
+            Session["noiDung"] = noiDung;
+            Session["hinhAnh"] = hinhAnh;
+            Session["avt_BD"] = avt_BD;
+            Session["maBDTT"] = maBDTT;
+
+
+            return View(binhLuans.ToList());
+        }
+
+
 
         // GET: NguoiDung/BinhLuans/Details/5
         public ActionResult Details(int? id)
@@ -99,26 +165,102 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         }
 
-        /*// POST: NguoiDung/BinhLuans/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maBL,maND,maBDSP,maBDTT,noiDung,trangThai,ngayBL")] BinhLuan binhLuan)
+        public ActionResult CreateBLBDSP_TrangCaNhan(string coment, int maND, int maBDSP)
         {
-            if (ModelState.IsValid)
+            BinhLuan binhLuan = new BinhLuan();
+            binhLuan.noiDung = coment;
+            binhLuan.maND = maND;
+            binhLuan.maBDSP = maBDSP;
+            binhLuan.ngayBL = DateTime.Now;
+            binhLuan.trangThai = "Hien";
+            db.BinhLuans.Add(binhLuan);
+            db.SaveChanges();
+
+            string tenNguoiDang = Session["tenNguoiDang"].ToString();
+            string ngayDang = Session["ngayDang"].ToString();
+            string tenSP = Session["tenSP"].ToString();
+            string noiDung = Session["noiDung"].ToString();
+            string hinhAnh = Session["hinhAnh"].ToString();
+            string giaBan = Session["giaBan"].ToString();
+            string avt_BD = Session["avt_BD"].ToString();
+
+            int flat = int.Parse(Session["flat"].ToString());
+            string maTD = Session["maTD"].ToString();
+
+            return RedirectToAction("Index_BLBDSP_TrangCaNhan", new
             {
-                db.BinhLuans.Add(binhLuan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                maBDSP = maBDSP,
+                tenNguoiDang = tenNguoiDang,
+                ngayDang = ngayDang,
+                tenSP = tenSP,
+                noiDung = noiDung,
+                hinhAnh = hinhAnh,
+                giaBan = giaBan,
+                avt_BD = avt_BD,
+                flat = flat,
+                maTD = maTD
+            });
 
-            ViewBag.maBDSP = new SelectList(db.BaiDangSanPhams, "maBDSP", "tenSP", binhLuan.maBDSP);
-            ViewBag.maBDTT = new SelectList(db.BaiDangThongTins, "maBDTT", "tieuDe", binhLuan.maBDTT);
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", binhLuan.maND);
-            return View(binhLuan);
-        }*/
+        }
 
+
+        public ActionResult CreateBLBDTT(string coment, int maND, int maBDTT)
+        {
+            BinhLuan binhLuan = new BinhLuan();
+            binhLuan.noiDung = coment;
+            binhLuan.maND = maND;
+            binhLuan.maBDTT = maBDTT;
+            binhLuan.ngayBL = DateTime.Now;
+            binhLuan.trangThai = "Hien";
+            db.BinhLuans.Add(binhLuan);
+            db.SaveChanges();
+
+            string tenNguoiDang = Session["tenNguoiDang"].ToString();
+            string ngayDang = Session["ngayDang"].ToString();        
+            string noiDung = Session["noiDung"].ToString();
+            string hinhAnh = Session["hinhAnh"].ToString();       
+            string avt_BD = Session["avt_BD"].ToString();
+            return RedirectToAction("Index_BDTT", new
+            {
+                maBDTT = maBDTT,
+                tenNguoiDang = tenNguoiDang,
+                ngayDang = ngayDang,               
+                noiDung = noiDung,
+                hinhAnh = hinhAnh,          
+                avt_BD = avt_BD,
+            });
+
+        }
+
+        public ActionResult CreateBLBDTT_TrangCaNhan(string coment, int maND, int maBDTT)
+        {
+            BinhLuan binhLuan = new BinhLuan();
+            binhLuan.noiDung = coment;
+            binhLuan.maND = maND;
+            binhLuan.maBDTT = maBDTT;
+            binhLuan.ngayBL = DateTime.Now;
+            binhLuan.trangThai = "Hien";
+            db.BinhLuans.Add(binhLuan);
+            db.SaveChanges();
+
+            string tenNguoiDang = Session["tenNguoiDang"].ToString();
+            string ngayDang = Session["ngayDang"].ToString();
+            string noiDung = Session["noiDung"].ToString();
+            string hinhAnh = Session["hinhAnh"].ToString();
+            string avt_BD = Session["avt_BD"].ToString();
+            return RedirectToAction("Index_BLBDTT_TrangCaNhan", new
+            {
+                maBDTT = maBDTT,
+                tenNguoiDang = tenNguoiDang,
+                ngayDang = ngayDang,
+                noiDung = noiDung,
+                hinhAnh = hinhAnh,
+                avt_BD = avt_BD,
+            });
+
+        }
+
+        
         // GET: NguoiDung/BinhLuans/Edit/5
         public ActionResult Edit(int? id)
         {

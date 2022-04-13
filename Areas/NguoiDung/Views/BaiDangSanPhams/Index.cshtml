@@ -88,11 +88,11 @@
     }
 
     int flat = -100;
-    string maTD = "";
+    int maTD = -1 ;
     if (item.maND != maND)
     {
         flat = item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td).Count();
-         maTD = (item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString());
+         maTD = int.Parse((item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString()));
 
     } <div class="central-meta item">
         <div class="user-post">
@@ -104,42 +104,9 @@
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
                     <span>published: @item.ngayDang</span>
 
-
-
-                    @* <div class="more">
-                            <div class="more-post-optns">
-                                <i class="ti-more-alt"></i>
-                                <ul>
-                                    <li><i class="fa fa-pencil-square-o"></i>Embed</li>
-                                    <li><i class="fa fa-share-square-o"></i>Share</li>
-                                    <li><i class="fa fa-bell-slash-o"></i>Mute</li>
-                                    <li><i class="fa fa-folder"></i>view hidden replies</li>
-                                    <li><i class="fa fa-wpexplorer"></i>Report post</li>
-                                    <li><i class="fa fa-bell-slash-o"></i>Block</li>
-                                </ul>
-                            </div>
-                        </div>*@
                 </div>
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
-
-                   @* <div>
-                        <button class="truck-button">
-                            <span class="default">Complete Order</span>
-                            <span class="success">
-                                Order Placed
-                                <svg viewBox="0 0 12 10">
-                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                </svg>
-                            </span>
-                            <div class="truck">
-                                <div class="wheel"></div>
-                                <div class="back"></div>
-                                <div class="front"></div>
-                                <div class="box"></div>
-                            </div>
-                        </button>
-                    </div>*@
 
                     @if (flat == 1)
                     {

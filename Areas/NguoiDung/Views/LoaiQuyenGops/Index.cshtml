@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
-    String maND = Session["maND"].ToString();
+    String hovatenND = Session["hoVaTen"].ToString();
 }
 
 
@@ -27,8 +27,8 @@
                         </div>
                     </figure>
                     <div class="page-infos">
-                        <h5><a href="@Url.Action("Create", "QuyenGops")" title="">@Html.DisplayFor(modelItem => item.tenLoai)</a></h5>
-                        <span><a href="@Url.Action("Create", "QuyenGops")" title="">@Html.DisplayFor(modelItem => item.noiDung)</a></span>
+                        <h5><a href="@Url.Action("Create", "QuyenGops", new {item.maLQG})" title="">@Html.DisplayFor(modelItem => item.tenLoai)</a></h5>
+                        <span><a href="@Url.Action("Create", "QuyenGops", new {item.maLQG})" title="">@Html.DisplayFor(modelItem => item.noiDung)</a></span>
                     </div>
 
                 </div>

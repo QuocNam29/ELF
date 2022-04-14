@@ -41,7 +41,6 @@ namespace ELF.Areas.NguoiDung.Controllers
         {
             int mand = int.Parse(Session["maND"].ToString());
             ViewBag.maLQG = new SelectList(db.LoaiQuyenGops, "maLQG", "tenLoai", maLQG);
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", mand);
             return View();
         }
 
@@ -52,6 +51,8 @@ namespace ELF.Areas.NguoiDung.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "maQG,maND,ngayQG,maLQG,soLuong,donVi,trangThai,hinhAnh,ghiChu")] QuyenGop quyenGop, HttpPostedFileBase img)
         {
+            int mand = int.Parse(Session["maND"].ToString());
+
             if (ModelState.IsValid)
             {
                 try
@@ -65,7 +66,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                         db.QuyenGops.Add(new QuyenGop
                         {
                             maQG = quyenGop.maQG,
-                            maND = quyenGop.maND,
+                            maND = mand,
                             ngayQG = quyenGop.ngayQG,
                             maLQG = quyenGop.maLQG,
                             soLuong = quyenGop.soLuong,
@@ -87,7 +88,6 @@ namespace ELF.Areas.NguoiDung.Controllers
             }
 
             ViewBag.maLQG = new SelectList(db.LoaiQuyenGops, "maLQG", "tenLoai", quyenGop.maLQG);
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", quyenGop.maND);
             return View(quyenGop);
         }
 

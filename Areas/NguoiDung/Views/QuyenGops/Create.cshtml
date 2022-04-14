@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
-    string img = "";
+    String hovatenND = Session["hoVaTen"].ToString();
 }
 
 <h2>@ViewBag.FileStatus</h2>
@@ -16,16 +16,16 @@
         <div class="editing-info">
             <h5 class="f-title"><i class="ti-info-alt"></i> Đăng ký quyên góp</h5>
             <form method="post">
+
                 <div class="form-group">
-                    @Html.DropDownList("maND", null, htmlAttributes: new { @class = "form-control" })
-                    @*<input type="text" required="required" value="@Session["hoVaTen"]" />*@
-                    <label class="control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>
-                    @Html.ValidationMessageFor(model => model.maND, "", new { @class = "text-danger" })
+                    @*@Html.DropDownList("maND", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })*@
+                    @Html.EditorFor(model => model.maND, new { htmlAttributes = new { @class = "form-control", @type = "text", @required = "required", @Value = hovatenND, @disabled = "disabled", @style = "color: black"} })
+                    @*<label class="form-control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>*@
                 </div>
                 <div class="form-group">
-                    @Html.EditorFor(model => model.ngayQG, new { htmlAttributes = new { @type = "date", @required = "required" } })
-                    <label class="control-label" for="input">Ngày quyên góp</label><i class="mtrl-select"></i>
+                    @Html.EditorFor(model => model.ngayQG, new { htmlAttributes = new {  @type = "date", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.ngayQG, "", new { @class = "text-danger" })
+                    <label class="control-label" for="input">Ngày quyên góp</label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
                     @Html.DropDownList("maLQG", null, htmlAttributes: new { @class = "form-control" })
@@ -33,7 +33,7 @@
                     <label class="control-label" for="input">Đồ quyên góp</label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
-                    @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @type="number", @required="required" } })
+                    @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @type = "number", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
                     <label class="control-label" for="input">Số lượng</label><i class="mtrl-select"></i>
                 </div>
@@ -51,7 +51,7 @@
                     @*<img src="@Url.Content(avt)" alt="">*@
                     <label class="fileContainer">
                         <input accept="image/*" type="file" name="img" id="imgInp"><br>
-                        <img id="blah" src="#" width="200" alt="Image preview...">
+                        <img id="blah" src="#" width="200" alt="Chọn hình ở đây...">
                         <label class="control-label" for="input">Chọn hình</label>
                         <script>
                             imgInp.onchange = eva => {
@@ -68,7 +68,7 @@
                     @Html.ValidationMessageFor(model => model.ghiChu, "", new { @class = "text-danger" })
                     <label class="control-label" for="textarea">Ghi chú</label><i class="mtrl-select"></i>
                 </div>
-                            
+
                 <div class="submit-btns">
                     <button type="button" onclick="location.href='@Url.Action("Index", "LoaiQuyenGops")'" class="mtr-btn"><span>Cancel</span></button>
                     <button type="submit" class="mtr-btn"><span>Save</span></button>

@@ -4,126 +4,126 @@
 
     ViewBag.Title = "Edit";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
-    string avt ="";
+    string avt = "";
 
 }
 
 <div class="editing-info">
     <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin cá nhân</h5>
     @using (Html.BeginForm("Edit", "NguoiDungs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <form method="post">
+            @if (Model.avatar != null)
             {
-                @Html.AntiForgeryToken()
-            <form method="post">
-                @if (Model.avatar != null)
-                {
-                    avt = Model.avatar;
-                }
-                else
-                {
+                avt = Model.avatar;
+            }
+            else
+            {
                 avt = "~/images/resources/User-avatar.svg.png";
-                }
-                <div class="form-group">
-                    <img src="@Url.Content(avt)" alt="">
-                    <i class="fa fa-camera-retro"></i>
-                    <label class="fileContainer">
-                        <input accept="image/*" type="file" name="avt" id="imgInp"><br>
-                        <img id="blah" src="#" width="200" alt="Image preview...">
-                        <label class="control-label" for="textarea">Thay Avtatar</label>
-                        <script>
-                            imgInp.onchange = evt => {
-                                const [file] = imgInp.files
-                                if (file) {
-                                    blah.src = URL.createObjectURL(file)
-                                }
+            }
+            <div class="form-group">
+                <img src="@Url.Content(avt)" alt="">
+                <i class="fa fa-camera-retro"></i>
+                <label class="fileContainer">
+                    <input accept="image/*" type="file" name="avt" id="imgInp"><br>
+                    <img id="blah" src="#" width="200" alt="Image preview...">
+                    <label class="control-label" for="textarea">Thay Avtatar</label>
+                    <script>
+                        imgInp.onchange = evt => {
+                            const [file] = imgInp.files
+                            if (file) {
+                                blah.src = URL.createObjectURL(file)
                             }
-                        </script>
-                    </label>
-                </div>
-                <div class="form-group half">
-                    @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { placeholder = "Họ và tên", @class = "form-control" } })
-                    <label class="control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>
-                </div>
-                <div class="form-group half">
-                    @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { placeholder = "Số điện thoại", @class = "form-control" } })
-                    <label class="control-label" for="input">Số điện thoại</label><i class="mtrl-select"></i>
-                </div>
-                <div class="form-group">
-                    @Html.EditorFor(model => model.ngaySinh, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Ngày sinh</label><i class="mtrl-select"></i>
-                </div>
-                <div class="form-radio">
-                    <select name="gioiTinh" id="" class="form-control">
-                        <option value="@int.Parse(Session["gioiTinh"].ToString())" >@Session["loaiGioiTinh"]</option>
-                        <option value="1">Nam</option>
-                        <option value="0">Nữ</option>
-                        <option value="2">Khác</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    @if (ViewBag.maTinh_TP != null)
-                    {
-                        @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố", htmlAttributes: new { @class = "form-control" })
-                    }
-                </div>
-                <div class="form-group">
-                    @Html.DropDownList("maQuan", null, htmlAttributes: new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.DropDownList("maP", null, htmlAttributes: new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { placeholder = "Địa chỉ", @class = "form-control" } })
-                    <label class="control-label" for="input">Địa chỉ</label><i class="mtrl-select"></i>
-                </div>
-                <div class="submit-btns">
-                    <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Details", "NguoiDungs",  new { id = Model.maND })'"><span>Cancel</span></button>
-                    <button type="submit" class="mtr-btn"><span>Update</span></button>
-                </div>
-            </form>
-        }
-        </div>
-
-        <script src="~/Scripts/jquery-3.4.1.js"></script>
-        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#maTinh_TP").change(function () {
-                    var ID = $(this).val();
-                    debugger
-                    $.ajax({
-                        type: "post",
-                        url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ID,
-                        contentType: "html",
-                        success: function (response) {
-                            debugger
-                            $("#maQuan").empty();
-                            $("#maQuan").append(response);
                         }
-                    })
-                })
-            })
+                    </script>
+                </label>
+            </div>
+            <div class="form-group half">
+                @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { placeholder = "Họ và tên", @class = "form-control" } })
+                <label class="control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>
+            </div>
+            <div class="form-group half">
+                @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { placeholder = "Số điện thoại", @class = "form-control" } })
+                <label class="control-label" for="input">Số điện thoại</label><i class="mtrl-select"></i>
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(model => model.ngaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @class = "text-danger" })
+                <label class="control-label" for="input">Ngày sinh</label><i class="mtrl-select"></i>
+            </div>
+            <div class="form-radio">
+                <select name="gioiTinh" id="" class="form-control">
+                    <option value="@int.Parse(Session["gioiTinh"].ToString())">@Session["loaiGioiTinh"]</option>
+                    <option value="1">Nam</option>
+                    <option value="0">Nữ</option>
+                    <option value="2">Khác</option>
+                </select>
+            </div>
+            <div class="form-group">
+                @if (ViewBag.maTinh_TP != null)
+                {
+                    @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố", htmlAttributes: new { @class = "form-control" })
+                }
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { placeholder = "Địa chỉ", @class = "form-control" } })
+                <label class="control-label" for="input">Địa chỉ</label><i class="mtrl-select"></i>
+            </div>
+            <div class="submit-btns">
+                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Details", "NguoiDungs",  new { id = Model.maND })'"><span>Cancel</span></button>
+                <button type="submit" class="mtr-btn"><span>Update</span></button>
+            </div>
+        </form>
+    }
+</div>
 
-            $(document).ready(function () {
-                $("#maQuan").change(function () {
-                    var ID = $(this).val();
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#maTinh_TP").change(function () {
+            var ID = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ID,
+                contentType: "html",
+                success: function (response) {
                     debugger
-                    $.ajax({
-                        type: "post",
-                        url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + ID,
-                        contentType: "html",
-                        success: function (response) {
-                            debugger
-                            $("#maP").empty();
-                            $("#maP").append(response);
-                        }
-                    })
-                })
+                    $("#maQuan").empty();
+                    $("#maQuan").append(response);
+                }
             })
-        </script>
+        })
+    })
+
+    $(document).ready(function () {
+        $("#maQuan").change(function () {
+            var ID = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + ID,
+                contentType: "html",
+                success: function (response) {
+                    debugger
+                    $("#maP").empty();
+                    $("#maP").append(response);
+                }
+            })
+        })
+    })
+</script>
 
 
-        @*@using (Html.BeginForm())
+@*@using (Html.BeginForm())
     {
     @Html.AntiForgeryToken()
 
@@ -208,4 +208,4 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-    *@
+*@

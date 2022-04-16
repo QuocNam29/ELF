@@ -39,7 +39,6 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/QuyenGops/Create
         public ActionResult Create(int maLQG)
         {
-            int mand = int.Parse(Session["maND"].ToString());
             ViewBag.maLQG = new SelectList(db.LoaiQuyenGops, "maLQG", "tenLoai", maLQG);
             return View();
         }
@@ -78,7 +77,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                         db.SaveChanges();
                         return RedirectToAction("Index", "LoaiQuyenGops");
                     }
-                    ViewBag.FileStatus = "File uploaded successfully";
+                    ViewBag.FileStatus = "Bạn chưa chọn hình ảnh";
                 }
                 catch (Exception)
                 {

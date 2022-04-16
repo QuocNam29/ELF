@@ -19,23 +19,41 @@
 
                 <div class="form-group">
                     @*@Html.DropDownList("maND", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })*@
-                    @Html.EditorFor(model => model.maND, new { htmlAttributes = new { @class = "form-control", @type = "text", @required = "required", @Value = hovatenND, @disabled = "disabled", @style = "color: black"} })
+                    @Html.EditorFor(model => model.maND, new { htmlAttributes = new { @class = "form-control", @type = "text", @Value = hovatenND, @disabled = "disabled", @style = "color: black" } })
                     @*<label class="form-control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>*@
                 </div>
                 <div class="form-group">
-                    @Html.EditorFor(model => model.ngayQG, new { htmlAttributes = new {  @type = "date", @required = "required" } })
+                    @Html.EditorFor(model => model.ngayQG, new
+               {
+                   htmlAttributes = new
+                   {
+                       @type = "date",
+                       @required = "",
+                       @oninvalid = "this.setCustomValidity('Bạn chưa chọn ngày quyên góp')",
+                       @oninput = "setCustomValidity('')"
+                   }
+               })
                     @Html.ValidationMessageFor(model => model.ngayQG, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Ngày quyên góp</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="input">Ngày quyên góp *</label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
                     @Html.DropDownList("maLQG", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.maLQG, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Đồ quyên góp</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="input">Đồ quyên góp *</label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
-                    @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @type = "number", @required = "required" } })
+                    @Html.EditorFor(model => model.soLuong, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @type = "number",
+                            @required = "",
+                            @oninvalid = "this.setCustomValidity('Bạn chưa nhập số lượng')",
+                            @oninput = "setCustomValidity('')"
+                        }
+                    })
                     @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Số lượng</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="input">Số lượng *</label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
                     @Html.DropDownListFor(model => model.donVi,
@@ -45,14 +63,13 @@
                       new SelectListItem { Value = "Kg" , Text = "Kg" }
                    },
                  new { @class = "form-control" })
-                    <label class="control-label" for="input">Đơn vị</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="input">Đơn vị *</label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
-                    @*<img src="@Url.Content(avt)" alt="">*@
                     <label class="fileContainer">
                         <input accept="image/*" type="file" name="img" id="imgInp"><br>
                         <img id="blah" src="#" width="200" alt="Chọn hình ở đây...">
-                        <label class="control-label" for="input">Chọn hình</label>
+                        <label class="control-label" for="input">Chọn hình *</label>
                         <script>
                             imgInp.onchange = eva => {
                                 const [file] = imgInp.files
@@ -62,12 +79,15 @@
                             }
                         </script>
                     </label>
+                    <p class="text-danger">@ViewBag.FileStatus</p>
                 </div>
                 <div class="form-group">
-                    @Html.EditorFor(model => model.ghiChu, new { htmlAttributes = new { @type = "text", @required = "required" } })
-                    @Html.ValidationMessageFor(model => model.ghiChu, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.ghiChu, new { htmlAttributes = new { @type = "text" } })
                     <label class="control-label" for="textarea">Ghi chú</label><i class="mtrl-select"></i>
                 </div>
+
+                <p class="text-danger">Tất cả những trường có dấu * là bắt buộc</p>
+
 
                 <div class="submit-btns">
                     <button type="button" onclick="location.href='@Url.Action("Index", "LoaiQuyenGops")'" class="mtr-btn"><span>Cancel</span></button>

@@ -312,6 +312,7 @@
     <Compile Include="Models\DapAn.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DateValidationAttribute.cs" />
     <Compile Include="Models\DiemTichLuy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

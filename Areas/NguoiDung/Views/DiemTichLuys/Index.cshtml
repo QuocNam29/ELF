@@ -1,0 +1,165 @@
+﻿@model IEnumerable<ELF.Models.DiemTichLuy>
+
+@{
+    ViewBag.Title = "Điểm tích lũy";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+}
+
+@*<div class="editing-interest">
+    <h5 class="f-title"><i class="ti-bell"></i>Chi tiết điểm tích lũy</h5>
+    <div class="notification-box">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="notifi-meta">
+                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bài đăng sản phẩm của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                        <br />
+                        <span>@item.thoiGian</span>
+                    </div>
+
+                </li>
+            }
+
+
+        </ul>
+    </div>
+</div>
+*@
+
+
+<div class="frnds">
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">Chi tiết điểm tích lũy</a>
+        <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Lịch sử cộng điểm</a>
+        <li class="nav-item"><a class="" href="#frends-req1" data-toggle="tab">Lịch sử trừ điểm</a>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active fade show " id="frends">
+            <div class="notification-box">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        if (item.maBDSP != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bài đăng sản phẩm của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+                        else if (item.maBDTT != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bài đăng thông tin của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+
+                        else if (item.maQG != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Thông tin quyên góp của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+                        else if (item.maDQ != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bạn đã đổi phần quà  <a style=" font-weight: bold; float: right; color: cadetblue "> - @item.DonQua.TongDiem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+
+                    }
+
+
+                </ul>
+            </div>
+
+           
+        </div>
+        <div class="tab-pane fade" id="frends-req">
+            <div class="notification-box">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        if (item.maBDSP != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bài đăng sản phẩm của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+                        else if (item.maBDTT != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bài đăng thông tin của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+
+                         else if (item.maQG != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Thông tin quyên góp của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+
+                    }
+
+
+                </ul>
+            </div>
+          
+        </div>
+
+        <div class="tab-pane fade" id="frends-req1">
+            <div class="notification-box">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        
+                        if (item.maDQ != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bạn đã đổi phần quà  <a style=" font-weight: bold; float: right; color: cadetblue "> - @item.DonQua.TongDiem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+
+                    }
+
+
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+</div>

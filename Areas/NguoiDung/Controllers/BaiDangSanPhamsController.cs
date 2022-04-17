@@ -39,6 +39,14 @@ namespace ELF.Areas.NguoiDung.Controllers
             return View(baiDangSanPhams.ToList());
         }
 
+        public ActionResult Index_BDSP_one(int maND, int maBDSP)
+        {
+            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND).Where(b => b.maBDSP == maBDSP);
+
+
+            return View(baiDangSanPhams.ToList());
+        }
+
         public ActionResult Index_TrangCaNhan_NDK(int maND_K, string hoVaTen_NDK, string avartar_NDK)
         {
             var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND_K).OrderByDescending(B => B.maBDSP);
@@ -100,25 +108,24 @@ namespace ELF.Areas.NguoiDung.Controllers
                         baiDangSanPham.ngayDang = DateTime.Now;
                         baiDangSanPham.hinhAnh = filePath;
                         db.BaiDangSanPhams.Add(baiDangSanPham);
+
+                        db.DiemTichLuys.Add(new DiemTichLuy
+                        {
+                            maND = maND,
+                            thoiGian = DateTime.Now,
+                            maBDSP = baiDangSanPham.maBDSP,
+                            diem = 5
+                        }) ;
+                       
+
+
                         db.SaveChanges();
                         return RedirectToAction("Index");
 
                     }
                     else
                     {
-                        db.BaiDangSanPhams.Add(new BaiDangSanPham
-                        {
-                            maND = maND,
-                            maLSP = baiDangSanPham.maLSP,
-                            tenSP = baiDangSanPham.tenSP,
-                            noiDung= baiDangSanPham.noiDung,
-                            maTT = 1,
-                            gia = baiDangSanPham.gia,
-                            soLuong = baiDangSanPham.soLuong,
-                            ngayDang = DateTime.Now,
-                        }) ;
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
+                        ViewBag.FileStatus = "Bạn chưa chọn hình ảnh";
 
                     }
                     ViewBag.FileStatus = "File uploaded successfully.";

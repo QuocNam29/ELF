@@ -74,6 +74,13 @@ namespace ELF.Areas.NguoiDung.Controllers
                             hinhAnh = "~/images/" + img.FileName,                        
                             ghiChu = quyenGop.ghiChu
                         });
+                        db.DiemTichLuys.Add(new DiemTichLuy
+                        {
+                            maND = int.Parse(Session["maND"].ToString()),
+                            thoiGian = DateTime.Now,
+                            maQG = quyenGop.maQG,
+                            diem = 10
+                        });
                         db.SaveChanges();
                         return RedirectToAction("Index", "LoaiQuyenGops");
                     }

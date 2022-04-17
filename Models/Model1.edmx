@@ -174,6 +174,7 @@
           <Property Name="maBDTT" Type="int" />
           <Property Name="maBDSP" Type="int" />
           <Property Name="maQG" Type="int" />
+          <Property Name="maDQ" Type="int" />
         </EntityType>
         <EntityType Name="DonQua">
           <Key>
@@ -342,27 +343,6 @@
           <Property Name="ngayTao" Type="datetime" />
           <Property Name="trangThai" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="TinNhan">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ConnectionIDUser" Type="nvarchar" MaxLength="100" />
-          <Property Name="UserGroup" Type="nvarchar" MaxLength="100" />
-          <Property Name="Msg" Type="ntext" />
-          <Property Name="StartTime" Type="nvarchar" MaxLength="50" />
-          <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
-          <Property Name="MsgDate" Type="nvarchar" MaxLength="50" />
-          <Property Name="MsgDuration" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserID" Type="int" />
-        </EntityType>
-        <EntityType Name="Tinh_ThanhPho">
-          <Key>
-            <PropertyRef Name="maTinh_TP" />
-          </Key>
-          <Property Name="maTinh_TP" Type="int" Nullable="false" />
-          <Property Name="tenTinh_TP" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <EntityType Name="ThongBao">
           <Key>
             <PropertyRef Name="maTB" />
@@ -377,6 +357,27 @@
           <Property Name="noiDung" Type="nvarchar" MaxLength="500" />
           <Property Name="ngayTB" Type="datetime" Nullable="false" />
           <Property Name="tinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tinh_ThanhPho">
+          <Key>
+            <PropertyRef Name="maTinh_TP" />
+          </Key>
+          <Property Name="maTinh_TP" Type="int" Nullable="false" />
+          <Property Name="tenTinh_TP" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TinNhan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConnectionIDUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="Msg" Type="ntext" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgDuration" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="TrangThaiBaiDang">
           <Key>
@@ -397,7 +398,9 @@
           <Property Name="trangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_BaiDangSanPham_LoaiSanPham">
-          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="1" />
+          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiSanPham">
@@ -409,7 +412,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangSanPham_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -421,7 +426,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangSanPham_TrangThaiBaiDang">
-          <End Role="TrangThaiBaiDang" Type="Self.TrangThaiBaiDang" Multiplicity="1" />
+          <End Role="TrangThaiBaiDang" Type="Self.TrangThaiBaiDang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TrangThaiBaiDang">
@@ -433,7 +440,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangThongTin_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangThongTin" Type="Self.BaiDangThongTin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -445,7 +454,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangThongTin_TrangThaiBaiDang">
-          <End Role="TrangThaiBaiDang" Type="Self.TrangThaiBaiDang" Multiplicity="1" />
+          <End Role="TrangThaiBaiDang" Type="Self.TrangThaiBaiDang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangThongTin" Type="Self.BaiDangThongTin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TrangThaiBaiDang">
@@ -457,7 +468,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BinhLuan_BaiDangSanPham">
-          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1" />
+          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiDangSanPham">
@@ -493,7 +506,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CauHoi_BaiQuiz_BaiQuiz">
-          <End Role="BaiQuiz" Type="Self.BaiQuiz" Multiplicity="1" />
+          <End Role="BaiQuiz" Type="Self.BaiQuiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiQuiz">
@@ -505,7 +520,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CauHoi_BaiQuiz_CauHoi">
-          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1" />
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CauHoi">
@@ -517,7 +534,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CauHoi_ChuDeBaiQuiz">
-          <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1" />
+          <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChuDeBaiQuiz">
@@ -529,7 +548,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DapAn_CauHoi">
-          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1" />
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DapAn" Type="Self.DapAn" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CauHoi">
@@ -597,7 +618,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DiemTichLuy_BaiDangSanPham">
-          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1" />
+          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiDangSanPham">
@@ -620,6 +643,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DiemTichLuy_DonQua">
+          <End Role="DonQua" Type="Self.DonQua" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonQua">
+              <PropertyRef Name="MaDQ" />
+            </Principal>
+            <Dependent Role="DiemTichLuy">
+              <PropertyRef Name="maDQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DiemTichLuy_NguoiDung">
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
           <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
@@ -633,7 +670,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DiemTichLuy_QuyenGop">
-          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="0..1" />
+          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuyenGop">
@@ -657,7 +696,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonQua_PhuongThiTran">
-          <End Role="PhuongThiTran" Type="Self.PhuongThiTran" Multiplicity="1" />
+          <End Role="PhuongThiTran" Type="Self.PhuongThiTran" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DonQua" Type="Self.DonQua" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PhuongThiTran">
@@ -669,7 +710,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonQua_QuaTang">
-          <End Role="QuaTang" Type="Self.QuaTang" Multiplicity="1" />
+          <End Role="QuaTang" Type="Self.QuaTang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DonQua" Type="Self.DonQua" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuaTang">
@@ -681,7 +724,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonThuGom_DonViThuGom">
-          <End Role="DonViThuGom" Type="Self.DonViThuGom" Multiplicity="1" />
+          <End Role="DonViThuGom" Type="Self.DonViThuGom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DonThuGom" Type="Self.DonThuGom" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DonViThuGom">
@@ -693,7 +738,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KetQua_CauHoi_BaiQuiz">
-          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="1" />
+          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CauHoi_BaiQuiz">
@@ -717,7 +764,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KetQua_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -741,7 +790,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NguoiDung_QuanHuyen">
-          <End Role="QuanHuyen" Type="Self.QuanHuyen" Multiplicity="0..1" />
+          <End Role="QuanHuyen" Type="Self.QuanHuyen" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuanHuyen">
@@ -753,7 +804,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NguoiDung_Tinh_ThanhPho">
-          <End Role="Tinh_ThanhPho" Type="Self.Tinh_ThanhPho" Multiplicity="0..1" />
+          <End Role="Tinh_ThanhPho" Type="Self.Tinh_ThanhPho" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tinh_ThanhPho">
@@ -789,7 +842,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_QuyenGop_LoaiQuyenGop">
-          <End Role="LoaiQuyenGop" Type="Self.LoaiQuyenGop" Multiplicity="1" />
+          <End Role="LoaiQuyenGop" Type="Self.LoaiQuyenGop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiQuyenGop">
@@ -813,7 +868,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan">
-          <End Role="LoaiTaiKhoan" Type="Self.LoaiTaiKhoan" Multiplicity="1" />
+          <End Role="LoaiTaiKhoan" Type="Self.LoaiTaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChucNangTaiKhoan" Type="Self.ChucNangTaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiTaiKhoan">
@@ -825,7 +882,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChucNangTaiKhoan" Type="Self.ChucNangTaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
@@ -837,7 +896,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TaiKhoan_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -848,20 +909,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TinNhan_NguoiDung1">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
-          <End Role="TinNhan" Type="Self.TinNhan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="maND" />
-            </Principal>
-            <Dependent Role="TinNhan">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ThongBao_BaiDangSanPham">
-          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="1" />
+          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiDangSanPham">
@@ -897,7 +948,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_DonQua">
-          <End Role="DonQua" Type="Self.DonQua" Multiplicity="1" />
+          <End Role="DonQua" Type="Self.DonQua" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DonQua">
@@ -909,7 +962,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_QuyenGop">
-          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="1" />
+          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuyenGop">
@@ -921,7 +976,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_TraoDoi">
-          <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="1" />
+          <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TraoDoi">
@@ -929,6 +986,20 @@
             </Principal>
             <Dependent Role="ThongBao">
               <PropertyRef Name="maTraoDoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TinNhan_NguoiDung1">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TinNhan" Type="Self.TinNhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="TinNhan">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1000,9 +1071,9 @@
           <EntitySet Name="QuyenGop" EntityType="Self.QuyenGop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TinNhan" EntityType="Self.TinNhan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TinNhan" EntityType="Self.TinNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrangThaiBaiDang" EntityType="Self.TrangThaiBaiDang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TraoDoi" EntityType="Self.TraoDoi" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BaiDangSanPham_LoaiSanPham" Association="Self.FK_BaiDangSanPham_LoaiSanPham">
@@ -1075,6 +1146,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_DiemTichLuy_BaiDangThongTin" Association="Self.FK_DiemTichLuy_BaiDangThongTin">
             <End Role="BaiDangThongTin" EntitySet="BaiDangThongTin" />
+            <End Role="DiemTichLuy" EntitySet="DiemTichLuy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemTichLuy_DonQua" Association="Self.FK_DiemTichLuy_DonQua">
+            <End Role="DonQua" EntitySet="DonQua" />
             <End Role="DiemTichLuy" EntitySet="DiemTichLuy" />
           </AssociationSet>
           <AssociationSet Name="FK_DiemTichLuy_NguoiDung" Association="Self.FK_DiemTichLuy_NguoiDung">
@@ -1153,10 +1228,6 @@
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
           </AssociationSet>
-          <AssociationSet Name="FK_TinNhan_NguoiDung1" Association="Self.FK_TinNhan_NguoiDung1">
-            <End Role="NguoiDung" EntitySet="NguoiDung" />
-            <End Role="TinNhan" EntitySet="TinNhan" />
-          </AssociationSet>
           <AssociationSet Name="FK_ThongBao_BaiDangSanPham" Association="Self.FK_ThongBao_BaiDangSanPham">
             <End Role="BaiDangSanPham" EntitySet="BaiDangSanPham" />
             <End Role="ThongBao" EntitySet="ThongBao" />
@@ -1180,6 +1251,10 @@
           <AssociationSet Name="FK_ThongBao_TraoDoi" Association="Self.FK_ThongBao_TraoDoi">
             <End Role="TraoDoi" EntitySet="TraoDoi" />
             <End Role="ThongBao" EntitySet="ThongBao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TinNhan_NguoiDung1" Association="Self.FK_TinNhan_NguoiDung1">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="TinNhan" EntitySet="TinNhan" />
           </AssociationSet>
           <AssociationSet Name="FK_TraoDoi_BaiDangSanPham" Association="Self.FK_TraoDoi_BaiDangSanPham">
             <End Role="BaiDangSanPham" EntitySet="BaiDangSanPham" />
@@ -1394,8 +1469,10 @@
           <Property Name="maBDTT" Type="Int32" />
           <Property Name="maBDSP" Type="Int32" />
           <Property Name="maQG" Type="Int32" />
+          <Property Name="maDQ" Type="Int32" />
           <NavigationProperty Name="BaiDangSanPham" Relationship="Self.FK_DiemTichLuy_BaiDangSanPham" FromRole="DiemTichLuy" ToRole="BaiDangSanPham" />
           <NavigationProperty Name="BaiDangThongTin" Relationship="Self.FK_DiemTichLuy_BaiDangThongTin" FromRole="DiemTichLuy" ToRole="BaiDangThongTin" />
+          <NavigationProperty Name="DonQua" Relationship="Self.FK_DiemTichLuy_DonQua" FromRole="DiemTichLuy" ToRole="DonQua" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_DiemTichLuy_NguoiDung" FromRole="DiemTichLuy" ToRole="NguoiDung" />
           <NavigationProperty Name="QuyenGop" Relationship="Self.FK_DiemTichLuy_QuyenGop" FromRole="DiemTichLuy" ToRole="QuyenGop" />
         </EntityType>
@@ -1412,6 +1489,7 @@
           <Property Name="MaP" Type="Int32" Nullable="false" />
           <Property Name="DiaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DiemTichLuys" Relationship="Self.FK_DiemTichLuy_DonQua" FromRole="DonQua" ToRole="DiemTichLuy" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_DonQua_NguoiDung" FromRole="DonQua" ToRole="NguoiDung" />
           <NavigationProperty Name="PhuongThiTran" Relationship="Self.FK_DonQua_PhuongThiTran" FromRole="DonQua" ToRole="PhuongThiTran" />
           <NavigationProperty Name="QuaTang" Relationship="Self.FK_DonQua_QuaTang" FromRole="DonQua" ToRole="QuaTang" />
@@ -1605,30 +1683,6 @@
           <NavigationProperty Name="ChucNangTaiKhoans" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" FromRole="TaiKhoan" ToRole="ChucNangTaiKhoan" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TaiKhoan_NguoiDung" FromRole="TaiKhoan" ToRole="NguoiDung" />
         </EntityType>
-        <EntityType Name="TinNhan">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ConnectionIDUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MsgDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MsgDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TinNhan_NguoiDung1" FromRole="TinNhan" ToRole="NguoiDung" />
-        </EntityType>
-        <EntityType Name="Tinh_ThanhPho">
-          <Key>
-            <PropertyRef Name="maTinh_TP" />
-          </Key>
-          <Property Name="maTinh_TP" Type="Int32" Nullable="false" />
-          <Property Name="tenTinh_TP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_Tinh_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="NguoiDung" />
-          <NavigationProperty Name="QuanHuyens" Relationship="Self.FK_QuanHuyen_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="QuanHuyen" />
-        </EntityType>
         <EntityType Name="ThongBao">
           <Key>
             <PropertyRef Name="maTB" />
@@ -1649,6 +1703,30 @@
           <NavigationProperty Name="DonQua" Relationship="Self.FK_ThongBao_DonQua" FromRole="ThongBao" ToRole="DonQua" />
           <NavigationProperty Name="QuyenGop" Relationship="Self.FK_ThongBao_QuyenGop" FromRole="ThongBao" ToRole="QuyenGop" />
           <NavigationProperty Name="TraoDoi" Relationship="Self.FK_ThongBao_TraoDoi" FromRole="ThongBao" ToRole="TraoDoi" />
+        </EntityType>
+        <EntityType Name="Tinh_ThanhPho">
+          <Key>
+            <PropertyRef Name="maTinh_TP" />
+          </Key>
+          <Property Name="maTinh_TP" Type="Int32" Nullable="false" />
+          <Property Name="tenTinh_TP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_Tinh_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="NguoiDung" />
+          <NavigationProperty Name="QuanHuyens" Relationship="Self.FK_QuanHuyen_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="QuanHuyen" />
+        </EntityType>
+        <EntityType Name="TinNhan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConnectionIDUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MsgDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MsgDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TinNhan_NguoiDung1" FromRole="TinNhan" ToRole="NguoiDung" />
         </EntityType>
         <EntityType Name="TrangThaiBaiDang">
           <Key>
@@ -1703,7 +1781,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangSanPham_LoaiSanPham">
-          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="1" />
+          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiSanPham">
@@ -1715,7 +1795,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangSanPham_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -1727,7 +1809,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangSanPham_TrangThaiBaiDang">
-          <End Role="TrangThaiBaiDang" Type="Self.TrangThaiBaiDang" Multiplicity="1" />
+          <End Role="TrangThaiBaiDang" Type="Self.TrangThaiBaiDang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TrangThaiBaiDang">
@@ -1739,7 +1823,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BinhLuan_BaiDangSanPham">
-          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1" />
+          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiDangSanPham">
@@ -1751,7 +1837,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DiemTichLuy_BaiDangSanPham">
-          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1" />
+          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiDangSanPham">
@@ -1763,7 +1851,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_BaiDangSanPham">
-          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="1" />
+          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiDangSanPham">
@@ -1787,7 +1877,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangThongTin_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangThongTin" Type="Self.BaiDangThongTin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -1799,7 +1891,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BaiDangThongTin_TrangThaiBaiDang">
-          <End Role="TrangThaiBaiDang" Type="Self.TrangThaiBaiDang" Multiplicity="1" />
+          <End Role="TrangThaiBaiDang" Type="Self.TrangThaiBaiDang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BaiDangThongTin" Type="Self.BaiDangThongTin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TrangThaiBaiDang">
@@ -1847,7 +1941,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CauHoi_BaiQuiz_BaiQuiz">
-          <End Role="BaiQuiz" Type="Self.BaiQuiz" Multiplicity="1" />
+          <End Role="BaiQuiz" Type="Self.BaiQuiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiQuiz">
@@ -1883,7 +1979,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CauHoi_BaiQuiz_CauHoi">
-          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1" />
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CauHoi">
@@ -1895,7 +1993,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CauHoi_ChuDeBaiQuiz">
-          <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1" />
+          <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChuDeBaiQuiz">
@@ -1907,7 +2007,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DapAn_CauHoi">
-          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1" />
+          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DapAn" Type="Self.DapAn" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CauHoi">
@@ -1919,7 +2021,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KetQua_CauHoi_BaiQuiz">
-          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="1" />
+          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CauHoi_BaiQuiz">
@@ -1931,7 +2035,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan">
-          <End Role="LoaiTaiKhoan" Type="Self.LoaiTaiKhoan" Multiplicity="1" />
+          <End Role="LoaiTaiKhoan" Type="Self.LoaiTaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChucNangTaiKhoan" Type="Self.ChucNangTaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiTaiKhoan">
@@ -1943,7 +2049,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChucNangTaiKhoan" Type="Self.ChucNangTaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
@@ -1966,6 +2074,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DiemTichLuy_DonQua">
+          <End Role="DonQua" Type="Self.DonQua" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonQua">
+              <PropertyRef Name="MaDQ" />
+            </Principal>
+            <Dependent Role="DiemTichLuy">
+              <PropertyRef Name="maDQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DiemTichLuy_NguoiDung">
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
           <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
@@ -1979,7 +2101,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DiemTichLuy_QuyenGop">
-          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="0..1" />
+          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuyenGop">
@@ -2003,7 +2127,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonQua_PhuongThiTran">
-          <End Role="PhuongThiTran" Type="Self.PhuongThiTran" Multiplicity="1" />
+          <End Role="PhuongThiTran" Type="Self.PhuongThiTran" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DonQua" Type="Self.DonQua" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PhuongThiTran">
@@ -2015,7 +2141,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonQua_QuaTang">
-          <End Role="QuaTang" Type="Self.QuaTang" Multiplicity="1" />
+          <End Role="QuaTang" Type="Self.QuaTang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DonQua" Type="Self.DonQua" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuaTang">
@@ -2027,7 +2155,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_DonQua">
-          <End Role="DonQua" Type="Self.DonQua" Multiplicity="1" />
+          <End Role="DonQua" Type="Self.DonQua" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DonQua">
@@ -2039,7 +2169,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DonThuGom_DonViThuGom">
-          <End Role="DonViThuGom" Type="Self.DonViThuGom" Multiplicity="1" />
+          <End Role="DonViThuGom" Type="Self.DonViThuGom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DonThuGom" Type="Self.DonThuGom" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DonViThuGom">
@@ -2051,7 +2183,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KetQua_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -2063,7 +2197,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_QuyenGop_LoaiQuyenGop">
-          <End Role="LoaiQuyenGop" Type="Self.LoaiQuyenGop" Multiplicity="1" />
+          <End Role="LoaiQuyenGop" Type="Self.LoaiQuyenGop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiQuyenGop">
@@ -2087,7 +2223,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NguoiDung_QuanHuyen">
-          <End Role="QuanHuyen" Type="Self.QuanHuyen" Multiplicity="0..1" />
+          <End Role="QuanHuyen" Type="Self.QuanHuyen" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuanHuyen">
@@ -2099,7 +2237,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NguoiDung_Tinh_ThanhPho">
-          <End Role="Tinh_ThanhPho" Type="Self.Tinh_ThanhPho" Multiplicity="0..1" />
+          <End Role="Tinh_ThanhPho" Type="Self.Tinh_ThanhPho" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tinh_ThanhPho">
@@ -2123,7 +2263,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TaiKhoan_NguoiDung">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -2135,7 +2277,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TinNhan_NguoiDung1">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TinNhan" Type="Self.TinNhan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
@@ -2195,7 +2339,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_QuyenGop">
-          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="1" />
+          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuyenGop">
@@ -2207,7 +2353,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_TraoDoi">
-          <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="1" />
+          <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TraoDoi">
@@ -2253,9 +2401,9 @@
           <EntitySet Name="QuyenGops" EntityType="Self.QuyenGop" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
-          <EntitySet Name="TinNhans" EntityType="Self.TinNhan" />
-          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" />
           <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
+          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" />
+          <EntitySet Name="TinNhans" EntityType="Self.TinNhan" />
           <EntitySet Name="TrangThaiBaiDangs" EntityType="Self.TrangThaiBaiDang" />
           <EntitySet Name="TraoDois" EntityType="Self.TraoDoi" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -2353,6 +2501,10 @@
           <AssociationSet Name="FK_KetQua_DapAn" Association="Self.FK_KetQua_DapAn">
             <End Role="DapAn" EntitySet="DapAns" />
             <End Role="KetQua" EntitySet="KetQuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemTichLuy_DonQua" Association="Self.FK_DiemTichLuy_DonQua">
+            <End Role="DonQua" EntitySet="DonQuas" />
+            <End Role="DiemTichLuy" EntitySet="DiemTichLuys" />
           </AssociationSet>
           <AssociationSet Name="FK_DiemTichLuy_NguoiDung" Association="Self.FK_DiemTichLuy_NguoiDung">
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
@@ -2620,6 +2772,7 @@
                 <ScalarProperty Name="maBDTT" ColumnName="maBDTT" />
                 <ScalarProperty Name="maBDSP" ColumnName="maBDSP" />
                 <ScalarProperty Name="maQG" ColumnName="maQG" />
+                <ScalarProperty Name="maDQ" ColumnName="maDQ" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2805,29 +2958,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TinNhans">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.TinNhan">
-              <MappingFragment StoreEntitySet="TinNhan">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ConnectionIDUser" ColumnName="ConnectionIDUser" />
-                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
-                <ScalarProperty Name="Msg" ColumnName="Msg" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
-                <ScalarProperty Name="MsgDuration" ColumnName="MsgDuration" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tinh_ThanhPho">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.Tinh_ThanhPho">
-              <MappingFragment StoreEntitySet="Tinh_ThanhPho">
-                <ScalarProperty Name="maTinh_TP" ColumnName="maTinh_TP" />
-                <ScalarProperty Name="tenTinh_TP" ColumnName="tenTinh_TP" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ThongBaos">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.ThongBao">
               <MappingFragment StoreEntitySet="ThongBao">
@@ -2841,6 +2971,29 @@
                 <ScalarProperty Name="noiDung" ColumnName="noiDung" />
                 <ScalarProperty Name="ngayTB" ColumnName="ngayTB" />
                 <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tinh_ThanhPho">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.Tinh_ThanhPho">
+              <MappingFragment StoreEntitySet="Tinh_ThanhPho">
+                <ScalarProperty Name="maTinh_TP" ColumnName="maTinh_TP" />
+                <ScalarProperty Name="tenTinh_TP" ColumnName="tenTinh_TP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TinNhans">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.TinNhan">
+              <MappingFragment StoreEntitySet="TinNhan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ConnectionIDUser" ColumnName="ConnectionIDUser" />
+                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
+                <ScalarProperty Name="MsgDuration" ColumnName="MsgDuration" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

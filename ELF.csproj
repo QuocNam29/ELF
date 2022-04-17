@@ -259,6 +259,7 @@
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangThongTinsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BinhLuansController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\DiemTichLuysController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\LoaiQuyenGopsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\QuyenGopsController.cs" />
@@ -1689,6 +1690,17 @@
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDSP_TrangCaNhan.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BDTT.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDTT_TrangCaNhan.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan_NguoiDungKhac.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_TrangCaNhan_NDK.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_BDSP_one.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1696,11 +1708,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDSP_TrangCaNhan.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BDTT.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDTT_TrangCaNhan.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan_NguoiDungKhac.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_TrangCaNhan_NDK.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

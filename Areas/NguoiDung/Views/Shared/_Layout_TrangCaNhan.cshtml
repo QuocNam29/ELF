@@ -434,9 +434,11 @@
                                            href="@Url.Action("Index_TrangCaNhan","BaiDangSanPhams",new { maND = maND  })" title="" data-ripple="">Trang cá nhân</a>
                                         <a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
                                         <a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
-                                        <a class="@(ViewBag.Title == "Danh sách đăng ký" ? "active" : "")" 
+                                        <a class="@(ViewBag.Title == "Danh sách đăng ký" ? "active" : "")"
                                            href="@Url.Action("Index","TraoDois")" title="" data-ripple="">Danh sách đăng ký</a>
-                                        <a class="@(ViewBag.Title == "Thông tin cá nhân" ? "active" : "")" 
+                                        <a class="@(ViewBag.Title == "Điểm tích lũy" ? "active" : "")"
+                                           href="@Url.Action("Index","DiemTichLuys", new { maND = maND  })" title="" data-ripple="">Điểm tích lũy</a>
+                                        <a class="@(ViewBag.Title == "Thông tin cá nhân" ? "active" : "")"
                                            href="@Url.Action("Details","NguoiDungs",new { id = maND  })" title="" data-ripple="">Thông tin</a>
                                         <a class="@(ViewBag.Title == "Đổi mật khẩu" ? "active" : "")"
                                            href="@Url.Action("Edit","TaiKhoans",new { id = ID  })" title="" data-ripple="">Đổi mật khẩu</a>
@@ -508,41 +510,23 @@
                                                 </div>
                                                 <div class="page-likes">
                                                     <ul class="nav nav-tabs likes-btn">
-                                                        <li class="nav-item"><a class="active" href="#link1" data-toggle="tab">Đổi quà</a></li>
+                                                        <li class="nav-item"><a class="active" href="#link1" data-toggle="tab">Tổng điểm</a></li>
                                                         <li class="nav-item"><a class="" href="#link2" data-toggle="tab">lịch sử điểm</a></li>
                                                     </ul>
                                                     <!-- Tab panes -->
                                                     <div class="tab-content">
                                                         <div class="tab-pane active fade show " id="link1">
                                                             <span><i class="ti-heart"></i>884</span>
+                                                            <a href="#" title="weekly-likes">Đổi quà</a>
 
                                                         </div>
                                                         <div class="tab-pane fade" id="link2">
-                                                            <span><i class="ti-eye"></i>440</span>
-                                                            <a href="#" title="weekly-likes">440 new views this week</a>
-                                                            <div class="users-thumb-list">
-                                                                <a href="#" title="Anderw" data-toggle="tooltip">
-                                                                    <img src="~/images/resources/userlist-1.jpg" alt="">
-                                                                </a>
-                                                                <a href="#" title="frank" data-toggle="tooltip">
-                                                                    <img src="~/images/resources/userlist-2.jpg" alt="">
-                                                                </a>
-                                                                <a href="#" title="Sara" data-toggle="tooltip">
-                                                                    <img src="~/images/resources/userlist-3.jpg" alt="">
-                                                                </a>
-                                                                <a href="#" title="Amy" data-toggle="tooltip">
-                                                                    <img src="~/images/resources/userlist-4.jpg" alt="">
-                                                                </a>
-                                                                <a href="#" title="Ema" data-toggle="tooltip">
-                                                                    <img src="~/images/resources/userlist-5.jpg" alt="">
-                                                                </a>
-                                                                <a href="#" title="Sophie" data-toggle="tooltip">
-                                                                    <img src="~/images/resources/userlist-6.jpg" alt="">
-                                                                </a>
-                                                                <a href="#" title="Maria" data-toggle="tooltip">
-                                                                    <img src="~/images/resources/userlist-7.jpg" alt="">
-                                                                </a>
-                                                            </div>
+
+                                                            <a href="#" title="weekly-likes">Lịch sử cộng điểm tích lũy</a>
+                                                            <a href="#" title="weekly-likes">Lịch sử trừ điểm tích lũy</a>
+                                                            <a href="#" title="weekly-likes">Chi tiết</a>
+
+
                                                         </div>
                                                     </div>
                                                 </div>

@@ -81,6 +81,13 @@ namespace ELF.Areas.NguoiDung.Controllers
                         baiDangThongTin.ngayDang = DateTime.Now;
                         baiDangThongTin.hinhAnh = filePath;
                         db.BaiDangThongTins.Add(baiDangThongTin);
+                        db.DiemTichLuys.Add(new DiemTichLuy
+                        {
+                            maND = int.Parse(Session["maND"].ToString()),
+                            thoiGian = DateTime.Now,
+                            maBDTT = baiDangThongTin.maBDTT,
+                            diem = 10
+                        });
                         db.SaveChanges();
                         return RedirectToAction("Index");
 
@@ -94,6 +101,13 @@ namespace ELF.Areas.NguoiDung.Controllers
                             noiDung = baiDangThongTin.noiDung,
                             maTT = 1,
                             ngayDang = DateTime.Now,
+                        });
+                        db.DiemTichLuys.Add(new DiemTichLuy
+                        {
+                            maND = int.Parse(Session["maND"].ToString()),
+                            thoiGian = DateTime.Now,
+                            maBDTT = baiDangThongTin.maBDTT,
+                            diem = 10
                         });
                         db.SaveChanges();
                         return RedirectToAction("Index");

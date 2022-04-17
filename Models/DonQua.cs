@@ -17,6 +17,7 @@ namespace ELF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DonQua()
         {
+            this.DiemTichLuys = new HashSet<DiemTichLuy>();
             this.ThongBaos = new HashSet<ThongBao>();
         }
     
@@ -30,6 +31,8 @@ namespace ELF.Models
         public string DiaChi { get; set; }
         public string GhiChu { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DiemTichLuy> DiemTichLuys { get; set; }
         public virtual NguoiDung NguoiDung { get; set; }
         public virtual PhuongThiTran PhuongThiTran { get; set; }
         public virtual QuaTang QuaTang { get; set; }

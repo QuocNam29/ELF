@@ -17,7 +17,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/DiemTichLuys
         public ActionResult Index(int maND)
         {
-            var diemTichLuys = db.DiemTichLuys.Include(d => d.BaiDangSanPham).Include(d => d.BaiDangThongTin).Include(d => d.NguoiDung).Include(d => d.QuyenGop).Where(dtl => dtl.maND == maND);
+            var diemTichLuys = db.DiemTichLuys.Include(d => d.BaiDangSanPham).Include(d => d.BaiDangThongTin).Include(d => d.NguoiDung).Include(d => d.QuyenGop).Where(dtl => dtl.maND == maND).OrderByDescending(dtl => dtl.maDTL);
             return View(diemTichLuys.ToList());
         }
 

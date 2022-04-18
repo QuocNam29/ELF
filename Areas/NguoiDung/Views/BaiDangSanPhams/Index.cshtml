@@ -92,34 +92,34 @@
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
 
-                    @if (flat == 1)
-                    {
-                        using (Html.BeginForm("Delete", "TraoDois"))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.Hidden("id", maTD)
-                            <button type="submit"> Đã đăng kí </button>
-                        }
-                    }
-                    else if (flat == -100)
-                    {
-
-                    }
-                    else
-                    {
-                        using (Html.BeginForm("Create", "TraoDois"))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.Hidden("maND", maND)
-                            @Html.Hidden("maNDKhac", item.maND)
-                            @Html.Hidden("maBDSP", item.maBDSP)
-                            <button type="submit"> Đăng kí </button>
-                        }
-
-                    }
+                    
 
                     <div class="description">
+                        @if (flat == 1)
+                        {
+                            using (Html.BeginForm("Delete", "TraoDois"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", maTD)
+                                <button type="submit" style="float: right; margin-top: 10px;"> Đã đăng kí </button>
+                            }
+                        }
+                        else if (flat == -100)
+                        {
 
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("Create", "TraoDois"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("maND", maND)
+                                @Html.Hidden("maNDKhac", item.maND)
+                                @Html.Hidden("maBDSP", item.maBDSP)
+                                <button type="submit" style="float: right; margin-top: 10px;"> Đăng kí </button>
+                            }
+
+                        }
                         <span style="color: orangered ; font-size: 16px">
                             Tên sản phẩm: @item.tenSP
                         </span>

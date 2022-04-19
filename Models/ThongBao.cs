@@ -15,12 +15,12 @@ namespace ELF.Models
     public partial class ThongBao
     {
         public int maTB { get; set; }
-        public int maBDSP { get; set; }
-        public int maBDTT { get; set; }
-        public int maBL { get; set; }
-        public int maTraoDoi { get; set; }
-        public int maQG { get; set; }
-        public int maDQ { get; set; }
+        public Nullable<int> maBDSP { get; set; }
+        public Nullable<int> maBDTT { get; set; }
+        public Nullable<int> maBL { get; set; }
+        public Nullable<int> maTraoDoi { get; set; }
+        public Nullable<int> maQG { get; set; }
+        public Nullable<int> maDQ { get; set; }
         public string noiDung { get; set; }
         public System.DateTime ngayTB { get; set; }
         public string tinhTrang { get; set; }

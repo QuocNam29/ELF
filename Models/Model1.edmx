@@ -343,28 +343,6 @@
           <Property Name="ngayTao" Type="datetime" />
           <Property Name="trangThai" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="ThongBao">
-          <Key>
-            <PropertyRef Name="maTB" />
-          </Key>
-          <Property Name="maTB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="maBDSP" Type="int" Nullable="false" />
-          <Property Name="maBDTT" Type="int" Nullable="false" />
-          <Property Name="maBL" Type="int" Nullable="false" />
-          <Property Name="maTraoDoi" Type="int" Nullable="false" />
-          <Property Name="maQG" Type="int" Nullable="false" />
-          <Property Name="maDQ" Type="int" Nullable="false" />
-          <Property Name="noiDung" Type="nvarchar" MaxLength="500" />
-          <Property Name="ngayTB" Type="datetime" Nullable="false" />
-          <Property Name="tinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tinh_ThanhPho">
-          <Key>
-            <PropertyRef Name="maTinh_TP" />
-          </Key>
-          <Property Name="maTinh_TP" Type="int" Nullable="false" />
-          <Property Name="tenTinh_TP" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <EntityType Name="TinNhan">
           <Key>
             <PropertyRef Name="ID" />
@@ -378,6 +356,30 @@
           <Property Name="MsgDate" Type="nvarchar" MaxLength="50" />
           <Property Name="MsgDuration" Type="nvarchar" MaxLength="50" />
           <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Tinh_ThanhPho">
+          <Key>
+            <PropertyRef Name="maTinh_TP" />
+          </Key>
+          <Property Name="maTinh_TP" Type="int" Nullable="false" />
+          <Property Name="tenTinh_TP" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThongBao">
+          <Key>
+            <PropertyRef Name="maTB" />
+          </Key>
+          <Property Name="maTB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maBDSP" Type="int" />
+          <Property Name="maBDTT" Type="int" />
+          <Property Name="maBL" Type="int" />
+          <Property Name="maTraoDoi" Type="int" />
+          <Property Name="maQG" Type="int" />
+          <Property Name="maDQ" Type="int" />
+          <Property Name="noiDung" Type="nvarchar" MaxLength="500" />
+          <Property Name="ngayTB" Type="datetime" Nullable="false" />
+          <Property Name="tinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="maND" Type="int" Nullable="false" />
+          <Property Name="maNDKhac" Type="int" />
         </EntityType>
         <EntityType Name="TrangThaiBaiDang">
           <Key>
@@ -909,8 +911,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TinNhan_NguoiDung1">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TinNhan" Type="Self.TinNhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="TinNhan">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ThongBao_BaiDangSanPham">
-          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="1">
+          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -924,7 +940,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_BaiDangThongTin">
-          <End Role="BaiDangThongTin" Type="Self.BaiDangThongTin" Multiplicity="1" />
+          <End Role="BaiDangThongTin" Type="Self.BaiDangThongTin" Multiplicity="0..1" />
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiDangThongTin">
@@ -936,7 +952,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_BinhLuan">
-          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="1" />
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="0..1" />
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BinhLuan">
@@ -948,7 +964,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_DonQua">
-          <End Role="DonQua" Type="Self.DonQua" Multiplicity="1">
+          <End Role="DonQua" Type="Self.DonQua" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -961,8 +977,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ThongBao_NguoiDung">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="ThongBao">
+              <PropertyRef Name="maND" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongBao_NguoiDung1">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="ThongBao">
+              <PropertyRef Name="maNDKhac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ThongBao_QuyenGop">
-          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="1">
+          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -976,7 +1016,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_TraoDoi">
-          <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="1">
+          <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -986,20 +1026,6 @@
             </Principal>
             <Dependent Role="ThongBao">
               <PropertyRef Name="maTraoDoi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TinNhan_NguoiDung1">
-          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="TinNhan" Type="Self.TinNhan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="maND" />
-            </Principal>
-            <Dependent Role="TinNhan">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1071,9 +1097,9 @@
           <EntitySet Name="QuyenGop" EntityType="Self.QuyenGop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinNhan" EntityType="Self.TinNhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrangThaiBaiDang" EntityType="Self.TrangThaiBaiDang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TraoDoi" EntityType="Self.TraoDoi" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BaiDangSanPham_LoaiSanPham" Association="Self.FK_BaiDangSanPham_LoaiSanPham">
@@ -1228,6 +1254,10 @@
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
           </AssociationSet>
+          <AssociationSet Name="FK_TinNhan_NguoiDung1" Association="Self.FK_TinNhan_NguoiDung1">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="TinNhan" EntitySet="TinNhan" />
+          </AssociationSet>
           <AssociationSet Name="FK_ThongBao_BaiDangSanPham" Association="Self.FK_ThongBao_BaiDangSanPham">
             <End Role="BaiDangSanPham" EntitySet="BaiDangSanPham" />
             <End Role="ThongBao" EntitySet="ThongBao" />
@@ -1244,6 +1274,14 @@
             <End Role="DonQua" EntitySet="DonQua" />
             <End Role="ThongBao" EntitySet="ThongBao" />
           </AssociationSet>
+          <AssociationSet Name="FK_ThongBao_NguoiDung" Association="Self.FK_ThongBao_NguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="ThongBao" EntitySet="ThongBao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongBao_NguoiDung1" Association="Self.FK_ThongBao_NguoiDung1">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="ThongBao" EntitySet="ThongBao" />
+          </AssociationSet>
           <AssociationSet Name="FK_ThongBao_QuyenGop" Association="Self.FK_ThongBao_QuyenGop">
             <End Role="QuyenGop" EntitySet="QuyenGop" />
             <End Role="ThongBao" EntitySet="ThongBao" />
@@ -1251,10 +1289,6 @@
           <AssociationSet Name="FK_ThongBao_TraoDoi" Association="Self.FK_ThongBao_TraoDoi">
             <End Role="TraoDoi" EntitySet="TraoDoi" />
             <End Role="ThongBao" EntitySet="ThongBao" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TinNhan_NguoiDung1" Association="Self.FK_TinNhan_NguoiDung1">
-            <End Role="NguoiDung" EntitySet="NguoiDung" />
-            <End Role="TinNhan" EntitySet="TinNhan" />
           </AssociationSet>
           <AssociationSet Name="FK_TraoDoi_BaiDangSanPham" Association="Self.FK_TraoDoi_BaiDangSanPham">
             <End Role="BaiDangSanPham" EntitySet="BaiDangSanPham" />
@@ -1603,6 +1637,8 @@
           <NavigationProperty Name="QuyenGops" Relationship="Self.FK_QuyenGop_NguoiDung" FromRole="NguoiDung" ToRole="QuyenGop" />
           <NavigationProperty Name="TaiKhoans" Relationship="Self.FK_TaiKhoan_NguoiDung" FromRole="NguoiDung" ToRole="TaiKhoan" />
           <NavigationProperty Name="TinNhans" Relationship="Self.FK_TinNhan_NguoiDung1" FromRole="NguoiDung" ToRole="TinNhan" />
+          <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_NguoiDung" FromRole="NguoiDung" ToRole="ThongBao" />
+          <NavigationProperty Name="ThongBaos1" Relationship="Self.FK_ThongBao_NguoiDung1" FromRole="NguoiDung" ToRole="ThongBao" />
           <NavigationProperty Name="TraoDois" Relationship="Self.FK_TraoDoi_NguoiDung" FromRole="NguoiDung" ToRole="TraoDoi" />
           <NavigationProperty Name="TraoDois1" Relationship="Self.FK_TraoDoi_NguoiDung1" FromRole="NguoiDung" ToRole="TraoDoi" />
         </EntityType>
@@ -1683,36 +1719,6 @@
           <NavigationProperty Name="ChucNangTaiKhoans" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" FromRole="TaiKhoan" ToRole="ChucNangTaiKhoan" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TaiKhoan_NguoiDung" FromRole="TaiKhoan" ToRole="NguoiDung" />
         </EntityType>
-        <EntityType Name="ThongBao">
-          <Key>
-            <PropertyRef Name="maTB" />
-          </Key>
-          <Property Name="maTB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="maBDSP" Type="Int32" Nullable="false" />
-          <Property Name="maBDTT" Type="Int32" Nullable="false" />
-          <Property Name="maBL" Type="Int32" Nullable="false" />
-          <Property Name="maTraoDoi" Type="Int32" Nullable="false" />
-          <Property Name="maQG" Type="Int32" Nullable="false" />
-          <Property Name="maDQ" Type="Int32" Nullable="false" />
-          <Property Name="noiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ngayTB" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="tinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="BaiDangSanPham" Relationship="Self.FK_ThongBao_BaiDangSanPham" FromRole="ThongBao" ToRole="BaiDangSanPham" />
-          <NavigationProperty Name="BaiDangThongTin" Relationship="Self.FK_ThongBao_BaiDangThongTin" FromRole="ThongBao" ToRole="BaiDangThongTin" />
-          <NavigationProperty Name="BinhLuan" Relationship="Self.FK_ThongBao_BinhLuan" FromRole="ThongBao" ToRole="BinhLuan" />
-          <NavigationProperty Name="DonQua" Relationship="Self.FK_ThongBao_DonQua" FromRole="ThongBao" ToRole="DonQua" />
-          <NavigationProperty Name="QuyenGop" Relationship="Self.FK_ThongBao_QuyenGop" FromRole="ThongBao" ToRole="QuyenGop" />
-          <NavigationProperty Name="TraoDoi" Relationship="Self.FK_ThongBao_TraoDoi" FromRole="ThongBao" ToRole="TraoDoi" />
-        </EntityType>
-        <EntityType Name="Tinh_ThanhPho">
-          <Key>
-            <PropertyRef Name="maTinh_TP" />
-          </Key>
-          <Property Name="maTinh_TP" Type="Int32" Nullable="false" />
-          <Property Name="tenTinh_TP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_Tinh_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="NguoiDung" />
-          <NavigationProperty Name="QuanHuyens" Relationship="Self.FK_QuanHuyen_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="QuanHuyen" />
-        </EntityType>
         <EntityType Name="TinNhan">
           <Key>
             <PropertyRef Name="ID" />
@@ -1727,6 +1733,40 @@
           <Property Name="MsgDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TinNhan_NguoiDung1" FromRole="TinNhan" ToRole="NguoiDung" />
+        </EntityType>
+        <EntityType Name="Tinh_ThanhPho">
+          <Key>
+            <PropertyRef Name="maTinh_TP" />
+          </Key>
+          <Property Name="maTinh_TP" Type="Int32" Nullable="false" />
+          <Property Name="tenTinh_TP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_Tinh_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="NguoiDung" />
+          <NavigationProperty Name="QuanHuyens" Relationship="Self.FK_QuanHuyen_ThanhPho" FromRole="Tinh_ThanhPho" ToRole="QuanHuyen" />
+        </EntityType>
+        <EntityType Name="ThongBao">
+          <Key>
+            <PropertyRef Name="maTB" />
+          </Key>
+          <Property Name="maTB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maBDSP" Type="Int32" />
+          <Property Name="maBDTT" Type="Int32" />
+          <Property Name="maBL" Type="Int32" />
+          <Property Name="maTraoDoi" Type="Int32" />
+          <Property Name="maQG" Type="Int32" />
+          <Property Name="maDQ" Type="Int32" />
+          <Property Name="noiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ngayTB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="maND" Type="Int32" Nullable="false" />
+          <Property Name="maNDKhac" Type="Int32" />
+          <NavigationProperty Name="BaiDangSanPham" Relationship="Self.FK_ThongBao_BaiDangSanPham" FromRole="ThongBao" ToRole="BaiDangSanPham" />
+          <NavigationProperty Name="BaiDangThongTin" Relationship="Self.FK_ThongBao_BaiDangThongTin" FromRole="ThongBao" ToRole="BaiDangThongTin" />
+          <NavigationProperty Name="BinhLuan" Relationship="Self.FK_ThongBao_BinhLuan" FromRole="ThongBao" ToRole="BinhLuan" />
+          <NavigationProperty Name="DonQua" Relationship="Self.FK_ThongBao_DonQua" FromRole="ThongBao" ToRole="DonQua" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_ThongBao_NguoiDung" FromRole="ThongBao" ToRole="NguoiDung" />
+          <NavigationProperty Name="NguoiDung1" Relationship="Self.FK_ThongBao_NguoiDung1" FromRole="ThongBao" ToRole="NguoiDung" />
+          <NavigationProperty Name="QuyenGop" Relationship="Self.FK_ThongBao_QuyenGop" FromRole="ThongBao" ToRole="QuyenGop" />
+          <NavigationProperty Name="TraoDoi" Relationship="Self.FK_ThongBao_TraoDoi" FromRole="ThongBao" ToRole="TraoDoi" />
         </EntityType>
         <EntityType Name="TrangThaiBaiDang">
           <Key>
@@ -1851,7 +1891,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_BaiDangSanPham">
-          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="1">
+          <End Role="BaiDangSanPham" Type="Self.BaiDangSanPham" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -1929,7 +1969,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_BaiDangThongTin">
-          <End Role="BaiDangThongTin" Type="Self.BaiDangThongTin" Multiplicity="1" />
+          <End Role="BaiDangThongTin" Type="Self.BaiDangThongTin" Multiplicity="0..1" />
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaiDangThongTin">
@@ -1967,7 +2007,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_BinhLuan">
-          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="1" />
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="0..1" />
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BinhLuan">
@@ -2155,7 +2195,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_DonQua">
-          <End Role="DonQua" Type="Self.DonQua" Multiplicity="1">
+          <End Role="DonQua" Type="Self.DonQua" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -2290,6 +2330,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ThongBao_NguoiDung">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="ThongBao">
+              <PropertyRef Name="maND" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongBao_NguoiDung1">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="ThongBao">
+              <PropertyRef Name="maNDKhac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TraoDoi_NguoiDung">
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
           <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="*" />
@@ -2339,7 +2403,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_QuyenGop">
-          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="1">
+          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -2353,7 +2417,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThongBao_TraoDoi">
-          <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="1">
+          <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
@@ -2401,9 +2465,9 @@
           <EntitySet Name="QuyenGops" EntityType="Self.QuyenGop" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
-          <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
-          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" />
           <EntitySet Name="TinNhans" EntityType="Self.TinNhan" />
+          <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" />
+          <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
           <EntitySet Name="TrangThaiBaiDangs" EntityType="Self.TrangThaiBaiDang" />
           <EntitySet Name="TraoDois" EntityType="Self.TraoDoi" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -2565,6 +2629,14 @@
           <AssociationSet Name="FK_TinNhan_NguoiDung1" Association="Self.FK_TinNhan_NguoiDung1">
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
             <End Role="TinNhan" EntitySet="TinNhans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongBao_NguoiDung" Association="Self.FK_ThongBao_NguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="ThongBao" EntitySet="ThongBaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongBao_NguoiDung1" Association="Self.FK_ThongBao_NguoiDung1">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="ThongBao" EntitySet="ThongBaos" />
           </AssociationSet>
           <AssociationSet Name="FK_TraoDoi_NguoiDung" Association="Self.FK_TraoDoi_NguoiDung">
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
@@ -2958,6 +3030,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TinNhans">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.TinNhan">
+              <MappingFragment StoreEntitySet="TinNhan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ConnectionIDUser" ColumnName="ConnectionIDUser" />
+                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
+                <ScalarProperty Name="MsgDuration" ColumnName="MsgDuration" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tinh_ThanhPho">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.Tinh_ThanhPho">
+              <MappingFragment StoreEntitySet="Tinh_ThanhPho">
+                <ScalarProperty Name="maTinh_TP" ColumnName="maTinh_TP" />
+                <ScalarProperty Name="tenTinh_TP" ColumnName="tenTinh_TP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ThongBaos">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.ThongBao">
               <MappingFragment StoreEntitySet="ThongBao">
@@ -2971,29 +3066,8 @@
                 <ScalarProperty Name="noiDung" ColumnName="noiDung" />
                 <ScalarProperty Name="ngayTB" ColumnName="ngayTB" />
                 <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tinh_ThanhPho">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.Tinh_ThanhPho">
-              <MappingFragment StoreEntitySet="Tinh_ThanhPho">
-                <ScalarProperty Name="maTinh_TP" ColumnName="maTinh_TP" />
-                <ScalarProperty Name="tenTinh_TP" ColumnName="tenTinh_TP" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TinNhans">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.TinNhan">
-              <MappingFragment StoreEntitySet="TinNhan">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ConnectionIDUser" ColumnName="ConnectionIDUser" />
-                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
-                <ScalarProperty Name="Msg" ColumnName="Msg" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
-                <ScalarProperty Name="MsgDuration" ColumnName="MsgDuration" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="maND" ColumnName="maND" />
+                <ScalarProperty Name="maNDKhac" ColumnName="maNDKhac" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

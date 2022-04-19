@@ -55,9 +55,9 @@ namespace ELF.Models
         public virtual DbSet<QuyenGop> QuyenGops { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
-        public virtual DbSet<ThongBao> ThongBaos { get; set; }
-        public virtual DbSet<Tinh_ThanhPho> Tinh_ThanhPho { get; set; }
         public virtual DbSet<TinNhan> TinNhans { get; set; }
+        public virtual DbSet<Tinh_ThanhPho> Tinh_ThanhPho { get; set; }
+        public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<TrangThaiBaiDang> TrangThaiBaiDangs { get; set; }
         public virtual DbSet<TraoDoi> TraoDois { get; set; }
     }

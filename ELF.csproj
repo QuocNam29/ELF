@@ -264,6 +264,7 @@
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\QuyenGopsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TaiKhoansController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\ThongBaosController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TrangChuController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TraoDoisController.cs" />
     <Compile Include="Areas\NguoiDung\NguoiDungAreaRegistration.cs" />
@@ -1701,6 +1702,11 @@
     <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_BDSP_one.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\ThongBaos\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\ThongBaos\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\ThongBaos\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\ThongBaos\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\ThongBaos\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>

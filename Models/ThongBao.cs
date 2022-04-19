@@ -24,11 +24,15 @@ namespace ELF.Models
         public string noiDung { get; set; }
         public System.DateTime ngayTB { get; set; }
         public string tinhTrang { get; set; }
+        public int maND { get; set; }
+        public Nullable<int> maNDKhac { get; set; }
     
         public virtual BaiDangSanPham BaiDangSanPham { get; set; }
         public virtual BaiDangThongTin BaiDangThongTin { get; set; }
         public virtual BinhLuan BinhLuan { get; set; }
         public virtual DonQua DonQua { get; set; }
+        public virtual NguoiDung NguoiDung { get; set; }
+        public virtual NguoiDung NguoiDung1 { get; set; }
         public virtual QuyenGop QuyenGop { get; set; }
         public virtual TraoDoi TraoDoi { get; set; }
     }

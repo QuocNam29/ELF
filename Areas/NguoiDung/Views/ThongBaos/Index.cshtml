@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ELF.Models.ThongBao>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+}
+
+<div class="editing-interest">
+    <h5 class="f-title"><i class="ti-bell"></i>Thông báo </h5>
+    <div class="notification-box">
+        <ul>
+            @foreach (var item in Model)
+            {
+            <li>
+                <figure><img src="@Url.Content(item.BinhLuan.NguoiDung.avatar)" alt=""></figure>
+                <div class="notifi-meta">
+                    <p><b>@item.BinhLuan.NguoiDung.hoVaTen</b> vừa <b>Bình luận</b> bài đăng của bạn</p>
+                    <span>@item.ngayTB</span>
+                </div>
+                <i class="del fa fa-close"></i>
+            </li>
+            }
+        </ul>
+    </div>
+ </div>

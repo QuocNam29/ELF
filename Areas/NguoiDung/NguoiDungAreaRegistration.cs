@@ -17,7 +17,7 @@ namespace ELF.Areas.NguoiDung
             context.MapRoute(
                 "NguoiDung_default",
                 "NguoiDung/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+            new { controller = "BaiDangSanPhams", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

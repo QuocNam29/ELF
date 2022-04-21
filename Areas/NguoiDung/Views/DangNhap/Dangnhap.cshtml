@@ -43,7 +43,7 @@
             @using (Html.BeginForm("DangNhap", "DangNhap", FormMethod.Post))
             {
                 <form class="login100-form validate-form">
-                    @if (Session["Message"] != null) 
+                    @if (Session["Message"] != null)
                     {
                         <div id="Failed_Message">@Session["Message"].ToString()</div>
                     }
@@ -66,6 +66,9 @@
                             Đăng Nhập
                         </button>
                     </div>
+        </div>
+        </div>
+        </div>
 
                     <div class="text-center p-t-57 p-b-20">
                         <span class="txt1">

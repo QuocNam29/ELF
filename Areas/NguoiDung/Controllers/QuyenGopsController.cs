@@ -17,7 +17,8 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/QuyenGops
         public ActionResult Index()
         {
-            var quyenGops = db.QuyenGops.Include(q => q.LoaiQuyenGop).Include(q => q.NguoiDung);
+            int mand = int.Parse(Session["maND"].ToString());
+            var quyenGops = db.QuyenGops.Include(q => q.LoaiQuyenGop).Include(q => q.NguoiDung).Where(q => q.maND == mand);
             return View(quyenGops.ToList());
         }
 

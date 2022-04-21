@@ -268,6 +268,7 @@
     <Compile Include="Areas\NguoiDung\Controllers\ThongBaosController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TrangChuController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TraoDoisController.cs" />
+    <Compile Include="Areas\NguoiDung\Middleware\LoginVertification.cs" />
     <Compile Include="Areas\NguoiDung\NguoiDungAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1333,7 +1334,7 @@
     <Content Include="images\book-icon.png" />
     <Content Include="images\credit-cards.png" />
     <Content Include="images\dot-pattern.png" />
-    <Content Include="images\ELF-background.jpg" />
+    <Content Include="images\ELF-background.png" />
     <Content Include="images\envelop.png" />
     <Content Include="images\faq.png" />
     <Content Include="images\fav.png" />
@@ -1782,7 +1783,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\NguoiDung\Data\" />
-    <Folder Include="Areas\NguoiDung\images\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>

@@ -8,10 +8,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ELF.Areas.NguoiDung.Middleware;
 using ELF.Models;
 
 namespace ELF.Areas.NguoiDung.Controllers
 {
+    [LoginVerification]
     public class BaiDangThongTinsController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();

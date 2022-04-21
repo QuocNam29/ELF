@@ -6,11 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ELF.Areas.NguoiDung.Middleware;
 using ELF.Models;
 
 namespace ELF.Areas.NguoiDung.Controllers
 {
-    
+    [LoginVerification]
     [Route("api/ImportExport")]
     public class BinhLuansController : Controller
     {

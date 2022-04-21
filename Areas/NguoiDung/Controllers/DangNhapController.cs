@@ -21,6 +21,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/DangNhap
         public ActionResult DangNhap()
         {
+            Session["Message"] = null;
             return View();
         }
 

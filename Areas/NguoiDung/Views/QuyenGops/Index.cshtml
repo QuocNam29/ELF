@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
-    string quyenGopImg = "";
 }
 
 
@@ -18,13 +17,14 @@
             <li>
                 <div class="nearly-pepls">
                     <figure>
-                        <a href="time-line.html" title=""><img src="@Url.Content(hinh)" alt=""></a>
+                        <img src="@Url.Content(item.hinhAnh)" alt="">
                     </figure>
                     <div class="pepl-info">
-                        <h4><a href="time-line.html" title="">funparty</a></h4>
-                        <span>public group</span>
-                        <em>32k Members</em>
-                        <a href="#" title="" class="add-butn" data-ripple="">join now</a>
+                        <h4>@item.LoaiQuyenGop.tenLoai</h4>
+                        <span style="color: #545454">@item.soLuong @item.donVi</span>
+                        <span>@item.ngayQG.ToString("dd/MM/yyyy")</span>
+                        <em>@item.trangThai</em>
+                        <a href="@Url.Action("Delete", "QuyenGops", new {id = item.maQG})" title="" class="add-butn" data-ripple="">Huỷ yêu cầu</a>
                     </div>
                 </div>
             </li>

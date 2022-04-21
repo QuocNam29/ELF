@@ -16,8 +16,8 @@ namespace ELF
             routes.MapRoute("redirect all other requests", "{*url}",
             new
             {
-                controller = "DangNhap",
-                action = "DangNhap"
+                controller = "BaiDangSanPhams",
+                action = "Index"
             }).DataTokens = new RouteValueDictionary(new { area = "NguoiDung" });
 
             routes.MapRoute(

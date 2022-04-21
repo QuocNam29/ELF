@@ -1718,6 +1718,7 @@
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-Regular.ttf" />
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-SemiBold.ttf" />
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-SemiBoldItalic.ttf" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

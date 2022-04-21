@@ -6,23 +6,23 @@
 [ FONT ]*/
 
 @font-face {
-  font-family: SourceSansPro-Regular;
-  src: url('../fonts/source-sans-pro/SourceSansPro-Regular.ttf'); 
+	font-family: 'SourceSansPro-Regular';
+	src: url('../../fonts/DangNhap/source-sans-pro/SourceSansPro-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: SourceSansPro-Bold;
-  src: url('../fonts/source-sans-pro/SourceSansPro-Bold.ttf'); 
+	font-family: 'SourceSansPro-Bold';
+	src: url('../../fonts/DangNhap/source-sans-pro/SourceSansPro-Bold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: SourceSansPro-SemiBold;
-  src: url('../fonts/source-sans-pro/SourceSansPro-SemiBold.ttf'); 
+	font-family: 'SourceSansPro-SemiBold';
+	src: url('../../fonts/DangNhap/source-sans-pro/SourceSansPro-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: JosefinSans-Bold;
-  src: url('../fonts/JosefinSans/JosefinSans-Bold.ttf'); 
+	font-family: 'JosefinSans-Bold';
+	src: url('../../fonts/DangNhap/JosefinSans/JosefinSans-Bold.ttf') format('truetype');
 }
 
 /*//////////////////////////////////////////////////////////////////

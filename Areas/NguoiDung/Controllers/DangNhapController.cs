@@ -25,13 +25,13 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
         [HttpPost]
-        public ActionResult DangNhap(string email, string matKhau)
+        public ActionResult DangNhap(string mail, string matKhau)
         {
             using (var context = new ELFVanLang2021Entities())
             {
                 var f_password = GetMD5(matKhau);
-                var account = context.TaiKhoans.Where(acc => acc.email.Equals(email) && acc.matKhau.Equals(f_password)).FirstOrDefault();
-                bool isValid = context.TaiKhoans.Any(x => x.email.Equals(email)
+                var account = context.TaiKhoans.Where(acc => acc.email.Equals(mail) && acc.matKhau.Equals(f_password)).FirstOrDefault();
+                bool isValid = context.TaiKhoans.Any(x => x.email.Equals(mail)
                 && x.matKhau.Equals(f_password));
                 if (isValid)
                 {
@@ -56,12 +56,12 @@ namespace ELF.Areas.NguoiDung.Controllers
                     {
                         Session["loaiGioiTinh"] = "Khác";
                     }
-                    FormsAuthentication.SetAuthCookie(email, false);
+                    FormsAuthentication.SetAuthCookie(mail, false);
                     return RedirectToAction("Index", "BaiDangSanPhams");
                 }
             }
             ModelState.AddModelError("", "Invalid email and password!!");
-            Session["Message"] = "Sai Email hoặc mật khẩu!!";
+            Session["Message"] = "Sai email hoặc mật khẩu!!";
             return View();
         }
 

@@ -3432,11 +3432,11 @@ nav.breadcrumb {
 a.add-butn {
     color: #fff;
     float: right;
-    font-size: 13px;
+    font-size: 14px;
     line-height: initial;
-    padding: 5px 15px;
+    padding: 7px 15px;
     position: absolute;
-    right: 0px;
+    right: 5px;
     text-transform: capitalize;
     top: 10px;
 }

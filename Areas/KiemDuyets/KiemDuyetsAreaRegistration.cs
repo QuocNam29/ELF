@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace ELF.Areas.KiemDuyet
+namespace ELF.Areas.KiemDuyets
 {
-    public class KiemDuyetAreaRegistration : AreaRegistration 
+    public class KiemDuyetsAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "KiemDuyet";
+                return "KiemDuyets";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "KiemDuyet_default",
-                "KiemDuyet/{controller}/{action}/{id}",
+                "KiemDuyets_default",
+                "KiemDuyets/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ELF.Models.BaiDangSanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/KiemDuyets/Views/Shared/_Layout_NguoiKiemDuyet.cshtml";
+}
+<div class="blog-sec right-pading">
+    <div class="post-filter-sec">
+        <form method="post" class="filter-form">
+            <input type="post" placeholder="Search post">
+            <button><i class="ti-search"></i></button>
+        </form>
+        <div class="purify">
+            <span>filter by</span>
+            <select>
+                <option>All categories</option>
+                <option>By Favouirtes</option>
+                <option>By Likes</option>
+            </select>
+            <select>
+                <option>Assending A-Z</option>
+                <option>Desending Z-A</option>
+                <option>Desending (date)</option>
+                <option>Asending (date)</option>
+            </select>
+            <a href="#" title="">purify</a>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-sm-6">
+                <div class="g-post-classic">
+                    <figure>
+                        <img alt="" src="@Url.Content(item.hinhAnh)">
+                    </figure>
+                    <div class="g-post-meta">
+                        <div class="post-title">
+                            <h4><a title="" href="@Url.Action("Details","KiemDuyets",new { id = item.maBDSP })">@item.tenSP</a></h4>
+                            <h4><a title="" href="#">Giá sản phẩm: @item.gia</a></h4>
+                            <p>@item.noiDung </p>
+
+                        </div>
+
+                        <div class="g-post-ranking">
+                            <div class="submit-btns">
+                                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("XoaBai_BDSP", "KiemDuyets",  new { maBDSP = item.maBDSP })'"><span>Hủy Bài</span></button>
+
+                                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_BDSP", "KiemDuyets",  new { maBDSP = item.maBDSP })'"><span>Duyệt Bài</span></button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <button class="btn-view btn-load-more">Load More</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.btn-block').click(function () {
+            var url = $("#myModal").attr('data-url');
+            var id = $(this).attr('data-id');
+
+            $.get(url + '/' + id, function (data) {
+                $("#myModal").html(data);
+                $("#myModal").modal('show')
+            });
+        });
+    });
+</script>
+
+

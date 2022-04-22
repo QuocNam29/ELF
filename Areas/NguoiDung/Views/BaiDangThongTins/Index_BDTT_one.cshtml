@@ -1,28 +1,15 @@
 ﻿@model IEnumerable<ELF.Models.BaiDangThongTin>
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index_BDTT_one";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
-    string avt = "";
+    int maND = int.Parse(Session["maND"].ToString());
     int hidden = 0;
-    
-    if (Session["avatar"] != null)
-    {
-        avt = Session["avatar"].ToString();
-    }
-    else
-    {
-        avt = "~/images/resources/User-avatar.svg.png";
-    }
-
 }
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 @foreach (var item in Model)
 {
     hidden = item.maTT;
-
     string avt_BD = "";
     if (item.NguoiDung.avatar != null)
     {
@@ -33,7 +20,7 @@
         avt_BD = "~/images/resources/User-avatar.svg.png";
     }
 
-    <div class="central-meta item">
+   <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -41,8 +28,6 @@
                 </figure>
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
-                    
-
                     @if (hidden == 3)
                     {
                         <span>Đã ẩn </span>
@@ -53,7 +38,7 @@
                     }
                     <div>
                         <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
 
                     </div>
                     <div class="more">
@@ -63,7 +48,7 @@
                                 <li>
 
                                     <button type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                                    <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+                                    <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
 
 
                                 </li>
@@ -77,13 +62,10 @@
                                     <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Thông tin?');" })</li>
                                 }
 
-
-                                @*<li>view hidden replies</li>
-                    <li>Report post</li>
-                    <li>Block</li>*@
                             </ul>
                         </div>
                     </div>
+
 
                 </div>
                 <div class="post-meta">
@@ -100,6 +82,7 @@
                         </p>
                     </div>
                 </div>
+                
             </div>
 
             <div class="coment-area">

@@ -23,7 +23,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         {           
             if (keyword == null)
             {
-                var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT != 3).OrderByDescending(B => B.maBDSP);
+                var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 2).OrderByDescending(B => B.maBDSP);
                 return View(baiDangSanPhams.ToList());
             }
             var searchSP = db.BaiDangSanPhams.Where(x => x.tenSP.ToLower().Contains(keyword.ToLower())

@@ -1,52 +1,15 @@
 ﻿@model IEnumerable<ELF.Models.BaiDangThongTin>
-
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
-    string avt = "";
+    ViewBag.Title = "Index_BDTT_one";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
     int maND = int.Parse(Session["maND"].ToString());
-    string name = Session["HoVaTen"].ToString();
-    if (Session["avatar"] != null)
-    {
-        avt = Session["avatar"].ToString();
-    }
-    else
-    {
-        avt = "~/images/resources/User-avatar.svg.png";
-    }
     int hidden = 0;
 }
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-<div class="central-meta">
-    <div class="new-postbox">
-        <figure>
-            <img src="@Url.Content(avt)" alt="">
-        </figure>
-        <div class="newpst-input">
-            <form method="post">
-                <textarea rows="2" placeholder="write something"></textarea>
-                <div class="attachments">
-                    <ul>
-                       
-                        <li>
-                            <button type="button" class="btn-block" id="New-box" hidden></button>
-                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangThongTins")"></div>
-                        </li>
-                    </ul>
-                </div>
-            </form>
-            @*<button type="button" class="btn-block">Open Modal</button>
-                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangSanPhams")"></div>*@
-
-        </div>
-    </div>
-</div> <!-- add post new box -->
 @foreach (var item in Model)
 {
     hidden = item.maTT;
-
     string avt_BD = "";
     if (item.NguoiDung.avatar != null)
     {
@@ -65,12 +28,44 @@
                 </figure>
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
-                    
+                    @if (hidden == 3)
+                    {
+                        <span>Đã ẩn </span>
+                    }
+                    else
+                    {
+                        <span>published: @item.ngayDang</span>
+                    }
                     <div>
                         <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
 
                     </div>
+                    <div class="more">
+                        <div class="more-post-optns">
+                            <i class="ti-more-alt"></i>
+                            <ul>
+                                <li>
+
+                                    <button type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                    <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
+
+
+                                </li>
+                                <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
+                                @if (hidden == 3)
+                                {
+                                    <li> @Html.ActionLink("Hiện bài đăng", "Appear", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn hiện bài Thông tin?');" })</li>
+                                }
+                                else
+                                {
+                                    <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Thông tin?');" })</li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+
 
                 </div>
                 <div class="post-meta">
@@ -85,12 +80,13 @@
                         </p>
                     </div>
                 </div>
+                
             </div>
 
             <div class="coment-area">
                 <ul class="we-comet">
                     <li>
-                        <a href="@Url.Action("Index_BDTT","BinhLuans",
+                        <a href="@Url.Action("Index_BLBDTT_TrangCaNhan","BinhLuans",
                                 new { maBDTT = item.maBDTT,
                                 tenNguoiDang = item.NguoiDung.hoVaTen,
                                 ngayDang = item.ngayDang,
@@ -106,16 +102,15 @@
     </div>
 }
 
-<script type="text/javascript">
+<script>
     $(document).ready(function () {
         $('.btn-block').click(function () {
+            var url = $("#myModal").attr('data-url');
+            var id = $(this).attr('data-id');
 
-            var url = $('#myModal').data('url');
-            $.get(url, function (data) {
-
+            $.get(url + '/' + id, function (data) {
                 $("#myModal").html(data);
                 $("#myModal").modal('show')
-
             });
         });
     });

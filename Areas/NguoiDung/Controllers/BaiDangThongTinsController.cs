@@ -21,7 +21,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/BaiDangThongTins
         public ActionResult Index()
         {
-            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT != 3).OrderByDescending(B => B.maBDTT);
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 2).OrderByDescending(B => B.maBDTT);
             return View(baiDangThongTins.ToList());
         }
 
@@ -29,6 +29,23 @@ namespace ELF.Areas.NguoiDung.Controllers
         {
             var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND).OrderByDescending(B => B.maBDTT);
             return View(baiDangThongTins.ToList());
+        }
+        public ActionResult Index_BDTT_one(int maND, int maBDTT)
+        {
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND).Where(b => b.maBDTT == maBDTT);
+
+
+            return View(baiDangThongTins.ToList());
+        }
+
+        public ActionResult Index_TrangCaNhan_NDK(int maND_K, string hoVaTen_NDK, string avartar_NDK)
+        {
+            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND_K).OrderByDescending(B => B.maBDSP);
+            Session["maND_K"] = maND_K;
+            Session["hoVaTen_NguoiDungKhac"] = hoVaTen_NDK;
+            Session["avatar_NguoiDungKhac"] = avartar_NDK;
+
+            return View(baiDangSanPhams.ToList());
         }
 
 

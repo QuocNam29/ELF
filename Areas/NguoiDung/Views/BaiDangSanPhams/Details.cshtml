@@ -5,111 +5,197 @@
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>BaiDangSanPham</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tenSP)
-        </dt>
+<head>
 
-        <dd>
-            @Html.DisplayFor(model => model.tenSP)
-        </dd>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.noiDung)
-        </dt>
+    <link rel="icon" href="~/images/fav.png" type="image/png" sizes="16x16">
 
-        <dd>
-            @Html.DisplayFor(model => model.noiDung)
-        </dd>
+    <link rel="stylesheet" href="~/css/main.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/color.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hinhAnh)
-        </dt>
+</head>
+@using (Html.BeginForm("DuyetBai", "KiemDuyets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.maBDSP)
+   
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:700px">
+            <div class="modal-header">
+                <h5 class="f-title"><i class="ti-info-alt"></i>Chỉnh sửa bài viết</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group half" style="width:320px">
+                    @Html.DisplayFor(model => model.tenSP)
+                    <label class="control-label" for="input">Tên sản phẩm</label>
+                    <i class="mtrl-select" style="width:300px"></i>
+                </div>
+                <div class="form-group half" style="width:320px">
+                    @Html.DisplayFor(model => model.LoaiSanPham.tenLSP)
+                    <label class="control-label" for="input">Loại sản phẩm</label>
+                    <i class="mtrl-select" style="width:320px"></i>
+                </div>
+                <div class="form-group">
+                    <div class="form-group half" style="width:320px">
+                        @Html.DisplayFor(model => model.gia)
+                        <label class="control-label" for="input">Giá sản phẩm</label>
+                        <i class="mtrl-select" style="width:300px"></i>
+                    </div>
+                    <div class="form-group half" style="width:320px">
+                        @Html.DisplayFor(model => model.soLuong)
+                        <label class="control-label" for="input">Số lượng</label>
+                        <i class="mtrl-select" style="width:320px"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.DisplayFor(model => model.noiDung)
+                    <label class="control-label" for="textarea">Mô tả</label>
+                    <i class="mtrl-select"></i>
+                </div>
+                <div class="form-group">
 
-        <dd>
-            @Html.DisplayFor(model => model.hinhAnh)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.video)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.video)
-        </dd>
+                    <div class="input-group js-input-file">
+                        @*<input class="input-file" type="file" name="file_cv" id="file">*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.gia)
-        </dt>
+                        <img id="blah" src="@Url.Content(Model.hinhAnh)" width="200" alt="Image preview...">
+                        <label class="control-label" for="textarea">Hình ảnh</label>
+                        <script>
+                            imgInp.onchange = evt => {
+                                const [file] = imgInp.files
+                                if (file) {
+                                    blah.src = URL.createObjectURL(file)
+                                }
+                            }
+                        </script>
 
-        <dd>
-            @Html.DisplayFor(model => model.gia)
-        </dd>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="mtr-btn" data-dismiss="modal"><span>Hủy</span></button>
+                        <button type="submit" class="mtr-btn"><span>Thay đổi</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.soLuong)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.soLuong)
-        </dd>
+@*<h2>Details</h2>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayDang)
-        </dt>
+    <div>
+        <h4>BaiDangSanPham</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.tenSP)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngayDang)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.tenSP)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayThayDoi)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.noiDung)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngayThayDoi)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.noiDung)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.hinhAnh)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ghiChu)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.hinhAnh)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiSanPham.tenLSP)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.video)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiSanPham.tenLSP)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.video)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.gia)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NguoiDung.hoVaTen)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.gia)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThaiBaiDang.trangThai)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.soLuong)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrangThaiBaiDang.trangThai)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.soLuong)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maBDSP }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dt>
+                @Html.DisplayNameFor(model => model.ngayDang)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ngayDang)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ngayThayDoi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ngayThayDoi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ghiChu)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ghiChu)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LoaiSanPham.tenLSP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LoaiSanPham.tenLSP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NguoiDung.hoVaTen)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TrangThaiBaiDang.trangThai)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TrangThaiBaiDang.trangThai)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.maBDSP }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+*@

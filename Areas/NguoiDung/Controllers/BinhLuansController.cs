@@ -141,13 +141,13 @@ namespace ELF.Areas.NguoiDung.Controllers
             binhLuan.trangThai = "Hien";
             db.BinhLuans.Add(binhLuan);
 
-            db.ThongBaos.Add(new ThongBao
+            /*db.ThongBaos.Add(new ThongBao
             {
                 maBL = binhLuan.maBL,
                 maND = binhLuan.BaiDangSanPham.maND,
                 tinhTrang = "Hien",
                 ngayTB = DateTime.Now
-            });
+            });*/
 
             db.SaveChanges();
 

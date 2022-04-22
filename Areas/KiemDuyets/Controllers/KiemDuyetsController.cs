@@ -8,20 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using ELF.Models;
 
-namespace ELF.Areas.KiemDuyet.Controllers
+namespace ELF.Areas.KiemDuyets.Controllers
 {
     public class KiemDuyetsController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
-        // GET: KiemDuyet/KiemDuyets
+        // GET: KiemDuyets/KiemDuyets
         public ActionResult Index()
         {
-            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 1).OrderByDescending(B => B.maBDSP);
+            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 1);
             return View(baiDangSanPhams.ToList());
         }
 
-        // GET: KiemDuyet/KiemDuyets/Details/5
+        // GET: KiemDuyets/KiemDuyets/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,8 +35,28 @@ namespace ELF.Areas.KiemDuyet.Controllers
             }
             return View(baiDangSanPham);
         }
+        public ActionResult XoaBai(int? maBDSP, string lydo)
+        {
+            if (maBDSP == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(maBDSP);
+            if (baiDangSanPham == null)
+            {
+                return HttpNotFound();
+            }
+            baiDangSanPham.maTT = 4;
+            baiDangSanPham.ghiChu = lydo;
+            db.Entry(baiDangSanPham).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-        // GET: KiemDuyet/KiemDuyets/Create
+      
+
+
+        // GET: KiemDuyets/KiemDuyets/Create
         public ActionResult Create()
         {
             ViewBag.maLSP = new SelectList(db.LoaiSanPhams, "maLSP", "tenLSP");
@@ -45,7 +65,7 @@ namespace ELF.Areas.KiemDuyet.Controllers
             return View();
         }
 
-        // POST: KiemDuyet/KiemDuyets/Create
+        // POST: KiemDuyets/KiemDuyets/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,7 +85,7 @@ namespace ELF.Areas.KiemDuyet.Controllers
             return View(baiDangSanPham);
         }
 
-        // GET: KiemDuyet/KiemDuyets/Edit/5
+        // GET: KiemDuyets/KiemDuyets/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,7 +103,7 @@ namespace ELF.Areas.KiemDuyet.Controllers
             return View(baiDangSanPham);
         }
 
-        // POST: KiemDuyet/KiemDuyets/Edit/5
+        // POST: KiemDuyets/KiemDuyets/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -92,6 +112,8 @@ namespace ELF.Areas.KiemDuyet.Controllers
         {
             if (ModelState.IsValid)
             {
+                baiDangSanPham.maTT = 4;
+             
                 db.Entry(baiDangSanPham).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -102,7 +124,7 @@ namespace ELF.Areas.KiemDuyet.Controllers
             return View(baiDangSanPham);
         }
 
-        // GET: KiemDuyet/KiemDuyets/Delete/5
+        // GET: KiemDuyets/KiemDuyets/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +139,7 @@ namespace ELF.Areas.KiemDuyet.Controllers
             return View(baiDangSanPham);
         }
 
-        // POST: KiemDuyet/KiemDuyets/Delete/5
+        // POST: KiemDuyets/KiemDuyets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

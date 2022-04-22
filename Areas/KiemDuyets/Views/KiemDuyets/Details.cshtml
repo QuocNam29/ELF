@@ -1,0 +1,154 @@
+﻿@model ELF.Models.BaiDangSanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/KiemDuyets/Views/Shared/_Layout_NguoiKiemDuyet.cshtml";
+    string hinhanh = "";
+    string avt_BD = "";
+    string avt_BD2 = "";
+
+}
+
+
+
+
+<div class="editing-info">
+    <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin cá nhân</h5>
+    <div class="form-group">
+        <img src="@Url.Content(Model.hinhAnh)" alt="">
+    </div>
+</div>
+
+<div class="onoff-options">
+    <div class="setting-row">
+        <span>Tên sản phẩm</span>
+        <p>@Html.DisplayFor(model => model.tenSP)</p>
+    </div>
+    
+    <div class="setting-row">
+        <span>Giá sản phẩm</span>
+        <p>@Html.DisplayFor(model => model.gia)</p>
+
+    </div>
+    <div class="setting-row">
+        <span>Mô tả</span>
+        <p>@Html.DisplayFor(model => model.noiDung)</p>
+    </div>
+   
+    <div class="submit-btns">
+        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai", "KiemDuyets",  new { maBDSP = Model.maBDSP })'"><span>Xóa Bài</span></button>
+
+        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai", "KiemDuyets",  new { maBDSP = Model.maBDSP })'"><span>Duyệt Bài</span></button>
+    </div>
+
+</div>
+@*
+    <h2>Details</h2>
+
+    <div>
+        <h4>BaiDangSanPham</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.tenSP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tenSP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.noiDung)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.noiDung)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.hinhAnh)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.hinhAnh)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.video)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.video)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gia)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gia)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.soLuong)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.soLuong)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ngayDang)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ngayDang)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ngayThayDoi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ngayThayDoi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ghiChu)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ghiChu)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LoaiSanPham.tenLSP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LoaiSanPham.tenLSP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NguoiDung.hoVaTen)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TrangThaiBaiDang.trangThai)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TrangThaiBaiDang.trangThai)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.maBDSP }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+*@

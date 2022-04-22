@@ -5,130 +5,207 @@
     Layout = null;
 }
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>Đăng ký ELF</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
 
-    <!-- MATERIAL DESIGN ICONIC FONT -->
-    <link rel="stylesheet" href="~/fonts/DangKy/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <!-- Title Page-->
+    <title>Au Register Forms by Colorlib</title>
 
-    <!-- STYLE CSS -->
-    <link rel="stylesheet" href="~/css/DangKy/style.css">
+    <!-- Icons font CSS-->
+    <link href="~/vendor/DangKy/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"/>
+    <link href="~/vendor/DangKy/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="~/vendor/DangKy/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/DangKy/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="~/css/DangKy/main.css" rel="stylesheet" media="all">
 </head>
 
-    <body>
-
-        <div class="wrapper" style="background-image: url('@Url.Content("~/images/bg-registration-form-1.jpg")')">
-            <div class="inner">
-                <div class="image-holder">
-                    <img src="~/images/registration-form-1.jpg" alt="">
+<body>
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Đăng ký ELF</h2>
                 </div>
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    <form action="">
-                        <h3>Đăng Ký Tài Khoản ELF</h3>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-row">
+                            <div class="name">Họ và tên</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { @class = "input--style-5" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Giới tính</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="gioiTinh">
+                                            <option disabled="disabled" selected="selected">Giới tính</option>
+                                            <option value="1">Nam</option>
+                                            <option value="0">Nữ</option>
+                                            <option value="2">Khác</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">SĐT</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { @class = "input--style-5" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Email</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="email" name="email">
+                                </div>                              
+                                    <p style="color:red">@ViewBag.loiemail</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Tỉnh<br />/Thành phố</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        @if (ViewBag.maTinh_TP != null)
+                                        {
+                                            @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")
+                                        }
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Quận<br />/Huyện</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện")
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Phường<br />/Thị trấn</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn")
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Địa chỉ</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "input--style-5", @type = "text" } })
+                                    @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Mật khẩu</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input type="password" class="input--style-5" name="matKhau" required="" oninvalid="this.setCustomValidity('Bạn chưa nhập mật khẩu')" oninput="setCustomValidity('')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Xác nhận<br />mật khẩu</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input type="password" class="input--style-5" name="xacNhanMatKhau" required="" oninvalid="this.setCustomValidity('Bạn chưa xác nhận mật khẩu')" oninput="setCustomValidity('')">
+                                </div>                            
+                                    <p style="color:red">@ViewBag.loimatkhau</p>
+                            </div>
+                        </div>
 
-                        <div class="form-group">
-                            @*<input type="text" placeholder="Họ và tên" class="form-control" >*@
-                            @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { placeholder = "Họ và tên", @class = "form-control" } })
-                            @*<input type="text" placeholder="Số điện thoại" class="form-control">*@
-                            @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { placeholder = "Số điện thoại", @class = "form-control" } })
-                        </div>
-                        <div class="form-wrapper">
-                            <input type="text" placeholder="Email" class="form-control" name="email">
-                            <i class="zmdi zmdi-email"></i>
-                            @*<i class="zmdi zmdi-account"></i>*@
-                        </div>
 
-                        <div class="form-wrapper">
-                            @if (ViewBag.maTinh_TP != null)
-                            {
-                                @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố", htmlAttributes: new { @class = "form-control" })
-                            }
-                            <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Đăng ký</button>
                         </div>
-
-                        <div class="form-wrapper">
-                            @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện", htmlAttributes: new { @class = "form-control" })
-                            <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
-                        </div>
-
-                        <div class="form-wrapper">
-                            @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn", htmlAttributes: new { @class = "form-control" })
-                            <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
-                        </div>
-
-                        <div class="form-wrapper">
-                            @*<input type="text" placeholder="Địa chỉ" class="form-control">*@
-                            @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { placeholder = "Địa chỉ", @class = "form-control" } })
-                            <i class="zmdi zmdi-email"></i>
-                        </div>
-                        <div class="form-wrapper">
-                            <select name="gioiTinh" id="" class="form-control">
-                                <option value="" disabled selected>Giới tính </option>
-                                <option value="1">Nam</option>
-                                <option value="0">Nữ</option>
-                                <option value="2">Khác</option>
-                            </select>
-                            <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
-                        </div>
-                        <div class="form-wrapper">
-                            <input type="password" placeholder="Mật khẩu" class="form-control" name="matKhau" required>
-                            <i class="zmdi zmdi-lock"></i>
-                        </div>
-                        <div class="form-wrapper">
-                            <input type="password" placeholder="Xác nhận mật khẩu" class="form-control" name="xacNhanMatKhau" required>
-                            <i class="zmdi zmdi-lock"></i>
-                        </div>
-                        <button value="Create">
-                            Đăng Ký
-                            <i class="zmdi zmdi-arrow-right"></i>
-                        </button>
-
-                    </form>
-                }
+                    }
+                </div>
             </div>
         </div>
+    </div>
 
-    </body>
+    <!-- Jquery JS-->
+    <script src="~/vendor/DangKy/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="~/vendor/DangKy/select2/select2.min.js"></script>
+    <script src="~/vendor/DangKy/datepicker/moment.min.js"></script>
+    <script src="~/vendor/DangKy/datepicker/daterangepicker.js"></script>
 
+    <!-- Main JS-->
+    <script src="~/js/DangKy/global.js"></script>
 
-<script src="~/Scripts/jquery-3.4.1.js"></script>
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#maTinh_TP").change(function () {
-            var ID = $(this).val();
-            debugger
-            $.ajax({
-                type: "post",
-                url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ID,
-                contentType: "html",
-                success: function (response) {
-                    debugger
-                    $("#maQuan").empty();
-                    $("#maQuan").append(response);
-                }
+    <script>
+        $(document).ready(function () {
+            $("#maTinh_TP").change(function () {
+                var ID = $(this).val();
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ID,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#maQuan").empty();
+                        $("#maQuan").append(response);
+                    }
+                })
             })
         })
-    })
 
-    $(document).ready(function () {
-        $("#maQuan").change(function () {
-            var ID = $(this).val();
-            debugger
-            $.ajax({
-                type: "post",
-                url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + ID,
-                contentType: "html",
-                success: function (response) {
-                    debugger
-                    $("#maP").empty();
-                    $("#maP").append(response);
-                }
+        $(document).ready(function () {
+            $("#maQuan").change(function () {
+                var ID = $(this).val();
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + ID,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#maP").empty();
+                        $("#maP").append(response);
+                    }
+                })
             })
         })
-    })
-</script>
+    </script>
+
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

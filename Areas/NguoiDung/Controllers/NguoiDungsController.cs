@@ -89,7 +89,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                         TaiKhoan taiKhoan = new TaiKhoan();
                         taiKhoan.email = email;
                         taiKhoan.matKhau = GetMD5(matKhau);
-                        taiKhoan.xacNhanMatKhau = xacNhanMatKhau;
+                        taiKhoan.xacNhanMatKhau = GetMD5(xacNhanMatKhau);
                         taiKhoan.trangThai = true;
                         taiKhoan.maND = maND;
                         taiKhoan.ngayTao = DateTime.Now;
@@ -106,21 +106,20 @@ namespace ELF.Areas.NguoiDung.Controllers
                     }
                     else
                     {
-                        ViewBag.error = "Mật khẩu không chính xác";
-                        return View();
+                        ViewBag.loimatkhau = "Xác nhận mật khẩu thất bại, vui lòng kiểm tra lại";
+                        ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP");
+                        return View(nguoiDung);
                     }
                 }
                 else
                 {
-                    ViewBag.error = "Địa chỉ email này đã được đăng ký rồi";
-                    return View();
+                    ViewBag.loiemail = "Địa chỉ email này đã được đăng ký rồi";
+                    ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP");
+                    return View(nguoiDung);
                 }
-                
-                return RedirectToAction("DangNhap","DangNhap");
+                return RedirectToAction("DangNhap", "DangNhap");
             }
-            ViewBag.maTinh_TP = new SelectList(db.Tinh_ThanhPho, "maTinh_TP", "tenTinh_TP");
-            ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan");
-            ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
+            ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP");
             return View(nguoiDung);
         }
 

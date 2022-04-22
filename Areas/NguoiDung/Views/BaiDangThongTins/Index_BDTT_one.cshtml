@@ -69,12 +69,14 @@
 
                 </div>
                 <div class="post-meta">
-                    <img src="@Url.Content(item.hinhAnh)" alt="">
+                    @if (item.hinhAnh != null)
+                    {
+                        <img src="@Url.Content(item.hinhAnh)" alt="">
+                    }
 
-                    <br />
-                    <br />
-                    <span style="color: red; font-size: 16px; font-weight: bold"> @item.tieuDe</span>
                     <div class="description">
+                        <a style="color: red; font-size: 16px; font-weight: bold"><br /> @item.tieuDe</a>
+                        <br />
                         <p>
                             @item.noiDung
                         </p>

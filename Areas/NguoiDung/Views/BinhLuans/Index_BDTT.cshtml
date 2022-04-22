@@ -18,18 +18,22 @@
     string tenNguoiDang = Session["tenNguoiDang"].ToString();
     string ngayDang = Session["ngayDang"].ToString();
     string noiDung = Session["noiDung"].ToString();
-    string hinhAnh = Session["hinhAnh"].ToString();
+    
     string avt_BD = Session["avt_BD"].ToString();
     string tieuDe = Session["tieuDe"].ToString();
     int maBDTT = int.Parse(Session["maBDTT"].ToString());
-
+    
 
     string hidden = "";
+
+
+
 }
 
 <div class="central-meta item">
     <div class="user-post">
         <div class="friend-info">
+           
             <figure>
                 <img src="@Url.Content(avt_BD)" alt="">
             </figure>
@@ -39,11 +43,14 @@
 
             </div>
             <div class="post-meta">
-                <img src="@Url.Content(hinhAnh)" alt="">
-                <br />
-                <br />
-                <span style="color: red; font-size: 16px; font-weight: bold"> @tieuDe</span>
+                @if ( Session["hinhAnh"].ToString() != "false")
+                {
+                <img src="@Url.Content(Session["hinhAnh"].ToString())" alt="">
+                }
+
                 <div class="description">
+                    <a style="color: red; font-size: 16px; font-weight: bold"><br /> @tieuDe</a>
+                    <br />
                     <p>
                         @noiDung
                     </p>
@@ -67,6 +74,7 @@
                                 <textarea placeholder="Post your comment" name="coment"></textarea>
                                 @Html.Hidden("maND", maND)
                                 @Html.Hidden("maBDTT", maBDTT)
+
 
 
                                 <button type="submit" id="submit_cmt"></button>
@@ -94,14 +102,14 @@
                                             <div class="more-post-optns">
                                                 <i class="ti-more-alt"></i>
                                                 <ul>
-                                                    <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
+                                                    <li> @Html.ActionLink("Xóa", "Delete_BL_BDTT", new { id = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
                                                     @if (hidden == "An")
                                                     {
-                                                        <li> @Html.ActionLink("Hiện comment", "Appear", new { id = item.maBL })</li>
+                                                        <li> @Html.ActionLink("Hiện comment", "Appear_BL_BDTT", new { id = item.maBL })</li>
                                                     }
                                                     else
                                                     {
-                                                        <li> @Html.ActionLink("Ẩn comment", "Hidden", new { id = item.maBL })</li>
+                                                        <li> @Html.ActionLink("Ẩn comment", "Hidden_BL_BDTT", new { id = item.maBL })</li>
                                                     }
 
                                                 </ul>
@@ -136,11 +144,11 @@
                                                     <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
                                                     @if (hidden == "An")
                                                     {
-                                                        <li> @Html.ActionLink("Hiện comment", "Appear", new { id = item.maBL })</li>
+                                                        <li> @Html.ActionLink("Hiện comment", "Appear_BL_BDTT", new { id = item.maBL })</li>
                                                     }
                                                     else
                                                     {
-                                                        <li> @Html.ActionLink("Ẩn comment", "Hidden", new { id = item.maBL })</li>
+                                                        <li> @Html.ActionLink("Ẩn comment", "Hidden_BL_BDTT", new { id = item.maBL })</li>
                                                     }
 
 

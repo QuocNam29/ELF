@@ -17,7 +17,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+    <title>Đăng ký ELF</title>
 
     <!-- Icons font CSS-->
     <link href="~/vendor/DangKy/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"/>
@@ -92,7 +92,7 @@
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         @if (ViewBag.maTinh_TP != null)
                                         {
-                                            @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")
+                                            @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "-- Chọn Tỉnh/Thành Phố --")
                                         }
                                         <div class="select-dropdown"></div>
                                     </div>
@@ -104,7 +104,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện")
+                                        @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "-- Chọn Quận/Huyện --")
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn")
+                                        @Html.DropDownListFor(model => model.maP, new SelectList(""), "-- Chọn Phường/Thị Trấn --")
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
@@ -171,11 +171,11 @@
     <script>
         $(document).ready(function () {
             $("#maTinh_TP").change(function () {
-                var ID = $(this).val();
+                var ThanhPhoID = $(this).val();
                 debugger
                 $.ajax({
                     type: "post",
-                    url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ID,
+                    url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
                     contentType: "html",
                     success: function (response) {
                         debugger
@@ -186,13 +186,14 @@
             })
         })
 
+
         $(document).ready(function () {
             $("#maQuan").change(function () {
-                var ID = $(this).val();
+                var QuanID = $(this).val();
                 debugger
                 $.ajax({
                     type: "post",
-                    url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + ID,
+                    url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
                     contentType: "html",
                     success: function (response) {
                         debugger
@@ -202,6 +203,7 @@
                 })
             })
         })
+
     </script>
 
 

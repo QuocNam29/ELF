@@ -1,0 +1,12 @@
+﻿@model ELF.Models.PhuongThiTran
+
+<option value="" disabled="disabled" selected>-- Chọn Phường/Thị Trấn --</option>
+
+
+@if (ViewBag.maP != null)
+{
+    foreach (var item in ViewBag.maP)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

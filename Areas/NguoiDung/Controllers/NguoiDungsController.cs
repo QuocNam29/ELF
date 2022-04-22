@@ -52,17 +52,17 @@ namespace ELF.Areas.NguoiDung.Controllers
             List<Tinh_ThanhPho> tinh_ThanhPhos = db.Tinh_ThanhPho.ToList();
             return tinh_ThanhPhos;
         }
-        public ActionResult GetQuanHuyenList (int maTinh_TP)
+        public ActionResult GetQuanHuyenList (int? maTinh_TP)
         {
             List<QuanHuyen> quanHuyens = db.QuanHuyens.Where(x => x.maTP == maTinh_TP).ToList();
             ViewBag.maQuan = new SelectList(quanHuyens, "maQuan", "tenQuan");
-            return PartialView("HienThiQuan");
+            return PartialView("DisplayQuanHuyen");
         }
-        public ActionResult GetPhuongThiTranList(int maQuan)
+        public ActionResult GetPhuongThiTranList(int? maQuan)
         {
             List<PhuongThiTran> phuongThiTrans = db.PhuongThiTrans.Where(x => x.maQuan == maQuan).ToList();
             ViewBag.maP = new SelectList(phuongThiTrans, "maPhuong", "tenPhuong");
-            return PartialView("HienThiPhuong");
+            return PartialView("DisplayPhuongThiTran");
         }
 
 
@@ -107,19 +107,19 @@ namespace ELF.Areas.NguoiDung.Controllers
                     else
                     {
                         ViewBag.loimatkhau = "Xác nhận mật khẩu thất bại, vui lòng kiểm tra lại";
-                        ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP");
+                        ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
                         return View(nguoiDung);
                     }
                 }
                 else
                 {
                     ViewBag.loiemail = "Địa chỉ email này đã được đăng ký rồi";
-                    ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP");
+                    ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
                     return View(nguoiDung);
                 }
-                return RedirectToAction("DangNhap", "DangNhap");
+                /*return RedirectToAction("DangNhap", "DangNhap");*/
             }
-            ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP");
+            ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
             return View(nguoiDung);
         }
 

@@ -1709,6 +1709,8 @@
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-Regular.ttf" />
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-SemiBold.ttf" />
     <Content Include="fonts\DangNhap\source-sans-pro\SourceSansPro-SemiBoldItalic.ttf" />
+    <Content Include="Areas\NguoiDung\Views\Shared\DisplayQuanHuyen.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Shared\DisplayPhuongThiTran.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

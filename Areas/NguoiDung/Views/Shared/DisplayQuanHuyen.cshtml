@@ -1,0 +1,11 @@
+﻿@model ELF.Models.QuanHuyen
+
+<option value="" disabled="disabled" selected>-- Chọn Quận/Huyện --</option>
+
+@if (ViewBag.maQuan != null)
+{
+    foreach (var item in ViewBag.maQuan)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

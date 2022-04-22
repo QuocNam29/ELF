@@ -12,12 +12,12 @@ using ELF.Areas.NguoiDung.Middleware;
 using ELF.Models;
 namespace ELF.Areas.NguoiDung.Controllers
 {
-    [LoginVerification]
     public class NguoiDungsController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: NguoiDung/NguoiDungs
+        [LoginVerification]
         public ActionResult Index()
         {
             var nguoiDungs = db.NguoiDungs.Include(n => n.PhuongThiTran);
@@ -25,6 +25,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
         // GET: NguoiDung/NguoiDungs/Details/5
+        [LoginVerification]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -124,6 +125,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
         // GET: NguoiDung/NguoiDungs/Edit/5
+        [LoginVerification]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -202,6 +204,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
         // GET: NguoiDung/NguoiDungs/Delete/5
+        [LoginVerification]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -219,6 +222,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [LoginVerification]
         public ActionResult DeleteConfirmed(int id)
         {
             Models.NguoiDung nguoiDung = db.NguoiDungs.Find(id);

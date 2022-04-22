@@ -1727,6 +1727,7 @@
     <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Edit.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_BDTT_one.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Index_BDTT.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -20,6 +20,11 @@ namespace ELF.Areas.KiemDuyets.Controllers
             var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 1);
             return View(baiDangSanPhams.ToList());
         }
+        public ActionResult Index_BDTT()
+        {
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 1);
+            return View(baiDangThongTins.ToList());
+        }
 
         // GET: KiemDuyets/KiemDuyets/Details/5
         public ActionResult Details(int? id)
@@ -35,7 +40,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             return View(baiDangSanPham);
         }
-        public ActionResult XoaBai(int? maBDSP, string lydo)
+        public ActionResult XoaBai_BDSP(int? maBDSP)
         {
             if (maBDSP == null)
             {
@@ -47,13 +52,61 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 return HttpNotFound();
             }
             baiDangSanPham.maTT = 4;
-            baiDangSanPham.ghiChu = lydo;
+            db.Entry(baiDangSanPham).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult DuyetBai_BDSP(int? maBDSP)
+        {
+            if (maBDSP == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(maBDSP);
+            if (baiDangSanPham == null)
+            {
+                return HttpNotFound();
+            }
+            baiDangSanPham.maTT = 2;
             db.Entry(baiDangSanPham).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-      
+        public ActionResult XoaBai_BDTT(int? maBDTT)
+        {
+            if (maBDTT == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangThongTin baiDangThongTin = db.BaiDangThongTins.Find(maBDTT);
+            if (baiDangThongTin == null)
+            {
+                return HttpNotFound();
+            }
+            baiDangThongTin.maTT = 4;
+            db.Entry(baiDangThongTin).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index_BDTT");
+        }
+        public ActionResult DuyetBai_BDTT(int? maBDTT)
+        {
+            if (maBDTT == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangThongTin baiDangThongTin = db.BaiDangThongTins.Find(maBDTT);
+            if (baiDangThongTin == null)
+            {
+                return HttpNotFound();
+            }
+            baiDangThongTin.maTT = 2;
+            db.Entry(baiDangThongTin).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index_BDTT");
+        }
+
+
 
 
         // GET: KiemDuyets/KiemDuyets/Create

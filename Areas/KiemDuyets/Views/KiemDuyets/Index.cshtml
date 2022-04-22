@@ -41,15 +41,12 @@
                             <p>@item.noiDung </p>
 
                         </div>
-                        <button type="button" class="btn-block" data-id="@item.maBDSP">Chỉnh sửa</button>
-                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","KiemDuyets")"></div>
 
                         <div class="g-post-ranking">
                             <div class="submit-btns">
-                                <button type="button" class="btn-block" data-id="@item.maBDSP">Chỉnh sửa</button>
-                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","KiemDuyets")"></div>
+                                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("XoaBai_BDSP", "KiemDuyets",  new { maBDSP = item.maBDSP })'"><span>Hủy Bài</span></button>
 
-                                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai", "KiemDuyets",  new { maBDSP = item.maBDSP })'"><span>Duyệt Bài</span></button>
+                                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_BDSP", "KiemDuyets",  new { maBDSP = item.maBDSP })'"><span>Duyệt Bài</span></button>
                             </div>
 
                         </div>
@@ -61,7 +58,6 @@
         <button class="btn-view btn-load-more">Load More</button>
     </div>
 </div>
-
 
 <script>
     $(document).ready(function () {
@@ -76,4 +72,5 @@
         });
     });
 </script>
+
 

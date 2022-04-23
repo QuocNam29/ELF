@@ -88,38 +88,42 @@ namespace ELF.Areas.NguoiDung.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,email,maND,matKhau,xacNhanMatKhau,ngayTao,trangThai")] TaiKhoan taiKhoan, string matKhauHienTai, string matKhauMoi, string xacNhanMatKhau)
         {
+            Session["Message_DoiMK"] = null;
             if (ModelState.IsValid)
             {
-
+               
                 if (GetMD5(matKhauHienTai) == Session["matKhau"].ToString())
                 {
                     if (matKhauMoi == xacNhanMatKhau)
                     {
                         taiKhoan.matKhau = GetMD5(matKhauMoi);
-                        taiKhoan.xacNhanMatKhau = xacNhanMatKhau;
+                        taiKhoan.xacNhanMatKhau= GetMD5(xacNhanMatKhau);
+                        
                         taiKhoan.maND = int.Parse(Session["maND"].ToString());
                         taiKhoan.trangThai = true;
                         taiKhoan.email = Session["email"].ToString();
                         taiKhoan.ngayTao = DateTime.Parse(Session["ngayTao"].ToString());
                         db.Entry(taiKhoan).State = EntityState.Modified;
                         db.SaveChanges();
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = int.Parse(Session["maND"].ToString()) });
                     }
                     else
                     {
                         ViewBag.error = "Xác nhận mật khẩu không chính xác";
+                        Session["Message_DoiMK"] = "Xác nhận mật khẩu không chính xác";
                         return View();
                     }
                 }
                 else
                 {
                     ViewBag.error = "Mật khẩu hiện tại không chính xác";
+                    Session["Message_DoiMK"] = "Mật khẩu hiện tại không chính xác";
                     return View();
                 }
 
             }
             ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", taiKhoan.maND);
-            return View(taiKhoan);
+            return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = int.Parse(Session["maND"].ToString()) });
         }
 
         // GET: NguoiDung/TaiKhoans/Delete/5

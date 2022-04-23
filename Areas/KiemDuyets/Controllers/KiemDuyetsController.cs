@@ -26,6 +26,12 @@ namespace ELF.Areas.KiemDuyets.Controllers
             return View(baiDangThongTins.ToList());
         }
 
+        public ActionResult Index_DonQG()
+        {
+            var quyenGops = db.QuyenGops.Include(q => q.LoaiQuyenGop).Include(q => q.NguoiDung).Where(b => b.trangThai == "Chờ duyệt");
+            return View(quyenGops.ToList());
+        }
+
         // GET: KiemDuyets/KiemDuyets/Details/5
         public ActionResult Details(int? id)
         {
@@ -69,8 +75,18 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             baiDangSanPham.maTT = 2;
             db.Entry(baiDangSanPham).State = EntityState.Modified;
+
+            db.DiemTichLuys.Add(new DiemTichLuy
+            {
+                maND = baiDangSanPham.maND,
+                thoiGian = DateTime.Now,
+                maBDSP = baiDangSanPham.maBDSP,
+                diem = 5
+            });
+
             db.SaveChanges();
             return RedirectToAction("Index");
+
         }
 
         public ActionResult XoaBai_BDTT(int? maBDTT)
@@ -102,8 +118,59 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             baiDangThongTin.maTT = 2;
             db.Entry(baiDangThongTin).State = EntityState.Modified;
+
+            db.DiemTichLuys.Add(new DiemTichLuy
+            {
+                maND = baiDangThongTin.maND,
+                thoiGian = DateTime.Now,
+                maBDTT = baiDangThongTin.maBDTT,
+                diem = 10
+            });
+
             db.SaveChanges();
             return RedirectToAction("Index_BDTT");
+        }
+
+        public ActionResult XoaBai_DonQG(int? maQG)
+        {
+            if (maQG == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            QuyenGop quyenGop = db.QuyenGops.Find(maQG);
+            if (quyenGop == null)
+            {
+                return HttpNotFound();
+            }
+            quyenGop.trangThai = "Đã hủy";
+            db.Entry(quyenGop).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index_DonQG");
+        }
+        public ActionResult DuyetBai_DonQG(int? maQG)
+        {
+            if (maQG == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            QuyenGop quyenGop = db.QuyenGops.Find(maQG);
+            if (quyenGop == null)
+            {
+                return HttpNotFound();
+            }
+            quyenGop.trangThai = "Đã duyệt";
+            db.Entry(quyenGop).State = EntityState.Modified;
+
+            db.DiemTichLuys.Add(new DiemTichLuy
+            {
+                maND = quyenGop.maND,
+                thoiGian = DateTime.Now,
+                maQG = quyenGop.maQG,
+                diem = 10
+            });
+
+            db.SaveChanges();
+            return RedirectToAction("Index_DonQG");
         }
 
 

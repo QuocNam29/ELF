@@ -295,7 +295,10 @@ h6 {
 }
 
 .bg-gra-03 {
-  background-image: url('../../images/ELF-background.png');
+    background-image: url('../../images/ELF-background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 /* ==========================================================================

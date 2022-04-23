@@ -24,8 +24,8 @@
     string tieuDe = Session["tieuDe"].ToString();
     int maBDTT = int.Parse(Session["maBDTT"].ToString());
     
-
-
+    string avt_ND="";
+        
     string hidden = "";
 }
 
@@ -81,13 +81,20 @@
                 </li>
                 @foreach (var item in Model)
                 {
-
+                    if (item.NguoiDung.avatar != null)
+                    {
+                        avt_ND = item.NguoiDung.avatar;
+                    }
+                    else
+                    {
+                        avt_ND = "~/images/resources/User-avatar.svg.png";
+                    }
                     hidden = item.trangThai;
                     if (hidden == "Hien")
                     {
                         <li>
                             <div class="comet-avatar">
-                                <img src="@Url.Content(item.NguoiDung.avatar)" alt="">
+                                <img src="@Url.Content(avt_ND)" alt="">
                             </div>
                             <div class="we-comment">
                                 <div class="coment-head">
@@ -125,7 +132,7 @@
                     {
                         <li>
                             <div class="comet-avatar">
-                                <img src="@Url.Content(item.NguoiDung.avatar)" alt="">
+                                <img src="@Url.Content(avt_ND)" alt="">
                             </div>
                             <div class="we-comment">
                                 <div class="coment-head">

@@ -169,13 +169,16 @@
     <script src="~/js/DangKy/global.js"></script>
 
     <script>
+
+        var RootUrl = '@Url.Content("~/")';
+
         $(document).ready(function () {
             $("#maTinh_TP").change(function () {
                 var ThanhPhoID = $(this).val();
                 debugger
                 $.ajax({
                     type: "post",
-                    url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
+                    url: RootUrl + "NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
                     contentType: "html",
                     success: function (response) {
                         debugger
@@ -193,7 +196,7 @@
                 debugger
                 $.ajax({
                     type: "post",
-                    url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
+                    url: RootUrl + "NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
                     contentType: "html",
                     success: function (response) {
                         debugger

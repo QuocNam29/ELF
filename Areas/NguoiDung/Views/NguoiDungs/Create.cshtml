@@ -175,7 +175,7 @@
                 debugger
                 $.ajax({
                     type: "post",
-                    url: "@Url.Action("GetQuanHuyenList", "NguoiDungs")" + "?maTinh_TP=" + ThanhPhoID,
+                    url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
                     contentType: "html",
                     success: function (response) {
                         debugger
@@ -193,7 +193,7 @@
                 debugger
                 $.ajax({
                     type: "post",
-                    url: "@Url.Action("GetPhuongThiTranList", "NguoiDungs")" + "?maQuan=" + QuanID,
+                    url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
                     contentType: "html",
                     success: function (response) {
                         debugger

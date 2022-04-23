@@ -46,7 +46,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             return View(baiDangSanPham);
         }
-        public ActionResult XoaBai_BDSP(int? maBDSP)
+        public ActionResult XoaBai_BDSP(int? maBDSP, string lydo)
         {
             if (maBDSP == null)
             {
@@ -58,6 +58,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 return HttpNotFound();
             }
             baiDangSanPham.maTT = 4;
+            baiDangSanPham.ghiChu = lydo;
             db.Entry(baiDangSanPham).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -89,7 +90,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
 
         }
 
-        public ActionResult XoaBai_BDTT(int? maBDTT)
+        public ActionResult XoaBai_BDTT(int? maBDTT, string lydo)
         {
             if (maBDTT == null)
             {
@@ -101,6 +102,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 return HttpNotFound();
             }
             baiDangThongTin.maTT = 4;
+            baiDangThongTin.ghiChu = lydo;
             db.Entry(baiDangThongTin).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index_BDTT");
@@ -131,7 +133,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
             return RedirectToAction("Index_BDTT");
         }
 
-        public ActionResult XoaBai_DonQG(int? maQG)
+        public ActionResult XoaBai_DonQG(int? maQG, string lydo)
         {
             if (maQG == null)
             {
@@ -143,6 +145,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 return HttpNotFound();
             }
             quyenGop.trangThai = "Đã hủy";
+            quyenGop.ghiChu = lydo;
             db.Entry(quyenGop).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index_DonQG");

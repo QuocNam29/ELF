@@ -40,18 +40,52 @@
 
                                 <h4><a title="" href="@Url.Action("Details","KiemDuyets",new { id = item.maQG })">@item.LoaiQuyenGop.tenLoai</a></h4>
 
-                                <p  style="color: black" > Số lượng quyên góp:  @item.soLuong  @item.donVi</p>
+                                <p style="color: black"> Số lượng quyên góp:  @item.soLuong  @item.donVi</p>
 
                             </div>
 
                             <div class="g-post-ranking">
                                 <div class="submit-btns">
-                                    <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("XoaBai_DonQG", "KiemDuyets",  new { maQG = item.maQG })'"><span>Hủy Đơn</span></button>
-
+                                   <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Hủy Đơn</span></button>
                                     <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_DonQG", "KiemDuyets",  new { maQG = item.maQG })'"><span>Duyệt Đơn</span></button>
                                 </div>
 
                             </div>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        @using (Html.BeginForm("XoaBai_DonQG", "KiemDuyets"))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("maQG", item.maQG)
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">Lý do:</label>
+                                                        <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                        <button type="submit" class="btn btn-primary" id="btn btn-primary">Xác nhận</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                    
 

@@ -20,7 +20,7 @@
     <title>Đăng ký ELF</title>
 
     <!-- Icons font CSS-->
-    <link href="~/vendor/DangKy/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"/>
+    <link href="~/vendor/DangKy/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all" />
     <link href="~/vendor/DangKy/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -45,46 +45,51 @@
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-row">
-                            <div class="name">Họ và tên</div>
+                            <div class="name">Họ và tên <span class="text-danger">*</span></div>
                             <div class="value">
                                 <div class="input-group">
                                     @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { @class = "input--style-5" } })
+                                    @Html.ValidationMessageFor(model => model.hoVaTen, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Giới tính</div>
+                            <div class="name">Giới tính <span class="text-danger">*</span></div>
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="gioiTinh">
-                                            <option disabled="disabled" selected="selected">Giới tính</option>
+                                            <option value="" disabled="disabled" selected="selected">Giới tính</option>
                                             <option value="1">Nam</option>
                                             <option value="0">Nữ</option>
                                             <option value="2">Khác</option>
                                         </select>
+                                        @Html.ValidationMessage("loigioitinh", new { @class = "text-danger"})
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                       
                         <div class="form-row">
-                            <div class="name">SĐT</div>
+                            <div class="name">SĐT <span class="text-danger">*</span></div>
                             <div class="value">
                                 <div class="input-group">
                                     @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { @class = "input--style-5" } })
+                                    @Html.ValidationMessageFor(model => model.dienThoai, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Email</div>
+                            <div class="name">Email <span class="text-danger">*</span></div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="email" name="email">
+                                    <input class="input--style-5" type="text" name="email">
                                 </div>
-                                <p class="text-danger">@ViewBag.loiemail</p>
+                                @Html.ValidationMessage("loiemail", new { @class = "text-danger" })
+                                <span id="lblError" class="text-danger"></span>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="name">Tỉnh<br />/Thành phố</div>
                             <div class="value">
@@ -126,28 +131,30 @@
                             <div class="value">
                                 <div class="input-group">
                                     @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "input--style-5", @type = "text" } })
-                                    @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Mật khẩu</div>
+                            <div class="name">Mật khẩu <span class="text-danger">*</span></div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input type="password" class="input--style-5" name="matKhau" required="" oninvalid="this.setCustomValidity('Bạn chưa nhập mật khẩu')" oninput="setCustomValidity('')">
+                                    <input type="password" class="input--style-5" name="matKhau">
                                 </div>
+                                @Html.ValidationMessage("loimatkhau", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Xác nhận<br />mật khẩu</div>
+                            <div class="name">Xác nhận<br />mật khẩu <span class="text-danger">*</span></div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input type="password" class="input--style-5" name="xacNhanMatKhau" required="" oninvalid="this.setCustomValidity('Bạn chưa xác nhận mật khẩu')" oninput="setCustomValidity('')">
+                                    <input type="password" class="input--style-5" name="xacNhanMatKhau">
                                 </div>
-                                <p class="text-danger">@ViewBag.loimatkhau</p>
+                                @Html.ValidationMessage("loixacnhanmatkhau", new { @class = "text-danger" })
                             </div>
                         </div>
-                      
+
+                        <p class="text-danger">Tất cả những trường có dấu * là bắt buộc</p>
+                        <br />
 
                         <div>
                             <button class="btn btn--radius-2 btn--grey" type="button" onclick="window.location.href = '@Url.Action("DangNhap", "DangNhap")'">Quay về</button>

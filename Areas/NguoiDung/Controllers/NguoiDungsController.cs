@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using ELF.Areas.NguoiDung.Middleware;
@@ -74,8 +75,35 @@ namespace ELF.Areas.NguoiDung.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, string email, string matKhau, string xacNhanMatKhau, string gioiTinh)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(gioiTinh))
             {
+                ModelState.AddModelError("loigioitinh", "Bạn chưa chọn giới tính");
+            }
+            if (string.IsNullOrEmpty(email))
+            {
+                ModelState.AddModelError("loiemail", "Bạn chưa nhập email");
+            }
+            else
+            {
+                string emailRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                                         @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                                            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                Regex re = new Regex(emailRegex);
+                if (!re.IsMatch(email))
+                {
+                    ModelState.AddModelError("loiemail", "Email chưa đúng định dạng, vui lòng kiểm tra lại");
+                }
+            }
+            if (string.IsNullOrEmpty(matKhau))
+            {
+                ModelState.AddModelError("loimatkhau", "Bạn chưa nhập mật khẩu");
+            }
+            if (string.IsNullOrEmpty(xacNhanMatKhau))
+            {
+                ModelState.AddModelError("loixacnhanmatkhau", "Bạn chưa xác nhận mật khẩu");
+            }
+            if (ModelState.IsValid)
+            {               
                 var check = db.TaiKhoans.FirstOrDefault(s => s.email == email);
                 if (check == null)
                 {
@@ -103,22 +131,24 @@ namespace ELF.Areas.NguoiDung.Controllers
                         chucNangTaiKhoan.maLoaiTK = 2;
                         db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
                         db.SaveChanges();
+
+                        return RedirectToAction("DangNhap", "DangNhap");
                     }
                     else
                     {
-                        ViewBag.loimatkhau = "Xác nhận mật khẩu thất bại, vui lòng kiểm tra lại";
+                        ModelState.AddModelError("loixacnhanmatkhau", "Xác nhận mật khẩu thất bại, vui lòng kiểm tra lại");
                         ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
                         return View(nguoiDung);
                     }
                 }
                 else
                 {
-                    ViewBag.loiemail = "Địa chỉ email này đã được đăng ký rồi";
+                    ModelState.AddModelError("loiemail", "Địa chỉ email này đã được đăng ký rồi");
                     ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
                     return View(nguoiDung);
                 }
-                /*return RedirectToAction("DangNhap", "DangNhap");*/
             }
+                      
             ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
             return View(nguoiDung);
         }

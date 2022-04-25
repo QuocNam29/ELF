@@ -18,11 +18,12 @@
     string tenNguoiDang = Session["tenNguoiDang"].ToString();
     string ngayDang = Session["ngayDang"].ToString();
     string noiDung = Session["noiDung"].ToString();
-    
+
     string avt_BD = Session["avt_BD"].ToString();
     string tieuDe = Session["tieuDe"].ToString();
     int maBDTT = int.Parse(Session["maBDTT"].ToString());
-    
+
+    string avt_ND = "";
 
     string hidden = "";
 
@@ -86,11 +87,19 @@
                 {
 
                     hidden = item.trangThai;
+                    if (item.NguoiDung.avatar != null)
+                    {
+                        avt_ND = item.NguoiDung.avatar;
+                    }
+                    else
+                    {
+                        avt_ND = "~/images/resources/User-avatar.svg.png";
+                    }
                     if (hidden == "Hien")
                     {
                         <li>
                             <div class="comet-avatar">
-                                <img src="@Url.Content(item.NguoiDung.avatar)" alt="">
+                                <img src="@Url.Content(avt_ND)" alt="">
                             </div>
                             <div class="we-comment">
                                 <div class="coment-head">
@@ -128,7 +137,7 @@
                     {
                         <li>
                             <div class="comet-avatar">
-                                <img src="@Url.Content(item.NguoiDung.avatar)" alt="">
+                                <img src="@Url.Content(avt_ND)" alt="">
                             </div>
                             <div class="we-comment">
                                 <div class="coment-head">

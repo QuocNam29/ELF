@@ -256,6 +256,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KiemDuyetsController.cs" />
+    <Compile Include="Areas\KiemDuyets\Controllers\KiemDuyet_DangNhapController.cs" />
     <Compile Include="Areas\KiemDuyets\KiemDuyetsAreaRegistration.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangThongTinsController.cs" />
@@ -838,8 +839,10 @@
     <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_BDTT_one.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Index_BDTT.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Index_DonQG.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Shared\DisplayPhuongThiTran.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Shared\DisplayQuanHuyen.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KiemDuyet_DangNhap\KiemDuyet_DangNhap.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

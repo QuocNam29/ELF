@@ -28,6 +28,7 @@
     int maTD = int.Parse(Session["maTD"].ToString());
 
     string hidden = "";
+    string avt_ND = "";
 }
 
 <div class="central-meta item">
@@ -112,11 +113,19 @@
                 {
 
                     hidden = item.trangThai;
+                    if (item.NguoiDung.avatar != null)
+                    {
+                        avt_ND = item.NguoiDung.avatar;
+                    }
+                    else
+                    {
+                        avt_ND = "~/images/resources/User-avatar.svg.png";
+                    }
                     if (hidden == "Hien")
                     {
                         <li>
                             <div class="comet-avatar">
-                                <img src="@Url.Content(item.NguoiDung.avatar)" alt="">
+                                <img src="@Url.Content(avt_ND)" alt="">
                             </div>
                             <div class="we-comment">
                                 <div class="coment-head">
@@ -154,7 +163,7 @@
                     {
                         <li>
                             <div class="comet-avatar">
-                                <img src="@Url.Content(item.NguoiDung.avatar)" alt="">
+                                <img src="@Url.Content(avt_ND)" alt="">
                             </div>
                             <div class="we-comment">
                                 <div class="coment-head">

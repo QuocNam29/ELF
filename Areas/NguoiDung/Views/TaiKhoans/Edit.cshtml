@@ -11,25 +11,31 @@
     <h5 class="f-title"><i class="ti-lock"></i>Đổi mật khẩu</h5>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.ID)
-    <form method="post">
-        <div class="form-group">
-            <input type="password" id="input" required="required" name="matKhauHienTai" />
-            <label class="control-label" for="input">Mật khẩu hiện tại</label><i class="mtrl-select"></i>
-        </div>
-        <div class="form-group">
-            <input type="password" required="required" name="matKhauMoi" />
-            <label class="control-label" for="input">Mật khẩu mới</label><i class="mtrl-select"></i>
-        </div>
-        <div class="form-group">
-            <input type="password" required="required" name="xacNhanMatKhau" />
-            <label class="control-label" for="input">Xác nhận mật khẩu</label><i class="mtrl-select"></i>
-        </div>
-        <a class="forgot-pwd underline" title="" href="#">Forgot Password?</a>
-        <div class="submit-btns">
-            <button type="button" class="mtr-btn"><span>Hủy</span></button>
-            <button type="submit" class="mtr-btn"><span>Thay Đổi</span></button>
-        </div>
-    </form>
+<form method="post">
+    <div class="form-group">
+        <input type="password" id="input" required="required" name="matKhauHienTai" />
+        <label class="control-label" for="input">Mật khẩu hiện tại</label><i class="mtrl-select"></i>
+    </div>
+    <div class="form-group">
+        <input type="password" required="required" name="matKhauMoi" />
+        <label class="control-label" for="input">Mật khẩu mới</label><i class="mtrl-select"></i>
+    </div>
+    <div class="form-group">
+        <input type="password" required="required" name="xacNhanMatKhau" />
+        <label class="control-label" for="input">Xác nhận mật khẩu</label><i class="mtrl-select"></i>
+    </div>
+    @if (Session["Message_DoiMK"] != null)
+    {
+        <div class="text-danger">* @Session["Message_DoiMK"].ToString()</div>
+        <br />
+    }
+
+    <a class="forgot-pwd underline" title="" href="#">Forgot Password?</a>
+    <div class="submit-btns">
+        <button type="button" class="mtr-btn"><span>Hủy</span></button>
+        <button type="submit" class="mtr-btn"><span>Thay Đổi</span></button>
+    </div>
+</form>
 </div>
 }
   

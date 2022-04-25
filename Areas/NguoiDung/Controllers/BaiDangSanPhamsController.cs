@@ -111,13 +111,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                         baiDangSanPham.hinhAnh = filePath;
                         db.BaiDangSanPhams.Add(baiDangSanPham);
 
-                        db.DiemTichLuys.Add(new DiemTichLuy
-                        {
-                            maND = maND,
-                            thoiGian = DateTime.Now,
-                            maBDSP = baiDangSanPham.maBDSP,
-                            diem = 5
-                        }) ;
+                       
                        
 
 

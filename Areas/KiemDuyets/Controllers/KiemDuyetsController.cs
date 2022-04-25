@@ -26,6 +26,12 @@ namespace ELF.Areas.KiemDuyets.Controllers
             return View(baiDangThongTins.ToList());
         }
 
+        public ActionResult Index_DonQG()
+        {
+            var quyenGops = db.QuyenGops.Include(q => q.LoaiQuyenGop).Include(q => q.NguoiDung).Where(b => b.trangThai == "Chờ duyệt");
+            return View(quyenGops.ToList());
+        }
+
         // GET: KiemDuyets/KiemDuyets/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,7 +46,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             return View(baiDangSanPham);
         }
-        public ActionResult XoaBai_BDSP(int? maBDSP)
+        public ActionResult XoaBai_BDSP(int? maBDSP, string lydo)
         {
             if (maBDSP == null)
             {
@@ -52,6 +58,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 return HttpNotFound();
             }
             baiDangSanPham.maTT = 4;
+            baiDangSanPham.ghiChu = lydo;
             db.Entry(baiDangSanPham).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -69,11 +76,21 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             baiDangSanPham.maTT = 2;
             db.Entry(baiDangSanPham).State = EntityState.Modified;
+
+            db.DiemTichLuys.Add(new DiemTichLuy
+            {
+                maND = baiDangSanPham.maND,
+                thoiGian = DateTime.Now,
+                maBDSP = baiDangSanPham.maBDSP,
+                diem = 5
+            });
+
             db.SaveChanges();
             return RedirectToAction("Index");
+
         }
 
-        public ActionResult XoaBai_BDTT(int? maBDTT)
+        public ActionResult XoaBai_BDTT(int? maBDTT, string lydo)
         {
             if (maBDTT == null)
             {
@@ -85,6 +102,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 return HttpNotFound();
             }
             baiDangThongTin.maTT = 4;
+            baiDangThongTin.ghiChu = lydo;
             db.Entry(baiDangThongTin).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index_BDTT");
@@ -102,8 +120,60 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             baiDangThongTin.maTT = 2;
             db.Entry(baiDangThongTin).State = EntityState.Modified;
+
+            db.DiemTichLuys.Add(new DiemTichLuy
+            {
+                maND = baiDangThongTin.maND,
+                thoiGian = DateTime.Now,
+                maBDTT = baiDangThongTin.maBDTT,
+                diem = 10
+            });
+
             db.SaveChanges();
             return RedirectToAction("Index_BDTT");
+        }
+
+        public ActionResult XoaBai_DonQG(int? maQG, string lydo)
+        {
+            if (maQG == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            QuyenGop quyenGop = db.QuyenGops.Find(maQG);
+            if (quyenGop == null)
+            {
+                return HttpNotFound();
+            }
+            quyenGop.trangThai = "Đã hủy";
+            quyenGop.ghiChu = lydo;
+            db.Entry(quyenGop).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index_DonQG");
+        }
+        public ActionResult DuyetBai_DonQG(int? maQG)
+        {
+            if (maQG == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            QuyenGop quyenGop = db.QuyenGops.Find(maQG);
+            if (quyenGop == null)
+            {
+                return HttpNotFound();
+            }
+            quyenGop.trangThai = "Đã duyệt";
+            db.Entry(quyenGop).State = EntityState.Modified;
+
+            db.DiemTichLuys.Add(new DiemTichLuy
+            {
+                maND = quyenGop.maND,
+                thoiGian = DateTime.Now,
+                maQG = quyenGop.maQG,
+                diem = 10
+            });
+
+            db.SaveChanges();
+            return RedirectToAction("Index_DonQG");
         }
 
 

@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Winku Social Network Toolkit</title>
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
+    <link rel="stylesheet" href="~/css/main.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/color.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+
+</head>
+<body>
+    <!--<div class="se-pre-con"></div>-->
+    <div class="theme-layout">
+        <div class="container-fluid pdng0">
+            <div class="row merged">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="land-featurearea">
+                        <div class="land-meta">
+                            <h1>ELF</h1>
+                            <p>
+                                Chào mừng bạn đến với kiểm duyệt ELF
+                            </p>
+                            <div class="friend-logo">
+                                <span><img src="~/images/wink.png" alt=""></span>
+                            </div>
+                            <a href="#" title="" class="folow-me">Người dùng ELF</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="login-reg-bg">
+                        <div class="log-reg-area sign">
+                            <h2 class="log-title">Đăng nhập kiểm duyệt </h2>
+                            
+                            <form method="post" action="@Url.Action("KiemDuyet_DangNhap")">
+                                <div class="form-group">
+                                    <input type="text" id="input" name="mail" required="required" />
+                                    <label class="control-label" for="input">Email</label><i class="mtrl-select"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="matKhau" required="required" />
+                                    <label class="control-label" for="input">Mật khẩu</label><i class="mtrl-select"></i>
+                                </div>
+                                @if (Session["Message_KiemDuyet"] != null)
+                                {
+                                    <div class="text-danger">@Session["Message_KiemDuyet"].ToString()</div>
+                                    <br />
+                                }
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" checked="checked" /><i class="check-box"></i>Nhớ đăng nhập.
+                                    </label>
+                                </div>
+                                <a href="#" title="" class="forgot-pwd">Forgot Password?</a>
+                                <div class="submit-btns">
+                                    <button class="mtr-btn signin" ><span>Đăng nhập</span></button>
+
+                                </div>
+                            </form>
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="~/js/main.min.js"></script>
+    <script src="~/js/script.js"></script>
+
+</body>
+
+</html>

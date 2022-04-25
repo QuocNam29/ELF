@@ -329,7 +329,6 @@ $(function() {
 		jQuery('#New-box').focus().click();
 		
 	}); 
-
 	
 //inbox page 	
 //***** Message Star *****//  

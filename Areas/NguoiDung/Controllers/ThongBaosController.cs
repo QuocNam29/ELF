@@ -22,6 +22,12 @@ namespace ELF.Areas.NguoiDung.Controllers
             var thongBaos = db.ThongBaos.Include(t => t.BaiDangSanPham).Include(t => t.BaiDangThongTin).Include(t => t.BinhLuan).Include(t => t.DonQua).Include(t => t.NguoiDung).Include(t => t.NguoiDung1).Include(t => t.QuyenGop).Include(t => t.TraoDoi).Where(t => t.maND == maND).OrderByDescending(t => t.maTB);
             return View(thongBaos.ToList());
         }
+        public ActionResult ThongBao_header()
+        {
+            int maND = int.Parse(Session["maND"].ToString());
+            var thongBaos = db.ThongBaos.Include(t => t.BaiDangSanPham).Include(t => t.BaiDangThongTin).Include(t => t.BinhLuan).Include(t => t.DonQua).Include(t => t.NguoiDung).Include(t => t.NguoiDung1).Include(t => t.QuyenGop).Include(t => t.TraoDoi).Where(t => t.maND == maND).OrderByDescending(t => t.maTB);
+            return View(thongBaos.ToList());
+        }
 
         // GET: NguoiDung/ThongBaos/Details/5
         public ActionResult Details(int? id)

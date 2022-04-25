@@ -1,0 +1,119 @@
+﻿@model IEnumerable<ELF.Models.ThongBao>
+
+@{
+    ViewBag.Title = "ThongBao_header";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+}
+
+
+    <span>4 New Notifications</span>
+    <ul class="drops-menu">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="notifications.html" title="">
+                    <img src="~/images/resources/thumb-1.jpg" alt="">
+                    <div class="mesg-meta">
+                        <h6>@item.NguoiDung.hoVaTen</h6>
+                        <span>Hi, how r u dear ...?</span>
+                        <i>2 min ago</i>
+                    </div>
+                </a>
+               
+            </li>
+        }
+
+    </ul>
+    <a href="notifications.html" title="" class="more-mesg">view more</a>
+
+
+
+
+@*<h2>ThongBao_header</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.noiDung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ngayTB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tinhTrang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BaiDangSanPham.tenSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BaiDangThongTin.tieuDe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BinhLuan.noiDung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonQua.TrangThai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NguoiDung1.hoVaTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuyenGop.donVi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TraoDoi.trangThai)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.noiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngayTB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tinhTrang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaiDangSanPham.tenSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaiDangThongTin.tieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BinhLuan.noiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonQua.TrangThai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguoiDung.hoVaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguoiDung1.hoVaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuyenGop.donVi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TraoDoi.trangThai)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.maTB }) |
+                @Html.ActionLink("Details", "Details", new { id=item.maTB }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.maTB })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

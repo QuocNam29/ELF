@@ -440,6 +440,14 @@ h6 {
   background: #eb3746;
 }
 
+.btn--grey {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.btn--grey:hover {
+  background: #1D1C1A;
+}
+
 /* ==========================================================================
    #DATE PICKER
    ========================================================================== */
@@ -767,4 +775,8 @@ input {
     padding: 40px 30px;
     padding-bottom: 50px;
   }
+}
+
+.text-danger {
+    color: #dc3545 !important;
 }

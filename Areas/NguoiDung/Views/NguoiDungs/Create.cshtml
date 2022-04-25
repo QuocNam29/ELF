@@ -81,8 +81,8 @@
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="email" name="email">
-                                </div>                              
-                                    <p style="color:red">@ViewBag.loiemail</p>
+                                </div>
+                                <p class="text-danger">@ViewBag.loiemail</p>
                             </div>
                         </div>
                         <div class="form-row">
@@ -143,13 +143,14 @@
                             <div class="value">
                                 <div class="input-group">
                                     <input type="password" class="input--style-5" name="xacNhanMatKhau" required="" oninvalid="this.setCustomValidity('Bạn chưa xác nhận mật khẩu')" oninput="setCustomValidity('')">
-                                </div>                            
-                                    <p style="color:red">@ViewBag.loimatkhau</p>
+                                </div>
+                                <p class="text-danger">@ViewBag.loimatkhau</p>
                             </div>
                         </div>
-
+                      
 
                         <div>
+                            <button class="btn btn--radius-2 btn--grey" type="button" onclick="window.location.href = '@Url.Action("DangNhap", "DangNhap")'">Quay về</button>
                             <button class="btn btn--radius-2 btn--red" type="submit">Đăng ký</button>
                         </div>
                     }

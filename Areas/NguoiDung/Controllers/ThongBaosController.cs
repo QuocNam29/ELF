@@ -17,16 +17,20 @@ namespace ELF.Areas.NguoiDung.Controllers
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: NguoiDung/ThongBaos
-        public ActionResult Index(int maND)
-        {
-            var thongBaos = db.ThongBaos.Include(t => t.BaiDangSanPham).Include(t => t.BaiDangThongTin).Include(t => t.BinhLuan).Include(t => t.DonQua).Include(t => t.NguoiDung).Include(t => t.NguoiDung1).Include(t => t.QuyenGop).Include(t => t.TraoDoi).Where(t => t.maND == maND).OrderByDescending(t => t.maTB);
-            return View(thongBaos.ToList());
-        }
-        public ActionResult ThongBao_header()
+        public ActionResult Index()
         {
             int maND = int.Parse(Session["maND"].ToString());
             var thongBaos = db.ThongBaos.Include(t => t.BaiDangSanPham).Include(t => t.BaiDangThongTin).Include(t => t.BinhLuan).Include(t => t.DonQua).Include(t => t.NguoiDung).Include(t => t.NguoiDung1).Include(t => t.QuyenGop).Include(t => t.TraoDoi).Where(t => t.maND == maND).OrderByDescending(t => t.maTB);
             return View(thongBaos.ToList());
+        }
+        [ChildActionOnly]
+        public ActionResult ThongBao_header()
+        {
+            int maND = int.Parse(Session["maND"].ToString());
+            var thongBaos = db.ThongBaos.Include(t => t.BaiDangSanPham).Include(t => t.BaiDangThongTin).Include(t => t.BinhLuan).Include(t => t.DonQua).Include(t => t.NguoiDung).Include(t => t.NguoiDung1).Include(t => t.QuyenGop).Include(t => t.TraoDoi).Where(t => t.maND == maND).OrderByDescending(t => t.maTB);
+            ViewBag.users = thongBaos.ToList();
+
+            return PartialView("ThongBao_header", thongBaos.ToList());
         }
 
         // GET: NguoiDung/ThongBaos/Details/5

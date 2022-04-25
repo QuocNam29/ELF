@@ -1,26 +1,115 @@
-﻿@model IEnumerable<ELF.Models.ThongBao>
+﻿@model List<ELF.Models.ThongBao>
 
 @{
-    ViewBag.Title = "ThongBao_header";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+    string avt_ND = "";
 }
 
-
-    <span>4 New Notifications</span>
+    <span>4 Thông báo mới</span>
     <ul class="drops-menu">
         @foreach (var item in Model)
         {
-            <li>
-                <a href="notifications.html" title="">
-                    <img src="~/images/resources/thumb-1.jpg" alt="">
-                    <div class="mesg-meta">
-                        <h6>@item.NguoiDung.hoVaTen</h6>
-                        <span>Hi, how r u dear ...?</span>
-                        <i>2 min ago</i>
-                    </div>
-                </a>
-               
-            </li>
+            if (item.maBDSP != null)
+            {
+                if (Session["avatar"] != null)
+                {
+                    avt_ND = Session["avatar"].ToString();
+                }
+                else
+                {
+                    avt_ND = "~/images/resources/User-avatar.svg.png";
+                }
+                <li>
+                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })" title="">
+                        <img src="@Url.Content(avt_ND)" alt="">
+                        @if (item.noiDung == "Đã duyệt")
+                        {
+                            <div class="mesg-meta">
+                                <h6>Bài đăng sản phẩm</h6>
+                                <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
+                                <i>@item.ngayTB</i>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mesg-meta">
+                                <h6>Bài đăng sản phẩm</h6>
+                                <span>của bạn đã bị <b style="color: red">Hủy</b></span>
+                                <i>@item.ngayTB</i>
+                            </div>
+                        }
+                    </a>
+                    <span class="tag green">New</span>
+                </li>
+            }
+            if (item.maBDTT != null)
+            {
+                if (Session["avatar"] != null)
+                {
+                    avt_ND = Session["avatar"].ToString();
+                }
+                else
+                {
+                    avt_ND = "~/images/resources/User-avatar.svg.png";
+                }
+                <li>
+                    <a href="@Url.Action("Index_BDTT_one","BaiDangThongTins", new {maBDTT = item.maBDTT , maND = item.maND })" title="">
+                        <img src="@Url.Content(avt_ND)" alt="">
+                        @if (item.noiDung == "Đã duyệt")
+                        {
+                            <div class="mesg-meta">
+                                <h6>Bài đăng thông tin</h6>
+                                <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
+                                <i>@item.ngayTB</i>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mesg-meta">
+                                <h6>Bài đăng thông tin</h6>
+                                <span>của bạn đã bị <b style="color: red">Hủy</b></span>
+                                <i>@item.ngayTB</i>
+                            </div>
+                        }
+                    </a>
+                    <span class="tag green">New</span>
+                </li>
+            }
+            if (item.maQG != null)
+            {
+                if (Session["avatar"] != null)
+                {
+                    avt_ND = Session["avatar"].ToString();
+                }
+                else
+                {
+                    avt_ND = "~/images/resources/User-avatar.svg.png";
+                }
+                <li>
+                    <a href="notifications.html" title="">
+                        <img src="@Url.Content(avt_ND)" alt="">
+                        @if (item.noiDung == "Đã duyệt")
+                        {
+                            <div class="mesg-meta">
+                                <h6>Đơn quyên góp</h6>
+                                <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
+                                <i>@item.ngayTB</i>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mesg-meta">
+                                <h6>Đơn quyên góp</h6>
+                                <span>của bạn đã bị <b style="color: red">Hủy</b></span>
+                                <i>@item.ngayTB</i>
+                            </div>
+                        }
+                    </a>
+                    <span class="tag green">New</span>
+                </li>
+            }
+
+
+
         }
 
     </ul>

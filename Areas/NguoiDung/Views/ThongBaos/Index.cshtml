@@ -50,7 +50,8 @@
                             @if (item.noiDung == "Đã duyệt")
                             {
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })"> <b>Bài đăng sản phẩm</b> của bạn đã được duyệt </a>
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                    <b>Bài đăng sản phẩm</b> của bạn đã được <a style="color: darkcyan">duyệt</a> </a>
                                     <br />
                                     <span>@item.ngayTB</span>
                                 </div>
@@ -58,7 +59,7 @@
                             else
                             {
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })"> <b>Bài đăng sản phẩm</b> của bạn đã bị hủy với lý do <b>"@item.BaiDangSanPham.ghiChu"</b> </a>
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })"> <b>Bài đăng sản phẩm</b> của bạn đã <a style="color:red">hủy </a> với lý do <b>"@item.BaiDangSanPham.ghiChu"</b> </a>
                                     <br />
                                     <span>@item.ngayTB</span>
                                 </div>
@@ -84,7 +85,7 @@
                             @if (item.noiDung == "Đã duyệt")
                             {
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index_BDTT_one","BaiDangThongTins", new {maBDTT = item.maBDTT , maND = item.maND })"><b>Bài đăng thông tin</b> của bạn đã được duyệt </a>
+                                    <a href="@Url.Action("Index_BDTT_one","BaiDangThongTins", new {maBDTT = item.maBDTT , maND = item.maND })"><b>Bài đăng thông tin</b> của bạn đã được <a style="color: darkcyan">duyệt</a> </a>
                                     <br />
                                     <span>@item.ngayTB</span>
                                 </div>
@@ -92,7 +93,7 @@
                             else
                             {
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })"> <b>Bài đăng thông tin</b> của bạn đã bị hủy với lý do <b>"@item.BaiDangThongTin.ghiChu"</b> </a>
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })"> <b>Bài đăng thông tin</b> của bạn đã <a style="color:red">hủy </a> với lý do <b>"@item.BaiDangThongTin.ghiChu"</b> </a>
                                     <br />
                                     <span>@item.ngayTB</span>
                                 </div>
@@ -118,7 +119,7 @@
                             @if (item.noiDung == "Đã duyệt")
                             {
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index","QuyenGops")"><b>Bài quyên góp</b> của bạn đã được duyệt </a>
+                                    <a href="@Url.Action("Index","QuyenGops")"><b>Bài quyên góp</b> của bạn đã được <a style="color: darkcyan">duyệt</a> </a>
                                     <br />
                                     <span>@item.ngayTB</span>
                                 </div>
@@ -126,7 +127,7 @@
                             else
                             {
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index","QuyenGops")"> <b>Bài quyên góp</b> của bạn đã bị hủy với lý do <b>"@item.QuyenGop.ghiChu"</b> </a>
+                                    <a href="@Url.Action("Index","QuyenGops")"> <b>Bài quyên góp</b> của bạn đã  <a style="color:red">hủy </a> với lý do <b>"@item.QuyenGop.ghiChu"</b> </a>
                                     <br />
                                     <span>@item.ngayTB</span>
                                 </div>

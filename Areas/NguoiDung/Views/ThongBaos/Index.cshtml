@@ -3,23 +3,141 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+    string avt_ND = "";
 }
+<div class="central-meta">
+    <div class="editing-interest">
+        <h5 class="f-title"><i class="ti-bell"></i>Thông báo </h5>
+        <div class="notification-box">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    if (item.maBL != null)
+                    {
+                        if (item.BinhLuan.NguoiDung.avatar != null)
+                        {
+                            avt_ND = item.BinhLuan.NguoiDung.avatar;
+                        }
+                        else
+                        {
+                            avt_ND = "~/images/resources/User-avatar.svg.png";
+                        }
+                        <li>
 
-<div class="editing-interest">
-    <h5 class="f-title"><i class="ti-bell"></i>Thông báo </h5>
-    <div class="notification-box">
-        <ul>
-            @foreach (var item in Model)
-            {
-            <li>
-                <figure><img src="@Url.Content(item.BinhLuan.NguoiDung.avatar)" alt=""></figure>
-                <div class="notifi-meta">
-                    <p><b>@item.BinhLuan.NguoiDung.hoVaTen</b> vừa <b>Bình luận</b> bài đăng của bạn</p>
-                    <span>@item.ngayTB</span>
-                </div>
-                <i class="del fa fa-close"></i>
-            </li>
-            }
-        </ul>
+                            <figure><img src="@Url.Content(avt_ND)" alt=""></figure>
+                            <div class="notifi-meta">
+                                <p><b>@item.BinhLuan.NguoiDung.hoVaTen</b> vừa <b>Bình luận</b> bài đăng của bạn</p>
+                                <br />
+                                <span>@item.ngayTB</span>
+                            </div>
+
+                        </li>
+                    }
+                    if (item.maBDSP != null)
+                    {
+                        if (Session["avatar"] != null)
+                        {
+                            avt_ND = Session["avatar"].ToString();
+                        }
+                        else
+                        {
+                            avt_ND = "~/images/resources/User-avatar.svg.png";
+                        }
+
+                        <li>
+
+                            <figure><img src="@Url.Content(avt_ND)" alt=""></figure>
+                            @if (item.noiDung == "Đã duyệt")
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })"> <b>Bài đăng sản phẩm</b> của bạn đã được duyệt </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })"> <b>Bài đăng sản phẩm</b> của bạn đã bị hủy với lý do <b>"@item.BaiDangSanPham.ghiChu"</b> </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+
+
+                        </li>
+                    }
+                    if (item.maBDTT != null)
+                    {
+                        if (Session["avatar"] != null)
+                        {
+                            avt_ND = Session["avatar"].ToString();
+                        }
+                        else
+                        {
+                            avt_ND = "~/images/resources/User-avatar.svg.png";
+                        }
+
+                        <li>
+
+                            <figure><img src="@Url.Content(avt_ND)" alt=""></figure>
+                            @if (item.noiDung == "Đã duyệt")
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDTT_one","BaiDangThongTins", new {maBDTT = item.maBDTT , maND = item.maND })"><b>Bài đăng thông tin</b> của bạn đã được duyệt </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })"> <b>Bài đăng thông tin</b> của bạn đã bị hủy với lý do <b>"@item.BaiDangThongTin.ghiChu"</b> </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+
+
+                        </li>
+                    }
+                    if (item.maQG != null)
+                    {
+                        if (Session["avatar"] != null)
+                        {
+                            avt_ND = Session["avatar"].ToString();
+                        }
+                        else
+                        {
+                            avt_ND = "~/images/resources/User-avatar.svg.png";
+                        }
+
+                        <li>
+
+                            <figure><img src="@Url.Content(avt_ND)" alt=""></figure>
+                            @if (item.noiDung == "Đã duyệt")
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index","QuyenGops")"><b>Bài quyên góp</b> của bạn đã được duyệt </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index","QuyenGops")"> <b>Bài quyên góp</b> của bạn đã bị hủy với lý do <b>"@item.QuyenGop.ghiChu"</b> </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+
+
+                        </li>
+                    }
+
+                }
+            </ul>
+        </div>
     </div>
- </div>
+    </div>

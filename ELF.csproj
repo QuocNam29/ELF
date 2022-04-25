@@ -843,6 +843,7 @@
     <Content Include="Areas\NguoiDung\Views\Shared\DisplayPhuongThiTran.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Shared\DisplayQuanHuyen.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KiemDuyet_DangNhap\KiemDuyet_DangNhap.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\ThongBaos\ThongBao_header.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

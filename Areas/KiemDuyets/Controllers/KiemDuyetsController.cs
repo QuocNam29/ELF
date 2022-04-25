@@ -60,6 +60,16 @@ namespace ELF.Areas.KiemDuyets.Controllers
             baiDangSanPham.maTT = 4;
             baiDangSanPham.ghiChu = lydo;
             db.Entry(baiDangSanPham).State = EntityState.Modified;
+
+            db.ThongBaos.Add(new ThongBao
+            {
+                maBDSP = maBDSP,
+                maND = baiDangSanPham.maND,
+                tinhTrang = "Hien",
+                ngayTB = DateTime.Now,
+                noiDung = "Hủy duyệt"
+            }) ;
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -85,6 +95,15 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 diem = 5
             });
 
+            db.ThongBaos.Add(new ThongBao
+            {
+                maBDSP = maBDSP,
+                maND = baiDangSanPham.maND,
+                tinhTrang = "Hien",
+                ngayTB = DateTime.Now,
+                noiDung = "Đã duyệt"
+            });
+
             db.SaveChanges();
             return RedirectToAction("Index");
 
@@ -104,6 +123,16 @@ namespace ELF.Areas.KiemDuyets.Controllers
             baiDangThongTin.maTT = 4;
             baiDangThongTin.ghiChu = lydo;
             db.Entry(baiDangThongTin).State = EntityState.Modified;
+
+            db.ThongBaos.Add(new ThongBao
+            {
+                maBDTT = maBDTT,
+                maND = baiDangThongTin.maND,
+                tinhTrang = "Hien",
+                ngayTB = DateTime.Now,
+                noiDung = "Hủy duyệt"
+            });
+
             db.SaveChanges();
             return RedirectToAction("Index_BDTT");
         }
@@ -129,6 +158,15 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 diem = 10
             });
 
+            db.ThongBaos.Add(new ThongBao
+            {
+                maBDTT = maBDTT,
+                maND = baiDangThongTin.maND,
+                tinhTrang = "Hien",
+                ngayTB = DateTime.Now,
+                noiDung = "Đã duyệt"
+            });
+
             db.SaveChanges();
             return RedirectToAction("Index_BDTT");
         }
@@ -147,6 +185,17 @@ namespace ELF.Areas.KiemDuyets.Controllers
             quyenGop.trangThai = "Đã hủy";
             quyenGop.ghiChu = lydo;
             db.Entry(quyenGop).State = EntityState.Modified;
+
+            db.ThongBaos.Add(new ThongBao
+            {
+                maQG = maQG,
+                maND = quyenGop.maND,
+                tinhTrang = "Hien",
+                ngayTB = DateTime.Now,
+                noiDung = "Hủy duyệt"
+            });
+
+
             db.SaveChanges();
             return RedirectToAction("Index_DonQG");
         }
@@ -170,6 +219,15 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 thoiGian = DateTime.Now,
                 maQG = quyenGop.maQG,
                 diem = 10
+            });
+
+            db.ThongBaos.Add(new ThongBao
+            {
+                maDQ = maQG,
+                maND = quyenGop.maND,
+                tinhTrang = "Hien",
+                ngayTB = DateTime.Now,
+                noiDung = "Đã duyệt"
             });
 
             db.SaveChanges();

@@ -378,7 +378,7 @@
                                                 </li>
                                                 <li>
                                                     <i class="ti-gift"></i>
-                                                    <a href="" title="">Quà tặng</a>
+                                                    <a href="@Url.Action("Index", "QuaTangs")" title="">Quà tặng</a>
                                                 </li>
                                                 <li>
                                                     <i class="ti-power-off"></i>
@@ -407,11 +407,11 @@
                                                         <a href="@Url.Action("Edit","NguoiDungs",new { id = maND })" title="" class="underline">@Session["HoVaTen"].ToString()</a>
                                                     }
                                                     <span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
-                                                    <span><i class="ti-bell"></i><a href="@Url.Action("Index","ThongBaos")" " title="">Thông báo <em>2</em></a></span>
+                                                    <span><i class="ti-bell"></i><a href="@Url.Action("Index","ThongBaos")" title="">Thông báo <em>2</em></a></span>
                                                 </div>
                                                 <div class="page-likes">
                                                     <ul class="nav nav-tabs likes-btn">
-                                                        <li class="nav-item"><a class="active" href="#link1" data-toggle="tab">Đổi quà</a></li>
+                                                        <li class="nav-item"><a class="active" href="@Url.Action("Index", "QuaTangs")" data-toggle="tab">Đổi quà</a></li>
                                                         <li class="nav-item"><a class="" href="#link2" data-toggle="tab">lịch sử điểm</a></li>
                                                     </ul>
                                                     <!-- Tab panes -->

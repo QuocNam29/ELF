@@ -27,6 +27,7 @@ namespace ELF.Models
         public System.DateTime ngayTao { get; set; }
         public Nullable<System.DateTime> ngayThayDoi { get; set; }
         public string ghiChu { get; set; }
+        public string hinhAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonQua> DonQuas { get; set; }

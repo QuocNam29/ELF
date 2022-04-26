@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -306,6 +306,7 @@
           <Property Name="ngayTao" Type="datetime" Nullable="false" />
           <Property Name="ngayThayDoi" Type="datetime" />
           <Property Name="ghiChu" Type="nchar" MaxLength="10" />
+          <Property Name="hinhAnh" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="QuyenGop">
           <Key>
@@ -1303,8 +1304,7 @@
             <End Role="TraoDoi" EntitySet="TraoDoi" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ELFVanLang2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1676,6 +1676,7 @@
           <Property Name="ngayThayDoi" Type="DateTime" Precision="3" />
           <Property Name="ghiChu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="DonQuas" Relationship="Self.FK_DonQua_QuaTang" FromRole="QuaTang" ToRole="DonQua" />
+          <Property Name="hinhAnh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="QuyenGop">
           <Key>
@@ -2981,6 +2982,7 @@
           <EntitySetMapping Name="QuaTangs">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.QuaTang">
               <MappingFragment StoreEntitySet="QuaTang">
+                <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="maQuaTang" ColumnName="maQuaTang" />
                 <ScalarProperty Name="tenQuaTang" ColumnName="tenQuaTang" />
                 <ScalarProperty Name="diemDoi" ColumnName="diemDoi" />

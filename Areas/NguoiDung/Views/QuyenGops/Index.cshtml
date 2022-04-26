@@ -11,6 +11,14 @@
         <span><i class="fa fa-file-text-o"></i> Lịch sử quyên góp</span>
     </div>
 
+    @if (Model.Count() == 0)
+    {
+    <div class="error-meta">
+        <h4>Bạn chưa có quyên góp nào 😓</h4>
+    </div>
+        
+    }
+
     <ul class="nearby-contct">
         @foreach (var item in Model)
         {
@@ -46,7 +54,7 @@
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
                                                 <button type="submit" class="btn btn-primary">Xoá</button>
                                             }
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

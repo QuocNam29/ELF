@@ -5,60 +5,34 @@
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
 }
 
-<h2>Index</h2>
+<div class="central-meta">
+    <div class="groups">
+        <span><i class="fa fa-file-text-o"></i> Quà tặng</span>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tenQuaTang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.diemDoi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.trangThai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayTao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayThayDoi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tenQuaTang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.diemDoi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayTao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayThayDoi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ghiChu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maQuaTang }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maQuaTang }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maQuaTang })
-        </td>
-    </tr>
-}
+    <ul class="liked-pages">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="f-page">
+                    <figure>
+                        <a href="@Url.Action("Create", "QuyenGops", new {item.maQuaTang})" title=""><img src="~/images/resources/@item.hinhAnh" alt=""></a>
+                        <div class="dropdown pgs">
+                            <button class="btn" type="submit" id="dropdownMenu" aria-haspopup="true" aria-expanded="false">
+                                Quyên góp
+                            </button>
+                        </div>
+                        <em>@Html.DisplayFor(modelItem => item.trangThai)</em>
+                    </figure>
+                    <div class="page-infos">
+                        <h5><a href="@Url.Action("Create", "QuyenGops", new {item.maQuaTang})" title="">@Html.DisplayFor(modelItem => item.tenQuaTang)</a></h5>
+                        <span><a href="@Url.Action("Create", "QuyenGops", new {item.maQuaTang})" title="">@Html.DisplayFor(modelItem => item.diemDoi)</a></span>
+                    </div>
 
-</table>
+                </div>
+            </li>
+        }
+    </ul>
+
+</div>

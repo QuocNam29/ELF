@@ -123,9 +123,124 @@ namespace ELF.Areas.NguoiDung.Controllers
            
             db.TraoDois.Remove(traoDoi);
             db.SaveChanges();
-            return RedirectToAction("Index", "TraoDois");
+            return RedirectToAction("Index", "BaiDangSanPhams");
         }
 
+        public ActionResult Delete_DS(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TraoDoi traoDoi = db.TraoDois.Find(id);
+            if (traoDoi == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.TraoDois.Remove(traoDoi);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete_BL(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TraoDoi traoDoi = db.TraoDois.Find(id);
+            if (traoDoi == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.TraoDois.Remove(traoDoi);
+            db.SaveChanges();
+
+            string tenNguoiDang = Session["tenNguoiDang"].ToString();
+            string ngayDang = Session["ngayDang"].ToString();
+            string tenSP = Session["tenSP"].ToString();
+            string noiDung = Session["noiDung"].ToString();
+            string hinhAnh = Session["hinhAnh"].ToString();
+            string giaBan = Session["giaBan"].ToString();
+            string avt_BD = Session["avt_BD"].ToString();
+            string maND_BDSP = Session["maND_BDSP"].ToString();
+            int maBDSP = int.Parse(Session["maBDSP"].ToString());
+            string maTD = Session["maTD"].ToString();
+            Session["flat"] = 2;
+
+            return RedirectToAction("Index", "BinhLuans", new
+            {
+                maBDSP = maBDSP,
+                tenNguoiDang = tenNguoiDang,
+                ngayDang = ngayDang,
+                tenSP = tenSP,
+                noiDung = noiDung,
+                hinhAnh = hinhAnh,
+                giaBan = giaBan,
+                avt_BD = avt_BD,
+                flat = 2,
+                maTD = maTD,
+                maND_BDSP = maND_BDSP
+            });
+        }
+
+        public ActionResult Create_BL()
+        {
+            ViewBag.maBDSP = new SelectList(db.BaiDangSanPhams, "maBDSP", "tenSP");
+            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen");
+            ViewBag.maNDKhac = new SelectList(db.NguoiDungs, "maND", "hoVaTen");
+            return View();
+        }
+
+        // POST: NguoiDung/TraoDois/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create_BL([Bind(Include = "maTD,maND,maNDKhac,maBDSP,ngayDangKyTD,trangThai")] TraoDoi traoDoi)
+        {
+            if (ModelState.IsValid)
+            {
+                traoDoi.ngayDangKyTD = DateTime.Now;
+                traoDoi.trangThai = "Đăng ký";
+                db.TraoDois.Add(traoDoi);
+                db.SaveChanges();
+                string tenNguoiDang = Session["tenNguoiDang"].ToString();
+                string ngayDang = Session["ngayDang"].ToString();
+                string tenSP = Session["tenSP"].ToString();
+                string noiDung = Session["noiDung"].ToString();
+                string hinhAnh = Session["hinhAnh"].ToString();
+                string giaBan = Session["giaBan"].ToString();
+                string avt_BD = Session["avt_BD"].ToString();
+                string maND_BDSP = Session["maND_BDSP"].ToString();
+                int maBDSP = int.Parse(Session["maBDSP"].ToString());
+               
+                string maTD = Session["maTD"].ToString();
+                Session["flat"] = 1;
+
+                return RedirectToAction("Index", "BinhLuans", new
+                {
+                    maBDSP = maBDSP,
+                    tenNguoiDang = tenNguoiDang,
+                    ngayDang = ngayDang,
+                    tenSP = tenSP,
+                    noiDung = noiDung,
+                    hinhAnh = hinhAnh,
+                    giaBan = giaBan,
+                    avt_BD = avt_BD,
+                    flat = 1,
+                    maTD = maTD,
+                    maND_BDSP = maND_BDSP
+                });
+            }
+
+            ViewBag.maBDSP = new SelectList(db.BaiDangSanPhams, "maBDSP", "tenSP", traoDoi.maBDSP);
+            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", traoDoi.maND);
+            ViewBag.maNDKhac = new SelectList(db.NguoiDungs, "maND", "hoVaTen", traoDoi.maNDKhac);
+            return View(traoDoi);
+        }
         /* // POST: NguoiDung/TraoDois/Delete/5
          [HttpPost, ActionName("Delete")]
          [ValidateAntiForgeryToken]

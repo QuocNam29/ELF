@@ -22,7 +22,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             DateTime ngayDang, string tenSP, 
             string noiDung, string hinhAnh, 
             string giaBan, string avt_BD,
-             int flat, int maTD)
+             int flat, int maTD, int maND_BDSP)
         {
             var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP==maBDSP).OrderByDescending(bl=> bl.maBL);
            
@@ -38,6 +38,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             Session["flat"] = flat;
             Session["maTD"] = maTD;
             Session["maBDSP"] = maBDSP;
+            Session["maND_BDSP"] = maND_BDSP;
 
 
 
@@ -48,7 +49,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             DateTime ngayDang, string tenSP,
             string noiDung, string hinhAnh,
             string giaBan, string avt_BD,
-             int flat, int maTD)
+             int flat, int maTD, int maND_BDSP)
         {
             var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP == maBDSP).OrderByDescending(bl => bl.maBL);
 
@@ -64,7 +65,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             Session["flat"] = flat;
             Session["maTD"] = maTD;
             Session["maBDSP"] = maBDSP;
-
+            Session["maND_BDSP"] = maND_BDSP;
 
 
             return View(binhLuans.ToList());
@@ -174,7 +175,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             string hinhAnh = Session["hinhAnh"].ToString();
             string giaBan = Session["giaBan"].ToString();
             string avt_BD = Session["avt_BD"].ToString();
-
+            string maND_BDSP = Session["maND_BDSP"].ToString();
             int flat = int.Parse(Session["flat"].ToString());
             string maTD = Session["maTD"].ToString();
 
@@ -188,7 +189,8 @@ namespace ELF.Areas.NguoiDung.Controllers
                 giaBan = giaBan,
                 avt_BD = avt_BD,
                 flat = flat,
-                maTD = maTD
+                maTD = maTD,
+                maND_BDSP = maND_BDSP
             });
 
         }
@@ -211,7 +213,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             string hinhAnh = Session["hinhAnh"].ToString();
             string giaBan = Session["giaBan"].ToString();
             string avt_BD = Session["avt_BD"].ToString();
-
+            string maND_BDSP = Session["maND_BDSP"].ToString();
             int flat = int.Parse(Session["flat"].ToString());
             string maTD = Session["maTD"].ToString();
 
@@ -226,7 +228,8 @@ namespace ELF.Areas.NguoiDung.Controllers
                 giaBan = giaBan,
                 avt_BD = avt_BD,
                 flat = flat,
-                maTD = maTD
+                maTD = maTD,
+                maND_BDSP = maND_BDSP
             });
 
         }

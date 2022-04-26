@@ -26,9 +26,11 @@
     int flat = int.Parse(Session["flat"].ToString());
     int maBDSP = int.Parse(Session["maBDSP"].ToString());
     int maTD = int.Parse(Session["maTD"].ToString());
-
+    int maND_BDSP = int.Parse(Session["maND_BDSP"].ToString());
     string hidden = "";
     string avt_ND = "";
+
+
 }
 
 <div class="central-meta item">
@@ -48,7 +50,7 @@
 
                 @if (flat == 1)
                 {
-                    using (Html.BeginForm("Delete", "TraoDois"))
+                    using (Html.BeginForm("Delete_BL", "TraoDois"))
                     {
                         @Html.AntiForgeryToken()
                         @Html.Hidden("id", maTD)
@@ -61,12 +63,12 @@
                 }
                 else
                 {
-                    using (Html.BeginForm("Create", "TraoDois"))
+                    using (Html.BeginForm("Create_BL", "TraoDois"))
                     {
                         @Html.AntiForgeryToken()
-                       @* @Html.Hidden("maND", maND)
-                        @Html.Hidden("maNDKhac", item.maND)
-                        @Html.Hidden("maBDSP", item.maBDSP)*@
+                        @Html.Hidden("maND", maND)
+                        @Html.Hidden("maNDKhac", maND_BDSP)
+                        @Html.Hidden("maBDSP", maBDSP)
                         <button type="submit"> Đăng kí </button>
                     }
 

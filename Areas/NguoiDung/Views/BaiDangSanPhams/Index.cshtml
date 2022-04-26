@@ -101,7 +101,11 @@
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.Hidden("id", maTD)
-                                <button type="submit" style="float: right; margin-top: 10px;"> Đã đăng kí </button>
+                                @*<button type="submit" style="float: right; margin-top: 10px;"> Đã đăng kí </button>*@
+                               
+                                    <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đã đăng kí</span></button>
+
+                               
                             }
                         }
                         else if (flat == -100)
@@ -116,7 +120,11 @@
                                 @Html.Hidden("maND", maND)
                                 @Html.Hidden("maNDKhac", item.maND)
                                 @Html.Hidden("maBDSP", item.maBDSP)
-                                <button type="submit" style="float: right; margin-top: 10px;"> Đăng kí </button>
+                                @* <button type="submit" style="float: right; margin-top: 10px;"> Đăng kí </button>*@
+                               
+                                    <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đăng kí</span></button>
+
+                                
                             }
 
                         }
@@ -145,7 +153,8 @@
                                 giaBan = item.gia,
                                 avt_BD = avt_BD,
                                 flat = flat,
-                                maTD = maTD})" title="" class="showmore underline">more comments</a>
+                                maTD = maTD,
+                                maND_BDSP = item.maND})" title="" class="showmore underline">more comments</a>
                     </li>
                     
                 </ul>

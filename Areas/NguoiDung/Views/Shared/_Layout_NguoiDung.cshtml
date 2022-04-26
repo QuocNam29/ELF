@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="~/css/color.css">
     <link rel="stylesheet" href="~/css/responsive.css">
 
-
-
 </head>
 <body>
     <!--<div class="se-pre-con"></div>-->
@@ -301,6 +299,10 @@
                                                 <a href="messages.html" title="">Tin nhắn</a>
                                             </li>
                                             <li>
+                                                <i class="ti-gift"></i>
+                                                <a href="" title="">Quà tặng</a>
+                                            </li>
+                                            <li>
                                                 <i class="ti-power-off"></i>
                                                 <a href="@Url.Action("LogOut", "DangNhap")" title="">Đăng xuất</a>
                                             </li>
@@ -328,7 +330,7 @@
                                                     <a href="@Url.Action("Index_TrangCaNhan","BaiDangSanPhams",new { maND = maND  })" title="" class="underline">@Session["HoVaTen"].ToString()</a>
                                                 }
                                                 <span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
-                                                <span><i class="ti-bell"></i><a href="@Url.Action("Index","ThongBaos")"" title="">Thông báo <em>2</em></a></span>
+                                                <span><i class="ti-bell"></i><a href="@Url.Action("Index","ThongBaos")" title="">Thông báo <em>2</em></a></span>
                                             </div>
                                             <div class="page-likes">
                                                 <ul class="nav nav-tabs likes-btn">

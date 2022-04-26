@@ -12,107 +12,118 @@ using ELF.Models;
 namespace ELF.Areas.NguoiDung.Controllers
 {
     [LoginVerification]
-    public class QuaTangsController : Controller
+    public class DonQuasController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
-        // GET: NguoiDung/QuaTangs
+        // GET: NguoiDung/DonQuas
         public ActionResult Index()
         {
-            return View(db.QuaTangs.ToList());
+            var donQuas = db.DonQuas.Include(d => d.NguoiDung).Include(d => d.QuaTang);
+            return View(donQuas.ToList());
         }
 
-        // GET: NguoiDung/QuaTangs/Details/5
+        // GET: NguoiDung/DonQuas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QuaTang quaTang = db.QuaTangs.Find(id);
-            if (quaTang == null)
+            DonQua donQua = db.DonQuas.Find(id);
+            if (donQua == null)
             {
                 return HttpNotFound();
             }
-            return View(quaTang);
+            return View(donQua);
         }
 
-        // GET: NguoiDung/QuaTangs/Create
-        public ActionResult Create()
+        // GET: NguoiDung/DonQuas/Create
+        public ActionResult Create(string path, string tenQua)
         {
+            ViewBag.MaND = new SelectList(db.NguoiDungs, "maND", "hoVaTen");
+            ViewBag.MaQT = new SelectList(db.QuaTangs, "maQuaTang", "tenQuaTang");
+            ViewBag.hinhAnh = path;
+            ViewBag.tenQua = tenQua;
             return View();
         }
 
-        // POST: NguoiDung/QuaTangs/Create
+        // POST: NguoiDung/DonQuas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maQuaTang,tenQuaTang,diemDoi,trangThai,ngayTao,ngayThayDoi,ghiChu")] QuaTang quaTang)
+        public ActionResult Create([Bind(Include = "MaDQ,MaND,MaQT,NgayTao,TrangThai,TongDiem,DiaChi,GhiChu")] DonQua donQua)
         {
             if (ModelState.IsValid)
             {
-                db.QuaTangs.Add(quaTang);
+                db.DonQuas.Add(donQua);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(quaTang);
+            ViewBag.MaND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", donQua.MaND);
+            ViewBag.MaQT = new SelectList(db.QuaTangs, "maQuaTang", "tenQuaTang", donQua.MaQT);
+            return View(donQua);
         }
 
-        // GET: NguoiDung/QuaTangs/Edit/5
+        // GET: NguoiDung/DonQuas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QuaTang quaTang = db.QuaTangs.Find(id);
-            if (quaTang == null)
+            DonQua donQua = db.DonQuas.Find(id);
+            if (donQua == null)
             {
                 return HttpNotFound();
             }
-            return View(quaTang);
+            ViewBag.MaND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", donQua.MaND);
+            ViewBag.MaQT = new SelectList(db.QuaTangs, "maQuaTang", "tenQuaTang", donQua.MaQT);
+            return View(donQua);
         }
 
-        // POST: NguoiDung/QuaTangs/Edit/5
+        // POST: NguoiDung/DonQuas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maQuaTang,tenQuaTang,diemDoi,trangThai,ngayTao,ngayThayDoi,ghiChu")] QuaTang quaTang)
+        public ActionResult Edit([Bind(Include = "MaDQ,MaND,MaQT,NgayTao,TrangThai,TongDiem,DiaChi,GhiChu")] DonQua donQua)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(quaTang).State = EntityState.Modified;
+                db.Entry(donQua).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(quaTang);
+            ViewBag.MaND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", donQua.MaND);
+            ViewBag.MaQT = new SelectList(db.QuaTangs, "maQuaTang", "tenQuaTang", donQua.MaQT);
+            return View(donQua);
         }
 
-        // GET: NguoiDung/QuaTangs/Delete/5
+        // GET: NguoiDung/DonQuas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            QuaTang quaTang = db.QuaTangs.Find(id);
-            if (quaTang == null)
+            DonQua donQua = db.DonQuas.Find(id);
+            if (donQua == null)
             {
                 return HttpNotFound();
             }
-            return View(quaTang);
+            return View(donQua);
         }
 
-        // POST: NguoiDung/QuaTangs/Delete/5
+        // POST: NguoiDung/DonQuas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            QuaTang quaTang = db.QuaTangs.Find(id);
-            db.QuaTangs.Remove(quaTang);
+            DonQua donQua = db.DonQuas.Find(id);
+            db.DonQuas.Remove(donQua);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

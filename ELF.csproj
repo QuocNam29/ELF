@@ -264,6 +264,7 @@
     <Compile Include="Areas\NguoiDung\Controllers\BinhLuansController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DiemTichLuysController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\DonQuasController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\LoaiQuyenGopsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\QuaTangsController.cs" />
@@ -765,13 +766,6 @@
     <Content Include="Areas\NguoiDung\Views\ThongBaos\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\ThongBaos\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\ThongBaos\Index.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Index.cshtml" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
@@ -851,6 +845,18 @@
     <Content Include="Areas\NguoiDung\Views\QuaTangs\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuaTangs\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuaTangs\Index.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\NguoiDung\Views\DonQuas\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DonQuas\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DonQuas\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DonQuas\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\DonQuas\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

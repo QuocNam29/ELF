@@ -27,14 +27,12 @@ namespace ELF.Models
         public System.DateTime NgayTao { get; set; }
         public string TrangThai { get; set; }
         public double TongDiem { get; set; }
-        public int MaP { get; set; }
         public string DiaChi { get; set; }
         public string GhiChu { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiemTichLuy> DiemTichLuys { get; set; }
         public virtual NguoiDung NguoiDung { get; set; }
-        public virtual PhuongThiTran PhuongThiTran { get; set; }
         public virtual QuaTang QuaTang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThongBao> ThongBaos { get; set; }

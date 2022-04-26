@@ -1,0 +1,73 @@
+﻿@model ELF.Models.QuaTang
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>QuaTang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenQuaTang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenQuaTang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diemDoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diemDoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayThayDoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayThayDoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ghiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ghiChu)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

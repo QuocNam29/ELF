@@ -2,6 +2,7 @@
 @{
     int maND = int.Parse(Session["maND"].ToString());
     int DTL = int.Parse(Model.Sum(dtl => dtl.diem).ToString());
+    Session["DiemTichLuys"] = DTL;
 }
 
 <div class="tab-pane active fade show " id="link1">

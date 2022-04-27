@@ -72,6 +72,24 @@ namespace ELF.Areas.NguoiDung.Controllers
                     DiaChi = donQua.DiaChi,
                     GhiChu = donQua.GhiChu
                 });
+
+                db.ThongBaos.Add(new ThongBao
+                {
+                    maDQ = donQua.MaDQ,
+                    maND = mand,
+                    tinhTrang = "Hien",
+                    ngayTB = DateTime.Now,
+                    noiDung = "Quà của bạn đã được đổi thành công, bạn vui lòng đợi vài ngày để chúng mình liên lạc và giao hàng đến cho bạn"
+                });
+
+                db.DiemTichLuys.Add(new DiemTichLuy
+                {
+                    maND = mand,
+                    thoiGian = DateTime.Now,
+                    maDQ = donQua.MaDQ,
+                    diem = -(int.Parse(diemDoi) * soLuong)
+                });;
+
                 db.SaveChanges();
                 return RedirectToAction("Index", "QuaTangs");
             }

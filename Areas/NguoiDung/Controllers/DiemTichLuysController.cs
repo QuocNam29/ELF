@@ -30,7 +30,6 @@ namespace ELF.Areas.NguoiDung.Controllers
             int maND = int.Parse(Session["maND"].ToString());
             var diemTichLuys = db.DiemTichLuys.Include(d => d.BaiDangSanPham).Include(d => d.BaiDangThongTin).Include(d => d.NguoiDung).Include(d => d.QuyenGop).Where(dtl => dtl.maND == maND).OrderByDescending(dtl => dtl.maDTL);
 
-
             return PartialView("TongDTL_header", diemTichLuys.ToList());
         }
 

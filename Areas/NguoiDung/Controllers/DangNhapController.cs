@@ -44,12 +44,23 @@ namespace ELF.Areas.NguoiDung.Controllers
                     Session["email"] = account.email;
                     Session["ngayTao"] = account.ngayTao;
                     Session["gioiTinh"] = account.NguoiDung.gioiTinh;
-                    Session["PhuongThiTran"] = account.NguoiDung.PhuongThiTran.tenPhuong.Trim();
-                    Session["QuanHuyen"] = account.NguoiDung.QuanHuyen.tenQuan.Trim();
-                    Session["Tinh_ThanhPho"] = account.NguoiDung.Tinh_ThanhPho.tenTinh_TP.Trim();
-                    Session["diaChi"] = account.NguoiDung.diaChi.Trim();
 
-                    Session["diaChiTong"] = Session["diaChi"] + ", " + Session["PhuongThiTran"] + ", " + Session["QuanHuyen"] + ", " + Session["Tinh_ThanhPho"];
+
+
+                    if (account.NguoiDung.maP != null || account.NguoiDung.maQuan != null || 
+                        account.NguoiDung.maTinh_TP != null || account.NguoiDung.diaChi != null)  {
+
+                        string phuongThiTran = account.NguoiDung.PhuongThiTran.tenPhuong.Trim();
+                        string quanHuyen = account.NguoiDung.QuanHuyen.tenQuan.Trim();
+                        string tinhTP = account.NguoiDung.Tinh_ThanhPho.tenTinh_TP.Trim();
+                        string diaChi = account.NguoiDung.diaChi.Trim();
+
+                        Session["diaChiTong"] = diaChi + ", " + phuongThiTran + ", " + quanHuyen + ", " + tinhTP;
+                    } else
+                    {
+                        Session["diaChiTong"] = "";
+                    }
+
 
                     if (account.NguoiDung.gioiTinh == 1)
                     {

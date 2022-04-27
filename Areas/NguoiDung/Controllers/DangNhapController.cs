@@ -47,8 +47,8 @@ namespace ELF.Areas.NguoiDung.Controllers
 
 
 
-                    if (account.NguoiDung.maP != null || account.NguoiDung.maQuan != null || 
-                        account.NguoiDung.maTinh_TP != null || account.NguoiDung.diaChi != null)  {
+                    if (account.NguoiDung.maP != null && account.NguoiDung.maQuan != null && 
+                        account.NguoiDung.maTinh_TP != null && account.NguoiDung.diaChi != null)  {
 
                         string phuongThiTran = account.NguoiDung.PhuongThiTran.tenPhuong.Trim();
                         string quanHuyen = account.NguoiDung.QuanHuyen.tenQuan.Trim();

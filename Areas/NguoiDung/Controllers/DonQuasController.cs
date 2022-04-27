@@ -68,7 +68,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     MaQT = donQua.MaQT,
                     NgayTao = DateTime.Now,
                     TrangThai = "Chờ duyệt",
-                    TongDiem = int.Parse(diemDoi)*soLuong,
+                    TongDiem = - int.Parse(diemDoi)*soLuong,
                     DiaChi = donQua.DiaChi,
                     GhiChu = donQua.GhiChu
                 });

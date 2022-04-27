@@ -4,6 +4,7 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
     String hovatenND = Session["hoVaTen"].ToString();
+    String diaChiTong = Session["DiaChiTong"].ToString();
 }
 
 <h2>@ViewBag.FileStatus</h2>
@@ -17,43 +18,60 @@
             <h5 class="f-title"><i class="ti-gift"></i> Đổi quà tặng</h5>
             <form method="post">
 
-                <div class="form-group">
-                    <img src="~/images/@ViewBag.hinhAnh" />
-                </div>
+                @Html.HiddenFor(model => model.MaQT, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.maQT } })
 
                 <div class="top-banner">
                     <h3>@ViewBag.tenQua</h3>
                 </div>
 
                 <div class="form-group">
+                    <img src="~/images/resources/@ViewBag.hinhAnh" />
+                </div>
+
+                <div class="top-banner">
+                    <h5>@ViewBag.diemDoi điểm</h5>
+                </div>
+
+                <input type="hidden" value="@ViewBag.diemDoi" name="diemDoi"/>
+
+                <div class="form-group">
                     @Html.EditorFor(model => model.MaND, new { htmlAttributes = new { @class = "form-control", @type = "text", @Value = hovatenND, @disabled = "disabled", @style = "color: black" } })
                 </div>
 
-                @*<div class="form-group">
-            @Html.DropDownList("maLQG", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.maLQG, "", new { @class = "text-danger" })
-            <label class="control-label" for="input">Đồ quyên góp *</label><i class="mtrl-select"></i>
-        </div>*@
                 <div class="form-group">
-                    @Html.EditorFor(model => model.MaQT, new
+                    @Html.EditorFor(model => model.DiaChi, new
                     {
                         htmlAttributes = new
                         {
-                            @type = "number",
-                            @required = "",
-                            @oninvalid = "this.setCustomValidity('Bạn chưa nhập số lượng')",
-                            @oninput = "setCustomValidity('')"
+                           @type = "text",
+                           @Value = diaChiTong,
+                           @required = "",
+                           @oninvalid = "this.setCustomValidity('Bạn chưa nhập địa chỉ')",
+                           @oninput = "setCustomValidity('')"
                         }
                     })
-                    @Html.ValidationMessageFor(model => model.MaQT, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Số lượng *</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="textarea">Địa chỉ giao hàng <span class="text-danger"> *</span></label><i class="mtrl-select"></i>
                 </div>
+
+                <div class="form-group">
+                    <input type="number" name="soLuong" min="1" required="" oninvalid="this.setCustomValidity('Bạn chưa nhập số lượng hoặc số lượng chưa hợp lệ')" oninput="setCustomValidity('')" />
+                    <label class="control-label" for="input">Số lượng muốn đổi <span class="text-danger"> *</span></label><i class="mtrl-select"></i>
+                </div>
+
+                <div class="form-group">
+                    @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @type = "text", @placeholder = "Ví dụ: lúc đến gọi số..." } })
+                    <label class="control-label" for="textarea">Ghi chú</label><i class="mtrl-select"></i>
+                </div>
+
+                <p class="text-danger">Tất cả những trường có dấu * là bắt buộc</p>
 
 
                 <div class="submit-btns">
                     <button type="button" onclick="location.href='@Url.Action("Index", "QuaTangs")'" class="mtr-btn"><span>Huỷ</span></button>
-                    <button type="submit" class="mtr-btn"><span>Đăng ký</span></button>
+                    <button type="submit" class="mtr-btn"><span>Đổi</span></button>
                 </div>
+
+
             </form>
         </div>
     </div>

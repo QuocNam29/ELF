@@ -18,9 +18,7 @@
             <form method="post">
 
                 <div class="form-group">
-                    @*@Html.DropDownList("maND", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })*@
                     @Html.EditorFor(model => model.maND, new { htmlAttributes = new { @class = "form-control", @type = "text", @Value = hovatenND, @disabled = "disabled", @style = "color: black" } })
-                    @*<label class="form-control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>*@
                 </div>
                 <div class="form-group">
                     @Html.EditorFor(model => model.ngayQG, new
@@ -34,12 +32,12 @@
                    }
                })
                     @Html.ValidationMessageFor(model => model.ngayQG, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Ngày quyên góp *</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="input">Ngày quyên góp <span class="text-danger"> *</span></label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
                     @Html.DropDownList("maLQG", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.maLQG, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Đồ quyên góp *</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="input">Đồ quyên góp <span class="text-danger"> *</span></label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
                     @Html.EditorFor(model => model.soLuong, new
@@ -53,7 +51,7 @@
                         }
                     })
                     @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Số lượng *</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="input">Số lượng <span class="text-danger"> *</span></label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
                     @Html.DropDownListFor(model => model.donVi,
@@ -63,13 +61,13 @@
                       new SelectListItem { Value = "Kg" , Text = "Kg" }
                    },
                  new { @class = "form-control" })
-                    <label class="control-label" for="input">Đơn vị *</label><i class="mtrl-select"></i>
+                    <label class="control-label" for="input">Đơn vị <span class="text-danger"> *</span></label><i class="mtrl-select"></i>
                 </div>
                 <div class="form-group">
                     <label class="fileContainer">
                         <input accept="image/*" type="file" name="img" id="imgInp"><br>
                         <img id="blah" src="#" width="200" alt="Chọn hình ở đây...">
-                        <label class="control-label" for="input">Chọn hình *</label>
+                        <label class="control-label" for="input">Chọn hình <span class="text-danger"> *</span></label>
                         <script>
                             imgInp.onchange = eva => {
                                 const [file] = imgInp.files

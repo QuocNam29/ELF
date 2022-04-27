@@ -44,6 +44,12 @@ namespace ELF.Areas.NguoiDung.Controllers
                     Session["email"] = account.email;
                     Session["ngayTao"] = account.ngayTao;
                     Session["gioiTinh"] = account.NguoiDung.gioiTinh;
+                    Session["PhuongThiTran"] = account.NguoiDung.PhuongThiTran.tenPhuong.Trim();
+                    Session["QuanHuyen"] = account.NguoiDung.QuanHuyen.tenQuan.Trim();
+                    Session["Tinh_ThanhPho"] = account.NguoiDung.Tinh_ThanhPho.tenTinh_TP.Trim();
+                    Session["diaChi"] = account.NguoiDung.diaChi.Trim();
+
+                    Session["diaChiTong"] = Session["diaChi"] + ", " + Session["PhuongThiTran"] + ", " + Session["QuanHuyen"] + ", " + Session["Tinh_ThanhPho"];
 
                     if (account.NguoiDung.gioiTinh == 1)
                     {

@@ -39,12 +39,14 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
         // GET: NguoiDung/DonQuas/Create
-        public ActionResult Create(string path, string tenQua)
+        public ActionResult Create(string maQT, string path, string tenQua, string diemDoi)
         {
             ViewBag.MaND = new SelectList(db.NguoiDungs, "maND", "hoVaTen");
             ViewBag.MaQT = new SelectList(db.QuaTangs, "maQuaTang", "tenQuaTang");
+            ViewBag.maQT = maQT;
             ViewBag.hinhAnh = path;
             ViewBag.tenQua = tenQua;
+            ViewBag.diemDoi = diemDoi;
             return View();
         }
 
@@ -53,13 +55,25 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaDQ,MaND,MaQT,NgayTao,TrangThai,TongDiem,DiaChi,GhiChu")] DonQua donQua)
+        public ActionResult Create([Bind(Include = "MaDQ,MaND,MaQT,NgayTao,TrangThai,TongDiem,DiaChi,GhiChu")] DonQua donQua, int soLuong, string diemDoi)
         {
+            int mand = int.Parse(Session["maND"].ToString());
+
             if (ModelState.IsValid)
             {
-                db.DonQuas.Add(donQua);
+                db.DonQuas.Add(new DonQua
+                {
+                    MaDQ = donQua.MaDQ,
+                    MaND = mand,
+                    MaQT = donQua.MaQT,
+                    NgayTao = DateTime.Now,
+                    TrangThai = "Chờ duyệt",
+                    TongDiem = int.Parse(diemDoi)*soLuong,
+                    DiaChi = donQua.DiaChi,
+                    GhiChu = donQua.GhiChu
+                });
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "QuaTangs");
             }
 
             ViewBag.MaND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", donQua.MaND);

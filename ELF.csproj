@@ -588,6 +588,9 @@
     <Content Include="images\resources\photo9.jpg" />
     <Content Include="images\resources\pin.jpg" />
     <Content Include="images\resources\quan_ao.jpg" />
+    <Content Include="images\resources\Qua_senDa.jpg" />
+    <Content Include="images\resources\Qua_XuongRong.jpg" />
+    <Content Include="images\resources\Qua_xuongRongTron.jpg" />
     <Content Include="images\resources\recent-1.jpg" />
     <Content Include="images\resources\recent-11.jpg" />
     <Content Include="images\resources\recent-2.jpg" />

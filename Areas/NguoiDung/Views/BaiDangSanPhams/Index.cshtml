@@ -28,9 +28,6 @@
 
 <div class="central-meta">
 
-
-
-
     <div class="new-postbox">
         <figure>
             <img src="@Url.Content(avt)" alt="">
@@ -50,6 +47,15 @@
         </div>
     </div>
 </div> <!-- add post new box -->
+
+@if (Model.Count() == 0)
+{
+    <div class="error-meta">
+        <h4>Không có kết quả tìm kiếm cho <b>'@TempData["keyword"]'</b> 🤷‍♀️🤷‍♂️</h4>
+    </div>
+}
+
+
 @foreach (var item in Model)
 {
 

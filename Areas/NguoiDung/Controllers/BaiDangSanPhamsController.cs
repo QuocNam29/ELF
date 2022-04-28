@@ -29,6 +29,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 links = links.Where(b => b.tenSP.ToLower().Contains(keyword.ToLower())
                 || b.noiDung.Contains(keyword) || b.NguoiDung.hoVaTen.Contains(keyword));
+                TempData["keyword"] = keyword;
                 return View(links);
             }
             return View(links);

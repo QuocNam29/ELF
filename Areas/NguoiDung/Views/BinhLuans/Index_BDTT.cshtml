@@ -22,7 +22,7 @@
     string avt_BD = Session["avt_BD"].ToString();
     string tieuDe = Session["tieuDe"].ToString();
     int maBDTT = int.Parse(Session["maBDTT"].ToString());
-
+    int maND_BDTT = int.Parse(Session["maND_BDTT"].ToString());
     string avt_ND = "";
 
     string hidden = "";
@@ -39,7 +39,22 @@
                 <img src="@Url.Content(avt_BD)" alt="">
             </figure>
             <div class="friend-name">
-                <ins><a href="time-line.html" title="">@tenNguoiDang</a></ins>
+                
+                @if (maND != maND_BDTT)
+                {
+                    <ins>
+                        <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangThongTins",
+                                new { maND_k = maND_BDTT, hoVaTen_NDK = tenNguoiDang,
+                                avartar_NDK = avt_BD })" title="">@tenNguoiDang</a>
+                            </ins>
+                        }
+                        else
+                        {
+                            <ins>
+                                <a href="@Url.Action("Index_TrangCaNhan", "BaiDangThongTins",
+                                new { maND = maND })" title="" > @tenNguoiDang</a>
+                            </ins>
+                        }
                 <span>published: @ngayDang</span>
 
             </div>

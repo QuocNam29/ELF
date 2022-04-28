@@ -682,7 +682,7 @@ header.sticky {
     display: inline-block;
     margin-right: 25px;
     position: relative;
-    vertical-align: top;
+    vertical-align: middle;
     z-index: 2;
 }
 

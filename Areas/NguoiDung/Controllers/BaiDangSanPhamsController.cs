@@ -20,15 +20,18 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         // GET: NguoiDung/BaiDangSanPhams
         public ActionResult Index(string keyword)
-        {           
-            if (keyword == null)
+        {
+            var links = from l in db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung)
+                        .Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 2).OrderByDescending(B => B.maBDSP)
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
             {
-                var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 2).OrderByDescending(B => B.maBDSP);
-                return View(baiDangSanPhams.ToList());
+                links = links.Where(b => b.tenSP.ToLower().Contains(keyword.ToLower())
+                || b.noiDung.Contains(keyword) || b.NguoiDung.hoVaTen.Contains(keyword));
+                return View(links);
             }
-            var searchSP = db.BaiDangSanPhams.Where(x => x.tenSP.ToLower().Contains(keyword.ToLower())
-           || keyword == null).ToList();
-            return View(searchSP.ToList());
+            return View(links);
 
         }
        

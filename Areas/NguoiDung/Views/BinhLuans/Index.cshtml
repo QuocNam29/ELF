@@ -40,7 +40,22 @@
                 <img src="@Url.Content(avt_BD)" alt="">
             </figure>
             <div class="friend-name">
-                <ins><a href="time-line.html" title="">@tenNguoiDang</a></ins>
+              
+                @if (maND != maND_BDSP)
+                {
+                    <ins>
+                        <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangSanPhams",
+                                new { maND_k = maND_BDSP, hoVaTen_NDK = tenNguoiDang,
+                                avartar_NDK = avt_BD})" title="">@tenNguoiDang</a>
+                            </ins>
+                        }
+                        else
+                        {
+                            <ins>
+                                <a href="@Url.Action("Index_TrangCaNhan", "BaiDangSanPhams",
+                                new { maND = maND })" title="">@tenNguoiDang</a>
+                            </ins>
+                        }
                 <span>published: @ngayDang</span>
 
             </div>

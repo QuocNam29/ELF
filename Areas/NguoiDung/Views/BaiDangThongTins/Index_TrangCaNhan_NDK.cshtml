@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ELF.Models.BaiDangThongTin>
+
+@{
+    ViewBag.Title = "Index_TrangCaNhan_NDK";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan_NguoiDungKhac.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@foreach (var item in Model)
+{
+  
+
+    string avt_BD = "";
+    if (item.NguoiDung.avatar != null)
+    {
+        avt_BD = item.NguoiDung.avatar;
+    }
+    else
+    {
+        avt_BD = "~/images/resources/User-avatar.svg.png";
+    }
+
+    <div class="central-meta item">
+        <div class="user-post">
+            <div class="friend-info">
+                <figure>
+                    <img src="@Url.Content(avt_BD)" alt="">
+                </figure>
+                <div class="friend-name">
+                   
+                        <ins>
+                            <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangSanPhams",
+                                new { maND_k = item.maND, hoVaTen_NDK = item.NguoiDung.hoVaTen,
+                                avartar_NDK = item.NguoiDung.avatar })" title="">@item.NguoiDung.hoVaTen</a>
+                            </ins>
+                       
+
+                    <div>
+                        <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-meta">
+                    @if (item.hinhAnh != null)
+                    {
+                        <img src="@Url.Content(item.hinhAnh)" alt="">
+                    }
+
+                    <div class="description">
+                        <a style="color: red; font-size: 16px; font-weight: bold"><br /> @item.tieuDe</a>
+                        <br />
+                        <p>
+                            @item.noiDung
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="coment-area">
+                <ul class="we-comet">
+                    <li>
+                        <a href="@Url.Action("Index_BDTT","BinhLuans",
+                                new { maBDTT = item.maBDTT,
+                                tenNguoiDang = item.NguoiDung.hoVaTen,
+                                ngayDang = item.ngayDang,
+                                noiDung=item.noiDung,
+                                hinhAnh=item.hinhAnh,
+                                tieuDe = item.tieuDe,
+                                avt_BD = avt_BD,
+                                 maND_BDTT = item.maND})" title="" class="showmore underline">more comments</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+}

@@ -37,7 +37,13 @@
                     <img src="@Url.Content(avt_BD)" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
+                    
+                        <ins>
+                            <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangSanPhams",
+                                new { maND_k = item.maND, hoVaTen_NDK = item.NguoiDung.hoVaTen,
+                                avartar_NDK = item.NguoiDung.avatar })" title="">@item.NguoiDung.hoVaTen</a>
+                            </ins>
+                        
                     <span>published: @item.ngayDang</span>
 
                 </div>

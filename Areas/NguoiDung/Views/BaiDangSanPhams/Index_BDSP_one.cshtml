@@ -38,7 +38,21 @@
                     <img src="@Url.Content(avt_BD)" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
+                    @if (maND != item.maND)
+                    {
+                        <ins>
+                            <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangSanPhams",
+                                new { maND_k = item.maND, hoVaTen_NDK = item.NguoiDung.hoVaTen,
+                                avartar_NDK = item.NguoiDung.avatar })" title="">@item.NguoiDung.hoVaTen</a>
+                            </ins>
+                        }
+                        else
+                        {
+                            <ins>
+                                <a href="@Url.Action("Index_TrangCaNhan", "BaiDangSanPhams",
+                                new { maND = item.maND })" title="">@item.NguoiDung.hoVaTen</a>
+                            </ins>
+                        }
                     @if (hidden == 3)
                     {
                         <span>Đã ẩn </span>

@@ -860,6 +860,7 @@
     <Content Include="Areas\NguoiDung\Views\DonQuas\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DonQuas\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DiemTichLuys\TongDTL_header.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_TrangCaNhan_NDK.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

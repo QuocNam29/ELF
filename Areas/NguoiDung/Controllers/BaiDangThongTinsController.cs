@@ -40,12 +40,12 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         public ActionResult Index_TrangCaNhan_NDK(int maND_K, string hoVaTen_NDK, string avartar_NDK)
         {
-            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND_K).OrderByDescending(B => B.maBDSP);
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND_K).OrderByDescending(B => B.maBDTT);
             Session["maND_K"] = maND_K;
             Session["hoVaTen_NguoiDungKhac"] = hoVaTen_NDK;
             Session["avatar_NguoiDungKhac"] = avartar_NDK;
 
-            return View(baiDangSanPhams.ToList());
+            return View(baiDangThongTins.ToList());
         }
 
 

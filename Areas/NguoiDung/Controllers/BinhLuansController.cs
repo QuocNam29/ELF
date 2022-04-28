@@ -74,7 +74,7 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         public ActionResult Index_BDTT(int maBDTT, string tenNguoiDang,
            DateTime ngayDang,string noiDung, string tieuDe,
-           string hinhAnh, string avt_BD)
+           string hinhAnh, string avt_BD, int maND_BDTT)
         {
             var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDTT == maBDTT).OrderByDescending(bl => bl.maBL);
 
@@ -86,6 +86,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             Session["tieuDe"] = tieuDe;
             Session["avt_BD"] = avt_BD;
             Session["maBDTT"] = maBDTT;
+            Session["maND_BDTT"] = maND_BDTT;
             if (hinhAnh != null)
             {
                 Session["hinhAnh"] = hinhAnh;
@@ -102,7 +103,7 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         public ActionResult Index_BLBDTT_TrangCaNhan(int maBDTT, string tenNguoiDang,
            DateTime ngayDang, string noiDung, string tieuDe,
-           string hinhAnh, string avt_BD)
+           string hinhAnh, string avt_BD, int maND_BDTT)
             {
             var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDTT == maBDTT).OrderByDescending(bl => bl.maBL);
 
@@ -114,6 +115,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             Session["tieuDe"] = tieuDe;
             Session["avt_BD"] = avt_BD;
             Session["maBDTT"] = maBDTT;
+            Session["maND_BDTT"] = maND_BDTT;
             if (hinhAnh != null)
             {
                 Session["hinhAnh"] = hinhAnh;

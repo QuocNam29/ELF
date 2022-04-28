@@ -64,8 +64,22 @@
                     <img src="@Url.Content(avt_BD)" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
-                    
+                    @if (maND != item.maND)
+                    {
+                        <ins>
+                            <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangThongTins",
+                                new { maND_k = item.maND, hoVaTen_NDK = item.NguoiDung.hoVaTen,
+                                avartar_NDK = item.NguoiDung.avatar })" title="">@item.NguoiDung.hoVaTen</a>
+                            </ins>
+                        }
+                        else
+                        {
+                            <ins>
+                                <a href="@Url.Action("Index_TrangCaNhan", "BaiDangThongTins",
+                                new { maND = item.maND })" title="">@item.NguoiDung.hoVaTen</a>
+                            </ins>
+                        }
+
                     <div>
                         <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
                         <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
@@ -100,7 +114,8 @@
                                 noiDung=item.noiDung,
                                 hinhAnh=item.hinhAnh,
                                 tieuDe = item.tieuDe,
-                                avt_BD = avt_BD})" title="" class="showmore underline">more comments</a>
+                                avt_BD = avt_BD,
+                                maND_BDTT = item.maND})" title="" class="showmore underline">more comments</a>
                     </li>
 
                 </ul>

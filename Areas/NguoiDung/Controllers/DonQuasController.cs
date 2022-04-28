@@ -40,9 +40,7 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         // GET: NguoiDung/DonQuas/Create
         public ActionResult Create(string maQT, string path, string tenQua, string diemDoi)
-        {
-            ViewBag.MaND = new SelectList(db.NguoiDungs, "maND", "hoVaTen");
-            ViewBag.MaQT = new SelectList(db.QuaTangs, "maQuaTang", "tenQuaTang");
+        {            
             ViewBag.maQT = maQT;
             ViewBag.hinhAnh = path;
             ViewBag.tenQua = tenQua;
@@ -55,9 +53,15 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaDQ,MaND,MaQT,NgayTao,TrangThai,TongDiem,DiaChi,GhiChu")] DonQua donQua, int soLuong, string diemDoi)
+        public ActionResult Create([Bind(Include = "MaDQ,MaND,MaQT,NgayTao,TrangThai,TongDiem,DiaChi,GhiChu")] DonQua donQua, int soLuong, string path, string tenQua, string diemDoi)
         {
             int mand = int.Parse(Session["maND"].ToString());
+
+            if ((int)Session["DiemTichLuys"] < (int.Parse(diemDoi) * soLuong))
+            {
+                TempData["ErrorMessage"] = "Bạn hiện không đủ điểm để đổi quà tặng này 😥";
+                return RedirectToAction("Create", "DonQuas", new {maQT = donQua.MaQT, path, tenQua, diemDoi });
+            }
 
             if (ModelState.IsValid)
             {
@@ -94,8 +98,6 @@ namespace ELF.Areas.NguoiDung.Controllers
                 return RedirectToAction("Index", "QuaTangs");
             }
 
-            ViewBag.MaND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", donQua.MaND);
-            ViewBag.MaQT = new SelectList(db.QuaTangs, "maQuaTang", "tenQuaTang", donQua.MaQT);
             return View(donQua);
         }
 

@@ -21,6 +21,16 @@
 
                 @Html.HiddenFor(model => model.MaQT, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.maQT } })
 
+                <input type="hidden" value="@ViewBag.diemDoi" name="diemDoi" />
+                <input type="hidden" value="@ViewBag.tenQua" name="tenQua" />
+                <input type="hidden" value="@ViewBag.hinhAnh" name="path" />
+
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="text-danger">@TempData["ErrorMessage"]</div>
+                }
+
                 <div class="top-banner">
                     <h3>@ViewBag.tenQua</h3>
                 </div>
@@ -33,7 +43,6 @@
                     <h5>@ViewBag.diemDoi điểm</h5>
                 </div>
 
-                <input type="hidden" value="@ViewBag.diemDoi" name="diemDoi" />
 
                 <div class="form-group">
                     @Html.EditorFor(model => model.MaND, new { htmlAttributes = new { @class = "form-control", @type = "text", @Value = hovatenND, @disabled = "disabled", @style = "color: black" } })
@@ -85,37 +94,11 @@
 
                 <p class="text-danger">Tất cả những trường có dấu * là bắt buộc</p>
 
-                @if (int.Parse(diemTichLuy) < (int.Parse(ViewBag.diemDoi)))
-                {
-                    <button type="button" onclick="location.href='@Url.Action("Index", "QuaTangs")'" class="mtr-btn"><span>Huỷ</span></button>
-                    <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModalCenter"><span>Đổi</span></button>
 
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn hiện không đủ điểm để đổi quà tặng này 😥
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="submit-btns">
-                        <button type="button" onclick="location.href='@Url.Action("Index", "QuaTangs")'" class="mtr-btn"><span>Huỷ</span></button>
-                        <button type="submit" class="mtr-btn"><span>Đổi</span></button>
-                    </div>
-                }
+                <div class="submit-btns">
+                    <button type="button" onclick="location.href='@Url.Action("Index", "QuaTangs")'" class="mtr-btn"><span>Huỷ</span></button>
+                    <button type="submit" class="mtr-btn"><span>Đổi</span></button>
+                </div>
 
             </form>
         </div>

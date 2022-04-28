@@ -2,207 +2,143 @@
 
 @{
     string avt_ND = "";
+    int TongTB = int.Parse(Model.Count().ToString());
 }
 
-    <span>4 Thông báo mới</span>
-    <ul class="drops-menu">
-        @foreach (var item in Model)
+<span>@TongTB Thông báo </span>
+
+<ul class="drops-menu">
+    @foreach (var item in Model)
+    {
+        if (item.maBDSP != null)
         {
-            if (item.maBDSP != null)
+            if (Session["avatar"] != null)
             {
-                if (Session["avatar"] != null)
-                {
-                    avt_ND = Session["avatar"].ToString();
-                }
-                else
-                {
-                    avt_ND = "~/images/resources/User-avatar.svg.png";
-                }
-                <li>
-                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })" title="">
-                        <img src="@Url.Content(avt_ND)" alt="">
-                        @if (item.noiDung == "Đã duyệt")
-                        {
-                            <div class="mesg-meta">
-                                <h6>Bài đăng sản phẩm</h6>
-                                <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
-                                <i>@item.ngayTB</i>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="mesg-meta">
-                                <h6>Bài đăng sản phẩm</h6>
-                                <span>của bạn đã bị <b style="color: red">Hủy</b></span>
-                                <i>@item.ngayTB</i>
-                            </div>
-                        }
-                    </a>
-                    <span class="tag green">New</span>
-                </li>
+                avt_ND = Session["avatar"].ToString();
             }
-            if (item.maBDTT != null)
+            else
             {
-                if (Session["avatar"] != null)
-                {
-                    avt_ND = Session["avatar"].ToString();
-                }
-                else
-                {
-                    avt_ND = "~/images/resources/User-avatar.svg.png";
-                }
-                <li>
-                    <a href="@Url.Action("Index_BDTT_one","BaiDangThongTins", new {maBDTT = item.maBDTT , maND = item.maND })" title="">
-                        <img src="@Url.Content(avt_ND)" alt="">
-                        @if (item.noiDung == "Đã duyệt")
-                        {
-                            <div class="mesg-meta">
-                                <h6>Bài đăng thông tin</h6>
-                                <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
-                                <i>@item.ngayTB</i>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="mesg-meta">
-                                <h6>Bài đăng thông tin</h6>
-                                <span>của bạn đã bị <b style="color: red">Hủy</b></span>
-                                <i>@item.ngayTB</i>
-                            </div>
-                        }
-                    </a>
-                    <span class="tag green">New</span>
-                </li>
+                avt_ND = "~/images/resources/User-avatar.svg.png";
             }
-            if (item.maQG != null)
+            <li>
+                <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })" title="">
+                    <img src="@Url.Content(avt_ND)" alt="">
+                    @if (item.noiDung == "Đã duyệt")
+                    {
+                        <div class="mesg-meta">
+                            <h6>Bài đăng sản phẩm</h6>
+                            <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
+                            <i>@item.ngayTB</i>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mesg-meta">
+                            <h6>Bài đăng sản phẩm</h6>
+                            <span>của bạn đã bị <b style="color: red">Hủy</b></span>
+                            <i>@item.ngayTB</i>
+                        </div>
+                    }
+                </a>
+                <span class="tag green">New</span>
+            </li>
+        }
+        if (item.maBDTT != null)
+        {
+            if (Session["avatar"] != null)
             {
-                if (Session["avatar"] != null)
-                {
-                    avt_ND = Session["avatar"].ToString();
-                }
-                else
-                {
-                    avt_ND = "~/images/resources/User-avatar.svg.png";
-                }
-                <li>
-                    <a href="notifications.html" title="">
-                        <img src="@Url.Content(avt_ND)" alt="">
-                        @if (item.noiDung == "Đã duyệt")
-                        {
-                            <div class="mesg-meta">
-                                <h6>Đơn quyên góp</h6>
-                                <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
-                                <i>@item.ngayTB</i>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="mesg-meta">
-                                <h6>Đơn quyên góp</h6>
-                                <span>của bạn đã bị <b style="color: red">Hủy</b></span>
-                                <i>@item.ngayTB</i>
-                            </div>
-                        }
-                    </a>
-                    <span class="tag green">New</span>
-                </li>
+                avt_ND = Session["avatar"].ToString();
             }
-
-
-
+            else
+            {
+                avt_ND = "~/images/resources/User-avatar.svg.png";
+            }
+            <li>
+                <a href="@Url.Action("Index_BDTT_one","BaiDangThongTins", new {maBDTT = item.maBDTT , maND = item.maND })" title="">
+                    <img src="@Url.Content(avt_ND)" alt="">
+                    @if (item.noiDung == "Đã duyệt")
+                    {
+                        <div class="mesg-meta">
+                            <h6>Bài đăng thông tin</h6>
+                            <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
+                            <i>@item.ngayTB</i>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mesg-meta">
+                            <h6>Bài đăng thông tin</h6>
+                            <span>của bạn đã bị <b style="color: red">Hủy</b></span>
+                            <i>@item.ngayTB</i>
+                        </div>
+                    }
+                </a>
+                <span class="tag green">New</span>
+            </li>
+        }
+        if (item.maQG != null)
+        {
+            if (Session["avatar"] != null)
+            {
+                avt_ND = Session["avatar"].ToString();
+            }
+            else
+            {
+                avt_ND = "~/images/resources/User-avatar.svg.png";
+            }
+            <li>
+                <a href="notifications.html" title="">
+                    <img src="@Url.Content(avt_ND)" alt="">
+                    @if (item.noiDung == "Đã duyệt")
+                    {
+                        <div class="mesg-meta">
+                            <h6>Đơn quyên góp</h6>
+                            <span>của bạn đã được <b style="color: darkcyan">Duyệt</b></span>
+                            <i>@item.ngayTB</i>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mesg-meta">
+                            <h6>Đơn quyên góp</h6>
+                            <span>của bạn đã bị <b style="color: red">Hủy</b></span>
+                            <i>@item.ngayTB</i>
+                        </div>
+                    }
+                </a>
+                <span class="tag green">New</span>
+            </li>
         }
 
-    </ul>
-    <a href="notifications.html" title="" class="more-mesg">view more</a>
+        if (item.maBL != null)
+        {
+            if (item.BinhLuan.NguoiDung.avatar != null)
+            {
+                avt_ND = item.BinhLuan.NguoiDung.avatar;
+            }
+            else
+            {
+                avt_ND = "~/images/resources/User-avatar.svg.png";
+            }
+            <li>
+
+                <a href="notifications.html" title="">
+                    <img src="@Url.Content(avt_ND)" alt="">
+
+                    <div class="mesg-meta">
+                        <h6>@item.BinhLuan.NguoiDung.hoVaTen</h6>
+                        <span>vừa <b style="color: darkgreen">bình luận</b> bài đăng của bạn</span>
+                        <i>@item.ngayTB</i>
+                    </div>
+                </a>
+                <span class="tag green">New</span>
+
+            </li>
+        }
 
 
 
-
-@*<h2>ThongBao_header</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.noiDung)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ngayTB)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tinhTrang)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BaiDangSanPham.tenSP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BaiDangThongTin.tieuDe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BinhLuan.noiDung)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DonQua.TrangThai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NguoiDung1.hoVaTen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuyenGop.donVi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TraoDoi.trangThai)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.noiDung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ngayTB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tinhTrang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BaiDangSanPham.tenSP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BaiDangThongTin.tieuDe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BinhLuan.noiDung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonQua.TrangThai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NguoiDung.hoVaTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NguoiDung1.hoVaTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuyenGop.donVi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TraoDoi.trangThai)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.maTB }) |
-                @Html.ActionLink("Details", "Details", new { id=item.maTB }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.maTB })
-            </td>
-        </tr>
     }
 
-    </table>
-*@
+</ul>
+    <a href="@Url.Action("Index","ThongBaos")" title="" class="more-mesg">Xem tất cả</a>

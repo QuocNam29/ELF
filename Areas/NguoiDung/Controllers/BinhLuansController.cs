@@ -158,13 +158,23 @@ namespace ELF.Areas.NguoiDung.Controllers
             binhLuan.trangThai = "Hien";
             db.BinhLuans.Add(binhLuan);
 
-            /*db.ThongBaos.Add(new ThongBao
+           
+            string maND_BDSP = Session["maND_BDSP"].ToString();
+            int maND_BDSP_TB = int.Parse(maND_BDSP);
+            if (maND_BDSP_TB != maND)
             {
-                maBL = binhLuan.maBL,
-                maND = binhLuan.BaiDangSanPham.maND,
-                tinhTrang = "Hien",
-                ngayTB = DateTime.Now
-            });*/
+                db.ThongBaos.Add(new ThongBao
+                {
+                    maBL = binhLuan.maBL,
+                    maND = maND_BDSP_TB,
+                    tinhTrang = "Hien",
+                    ngayTB = DateTime.Now,
+                    noiDung = coment
+
+                });
+            }
+
+            
 
             db.SaveChanges();
 
@@ -175,14 +185,14 @@ namespace ELF.Areas.NguoiDung.Controllers
             string hinhAnh = Session["hinhAnh"].ToString();
             string giaBan = Session["giaBan"].ToString();
             string avt_BD = Session["avt_BD"].ToString();
-            string maND_BDSP = Session["maND_BDSP"].ToString();
+          
             int flat = int.Parse(Session["flat"].ToString());
             string maTD = Session["maTD"].ToString();
 
             return RedirectToAction("Index", new {
                 maBDSP = maBDSP,
                 tenNguoiDang = tenNguoiDang,
-                ngayDang = ngayDang,
+                ngayDang = DateTime.Parse(ngayDang),
                 tenSP = tenSP,
                 noiDung = noiDung,
                 hinhAnh = hinhAnh,
@@ -204,6 +214,22 @@ namespace ELF.Areas.NguoiDung.Controllers
             binhLuan.ngayBL = DateTime.Now;
             binhLuan.trangThai = "Hien";
             db.BinhLuans.Add(binhLuan);
+            string maND_BDSP = Session["maND_BDSP"].ToString();
+            int maND_BDSP_TB = int.Parse(maND_BDSP);
+            if (maND_BDSP_TB != maND)
+            {
+                db.ThongBaos.Add(new ThongBao
+                {
+                    maBL = binhLuan.maBL,
+                    maND = maND_BDSP_TB,
+                    tinhTrang = "Hien",
+                    ngayTB = DateTime.Now,
+                    noiDung = coment
+
+                });
+            }
+
+
             db.SaveChanges();
 
             string tenNguoiDang = Session["tenNguoiDang"].ToString();
@@ -213,7 +239,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             string hinhAnh = Session["hinhAnh"].ToString();
             string giaBan = Session["giaBan"].ToString();
             string avt_BD = Session["avt_BD"].ToString();
-            string maND_BDSP = Session["maND_BDSP"].ToString();
+          
             int flat = int.Parse(Session["flat"].ToString());
             string maTD = Session["maTD"].ToString();
 
@@ -221,7 +247,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 maBDSP = maBDSP,
                 tenNguoiDang = tenNguoiDang,
-                ngayDang = ngayDang,
+                ngayDang = DateTime.Parse(ngayDang),
                 tenSP = tenSP,
                 noiDung = noiDung,
                 hinhAnh = hinhAnh,
@@ -244,6 +270,21 @@ namespace ELF.Areas.NguoiDung.Controllers
             binhLuan.ngayBL = DateTime.Now;
             binhLuan.trangThai = "Hien";
             db.BinhLuans.Add(binhLuan);
+
+            BaiDangThongTin baiDangThongTin = db.BaiDangThongTins.Find(maBDTT);
+            if (baiDangThongTin.maND != maND)
+            {
+                db.ThongBaos.Add(new ThongBao
+                {
+                    maBL = binhLuan.maBL,
+                    maND = baiDangThongTin.maND,
+                    tinhTrang = "Hien",
+                    ngayTB = DateTime.Now,
+                    noiDung = coment
+
+                });
+            }
+
             db.SaveChanges();
 
             string tenNguoiDang = Session["tenNguoiDang"].ToString();
@@ -256,7 +297,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 maBDTT = maBDTT,
                 tenNguoiDang = tenNguoiDang,
-                ngayDang = ngayDang,               
+                ngayDang = DateTime.Parse(ngayDang),               
                 noiDung = noiDung,
                 hinhAnh = hinhAnh,          
                 avt_BD = avt_BD,
@@ -274,6 +315,21 @@ namespace ELF.Areas.NguoiDung.Controllers
             binhLuan.ngayBL = DateTime.Now;
             binhLuan.trangThai = "Hien";
             db.BinhLuans.Add(binhLuan);
+
+            BaiDangThongTin baiDangThongTin = db.BaiDangThongTins.Find(maBDTT);
+            if (baiDangThongTin.maND != maND)
+            {
+                db.ThongBaos.Add(new ThongBao
+                {
+                    maBL = binhLuan.maBL,
+                    maND = baiDangThongTin.maND,
+                    tinhTrang = "Hien",
+                    ngayTB = DateTime.Now,
+                    noiDung = coment
+
+                });
+            }
+
             db.SaveChanges();
 
             string tenNguoiDang = Session["tenNguoiDang"].ToString();
@@ -286,7 +342,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 maBDTT = maBDTT,
                 tenNguoiDang = tenNguoiDang,
-                ngayDang = ngayDang,
+                ngayDang = DateTime.Parse(ngayDang),
                 noiDung = noiDung,
                 hinhAnh = hinhAnh,
                 avt_BD = avt_BD,

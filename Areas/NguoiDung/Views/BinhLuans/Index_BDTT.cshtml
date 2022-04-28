@@ -71,15 +71,17 @@
                         {
 
                             @Html.AntiForgeryToken()
-                            <form method="post" action="" id="myform">
-                                <textarea placeholder="Post your comment" name="coment"></textarea>
-                                @Html.Hidden("maND", maND)
-                                @Html.Hidden("maBDTT", maBDTT)
+                        <form method="post" action="" id="myform">
+                            <textarea placeholder="Post your comment" name="coment"></textarea>
+                            @Html.Hidden("maND", maND)
+                            @Html.Hidden("maBDTT", maBDTT)
+                           
 
 
 
-                                <button type="submit" id="submit_cmt"></button>
-                            </form>
+
+                            <button type="submit" id="submit_cmt"></button>
+                        </form>
                         }
                     </div>
                 </li>

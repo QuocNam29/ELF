@@ -17,8 +17,9 @@ namespace ELF.Areas.NguoiDung.Controllers
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: NguoiDung/DiemTichLuys
-        public ActionResult Index(int maND)
+        public ActionResult Index()
         {
+            int maND = int.Parse(Session["maND"].ToString());
             var diemTichLuys = db.DiemTichLuys.Include(d => d.BaiDangSanPham).Include(d => d.BaiDangThongTin).Include(d => d.NguoiDung).Include(d => d.QuyenGop).Where(dtl => dtl.maND == maND).OrderByDescending(dtl => dtl.maDTL);
 
 

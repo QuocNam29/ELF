@@ -5,66 +5,75 @@
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
 }
 
-<h2>Index</h2>
+<div class="central-meta">
+    <div class="groups">
+        <span><i class="fa fa-file-text-o"></i> Lịch sử đổi quà</span>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayTao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TongDiem)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GhiChu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuaTang.tenQuaTang)
-        </th>
-        <th></th>
-    </tr>
+    @if (Model.Count() == 0)
+    {
+        <div class="error-meta">
+            <h4>Bạn chưa đổi quà lần nào 😥</h4>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayTao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TongDiem)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GhiChu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NguoiDung.hoVaTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuaTang.tenQuaTang)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaDQ }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaDQ }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaDQ })
-        </td>
-    </tr>
-}
+    }
 
-</table>
+    <ul class="nearby-contct">
+        @foreach (var item in Model)
+        {
+            int soLuong = (int)item.TongDiem / 1000;
+
+            <li>
+                <div class="nearly-pepls">
+                    <figure>
+                        <img src="~/images/resources/@item.QuaTang.hinhAnh" alt="">
+                    </figure>
+                    <div class="pepl-info">
+                        <h4>@item.QuaTang.tenQuaTang</h4>
+                        <span style="color:#545454">@soLuong cái</span>
+                        @if (item.TrangThai == "Chờ giao hàng")
+                        {
+                            <em style="color: #545454; border: 1px solid; padding: 2px; ">@item.TrangThai</em>
+                            <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#exampleModalCenter">Huỷ đơn quà</a>
+
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn có chắc muốn xoá đơn đổi quà @soLuong chậu @item.QuaTang.tenQuaTang này? 
+                                            Bạn sẽ được hoàn lại @item.TongDiem điểm.
+                                        </div>
+                                        <div class="modal-footer">
+                                            @using (Html.BeginForm("Delete", "DonQuas", new { id = item.MaDQ }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                                <button type="submit" class="btn btn-primary">Xoá</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        else if (item.TrangThai == "Đã giao hàng")
+                        {
+                            <em style="color: green; border: 1px solid; padding: 2px; ">@item.TrangThai</em>
+                        }
+                        @*else
+                        {
+                            <em style="color: red; border: 1px solid; padding: 2px; ">@item.trangThai</em>
+                        }*@
+                        <span>@item.NgayTao.ToString("dd/MM/yyyy")</span>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

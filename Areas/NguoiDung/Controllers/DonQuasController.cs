@@ -19,7 +19,8 @@ namespace ELF.Areas.NguoiDung.Controllers
         // GET: NguoiDung/DonQuas
         public ActionResult Index()
         {
-            var donQuas = db.DonQuas.Include(d => d.NguoiDung).Include(d => d.QuaTang);
+            int mand = int.Parse(Session["maND"].ToString());
+            var donQuas = db.DonQuas.Include(d => d.NguoiDung).Include(d => d.QuaTang).Where(d => d.MaND == mand).OrderByDescending(d => d.NgayTao);
             return View(donQuas.ToList());
         }
 
@@ -71,7 +72,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     MaND = mand,
                     MaQT = donQua.MaQT,
                     NgayTao = DateTime.Now,
-                    TrangThai = "Chờ duyệt",
+                    TrangThai = "Chờ giao hàng",
                     TongDiem = int.Parse(diemDoi)*soLuong,
                     DiaChi = donQua.DiaChi,
                     GhiChu = donQua.GhiChu
@@ -81,7 +82,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                 {
                     maDQ = donQua.MaDQ,
                     maND = mand,
-                    tinhTrang = "Hien",
+                    tinhTrang = "Đã đổi",
                     ngayTB = DateTime.Now,
                     noiDung = "Quà của bạn đã được đổi thành công, bạn vui lòng đợi vài ngày để chúng mình liên lạc và giao hàng đến cho bạn"
                 });

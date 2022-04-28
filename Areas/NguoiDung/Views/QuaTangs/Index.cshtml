@@ -7,54 +7,33 @@
 
 <div class="central-meta">
     <div class="groups">
-        <span><i class="ti-gift"></i> Quà tặng</span>
+        <span><i class="ti-gift"></i> Đổi quà tặng</span>
     </div>
 
     <br />
 
-    <div class="frnds">
-        <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">Quà tặng</a>
-            <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Lịch sử đổi quà</a>
-        </ul>
+    <ul class="liked-pages">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="f-page">
+                    <figure>
+                        <a href="@Url.Action("Create", "DonQuas", new {maQT = item.maQuaTang, tenQua = item.tenQuaTang, path = item.hinhAnh, diemdoi = item.diemDoi})" title=""><img src="~/images/resources/@item.hinhAnh" alt=""></a>
+                        <div class="dropdown pgs">
+                            <button class="btn" type="submit" id="dropdownMenu" aria-haspopup="true" aria-expanded="false">
+                                @Html.DisplayFor(modelItem => item.diemDoi) điểm
+                            </button>
+                        </div>
+                        <em>@Html.DisplayFor(modelItem => item.trangThai)</em>
+                    </figure>
+                    <div class="page-infos">
+                        <h5><a href="@Url.Action("Create", "DonQuas", new {maQT = item.maQuaTang, tenQua = item.tenQuaTang, path = item.hinhAnh, diemDoi = item.diemDoi})" title="">@Html.DisplayFor(modelItem => item.tenQuaTang)</a></h5>
+                        <span><a href="@Url.Action("Create", "DonQuas", new {maQT = item.maQuaTang, tenQua = item.tenQuaTang, path = item.hinhAnh, diemDoi = item.diemDoi})" title="">@Html.DisplayFor(modelItem => item.ghiChu)</a></span>
+                    </div>
 
-        <div class="tab-content">
-            <div class="tab-pane active fade show " id="frends">
+                </div>
+            </li>
+        }
+    </ul>
 
-                <ul class="liked-pages">
-                    @foreach (var item in Model)
-                    {
-                        <li>
-                            <div class="f-page">
-                                <figure>
-                                    <a href="@Url.Action("Create", "DonQuas", new {maQT = item.maQuaTang, tenQua = item.tenQuaTang, path = item.hinhAnh, diemdoi = item.diemDoi})" title=""><img src="~/images/resources/@item.hinhAnh" alt=""></a>
-                                    <div class="dropdown pgs">
-                                        <button class="btn" type="submit" id="dropdownMenu" aria-haspopup="true" aria-expanded="false">
-                                            @Html.DisplayFor(modelItem => item.diemDoi) điểm
-                                        </button>
-                                    </div>
-                                    <em>@Html.DisplayFor(modelItem => item.trangThai)</em>
-                                </figure>
-                                <div class="page-infos">
-                                    <h5><a href="@Url.Action("Create", "DonQuas", new {maQT = item.maQuaTang, tenQua = item.tenQuaTang, path = item.hinhAnh, diemDoi = item.diemDoi})" title="">@Html.DisplayFor(modelItem => item.tenQuaTang)</a></h5>
-                                    <span><a href="@Url.Action("Create", "DonQuas", new {maQT = item.maQuaTang, tenQua = item.tenQuaTang, path = item.hinhAnh, diemDoi = item.diemDoi})" title="">@Html.DisplayFor(modelItem => item.ghiChu)</a></span>
-                                </div>
-
-                            </div>
-                        </li>
-                    }
-                </ul>
-
-            </div>
-
-            <div class="tab-pane fade" id="frends-req">
-                    <ul>
-                       
-
-
-                    </ul>
-
-            </div>
-        </div>
-    </div>
 </div>

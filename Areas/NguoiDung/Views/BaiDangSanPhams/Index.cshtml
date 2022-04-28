@@ -15,7 +15,7 @@
         avt = "~/images/resources/User-avatar.svg.png";
     }
 
-    
+
 }
 <head>
     <link href="~/css/style_btn.css" rel="stylesheet" />
@@ -64,13 +64,15 @@
     }
 
     int flat = -100;
-    int maTD = -1 ;
+    int maTD = -1;
     if (item.maND != maND)
     {
         flat = item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td).Count();
-         maTD = int.Parse((item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString()));
+        maTD = int.Parse((item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString()));
 
-    } <div class="central-meta item">
+    }
+
+    <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -79,20 +81,27 @@
                 <div class="friend-name">
                     @if (maND != item.maND)
                     {
-                        <ins><a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangSanPhams", new { maND_k = item.maND, hoVaTen_NDK = item.NguoiDung.hoVaTen, avartar_NDK = item.NguoiDung.avatar })" title="">@item.NguoiDung.hoVaTen</a></ins>
-                    }
-                    else
-                    {
-                        <ins><a href="@Url.Action("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = item.maND })" title="">@item.NguoiDung.hoVaTen</a></ins>
-                    }
-                    
+                        <ins>
+                            <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangSanPhams",
+                                new { maND_k = item.maND, hoVaTen_NDK = item.NguoiDung.hoVaTen,
+                                avartar_NDK = item.NguoiDung.avatar })" title="">@item.NguoiDung.hoVaTen</a>
+                            </ins>
+                        }
+                        else
+                        {
+                            <ins>
+                                <a href="@Url.Action("Index_TrangCaNhan", "BaiDangSanPhams",
+                                new { maND = item.maND })" title="">@item.NguoiDung.hoVaTen</a>
+                            </ins>
+                        }
+
                     <span>published: @item.ngayDang</span>
 
                 </div>
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
 
-                    
+
 
                     <div class="description">
                         @if (flat == 1)
@@ -102,10 +111,10 @@
                                 @Html.AntiForgeryToken()
                                 @Html.Hidden("id", maTD)
                                 @*<button type="submit" style="float: right; margin-top: 10px;"> Đã đăng kí </button>*@
-                               
-                                    <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đã đăng kí</span></button>
 
-                               
+                                <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đã đăng kí</span></button>
+
+
                             }
                         }
                         else if (flat == -100)
@@ -121,10 +130,10 @@
                                 @Html.Hidden("maNDKhac", item.maND)
                                 @Html.Hidden("maBDSP", item.maBDSP)
                                 @* <button type="submit" style="float: right; margin-top: 10px;"> Đăng kí </button>*@
-                               
-                                    <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đăng kí</span></button>
 
-                                
+                                <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đăng kí</span></button>
+
+
                             }
 
                         }
@@ -143,25 +152,31 @@
             <div class="coment-area">
                 <ul class="we-comet">
                     <li>
-                        <a href="@Url.Action("Index","BinhLuans",
-                                new { maBDSP = item.maBDSP, 
-                                tenNguoiDang = item.NguoiDung.hoVaTen,
-                                ngayDang = item.ngayDang,
-                                tenSP=item.tenSP,
-                                noiDung=item.noiDung,
-                                hinhAnh=item.hinhAnh,
-                                giaBan = item.gia,
-                                avt_BD = avt_BD,
-                                flat = flat,
-                                maTD = maTD,
-                                maND_BDSP = item.maND})" title="" class="showmore underline">more comments</a>
+                        <a href="@Url.Action("Index", "BinhLuans",
+    new
+    {
+        maBDSP = item.maBDSP,
+        tenNguoiDang = item.NguoiDung.hoVaTen,
+        ngayDang = item.ngayDang,
+        tenSP = item.tenSP,
+        noiDung = item.noiDung,
+        hinhAnh = item.hinhAnh,
+        giaBan = item.gia,
+        avt_BD = avt_BD,
+        flat = flat,
+        maTD = maTD,
+        maND_BDSP = item.maND
+    })" title="" class="showmore underline">more comments</a>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
     </div>
 }
+
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {

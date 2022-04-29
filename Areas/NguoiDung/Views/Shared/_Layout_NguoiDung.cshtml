@@ -7,7 +7,7 @@
     }
     else
     {
-        avt = "~/images/resources/User-avatar.svg.png";
+        avt = "~/images/resources/User-avatar.svg";
     }
 }
 <!DOCTYPE html>
@@ -314,7 +314,7 @@
                                         <h4 class="widget-title">Trang cá nhân</h4>
                                         <div class="your-page">
                                             <figure>
-                                                <a href="@Url.Action("Index_TrangCaNhan","BaiDangSanPhams",new { maND = maND  })" title=""><img src="@Url.Content(avt)" alt=""></a>
+                                                <a href="@Url.Action("Index_TrangCaNhan","BaiDangSanPhams",new { maND = maND  })" title=""><img width="55" src="@Url.Content(avt)" alt=""></a>
                                             </figure>
                                             <div class="page-meta">
                                                 @if (Session["hoVaTen"] != null)

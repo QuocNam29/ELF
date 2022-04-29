@@ -8,7 +8,7 @@
     }
     else
     {
-        avt = "~/images/resources/User-avatar.svg.png";
+        avt = "~/images/resources/User-avatar.svg";
     }
 }
 <!DOCTYPE html>
@@ -368,7 +368,7 @@
                         <div class="col-lg-2 col-sm-3">
                             <div class="user-avatar">
                                 <figure>
-                                    <img src=" @Url.Content(avt)" />
+                                    <img src="@Url.Content(avt)" />
                                 </figure>
                             </div>
                         </div>
@@ -448,7 +448,7 @@
                                             <h4 class="widget-title">Trang cá nhân</h4>
                                             <div class="your-page">
                                                 <figure>
-                                                    <a href="@Url.Action("Edit","NguoiDungs",new { id = maND })" title=""><img src="@Url.Content(avt)" alt=""></a>
+                                                    <a href="@Url.Action("Edit","NguoiDungs",new { id = maND })" title=""><img width="55" src="@Url.Content(avt)" alt=""></a>
                                                 </figure>
                                                 <div class="page-meta">
                                                     @if (Session["hoVaTen"] != null)

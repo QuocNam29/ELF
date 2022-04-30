@@ -53,6 +53,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             List<Tinh_ThanhPho> tinh_ThanhPhos = db.Tinh_ThanhPho.ToList();
             return tinh_ThanhPhos;
         }
+
         public ActionResult GetQuanHuyenList (int? maTinh_TP)
         {
             List<QuanHuyen> quanHuyens = db.QuanHuyens.Where(x => x.maTP == maTinh_TP).ToList();
@@ -168,9 +169,9 @@ namespace ELF.Areas.NguoiDung.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
-            ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan", nguoiDung.maQuan);
             ViewBag.maTinh_TP = new SelectList(db.Tinh_ThanhPho, "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
+            ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan", nguoiDung.maQuan);
+            ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
             return View(nguoiDung);
         }
 

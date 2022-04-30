@@ -16,11 +16,11 @@ else
 }
 <div class="editing-info">
     <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin cá nhân</h5>
-        <div class="error-meta">
-            <img width="300" src="@Url.Content(avt)" alt="">
-        </div> 
+    <div class="error-meta">
+        <img width="300" src="@Url.Content(avt)" alt="">
     </div>
-       
+</div>
+
 <div class="onoff-options">
     <div class="setting-row">
         <span>Họ và Tên</span>
@@ -29,7 +29,10 @@ else
     <div class="setting-row">
         <span>Số điện thoại</span>
         <p>@Html.DisplayFor(model => model.dienThoai)</p>
-
+    </div>
+    <div class="setting-row">
+        <span>Giới tính</span>
+        <p>@Session["loaiGioiTinh"]</p>    
     </div>
     <div class="setting-row">
         <span>Tỉnh/Thành phố</span>
@@ -48,9 +51,9 @@ else
         <p>@Html.DisplayFor(model => model.diaChi)</p>
     </div>
     <div class="submit-btns">
-        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Edit", "NguoiDungs",  new { id = Model.maND })'" ><span>Chỉnh sửa</span></button>
+        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Edit", "NguoiDungs",  new { id = Model.maND })'"><span>Chỉnh sửa</span></button>
     </div>
 
 </div>
 
-    
+

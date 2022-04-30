@@ -26,9 +26,9 @@ else
     <div class="editing-info">
         <div class="form-group">
             <label class="fileContainer">
-                
-                <br />                   
-                 <img id="blah" src="@Url.Content(avt)" width="200" alt="Image preview...">             
+
+                <br />
+                <img id="blah" src="@Url.Content(avt)" width="200" alt="Image preview...">
                 <label for="exampleFormControlFile1" style="color: #808080">Thay hình</label>
                 <input accept="image/*" name="avt" type="file" class="form-control-file" id="exampleFormControlFile1">
                 <label class="control-label" for="input">Thay Avtatar</label>
@@ -50,7 +50,7 @@ else
             {
                 htmlAttributes = new
                 {
-                   @type = "text",
+                   @type = "text"
                 }
             })
             <label class="control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>
@@ -80,26 +80,45 @@ else
         </div>
         <div class="form-radio">
             <select name="gioiTinh" id="" class="form-control">
-                <option value="@int.Parse(Session["gioiTinh"].ToString())">@Session["loaiGioiTinh"]</option>
-                <option value="1">Nam</option>
-                <option value="0">Nữ</option>
-                <option value="2">Khác</option>
+
+                @if (int.Parse(Session["gioiTinh"].ToString()) == 1)
+                {
+                    <option value="" disabled="disabled">Giới tính</option>
+                    <option value="1" selected="selected">Nam</option>
+                    <option value="0">Nữ</option>
+                    <option value="2">Khác</option>
+                }
+                else if (int.Parse(Session["gioiTinh"].ToString()) == 0)
+                {
+                    <option value="" disabled="disabled">Giới tính</option>
+                    <option value="1">Nam</option>
+                    <option value="0" selected="selected">Nữ</option>
+                    <option value="2">Khác</option>
+                }
+                else
+                {
+                    <option value="" disabled="disabled">Giới tính</option>
+                    <option value="1">Nam</option>
+                    <option value="0">Nữ</option>
+                    <option value="2" selected="selected">Khác</option>
+                }
             </select>
         </div>
         <div class="form-group">
-            @if (ViewBag.maTinh_TP != null)
-            {
-                @Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố", htmlAttributes: new { @class = "form-control" })
-            }
+        @if (ViewBag.maTinh_TP != null)
+        {           
+           @*@Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
+           @Html.DropDownList("maTinh_TP", ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")
+        }
         </div>
         <div class="form-group">
-            @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện", htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện")
         </div>
         <div class="form-group">
-            @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn", htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn")
         </div>
         <div class="form-group">
-            @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { placeholder = "Địa chỉ", @class = "form-control" } })
+            @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @type = "text" } })
             <label class="control-label" for="input">Địa chỉ</label><i class="mtrl-select"></i>
         </div>
         <div class="submit-btns">
@@ -113,39 +132,44 @@ else
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $("#maTinh_TP").change(function () {
-            var ID = $(this).val();
-            debugger
-            $.ajax({
-                type: "post",
-                url: "/NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ID,
-                contentType: "html",
-                success: function (response) {
-                    debugger
-                    $("#maQuan").empty();
-                    $("#maQuan").append(response);
-                }
-            })
-        })
-    })
 
-    $(document).ready(function () {
-        $("#maQuan").change(function () {
-            var ID = $(this).val();
-            debugger
-            $.ajax({
-                type: "post",
-                url: "/NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + ID,
-                contentType: "html",
-                success: function (response) {
-                    debugger
-                    $("#maP").empty();
-                    $("#maP").append(response);
-                }
+        var RootUrl = '@Url.Content("~/")';
+
+        $(document).ready(function () {
+            $("#maTinh_TP").change(function () {
+                var ThanhPhoID = $(this).val();
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: RootUrl + "NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#maQuan").empty();
+                        $("#maQuan").append(response);
+                    }
+                })
             })
         })
-    })
+
+
+        $(document).ready(function () {
+            $("#maQuan").change(function () {
+                var QuanID = $(this).val();
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: RootUrl + "NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#maP").empty();
+                        $("#maP").append(response);
+                    }
+                })
+            })
+        })
+
 </script>
 
 

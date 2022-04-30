@@ -5,12 +5,13 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
     string avt = "";
+    int maND = int.Parse(Session["maND"].ToString());
 
 }
 
-@if (Model.avatar != null)
+@if (Session["avatar"] != null)
 {
-    avt = Model.avatar;
+    avt = Session["avatar"].ToString();
 }
 else
 {
@@ -25,11 +26,13 @@ else
     <div class="editing-info">
         <div class="form-group">
             <label class="fileContainer">
-                <br />
-                <img id="blah" src="@Url.Content(avt)" width="200" alt="Image preview...">
+                
+                <br />                   
+                 <img id="blah" src="@Url.Content(avt)" width="200" alt="Image preview...">             
                 <label for="exampleFormControlFile1" style="color: #808080">Thay hình</label>
                 <input accept="image/*" name="avt" type="file" class="form-control-file" id="exampleFormControlFile1">
                 <label class="control-label" for="input">Thay Avtatar</label>
+
                 <script>
                     exampleFormControlFile1.onchange = evt => {
                         const [file] = exampleFormControlFile1.files
@@ -40,8 +43,6 @@ else
                 </script>
             </label>
         </div>
-
-        <input type="hidden" value="@avt" name="avtImage" />
 
 
         <div class="form-group half">
@@ -74,8 +75,8 @@ else
                    @type = "text"
                 }
             })
-            @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @class = "text-danger" })
             <label class="control-label" for="input">Ngày sinh</label><i class="mtrl-select"></i>
+            @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @class = "text-danger" })
         </div>
         <div class="form-radio">
             <select name="gioiTinh" id="" class="form-control">
@@ -102,7 +103,7 @@ else
             <label class="control-label" for="input">Địa chỉ</label><i class="mtrl-select"></i>
         </div>
         <div class="submit-btns">
-            <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Details", "NguoiDungs", new { id = Model.maND })'"><span>Huỷ</span></button>
+            <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Details", "NguoiDungs", new { id = maND })'"><span>Huỷ</span></button>
             <button type="submit" class="mtr-btn"><span>Lưu</span></button>
         </div>
 

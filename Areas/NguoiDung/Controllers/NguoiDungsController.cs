@@ -179,8 +179,13 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung,string avtImage, HttpPostedFileBase avt, int gioiTinh)
+        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, HttpPostedFileBase avt, int gioiTinh)
         {
+            if (ModelState["ngaySinh"].Errors.Count > 0)
+            {
+                ModelState["ngaySinh"].Errors.Clear();
+                ModelState["ngaySinh"].Errors.Add("Ngày sinh chưa đúng định dạng ngày/tháng/năm, vui lòng nhập lại");
+            }
             int maND_ss = int.Parse(Session["maND"].ToString());
             if (ModelState.IsValid)
             {
@@ -200,8 +205,14 @@ namespace ELF.Areas.NguoiDung.Controllers
                     }
                 }
                 else
-                {
-                    nguoiDung.avatar = Session["avatar"].ToString();
+                {           
+                    if (Session["avatar"] != null)
+                    {
+                        nguoiDung.avatar = Session["avatar"].ToString();
+                    } else
+                    {
+                        nguoiDung.avatar = null;
+                    }
                 }
                 nguoiDung.maND = maND_ss;
                 nguoiDung.gioiTinh = gioiTinh;
@@ -223,7 +234,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                 {
                     Session["loaiGioiTinh"] = "Khác";
                 }
-                return RedirectToAction("Details", "NguoiDungs", new { id = maND_ss, avtImage });
+                return RedirectToAction("Details", "NguoiDungs", new { id = maND_ss });
             }
             ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
             ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan", nguoiDung.maQuan);

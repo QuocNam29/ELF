@@ -179,11 +179,11 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, HttpPostedFileBase avt, int gioiTinh)
+        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung,string avtImage, HttpPostedFileBase avt, int gioiTinh)
         {
+            int maND_ss = int.Parse(Session["maND"].ToString());
             if (ModelState.IsValid)
             {
-
                 string oldfilePath = nguoiDung.avatar;
                 if (avt != null && avt.ContentLength > 0)
                 {
@@ -203,7 +203,6 @@ namespace ELF.Areas.NguoiDung.Controllers
                 {
                     nguoiDung.avatar = Session["avatar"].ToString();
                 }
-                int maND_ss = int.Parse(Session["maND"].ToString());
                 nguoiDung.maND = maND_ss;
                 nguoiDung.gioiTinh = gioiTinh;
                 db.Entry(nguoiDung).State = EntityState.Modified;
@@ -224,7 +223,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                 {
                     Session["loaiGioiTinh"] = "Khác";
                 }
-                return RedirectToAction("Details", "NguoiDungs", new { id = maND_ss });
+                return RedirectToAction("Details", "NguoiDungs", new { id = maND_ss, avtImage });
             }
             ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
             ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan", nguoiDung.maQuan);

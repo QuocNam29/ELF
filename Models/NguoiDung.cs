@@ -48,6 +48,8 @@ namespace ELF.Models
         public Nullable<int> maP { get; set; }
         public string diaChi { get; set; }
         public string avatar { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DateValidation(ErrorMessage = "Vui lòng nhập ngày <= ngày hiện tại")]
         public Nullable<System.DateTime> ngaySinh { get; set; }
         public string ghiChu { get; set; }
         public string maTK { get; set; }

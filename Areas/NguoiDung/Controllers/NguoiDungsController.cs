@@ -67,7 +67,27 @@ namespace ELF.Areas.NguoiDung.Controllers
             return PartialView("DisplayPhuongThiTran");
         }
 
+        public JsonResult GetQHList(int maTinh_TP)
+        {            
+            return Json(db.QuanHuyens.Where(q => q.maTP == 
+            maTinh_TP).Select(q => new
+            {
+                maQuan = q.maQuan,
+                tenQuan = q.tenQuan
+            }).ToList(), JsonRequestBehavior.AllowGet);
 
+        }
+
+        public JsonResult GetPList(int maQuan)
+        {
+            return Json(db.PhuongThiTrans.Where(p => p.maQuan ==
+            maQuan).Select(p => new
+            {
+                maPhuong = p.maPhuong,
+                tenPhuong = p.tenPhuong
+            }).ToList(), JsonRequestBehavior.AllowGet);
+
+        }
 
         // POST: NguoiDung/NguoiDungs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

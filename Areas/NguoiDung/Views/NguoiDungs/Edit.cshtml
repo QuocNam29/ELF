@@ -105,17 +105,20 @@ else
             </select>
         </div>
         <div class="form-group">
-        @if (ViewBag.maTinh_TP != null)
-        {           
-           @*@Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
-           @Html.DropDownList("maTinh_TP", ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")
-        }
+            @if (ViewBag.maTinh_TP != null)
+            {
+                @*@Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
+                @Html.DropDownList("maTinh_TP", ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")
+            }
         </div>
         <div class="form-group">
-            @Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện")
+            @*@Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện")*@
+            @Html.DropDownList("maQuan", new SelectList(String.Empty, "maQuan", "tenQuan"), "Please select a State")
         </div>
+
         <div class="form-group">
-            @Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn")
+            @*@Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn")*@
+            @Html.DropDownList("maP", new SelectList(String.Empty, "maPhuong", "tenPhuong"), "Please select a city")
         </div>
         <div class="form-group">
             @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @type = "text" } })
@@ -129,47 +132,120 @@ else
     </div>
 }
 
-<script src="~/Scripts/jquery-3.4.1.js"></script>
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script>
+@*<script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
 
-        var RootUrl = '@Url.Content("~/")';
+            var RootUrl = '@Url.Content("~/")';
 
-        $(document).ready(function () {
-            $("#maTinh_TP").change(function () {
-                var ThanhPhoID = $(this).val();
-                debugger
-                $.ajax({
-                    type: "post",
-                    url: RootUrl + "NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
-                    contentType: "html",
-                    success: function (response) {
-                        debugger
-                        $("#maQuan").empty();
-                        $("#maQuan").append(response);
-                    }
+            $(document).ready(function () {
+                $("#maTinh_TP").change(function () {
+                    var ThanhPhoID = $(this).val();
+                    debugger
+                    $.ajax({
+                        type: "post",
+                        url: RootUrl + "NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
+                        contentType: "html",
+                        success: function (response) {
+                            debugger
+                            $("#maQuan").empty();
+                            $("#maQuan").append(response);
+                        }
+                    })
                 })
             })
-        })
 
 
-        $(document).ready(function () {
-            $("#maQuan").change(function () {
-                var QuanID = $(this).val();
-                debugger
-                $.ajax({
-                    type: "post",
-                    url: RootUrl + "NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
-                    contentType: "html",
-                    success: function (response) {
-                        debugger
-                        $("#maP").empty();
-                        $("#maP").append(response);
-                    }
+            $(document).ready(function () {
+                $("#maQuan").change(function () {
+                    var QuanID = $(this).val();
+                    debugger
+                    $.ajax({
+                        type: "post",
+                        url: RootUrl + "NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
+                        contentType: "html",
+                        success: function (response) {
+                            debugger
+                            $("#maP").empty();
+                            $("#maP").append(response);
+                        }
+                    })
                 })
             })
-        })
 
+    </script>*@
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    var RootUrl = '@Url.Content("~/")';
+
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#maTinh_TP").change(function () {
+            $("#maQuan").empty();
+            $.ajax({
+                type: 'POST',
+                url: RootUrl + 'NguoiDung/NguoiDungs/GetQHList', // we are calling json method
+
+                dataType: 'json',
+
+                data: { maTinh_TP: $("#maTinh_TP").val() },
+                // here we are get value of selected country and passing same valueas inputto json method GetStates.
+
+                success: function (quans) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+
+                    $.each(quans, function (i, quan) {
+                        $("#maQuan").append('<option value="' + quan.maQuan + '">' + quan.tenQuan + '</option>');
+                        // here we are adding option for States
+
+                    });
+
+                    @*var ddlquans = $("[id*=maQuan]");
+                    ddlquans.empty();
+                    $.each(quans, function (i, quan) {
+                        ddlquans.append('<option value="' + quan.maQuan + '">' + quan.tenQuan + '</option>');
+                    });*@
+                  
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#maQuan").change(function () {
+            $("#maP").empty();
+            $.ajax({
+                type: 'POST',
+                url: RootUrl + 'NguoiDung/NguoiDungs/GetPList',
+                dataType: 'json',
+                data: { maQuan: $("#maQuan").val() },
+                success: function (phuongs) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(phuongs, function (i, phuong) {
+                        $("#maP").append('<option value="' + phuong.maPhuong + '">' + phuong.tenPhuong + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
 </script>
 
 

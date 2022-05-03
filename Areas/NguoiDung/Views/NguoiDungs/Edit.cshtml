@@ -48,34 +48,34 @@ else
 
         <div class="form-group half">
             @Html.EditorFor(model => model.hoVaTen, new
-            {
-                htmlAttributes = new
-                {
-                   @type = "text"
-                }
-            })
+       {
+           htmlAttributes = new
+           {
+               @type = "text"
+           }
+       })
             <label class="control-label" for="input">Họ và tên</label><i class="mtrl-select"></i>
             @Html.ValidationMessageFor(model => model.hoVaTen, "", new { @class = "text-danger" })
         </div>
         <div class="form-group half">
             @Html.EditorFor(model => model.dienThoai, new
-            {
-                htmlAttributes = new
-                {
-                  @type = "text"
-                }
-            })
+       {
+           htmlAttributes = new
+           {
+               @type = "text"
+           }
+       })
             <label class="control-label" for="input">Số điện thoại</label><i class="mtrl-select"></i>
             @Html.ValidationMessageFor(model => model.dienThoai, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             @Html.EditorFor(model => model.ngaySinh, new
-            {
-                htmlAttributes = new
-                {
-                   @type = "text"
-                }
-            })
+       {
+           htmlAttributes = new
+           {
+               @type = "text"
+           }
+       })
             <label class="control-label" for="input">Ngày sinh</label><i class="mtrl-select"></i>
             @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @class = "text-danger" })
         </div>
@@ -114,8 +114,7 @@ else
             }
         </div>
         <div class="form-group">
-            @*@Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện")*@
-            @Html.DropDownList("maQuan", new SelectList(String.Empty, "maQuan", "tenQuan"), "--- Quận/Huyện ---", new { @class = "form-control selectpicker", @title = "--- Quận/Huyện ---" })
+            @Html.DropDownList("maQuan", new SelectList(String.Empty, "maQuan", "tenQuan", TempData["maQuan"]), "--- Quận/Huyện ---", new { @class = "form-control selectpicker", @title = "--- Quận/Huyện ---" })
         </div>
 
         <div class="form-group">
@@ -188,31 +187,45 @@ else
 
     $(document).ready(function () {
         $(".chosen-container").remove();
+
     });
 
     $(document).ready(function () {
-               
+
+        var id = $('select#maTinh_TP').val();
+
+        populate(id);
+
         $("#maTinh_TP").change(function () {
-            $("#maQuan").empty();
-            $.ajax({
-                type: 'POST',
-                url: RootUrl + 'NguoiDung/NguoiDungs/GetQHList',
-                dataType: 'json',
-                data: { maTinh_TP: $("#maTinh_TP").val() },
-                success: function (quans) {
-                    $("#maQuan").append('<option value="" disabled="disabled">Quận/Huyện</option>');
-                    $.each(quans, function (i, quan) {
-                        $("#maQuan").append('<option value="' + quan.maQuan + '">' + quan.tenQuan + '</option>');
-                    });
-                    $('.selectpicker').selectpicker('refresh');                                                         
-                },
-                error: function (ex) {
-                    alert('Failed to retrieve states.' + ex);
-                }
-            });
-            return false;
-        })
-    });
+            var id = $('select#maTinh_TP').val();
+            populate(id);
+            @*$('#maQuan').selectpicker('val', [@TempData["maQuan"]]);*@
+        }).change();
+
+        function populate(id) {
+            $("#maTinh_TP").change(function () {
+                $("#maQuan").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: RootUrl + 'NguoiDung/NguoiDungs/GetQHList',
+                    dataType: 'json',
+                    data: { maTinh_TP: $("#maTinh_TP").val() },
+                    success: function (quans) {
+                        $("#maQuan").append('<option value="" disabled="disabled">Quận/Huyện</option>');
+                        $.each(quans, function (i, quan) {
+                            $("#maQuan").append('<option value="' + quan.maQuan + '">' + quan.tenQuan + '</option>');
+                        });
+                        $('.selectpicker').selectpicker('refresh');
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve states.' + ex);
+                    }
+                });
+                return false;
+            })
+        }
+        });
+
 
 
     $(document).ready(function () {

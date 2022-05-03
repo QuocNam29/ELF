@@ -190,7 +190,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             }
 
             ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
-            ViewBag.maQuan = new SelectList(db.QuanHuyens, "maQuan", "tenQuan", nguoiDung.maQuan);
+            TempData["maQuan"] = nguoiDung.maQuan;
             ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
             return View(nguoiDung);
         }

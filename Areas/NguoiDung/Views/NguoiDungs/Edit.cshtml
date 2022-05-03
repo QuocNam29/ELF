@@ -110,17 +110,17 @@ else
             {
                 @*@Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
                 @*@Html.DropDownList("maTinh_TP", ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
-                @Html.DropDownList("maTinh_TP", null, htmlAttributes: new { @class = "form-control selectpicker" })
+                @Html.DropDownList("maTinh_TP", null, htmlAttributes: new { @class = "form-control selectpicker", @title = "--- Tỉnh/Thành phố ---" })
             }
         </div>
         <div class="form-group">
             @*@Html.DropDownListFor(model => model.maQuan, new SelectList(""), "Quận/Huyện")*@
-            @Html.DropDownList("maQuan", new SelectList(String.Empty, "maQuan", "tenQuan"), "Quận/Huyện", new { @class = "form-control selectpicker" })
+            @Html.DropDownList("maQuan", new SelectList(String.Empty, "maQuan", "tenQuan"), "--- Quận/Huyện ---", new { @class = "form-control selectpicker", @title = "--- Quận/Huyện ---" })
         </div>
 
         <div class="form-group">
             @*@Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn")*@
-            @Html.DropDownList("maP", new SelectList(String.Empty, "maPhuong", "tenPhuong"), "Phường/Thị Trấn", new { @class = "form-control selectpicker" })
+            @Html.DropDownList("maP", new SelectList(String.Empty, "maPhuong", "tenPhuong"), "--- Phường/Thị Trấn ---", new { @class = "form-control selectpicker", @title = "--- Phường/Thị Trấn ---" })
         </div>
         <div class="form-group">
             @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @type = "text" } })
@@ -191,40 +191,20 @@ else
     });
 
     $(document).ready(function () {
-
                
-        //Dropdownlist Selectedchange event
         $("#maTinh_TP").change(function () {
             $("#maQuan").empty();
             $.ajax({
                 type: 'POST',
-                url: RootUrl + 'NguoiDung/NguoiDungs/GetQHList', // we are calling json method
-
+                url: RootUrl + 'NguoiDung/NguoiDungs/GetQHList',
                 dataType: 'json',
-
                 data: { maTinh_TP: $("#maTinh_TP").val() },
-                // here we are get value of selected country and passing same valueas inputto json method GetStates.
-
                 success: function (quans) {
-                    // states contains the JSON formatted list
-                    // of states passed from the controller
-
-                    $("#maQuan").append('<option value="0" disabled="disabled">Quận/Huyện</option>');
+                    $("#maQuan").append('<option value="" disabled="disabled">Quận/Huyện</option>');
                     $.each(quans, function (i, quan) {
                         $("#maQuan").append('<option value="' + quan.maQuan + '">' + quan.tenQuan + '</option>');
-                        // here we are adding option for States
-
                     });
-
-                    $('.form-control').selectpicker('refresh');
-
-
-                    @*var ddlquans = $("[id*=maQuan]");
-                    ddlquans.empty();
-                    $.each(quans, function (i, quan) {
-                        ddlquans.append('<option value="' + quan.maQuan + '">' + quan.tenQuan + '</option>');
-                    });*@
-
+                    $('.selectpicker').selectpicker('refresh');                                                         
                 },
                 error: function (ex) {
                     alert('Failed to retrieve states.' + ex);
@@ -236,7 +216,7 @@ else
 
 
     $(document).ready(function () {
-        //Dropdownlist Selectedchange event
+
         $("#maQuan").change(function () {
             $("#maP").empty();
             $.ajax({
@@ -245,9 +225,7 @@ else
                 dataType: 'json',
                 data: { maQuan: $("#maQuan").val() },
                 success: function (phuongs) {
-                    // states contains the JSON formatted list
-                    // of states passed from the controller
-                    $("#maP").append('<option value="0" disabled="disabled">Phường/Thị Trấn</option>');
+                    $("#maP").append('<option value="" disabled="disabled">Phường/Thị Trấn</option>');
                     $.each(phuongs, function (i, phuong) {
                         $("#maP").append('<option value="' + phuong.maPhuong + '">' + phuong.tenPhuong + '</option>');
                     });

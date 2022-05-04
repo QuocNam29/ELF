@@ -260,6 +260,7 @@
     <Compile Include="Areas\KiemDuyets\KiemDuyetsAreaRegistration.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangThongTinsController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\BaoCaosController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BinhLuansController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DiemTichLuysController.cs" />
@@ -297,6 +298,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BaiQuiz.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaoCao.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BinhLuan.cs">
@@ -348,6 +352,9 @@
     <Compile Include="Models\LoaiTaiKhoan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Message.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -378,6 +385,9 @@
     <Compile Include="Models\QuyenGop.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Room.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -388,9 +398,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tinh_ThanhPho.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinNhan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TrangThaiBaiDang.cs">
@@ -861,6 +868,11 @@
     <Content Include="Areas\NguoiDung\Views\DonQuas\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DiemTichLuys\TongDTL_header.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_TrangCaNhan_NDK.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaoCaos\Create.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaoCaos\Delete.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaoCaos\Details.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaoCaos\Edit.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BaoCaos\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

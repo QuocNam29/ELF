@@ -35,7 +35,6 @@
         <EntityTypeShape EntityType="ELFVanLang2021Model.QuyenGop" Width="1.5" PointX="12.75" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.TaiKhoan" Width="1.5" PointX="9.75" PointY="45.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.TinNhan" Width="1.5" PointX="9.75" PointY="48.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.Tinh_ThanhPho" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.ThongBao" Width="1.5" PointX="17.25" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.TrangThaiBaiDang" Width="1.5" PointX="7.5" PointY="33.5" IsExpanded="true" />
@@ -78,7 +77,6 @@
         <AssociationConnector Association="ELFVanLang2021Model.FK_NguoiDung_Tinh_ThanhPho" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_QuyenGop_NguoiDung" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_TaiKhoan_NguoiDung" ManuallyRouted="false" />
-        <AssociationConnector Association="ELFVanLang2021Model.FK_TinNhan_NguoiDung1" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_NguoiDung" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_NguoiDung1" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_TraoDoi_NguoiDung" ManuallyRouted="false" />
@@ -88,6 +86,14 @@
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_QuyenGop" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_TraoDoi" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BaoCao" Width="1.5" PointX="9.75" PointY="34" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.Message" Width="1.5" PointX="14.25" PointY="46.75" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.Room" Width="1.5" PointX="12" PointY="48.875" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaoCao_NguoiDung" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaoCao_NguoiDung1" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_Messages_Rooms" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_Messages_TaiKhoan" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_Rooms_TaiKhoan" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

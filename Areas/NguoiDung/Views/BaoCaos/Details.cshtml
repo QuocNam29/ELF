@@ -1,0 +1,43 @@
+﻿@model ELF.Models.BaoCao
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan_NguoiDungKhac.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BaoCao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.lyDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lyDo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung.hoVaTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung1.hoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung1.hoVaTen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maBC }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

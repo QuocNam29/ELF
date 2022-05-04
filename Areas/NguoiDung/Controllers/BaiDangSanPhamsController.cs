@@ -59,7 +59,8 @@ namespace ELF.Areas.NguoiDung.Controllers
             Session["maND_K"] = maND_K;
             Session["hoVaTen_NguoiDungKhac"] = hoVaTen_NDK;
             Session["avatar_NguoiDungKhac"] = avartar_NDK;
-            
+
+
             return View(baiDangSanPhams.ToList());
         }
 

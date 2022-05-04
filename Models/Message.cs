@@ -12,18 +12,15 @@ namespace ELF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TinNhan
+    public partial class Message
     {
-        public int ID { get; set; }
-        public string ConnectionIDUser { get; set; }
-        public string UserGroup { get; set; }
-        public string Msg { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public string MsgDate { get; set; }
-        public string MsgDuration { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public int Id { get; set; }
+        public string Content { get; set; }
+        public Nullable<System.DateTime> Timestamp { get; set; }
+        public Nullable<int> FromUserId { get; set; }
+        public Nullable<int> ToRoomId { get; set; }
     
-        public virtual NguoiDung NguoiDung { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

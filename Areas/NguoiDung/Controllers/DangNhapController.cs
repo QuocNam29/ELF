@@ -22,6 +22,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         public ActionResult DangNhap()
         {
             Session["Message"] = null;
+            
             return View();
         }
 
@@ -44,7 +45,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     Session["email"] = account.email;
                     Session["ngayTao"] = account.ngayTao;
                     Session["gioiTinh"] = account.NguoiDung.gioiTinh;
-
+                    
 
 
                     if (account.NguoiDung.maP != null && account.NguoiDung.maQuan != null && 

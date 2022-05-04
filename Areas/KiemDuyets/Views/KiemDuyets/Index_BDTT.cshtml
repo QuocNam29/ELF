@@ -34,13 +34,15 @@
                 <div class="g-post-classic">
                     @if (item.hinhAnh != null)
                     {
-                        <figure>
+                    <figure>
+                        <a href="@Url.Action("Details_BDTT","KiemDuyets",new { id = item.maBDTT })">
                             <img alt="" src="@Url.Content(item.hinhAnh)">
-                        </figure>
+                            </a>
+                    </figure>
                         <div class="g-post-meta">
                             <div class="post-title">
-                                
-                                <h4><a title="" href="@Url.Action("Details","KiemDuyets",new { id = item.maBDTT })">@item.tieuDe</a></h4>
+
+                                <h4><a title="" href="@Url.Action("Details_BDTT","KiemDuyets",new { id = item.maBDTT })">@item.tieuDe</a></h4>
 
                                 <p>@item.noiDung </p>
 
@@ -48,12 +50,15 @@
 
                             <div class="g-post-ranking">
                                 <div class="submit-btns">
-                                    <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("XoaBai_BDTT", "KiemDuyets",  new { maBDTT = item.maBDTT })'"><span>Hủy Bài</span></button>
+                                    <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Hủy Bài</span></button>
 
                                     <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_BDTT", "KiemDuyets",  new { maBDTT = item.maBDTT })'"><span>Duyệt Bài</span></button>
                                 </div>
 
                             </div>
+
+                           
+
                         </div>
                     }
                     else
@@ -61,7 +66,7 @@
                 <div class="g-post-meta">
                     <div class="post-title">
                         <h4><br /></h4>
-                        <h4><a title="" href="@Url.Action("Details","KiemDuyets",new { id = item.maBDTT })">@item.tieuDe</a></h4>
+                        <h4><a title="" href="@Url.Action("Details_BDTT","KiemDuyets",new { id = item.maBDTT })">@item.tieuDe</a></h4>
 
                         <p>@item.noiDung </p>
 

@@ -873,6 +873,8 @@
     <Content Include="Areas\NguoiDung\Views\BaoCaos\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaoCaos\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaoCaos\Index.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Details_BDTT.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Details_DonQG.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -46,6 +46,34 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             return View(baiDangSanPham);
         }
+
+        public ActionResult Details_BDTT(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BaiDangThongTin baiDangThongTin = db.BaiDangThongTins.Find(id);
+            if (baiDangThongTin == null)
+            {
+                return HttpNotFound();
+            }
+            return View(baiDangThongTin);
+        }
+
+        public ActionResult Details_DonQG(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            QuyenGop quyenGop = db.QuyenGops.Find(id);
+            if (quyenGop == null)
+            {
+                return HttpNotFound();
+            }
+            return View(quyenGop);
+        }
         public ActionResult XoaBai_BDSP(int? maBDSP, string lydo)
         {
             if (maBDSP == null)
@@ -223,7 +251,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
 
             db.ThongBaos.Add(new ThongBao
             {
-                maDQ = maQG,
+                maQG = maQG,
                 maND = quyenGop.maND,
                 tinhTrang = "Hien",
                 ngayTB = DateTime.Now,

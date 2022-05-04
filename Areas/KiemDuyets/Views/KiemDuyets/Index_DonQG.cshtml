@@ -32,13 +32,15 @@
         {
             <div class="col-lg-4 col-sm-6">
                 <div class="g-post-classic">
-                        <figure>
+                    <figure>
+                        <a href="@Url.Action("Details_DonQG","KiemDuyets",new { id = item.maQG })">
                             <img alt="" src="@Url.Content(item.hinhAnh)">
-                        </figure>
+                        </a>
+                    </figure>
                         <div class="g-post-meta">
                             <div class="post-title">
 
-                                <h4><a title="" href="@Url.Action("Details","KiemDuyets",new { id = item.maQG })">@item.LoaiQuyenGop.tenLoai</a></h4>
+                                <h4><a title="" href="@Url.Action("Details_DonQG","KiemDuyets",new { id = item.maQG })">@item.LoaiQuyenGop.tenLoai</a></h4>
 
                                 <p style="color: black"> Số lượng quyên góp:  @item.soLuong  @item.donVi</p>
 

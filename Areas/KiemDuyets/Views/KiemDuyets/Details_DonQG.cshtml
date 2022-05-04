@@ -1,15 +1,13 @@
-﻿@model ELF.Models.BaiDangSanPham
+﻿@model ELF.Models.QuyenGop
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details_DonQG";
     Layout = "~/Areas/KiemDuyets/Views/Shared/_Layout_NguoiKiemDuyet.cshtml";
 }
 
 
-
-
 <div class="editing-info">
-    <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin bài đăng</h5>
+    <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin quyên góp</h5>
     <div class="form-group">
         <img width="300" src="@Url.Content(Model.hinhAnh)" alt="">
     </div>
@@ -17,29 +15,29 @@
 
 <div class="onoff-options">
     <div class="setting-row">
-        <span>Tên sản phẩm</span>
-        <p>@Html.DisplayFor(model => model.tenSP)</p>
+        <span>Loại quyên góp</span>
+        <p>@Html.DisplayFor(model => model.LoaiQuyenGop.tenLoai)</p>
     </div>
 
     <div class="setting-row">
-        <span>Loại sản phẩm</span>
-        <p>@Html.DisplayFor(model => model.LoaiSanPham.tenLSP)</p>
+        <span>Số lượng quyên góp</span>
+        <p>@Html.DisplayFor(model => model.soLuong)  @Html.DisplayFor(model => model.donVi)</p>
     </div>
 
     <div class="setting-row">
-        <span>Giá sản phẩm</span>
-        <p>@Html.DisplayFor(model => model.gia)</p>
+        <span>Ngày quyên góp</span>
+        <p>@Html.DisplayFor(model => model.ngayQG)</p>
 
     </div>
     <div class="setting-row">
-        <span>Mô tả</span>
-        <p>@Html.DisplayFor(model => model.noiDung)</p>
+        <span>Ghi chú</span>
+        <p>@Html.DisplayFor(model => model.ghiChu)</p>
     </div>
 
     <div class="submit-btns">
-        <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal" ><span>Xóa Bài</span></button>
+        <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Xóa Bài</span></button>
 
-        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai", "KiemDuyets",  new { maBDSP = Model.maBDSP })'"><span>Duyệt Bài</span></button>
+        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_DonQG", "KiemDuyets",  new { maQG = Model.maQG })'"><span>Duyệt Bài</span></button>
     </div>
 
 
@@ -56,7 +54,7 @@
                 @using (Html.BeginForm("XoaBai_BDSP", "KiemDuyets"))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.Hidden("maBDSP", Model.maBDSP)
+                    @Html.Hidden("maQG", Model.maQG)
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
@@ -78,3 +76,5 @@
     </div>
 
 </div>
+
+

@@ -32,13 +32,13 @@
             <div class="col-lg-4 col-sm-6">
                 <div class="g-post-classic">
                     <figure>
-                        <img alt="" src="@Url.Content(item.hinhAnh)">
+                       <a href="@Url.Action("Details","KiemDuyets",new { id = item.maBDSP })" > <img alt="" src="@Url.Content(item.hinhAnh)"> </a> 
                     </figure>
                     <div class="g-post-meta">
                         <div class="post-title">
                             <h4><a title="" href="@Url.Action("Details","KiemDuyets",new { id = item.maBDSP })">@item.tenSP</a></h4>
-                            <h4><a title="" href="#">Giá sản phẩm: @item.gia</a></h4>
-                            <p>@item.noiDung </p>
+                            <h4><a title="" href="@Url.Action("Details","KiemDuyets",new { id = item.maBDSP })">Giá sản phẩm: @item.gia</a></h4>
+                            <p href="@Url.Action("Details","KiemDuyets",new { id = item.maBDSP })">@item.noiDung </p>
 
                         </div>
 

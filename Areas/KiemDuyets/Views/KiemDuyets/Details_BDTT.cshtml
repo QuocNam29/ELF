@@ -1,45 +1,37 @@
-﻿@model ELF.Models.BaiDangSanPham
-
+﻿@model ELF.Models.BaiDangThongTin
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details_BDTT";
     Layout = "~/Areas/KiemDuyets/Views/Shared/_Layout_NguoiKiemDuyet.cshtml";
 }
 
 
-
-
 <div class="editing-info">
     <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin bài đăng</h5>
+    @if (Model.hinhAnh != null)
+    {
     <div class="form-group">
         <img width="300" src="@Url.Content(Model.hinhAnh)" alt="">
-    </div>
+     </div>
+    }
+    
 </div>
 
 <div class="onoff-options">
     <div class="setting-row">
-        <span>Tên sản phẩm</span>
-        <p>@Html.DisplayFor(model => model.tenSP)</p>
+        <span>Tiêu đề</span>
+        <p>@Html.DisplayFor(model => model.tieuDe)</p>
     </div>
 
-    <div class="setting-row">
-        <span>Loại sản phẩm</span>
-        <p>@Html.DisplayFor(model => model.LoaiSanPham.tenLSP)</p>
-    </div>
-
-    <div class="setting-row">
-        <span>Giá sản phẩm</span>
-        <p>@Html.DisplayFor(model => model.gia)</p>
-
-    </div>
     <div class="setting-row">
         <span>Mô tả</span>
         <p>@Html.DisplayFor(model => model.noiDung)</p>
     </div>
 
+
     <div class="submit-btns">
         <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal" ><span>Xóa Bài</span></button>
 
-        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai", "KiemDuyets",  new { maBDSP = Model.maBDSP })'"><span>Duyệt Bài</span></button>
+        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai", "KiemDuyets",  new { maBDTT = Model.maBDTT })'"><span>Duyệt Bài</span></button>
     </div>
 
 
@@ -53,10 +45,10 @@
                     </button>
                 </div>
 
-                @using (Html.BeginForm("XoaBai_BDSP", "KiemDuyets"))
+                @using (Html.BeginForm("XoaBai_BDTT", "KiemDuyets"))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.Hidden("maBDSP", Model.maBDSP)
+                    @Html.Hidden("maBDTT", Model.maBDTT)
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
@@ -78,3 +70,5 @@
     </div>
 
 </div>
+
+

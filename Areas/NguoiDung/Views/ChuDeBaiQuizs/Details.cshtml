@@ -1,0 +1,27 @@
+﻿@model ELF.Models.ChuDeBaiQuiz
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChuDeBaiQuiz</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenChuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenChuDe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maChuDe }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

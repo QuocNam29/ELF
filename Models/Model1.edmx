@@ -163,6 +163,7 @@
           </Key>
           <Property Name="maChuDe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tenChuDe" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="hinhAnh" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="DapAn">
           <Key>
@@ -255,7 +256,7 @@
           <Property Name="viTriQP" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
           <Property Name="trangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="hinhAnh" Type="varchar" MaxLength="100" />
+          <Property Name="hinhAnh" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="LoaiSanPham">
           <Key>
@@ -371,6 +372,13 @@
           <Property Name="ngayTao" Type="datetime" />
           <Property Name="trangThai" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tinh_ThanhPho">
+          <Key>
+            <PropertyRef Name="maTinh_TP" />
+          </Key>
+          <Property Name="maTinh_TP" Type="int" Nullable="false" />
+          <Property Name="tenTinh_TP" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="ThongBao">
           <Key>
             <PropertyRef Name="maTB" />
@@ -387,13 +395,6 @@
           <Property Name="tinhTrang" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="maND" Type="int" Nullable="false" />
           <Property Name="maNDKhac" Type="int" />
-        </EntityType>
-        <EntityType Name="Tinh_ThanhPho">
-          <Key>
-            <PropertyRef Name="maTinh_TP" />
-          </Key>
-          <Property Name="maTinh_TP" Type="int" Nullable="false" />
-          <Property Name="tenTinh_TP" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="TrangThaiBaiDang">
           <Key>
@@ -1146,8 +1147,8 @@
           <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrangThaiBaiDang" EntityType="Self.TrangThaiBaiDang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TraoDoi" EntityType="Self.TraoDoi" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BaiDangSanPham_LoaiSanPham" Association="Self.FK_BaiDangSanPham_LoaiSanPham">
@@ -1539,6 +1540,7 @@
           <Property Name="maChuDe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tenChuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CauHois" Relationship="Self.FK_CauHoi_ChuDeBaiQuiz" FromRole="ChuDeBaiQuiz" ToRole="CauHoi" />
+          <Property Name="hinhAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DapAn">
           <Key>
@@ -1647,7 +1649,7 @@
           <Property Name="viTriQP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ghiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="trangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="hinhAnh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="hinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="QuyenGops" Relationship="Self.FK_QuyenGop_LoaiQuyenGop" FromRole="LoaiQuyenGop" ToRole="QuyenGop" />
         </EntityType>
         <EntityType Name="LoaiSanPham">
@@ -2944,6 +2946,7 @@
           <EntitySetMapping Name="ChuDeBaiQuizs">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.ChuDeBaiQuiz">
               <MappingFragment StoreEntitySet="ChuDeBaiQuiz">
+                <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="maChuDe" ColumnName="maChuDe" />
                 <ScalarProperty Name="tenChuDe" ColumnName="tenChuDe" />
               </MappingFragment>

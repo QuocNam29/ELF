@@ -38,18 +38,13 @@
                             <a href="time-line.html" title=""><img width="40" src="@Url.Content(avt_BD)" alt=""></a>
                         </figure>
                         <div class="pepl-info">
-                            <h4><a href="time-line.html" title="">@item.BaiDangSanPham.tenSP</a></h4>
-                            <span>@item.NguoiDung1.hoVaTen</span>
+                            <h4><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h4>
+                            <span>Sản phẩm: @item.BaiDangSanPham.tenSP</span>
                             <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" onclick="location.href='@Url.Action("Delete_DS","TraoDois",new { id = item.maTD })'">Hủy đăng ký</a>
                             <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maNDKhac })" title="" class="add-butn" data-ripple="">chi tiết</a>
                         </div>
 
-                        
                     </div>
-
-
-
-                    
                 </li>
 
                     }

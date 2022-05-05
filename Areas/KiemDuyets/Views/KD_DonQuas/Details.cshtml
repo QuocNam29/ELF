@@ -8,7 +8,7 @@
 <div class="editing-info">
     <h5 class="f-title"><i class="ti-info-alt"></i>@Html.DisplayFor(model => model.QuaTang.tenQuaTang)</h5>
     <div class="form-group">
-        <img width="300" src="@Url.Content(Model.QuaTang.hinhAnh)" alt="">
+        <img width="300" src="~/images/resources/@Model.QuaTang.hinhAnh" alt="">
     </div>
 </div>
 <div class="onoff-options">
@@ -23,17 +23,35 @@
 
     </div>
     <div class="setting-row">
+        <span>Địa chỉ</span>
+        <p>@Html.DisplayFor(model => model.DiaChi)</p>
+    </div>
+    <div class="setting-row">
         <span>Ghi chú</span>
-        <p>@Html.DisplayFor(model => model.ghiChu)</p>
+        <p>@Html.DisplayFor(model => model.GhiChu)</p>
     </div>
 
-    <div class="submit-btns">
-        <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Xóa Bài</span></button>
+    @if (Model.TrangThai == "Chờ xác nhận")
+    {
+        <div class="submit-btns">
+            <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Hủy đơn quà</span></button>
 
-        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_DonQG", "KiemDuyets",  new { maQG = Model.maQG })'"><span>Duyệt Bài</span></button>
-    </div>
+            <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("EditTranngThai", "KD_DonQuas", new { maDQ = Model.MaDQ })'"><span>Xác nhận đơn quà</span></button>
+        </div>
 
 
+
+
+    }
+    else if (Model.TrangThai == "Đang giao hàng")
+    {
+        <div class="submit-btns">
+            <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Hủy đơn quà</span></button>
+
+            <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("EditTranngThai", "KD_DonQuas", new { maDQ = Model.MaDQ })'"><span>Hoàn tất đơn quà</span></button>
+        </div>
+
+    }
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -44,10 +62,10 @@
                     </button>
                 </div>
 
-                @using (Html.BeginForm("XoaBai_BDSP", "KiemDuyets"))
+                @using (Html.BeginForm("Delete_DonQua", "KD_DonQuas"))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.Hidden("maQG", Model.maQG)
+                    @Html.Hidden("maDQ", Model.MaDQ)
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
@@ -67,5 +85,4 @@
             </div>
         </div>
     </div>
-
 </div>

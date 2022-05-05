@@ -72,7 +72,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     MaND = mand,
                     MaQT = donQua.MaQT,
                     NgayTao = DateTime.Now,
-                    TrangThai = "Chờ giao hàng",
+                    TrangThai = "Chờ xác nhận",
                     TongDiem = int.Parse(diemDoi)*soLuong,
                     DiaChi = donQua.DiaChi,
                     GhiChu = donQua.GhiChu
@@ -84,7 +84,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     maND = mand,
                     tinhTrang = "Đã đổi",
                     ngayTB = DateTime.Now,
-                    noiDung = "Quà của bạn đã được đổi thành công, bạn vui lòng đợi vài ngày để chúng mình liên lạc và giao hàng đến cho bạn"
+                    noiDung = "Đơn quà của bạn đã được đổi thành công, bạn vui lòng đợi vài ngày để chúng mình liên lạc và giao hàng đến cho bạn"
                 });
 
                 db.DiemTichLuys.Add(new DiemTichLuy

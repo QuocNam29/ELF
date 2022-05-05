@@ -54,10 +54,10 @@
                             <li>
                                 <div class="nearly-pepls">
                                     <figure>
-                                        <a href="time-line.html" title=""><img width="40" src="@Url.Content(avt_BD)" alt=""></a>
+                                        <a href="@Url.Action("Details", "KD_DonQuas", new { id = item.MaDQ })" title=""><img width="40" src="@Url.Content(avt_BD)" alt=""></a>
                                     </figure>
                                     <div class="pepl-info">
-                                        <h4><a href="time-line.html" title="">@item.QuaTang.tenQuaTang</a></h4>
+                                        <h4><a href="@Url.Action("Details", "KD_DonQuas", new { id = item.MaDQ })" title="">@item.QuaTang.tenQuaTang</a></h4>
                                         <span>Người đổi quà: @item.NguoiDung.hoVaTen</span>
                                         <span style="color: black">Địa chỉ: @item.DiaChi</span>
                                         <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#exampleModal">Hủy đơn quà</a>
@@ -132,12 +132,13 @@
                             <li>
                                 <div class="nearly-pepls">
                                     <figure>
-                                        <a href="time-line.html" title=""><img width="40" src="@Url.Content(avt_BD)" alt=""></a>
+                                        <a href="@Url.Action("Details", "KD_DonQuas", new { id = item.MaDQ })" title=""><img width="40" src="@Url.Content(avt_BD)" alt=""></a>
                                     </figure>
                                     <div class="pepl-info">
-                                        <h4><a href="time-line.html" title="">@item.QuaTang.tenQuaTang</a></h4>
+                                        <h4><a href="@Url.Action("Details", "KD_DonQuas", new { id = item.MaDQ })" title="">@item.QuaTang.tenQuaTang</a></h4>
                                         <span>Người đổi quà: @item.NguoiDung.hoVaTen</span>
                                         <span style="color: black">Địa chỉ: @item.DiaChi</span>
+                                        <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#exampleModal">Hủy đơn quà</a>
                                         <a href="@Url.Action("EditTranngThai", "KD_DonQuas", new { maDQ = item.MaDQ })" title="" class="add-butn" data-ripple="">Hoàn tất</a>
 
                                     </div>
@@ -170,13 +171,13 @@
                             <li>
                                 <div class="nearly-pepls">
                                     <figure>
-                                        <a href="time-line.html" title=""><img width="40" src="@Url.Content(avt_BD)" alt=""></a>
+                                        <a href="@Url.Action("Details", "KD_DonQuas", new { id = item.MaDQ })" title=""><img width="40" src="@Url.Content(avt_BD)" alt=""></a>
                                     </figure>
                                     <div class="pepl-info">
-                                        <h4><a href="time-line.html" title="">@item.QuaTang.tenQuaTang</a></h4>
+                                        <h4><a href="@Url.Action("Details", "KD_DonQuas", new { id = item.MaDQ })" title="">@item.QuaTang.tenQuaTang</a></h4>
                                         <span>Người đổi quà: @item.NguoiDung.hoVaTen</span>
                                         <span style="color: black">Địa chỉ: @item.DiaChi</span>
-                                        <a href="#" title="" class="add-butn" data-ripple="">Chi tiết</a>
+                                        <a href="@Url.Action("Details", "KD_DonQuas", new { id = item.MaDQ })" title="" class="add-butn" data-ripple="">Chi tiết</a>
                                     </div>
                                 </div>
                             </li>

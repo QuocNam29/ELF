@@ -139,6 +139,56 @@
 
                     </li>
                 }
+                if (item.maDQ != null)
+                {
+                    if (Session["avatar"] != null)
+                    {
+                        avt_ND = Session["avatar"].ToString();
+                    }
+                    else
+                    {
+                        avt_ND = "~/images/resources/User-avatar.svg.png";
+                    }
+                    <li>
+
+                        <a href="notifications.html" title="">
+                            <img src="@Url.Content(avt_ND)" alt="">
+                            @if (item.tinhTrang == "Đã đổi")
+                            {
+                                <div class="mesg-meta">
+                                    <h6>Đơn quà</h6>
+                                    <span> của bạn đã được <b style="color: blue"> đổi thành công</b></span>
+                                    <i>@item.ngayTB</i>
+                                </div>
+                            }
+                            else if (item.tinhTrang == "Đang giao hàng")
+                            {
+                                <div class="mesg-meta">
+                                    <h6>Đơn quà</h6>
+                                    <span> của bạn đã được <b style="color: darkseagreen">xác nhận thành công</b></span>
+                                    <i>@item.ngayTB</i>
+                                </div>
+                            }
+                            else if (item.tinhTrang == "Đã hoàn tất")
+                            {
+                                <div class="mesg-meta">
+                                    <h6>Đơn quà</h6>
+                                    <span> đã được <b style="color: forestgreen">giao đến cho bạn</b></span>
+                                    <i>@item.ngayTB</i>
+                                </div>
+                            }
+                            else if (item.tinhTrang == "Hủy đơn")
+                            {
+                                <div class="mesg-meta">
+                                    <h6>Đơn quà</h6>
+                                    <span>của bạn đã bị <b style="color: red">hủy</b></span>
+                                    <i>@item.ngayTB</i>
+                                </div>
+                            }
+                        </a>
+                        <span class="tag green">New</span>
+                    </li>
+                }
 
             }
 

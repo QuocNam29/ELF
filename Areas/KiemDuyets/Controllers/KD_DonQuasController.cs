@@ -94,10 +94,26 @@ namespace ELF.Areas.KiemDuyets.Controllers
             if (donQua.TrangThai == "Chờ xác nhận")
             {
                 donQua.TrangThai = "Đang giao hàng";
+                db.ThongBaos.Add(new ThongBao
+                {
+                    maDQ = donQua.MaDQ,
+                    maND = donQua.MaND,
+                    tinhTrang = "Đang giao hàng",
+                    ngayTB = DateTime.Now,
+                    noiDung = "Đơn quà của bạn đã được xác nhận thành công, bạn vui lòng đợi vài ngày để chúng mình giao hàng đến cho bạn"
+                });
             }
-            if (donQua.TrangThai == "Đang giao hàng")
+            else 
             {
                 donQua.TrangThai = "Đã hoàn tất";
+                db.ThongBaos.Add(new ThongBao
+                {
+                    maDQ = donQua.MaDQ,
+                    maND = donQua.MaND,
+                    tinhTrang = "Đã hoàn tất",
+                    ngayTB = DateTime.Now,
+                    noiDung = "Đơn quà đã được giao đến cho bạn, mong bạn thích món quà của ELF"
+                });
             }
 
             db.Entry(donQua).State = EntityState.Modified;

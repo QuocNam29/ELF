@@ -200,7 +200,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, HttpPostedFileBase avt, int gioiTinh)
+        public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, HttpPostedFileBase avt, int gioiTinh, FormCollection formcollection)
         {
             if (ModelState["ngaySinh"].Errors.Count > 0)
             {
@@ -239,6 +239,22 @@ namespace ELF.Areas.NguoiDung.Controllers
                 nguoiDung.gioiTinh = gioiTinh;
                 db.Entry(nguoiDung).State = EntityState.Modified;
                 db.SaveChanges();
+
+                if (nguoiDung.maP != null && nguoiDung.maQuan != null &&
+                    nguoiDung.maTinh_TP != null && nguoiDung.diaChi != null)
+                {
+
+                    string phuongThiTran = formcollection["tenPhuong"].Trim();
+                    string quanHuyen = formcollection["tenQuan"].Trim();
+                    string tinhTP = formcollection["tenTinh_TP"].Trim();
+                    string diaChi = nguoiDung.diaChi.Trim();
+
+                    Session["diaChiTong"] = diaChi + ", " + phuongThiTran + ", " + quanHuyen + ", " + tinhTP;
+                }
+                else
+                {
+                    Session["diaChiTong"] = "";
+                }
 
                 Session["hoVaTen"] = nguoiDung.hoVaTen;
                 Session["avatar"] = nguoiDung.avatar;

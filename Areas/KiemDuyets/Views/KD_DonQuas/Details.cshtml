@@ -5,71 +5,67 @@
     Layout = "~/Areas/KiemDuyets/Views/Shared/_Layout_NguoiKiemDuyet.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>DonQua</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayTao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayTao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TongDiem)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TongDiem)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GhiChu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NguoiDung.hoVaTen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.QuaTang.tenQuaTang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuaTang.tenQuaTang)
-        </dd>
-
-    </dl>
+<div class="editing-info">
+    <h5 class="f-title"><i class="ti-info-alt"></i>@Html.DisplayFor(model => model.QuaTang.tenQuaTang)</h5>
+    <div class="form-group">
+        <img width="300" src="@Url.Content(Model.QuaTang.hinhAnh)" alt="">
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDQ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="onoff-options">
+    <div class="setting-row">
+        <span>Người đổi quà</span>
+        <p>@Html.DisplayFor(model => model.NguoiDung.hoVaTen)</p>
+    </div>
+
+    <div class="setting-row">
+        <span>Ngày đổi quà</span>
+        <p>@Html.DisplayFor(model => model.NgayTao)</p>
+
+    </div>
+    <div class="setting-row">
+        <span>Ghi chú</span>
+        <p>@Html.DisplayFor(model => model.ghiChu)</p>
+    </div>
+
+    <div class="submit-btns">
+        <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Xóa Bài</span></button>
+
+        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_DonQG", "KiemDuyets",  new { maQG = Model.maQG })'"><span>Duyệt Bài</span></button>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                @using (Html.BeginForm("XoaBai_BDSP", "KiemDuyets"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("maQG", Model.maQG)
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Lý do:</label>
+                                <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <button type="submit" class="btn btn-primary" id="btn btn-primary">Xác nhận</button>
+                            </div>
+                        </form>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>

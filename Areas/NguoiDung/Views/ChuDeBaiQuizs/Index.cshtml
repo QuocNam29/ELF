@@ -5,30 +5,33 @@
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
 }
 
-<h2>Index</h2>
+<div class="central-meta">
+    <div class="groups">
+        <span><i class="ti-help-alt"></i> Bài quiz</span>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tenChuDe)
-        </th>
-        <th></th>
-    </tr>
+    <br />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tenChuDe)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maChuDe }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maChuDe }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maChuDe })
-        </td>
-    </tr>
-}
+    <h6>Chọn chủ đề quiz bạn muốn làm: </h6>
 
-</table>
+
+    <ul class="liked-pages">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="f-page">
+                    <figure>
+                        <a href="#" title=""><img src="~/images/resources/@item.hinhAnh" alt=""></a>
+                    </figure>
+                    <div class="page-infos">
+                        <h5><a href="#" title="">@Html.DisplayFor(modelItem => item.tenChuDe)</a></h5>
+                        <span><a href="" title="">Câu hỏi liên quan đến yếu tố @Html.DisplayFor(modelItem => item.tenChuDe)</a></span>
+                    </div>
+
+                </div>
+            </li>
+        }
+    </ul>
+
+</div>
+

@@ -111,15 +111,18 @@ else
                 @*@Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
                 @*@Html.DropDownList("maTinh_TP", ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
                 @Html.DropDownList("maTinh_TP", null, htmlAttributes: new { @class = "form-control selectpicker", @title = "--- Tỉnh/Thành phố ---" })
+                <input type="hidden" id="hftenTinh_TP" name="tenTinh_TP"/>
             }
         </div>
         <div class="form-group">
             @Html.DropDownList("maQuan", new SelectList(String.Empty, "maQuan", "tenQuan", TempData["maQuan"]), "--- Quận/Huyện ---", new { @class = "form-control selectpicker", @title = "--- Quận/Huyện ---" })
+            <input type="hidden" id="hftenQuan" name="tenQuan" />
         </div>
 
         <div class="form-group">
             @*@Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn")*@
             @Html.DropDownList("maP", new SelectList(String.Empty, "maPhuong", "tenPhuong"), "--- Phường/Thị Trấn ---", new { @class = "form-control selectpicker", @title = "--- Phường/Thị Trấn ---" })
+            <input type="hidden" id="hftenPhuong" name="tenPhuong" />
         </div>
         <div class="form-group">
             @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @type = "text" } })
@@ -133,51 +136,8 @@ else
     </div>
 }
 
-@*<script src="~/Scripts/jquery-3.4.1.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script>
-
-            var RootUrl = '@Url.Content("~/")';
-
-            $(document).ready(function () {
-                $("#maTinh_TP").change(function () {
-                    var ThanhPhoID = $(this).val();
-                    debugger
-                    $.ajax({
-                        type: "post",
-                        url: RootUrl + "NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
-                        contentType: "html",
-                        success: function (response) {
-                            debugger
-                            $("#maQuan").empty();
-                            $("#maQuan").append(response);
-                        }
-                    })
-                })
-            })
-
-
-            $(document).ready(function () {
-                $("#maQuan").change(function () {
-                    var QuanID = $(this).val();
-                    debugger
-                    $.ajax({
-                        type: "post",
-                        url: RootUrl + "NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
-                        contentType: "html",
-                        success: function (response) {
-                            debugger
-                            $("#maP").empty();
-                            $("#maP").append(response);
-                        }
-                    })
-                })
-            })
-
-    </script>*@
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 
 <script type="text/javascript">
@@ -188,6 +148,17 @@ else
     $(document).ready(function () {
         $(".chosen-container").remove();
 
+        $("#maTinh_TP").on("change", function () {
+            $("#hftenTinh_TP").val($(this).find("option:selected").text());
+        });
+
+        $("#maQuan").on("change", function () {
+            $("#hftenQuan").val($(this).find("option:selected").text());
+        });
+
+        $("#maP").on("change", function () {
+            $("#hftenPhuong").val($(this).find("option:selected").text());
+        });
     });
 
     $(document).ready(function () {

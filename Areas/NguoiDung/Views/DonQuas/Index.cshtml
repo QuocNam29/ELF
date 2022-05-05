@@ -31,7 +31,7 @@
                     <div class="pepl-info">
                         <h4>@item.QuaTang.tenQuaTang</h4>
                         <span style="color:#545454">@soLuong cái</span>
-                        @if (item.TrangThai == "Chờ giao hàng")
+                        @if (item.TrangThai == "Chờ xác nhận")
                         {
                             <em style="color: #545454; border: 1px solid; padding: 2px; ">@item.TrangThai</em>
                             <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#exampleModalCenter">Huỷ đơn quà</a>
@@ -46,7 +46,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Bạn có chắc muốn xoá đơn đổi quà @soLuong chậu @item.QuaTang.tenQuaTang này? 
+                                            Bạn có chắc muốn xoá đơn đổi quà @soLuong chậu @item.QuaTang.tenQuaTang này?
                                             Bạn sẽ được hoàn lại @item.TongDiem điểm.
                                         </div>
                                         <div class="modal-footer">
@@ -62,14 +62,18 @@
                             </div>
 
                         }
-                        else if (item.TrangThai == "Đã giao hàng")
+                        else if (item.TrangThai == "Đang giao hàng")
+                        {
+                            <em style="color: dodgerblue; border: 1px solid; padding: 2px; ">@item.TrangThai</em>
+                        }
+                        else if (item.TrangThai == "Đã hoàn tất")
                         {
                             <em style="color: green; border: 1px solid; padding: 2px; ">@item.TrangThai</em>
                         }
-                        @*else
+                        else
                         {
-                            <em style="color: red; border: 1px solid; padding: 2px; ">@item.trangThai</em>
-                        }*@
+                            <em style="color: red; border: 1px solid; padding: 2px; ">@item.TrangThai</em>
+                        }
                         <span>@item.NgayTao.ToString("dd/MM/yyyy")</span>
                     </div>
                 </div>

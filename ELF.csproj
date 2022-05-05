@@ -600,6 +600,9 @@
     <Content Include="images\resources\Qua_senDa.jpg" />
     <Content Include="images\resources\Qua_XuongRong.jpg" />
     <Content Include="images\resources\Qua_xuongRongTron.jpg" />
+    <Content Include="images\resources\quiz_dat.jpg" />
+    <Content Include="images\resources\quiz_khongkhi.jpg" />
+    <Content Include="images\resources\quiz_nuoc.jpg" />
     <Content Include="images\resources\recent-1.jpg" />
     <Content Include="images\resources\recent-11.jpg" />
     <Content Include="images\resources\recent-2.jpg" />

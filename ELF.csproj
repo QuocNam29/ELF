@@ -271,6 +271,7 @@
     <Compile Include="Areas\NguoiDung\Controllers\LoaiQuyenGopsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\QuaTangsController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\QuizzController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\QuyenGopsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\ThongBaosController.cs" />
@@ -409,6 +410,7 @@
     <Compile Include="Models\TraoDoi.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\viewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -891,6 +893,8 @@
     <Content Include="Areas\KiemDuyets\Views\KD_DonQuas\Details.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_DonQuas\Edit.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_DonQuas\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Quizz\SelectQuizz.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\Quizz\QuizTest.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -980,6 +984,7 @@
     <Folder Include="Areas\KiemDuyets\Data\" />
     <Folder Include="Areas\NguoiDung\Data\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Views\viewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

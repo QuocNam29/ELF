@@ -18,12 +18,12 @@
 
                 foreach (var question in Model)
                 {
-                    <div class="BlockQ" style="border: 1px solid #bdbdbd; width: 100%; border-radius: 4px; margin-top: 40px; background-color: #f0ffff; padding: 8px;">
+                    <div class="BlockQ" style="border: 1px solid #bdbdbd; width: 100%; border-radius: 4px; margin-top: 40px; background-color: #def2f8; padding: 8px;">
 
                         <div class="Question" style="padding: 2%;">
                             <span class="label label-warning"> @string.Format("{0}{1}.", "Q", count)</span>
                             <span id="@string.Format("{0}{1}", "ID_Q", count)" style="display:none;">@question.QuestionID</span>
-                            <p style="display: inline; padding: 2%;" id="@string.Format("{0}{1}", "Q", count)">@question.QuestionText</p>
+                            <p style="display: inline; padding: 2%; font-size: calc(.90375rem + .045vw)" id="@string.Format("{0}{1}", "Q", count)">@question.QuestionText</p>
                         </div>
 
                         <div class="Choices" style="margin-left: 8%;">
@@ -47,7 +47,7 @@
                     count++;
                 }
                 <span id="countQuections" style="display:none;">@count</span>
-                <button type="button" id="SubmitQuiz" class="btn btn-default" style="margin-top: 10px;"><span class="glyphicon glyphicon-ok"></span>   Submit Quiz </button>
+                <button type="button" id="SubmitQuiz" class="btn btn-primary" style="margin-top: 10px; background-color: #088dcd"><span class="glyphicon glyphicon-ok"></span>   Submit Quiz </button>
 
 
             }

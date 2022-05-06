@@ -22,7 +22,6 @@ namespace ELF.Models
         }
     
         public int maCauHoi { get; set; }
-        public string cauHoi1 { get; set; }
         public string noiDungCauHoi { get; set; }
         public System.DateTime ngayTao { get; set; }
         public Nullable<System.DateTime> ngayThayDoi { get; set; }

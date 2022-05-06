@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -134,7 +134,6 @@
             <PropertyRef Name="maCauHoi" />
           </Key>
           <Property Name="maCauHoi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cauHoi" Type="nvarchar(max)" Nullable="false" />
           <Property Name="noiDungCauHoi" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ngayTao" Type="datetime" Nullable="false" />
           <Property Name="ngayThayDoi" Type="datetime" />
@@ -163,7 +162,6 @@
           </Key>
           <Property Name="maChuDe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tenChuDe" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="hinhAnh" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="DapAn">
           <Key>
@@ -1364,7 +1362,8 @@
             <End Role="TraoDoi" EntitySet="TraoDoi" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ELFVanLang2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1481,6 +1480,18 @@
           <Property Name="TongDiem" Type="Double" Nullable="false" />
           <NavigationProperty Name="CauHoi_BaiQuiz" Relationship="Self.FK_CauHoi_BaiQuiz_BaiQuiz" FromRole="BaiQuiz" ToRole="CauHoi_BaiQuiz" />
         </EntityType>
+        <EntityType Name="BaoCao">
+          <Key>
+            <PropertyRef Name="maBC" />
+          </Key>
+          <Property Name="maBC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maND" Type="Int32" />
+          <Property Name="maNDKhac" Type="Int32" />
+          <Property Name="lyDo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ngayBaoCao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_BaoCao_NguoiDung" FromRole="BaoCao" ToRole="NguoiDung" />
+          <NavigationProperty Name="NguoiDung1" Relationship="Self.FK_BaoCao_NguoiDung1" FromRole="BaoCao" ToRole="NguoiDung" />
+        </EntityType>
         <EntityType Name="BinhLuan">
           <Key>
             <PropertyRef Name="maBL" />
@@ -1502,7 +1513,6 @@
             <PropertyRef Name="maCauHoi" />
           </Key>
           <Property Name="maCauHoi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cauHoi1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="noiDungCauHoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ngayTao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ngayThayDoi" Type="DateTime" Precision="3" />
@@ -1540,7 +1550,6 @@
           <Property Name="maChuDe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tenChuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CauHois" Relationship="Self.FK_CauHoi_ChuDeBaiQuiz" FromRole="ChuDeBaiQuiz" ToRole="CauHoi" />
-          <Property Name="hinhAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DapAn">
           <Key>
@@ -1668,6 +1677,18 @@
           <Property Name="vaiTro" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ChucNangTaiKhoans" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan" FromRole="LoaiTaiKhoan" ToRole="ChucNangTaiKhoan" />
         </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+          <Property Name="FromUserId" Type="Int32" />
+          <Property Name="ToRoomId" Type="Int32" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Messages_Rooms" FromRole="Messages" ToRole="Rooms" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_Messages_TaiKhoan" FromRole="Messages" ToRole="TaiKhoan" />
+        </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
             <PropertyRef Name="maND" />
@@ -1686,6 +1707,8 @@
           <Property Name="maTK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BaiDangSanPhams" Relationship="Self.FK_BaiDangSanPham_NguoiDung" FromRole="NguoiDung" ToRole="BaiDangSanPham" />
           <NavigationProperty Name="BaiDangThongTins" Relationship="Self.FK_BaiDangThongTin_NguoiDung" FromRole="NguoiDung" ToRole="BaiDangThongTin" />
+          <NavigationProperty Name="BaoCaos" Relationship="Self.FK_BaoCao_NguoiDung" FromRole="NguoiDung" ToRole="BaoCao" />
+          <NavigationProperty Name="BaoCaos1" Relationship="Self.FK_BaoCao_NguoiDung1" FromRole="NguoiDung" ToRole="BaoCao" />
           <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_NguoiDung" FromRole="NguoiDung" ToRole="BinhLuan" />
           <NavigationProperty Name="DiemTichLuys" Relationship="Self.FK_DiemTichLuy_NguoiDung" FromRole="NguoiDung" ToRole="DiemTichLuy" />
           <NavigationProperty Name="DonQuas" Relationship="Self.FK_DonQua_NguoiDung" FromRole="NguoiDung" ToRole="DonQua" />
@@ -1699,8 +1722,6 @@
           <NavigationProperty Name="ThongBaos1" Relationship="Self.FK_ThongBao_NguoiDung1" FromRole="NguoiDung" ToRole="ThongBao" />
           <NavigationProperty Name="TraoDois" Relationship="Self.FK_TraoDoi_NguoiDung" FromRole="NguoiDung" ToRole="TraoDoi" />
           <NavigationProperty Name="TraoDois1" Relationship="Self.FK_TraoDoi_NguoiDung1" FromRole="NguoiDung" ToRole="TraoDoi" />
-          <NavigationProperty Name="BaoCaos" Relationship="ELFVanLang2021Model.FK_BaoCao_NguoiDung" FromRole="NguoiDung" ToRole="BaoCao" />
-          <NavigationProperty Name="BaoCaos1" Relationship="ELFVanLang2021Model.FK_BaoCao_NguoiDung1" FromRole="NguoiDung" ToRole="BaoCao" />
         </EntityType>
         <EntityType Name="PhuongThiTran">
           <Key>
@@ -1755,6 +1776,16 @@
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_QuyenGop_NguoiDung" FromRole="QuyenGop" ToRole="NguoiDung" />
           <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_QuyenGop" FromRole="QuyenGop" ToRole="ThongBao" />
         </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminId" Type="Int32" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_Rooms" FromRole="Rooms" ToRole="Messages" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_Rooms_TaiKhoan" FromRole="Rooms" ToRole="TaiKhoan" />
+        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -1777,9 +1808,9 @@
           <Property Name="ngayTao" Type="DateTime" Precision="3" />
           <Property Name="trangThai" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ChucNangTaiKhoans" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" FromRole="TaiKhoan" ToRole="ChucNangTaiKhoan" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_TaiKhoan" FromRole="TaiKhoan" ToRole="Messages" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TaiKhoan_NguoiDung" FromRole="TaiKhoan" ToRole="NguoiDung" />
-          <NavigationProperty Name="Messages" Relationship="ELFVanLang2021Model.FK_Messages_TaiKhoan" FromRole="TaiKhoan" ToRole="Message" />
-          <NavigationProperty Name="Rooms" Relationship="ELFVanLang2021Model.FK_Rooms_TaiKhoan" FromRole="TaiKhoan" ToRole="Room" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Rooms_TaiKhoan" FromRole="TaiKhoan" ToRole="Rooms" />
         </EntityType>
         <EntityType Name="Tinh_ThanhPho">
           <Key>
@@ -2041,6 +2072,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BaoCao_NguoiDung">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="BaoCao" Type="Self.BaoCao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="BaoCao">
+              <PropertyRef Name="maND" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaoCao_NguoiDung1">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="BaoCao" Type="Self.BaoCao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="maND" />
+            </Principal>
+            <Dependent Role="BaoCao">
+              <PropertyRef Name="maNDKhac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BinhLuan_NguoiDung">
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
@@ -2283,6 +2338,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Messages_Rooms">
+          <End Role="Rooms" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="ToRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_TaiKhoan">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="FromUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NguoiDung_PhuongThiTran">
           <End Role="PhuongThiTran" Type="Self.PhuongThiTran" Multiplicity="0..1" />
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
@@ -2435,6 +2514,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Rooms_TaiKhoan">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ThongBao_TraoDoi">
           <End Role="TraoDoi" Type="Self.TraoDoi" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -2462,6 +2553,7 @@
           <EntitySet Name="BaiDangSanPhams" EntityType="Self.BaiDangSanPham" />
           <EntitySet Name="BaiDangThongTins" EntityType="Self.BaiDangThongTin" />
           <EntitySet Name="BaiQuizs" EntityType="Self.BaiQuiz" />
+          <EntitySet Name="BaoCaos" EntityType="Self.BaoCao" />
           <EntitySet Name="BinhLuans" EntityType="Self.BinhLuan" />
           <EntitySet Name="CauHois" EntityType="Self.CauHoi" />
           <EntitySet Name="CauHoi_BaiQuiz" EntityType="Self.CauHoi_BaiQuiz" />
@@ -2477,11 +2569,13 @@
           <EntitySet Name="LoaiQuyenGops" EntityType="Self.LoaiQuyenGop" />
           <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
           <EntitySet Name="LoaiTaiKhoans" EntityType="Self.LoaiTaiKhoan" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
           <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
           <EntitySet Name="PhuongThiTrans" EntityType="Self.PhuongThiTran" />
           <EntitySet Name="QuanHuyens" EntityType="Self.QuanHuyen" />
           <EntitySet Name="QuaTangs" EntityType="Self.QuaTang" />
           <EntitySet Name="QuyenGops" EntityType="Self.QuyenGop" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
           <EntitySet Name="Tinh_ThanhPho" EntityType="Self.Tinh_ThanhPho" />
@@ -2547,6 +2641,14 @@
           <AssociationSet Name="FK_CauHoi_BaiQuiz_BaiQuiz" Association="Self.FK_CauHoi_BaiQuiz_BaiQuiz">
             <End Role="BaiQuiz" EntitySet="BaiQuizs" />
             <End Role="CauHoi_BaiQuiz" EntitySet="CauHoi_BaiQuiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaoCao_NguoiDung" Association="Self.FK_BaoCao_NguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="BaoCao" EntitySet="BaoCaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaoCao_NguoiDung1" Association="Self.FK_BaoCao_NguoiDung1">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="BaoCao" EntitySet="BaoCaos" />
           </AssociationSet>
           <AssociationSet Name="FK_BinhLuan_NguoiDung" Association="Self.FK_BinhLuan_NguoiDung">
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
@@ -2620,6 +2722,14 @@
             <End Role="LoaiQuyenGop" EntitySet="LoaiQuyenGops" />
             <End Role="QuyenGop" EntitySet="QuyenGops" />
           </AssociationSet>
+          <AssociationSet Name="FK_Messages_Rooms" Association="Self.FK_Messages_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_TaiKhoan" Association="Self.FK_Messages_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
           <AssociationSet Name="FK_NguoiDung_PhuongThiTran" Association="Self.FK_NguoiDung_PhuongThiTran">
             <End Role="PhuongThiTran" EntitySet="PhuongThiTrans" />
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
@@ -2668,6 +2778,10 @@
             <End Role="QuyenGop" EntitySet="QuyenGops" />
             <End Role="ThongBao" EntitySet="ThongBaos" />
           </AssociationSet>
+          <AssociationSet Name="FK_Rooms_TaiKhoan" Association="Self.FK_Rooms_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
           <AssociationSet Name="FK_ThongBao_TraoDoi" Association="Self.FK_ThongBao_TraoDoi">
             <End Role="TraoDoi" EntitySet="TraoDois" />
             <End Role="ThongBao" EntitySet="ThongBaos" />
@@ -2676,124 +2790,7 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="BaoCaos" EntityType="ELFVanLang2021Model.BaoCao" />
-          <EntitySet Name="Messages" EntityType="ELFVanLang2021Model.Message" />
-          <EntitySet Name="Rooms" EntityType="ELFVanLang2021Model.Room" />
-          <AssociationSet Name="FK_BaoCao_NguoiDung" Association="ELFVanLang2021Model.FK_BaoCao_NguoiDung">
-            <End Role="NguoiDung" EntitySet="NguoiDungs" />
-            <End Role="BaoCao" EntitySet="BaoCaos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BaoCao_NguoiDung1" Association="ELFVanLang2021Model.FK_BaoCao_NguoiDung1">
-            <End Role="NguoiDung" EntitySet="NguoiDungs" />
-            <End Role="BaoCao" EntitySet="BaoCaos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Messages_Rooms" Association="ELFVanLang2021Model.FK_Messages_Rooms">
-            <End Role="Room" EntitySet="Rooms" />
-            <End Role="Message" EntitySet="Messages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Messages_TaiKhoan" Association="ELFVanLang2021Model.FK_Messages_TaiKhoan">
-            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
-            <End Role="Message" EntitySet="Messages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rooms_TaiKhoan" Association="ELFVanLang2021Model.FK_Rooms_TaiKhoan">
-            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
-            <End Role="Room" EntitySet="Rooms" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="BaoCao">
-          <Key>
-            <PropertyRef Name="maBC" />
-          </Key>
-          <Property Name="maBC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="maND" Type="Int32" />
-          <Property Name="maNDKhac" Type="Int32" />
-          <Property Name="lyDo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NguoiDung" Relationship="ELFVanLang2021Model.FK_BaoCao_NguoiDung" FromRole="BaoCao" ToRole="NguoiDung" />
-          <NavigationProperty Name="NguoiDung1" Relationship="ELFVanLang2021Model.FK_BaoCao_NguoiDung1" FromRole="BaoCao" ToRole="NguoiDung" />
-          <Property Name="ngayBaoCao" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Message">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Timestamp" Type="DateTime" Precision="3" />
-          <Property Name="FromUserId" Type="Int32" />
-          <Property Name="ToRoomId" Type="Int32" />
-          <NavigationProperty Name="Room" Relationship="ELFVanLang2021Model.FK_Messages_Rooms" FromRole="Message" ToRole="Room" />
-          <NavigationProperty Name="TaiKhoan" Relationship="ELFVanLang2021Model.FK_Messages_TaiKhoan" FromRole="Message" ToRole="TaiKhoan" />
-        </EntityType>
-        <EntityType Name="Room">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AdminId" Type="Int32" />
-          <NavigationProperty Name="Messages" Relationship="ELFVanLang2021Model.FK_Messages_Rooms" FromRole="Room" ToRole="Message" />
-          <NavigationProperty Name="TaiKhoan" Relationship="ELFVanLang2021Model.FK_Rooms_TaiKhoan" FromRole="Room" ToRole="TaiKhoan" />
-        </EntityType>
-        <Association Name="FK_BaoCao_NguoiDung">
-          <End Type="ELFVanLang2021Model.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
-          <End Type="ELFVanLang2021Model.BaoCao" Role="BaoCao" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="maND" />
-            </Principal>
-            <Dependent Role="BaoCao">
-              <PropertyRef Name="maND" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BaoCao_NguoiDung1">
-          <End Type="ELFVanLang2021Model.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
-          <End Type="ELFVanLang2021Model.BaoCao" Role="BaoCao" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NguoiDung">
-              <PropertyRef Name="maND" />
-            </Principal>
-            <Dependent Role="BaoCao">
-              <PropertyRef Name="maNDKhac" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Messages_Rooms">
-          <End Type="ELFVanLang2021Model.Room" Role="Room" Multiplicity="0..1" />
-          <End Type="ELFVanLang2021Model.Message" Role="Message" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Room">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Message">
-              <PropertyRef Name="ToRoomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Messages_TaiKhoan">
-          <End Type="ELFVanLang2021Model.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
-          <End Type="ELFVanLang2021Model.Message" Role="Message" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoan">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Message">
-              <PropertyRef Name="FromUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rooms_TaiKhoan">
-          <End Type="ELFVanLang2021Model.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
-          <End Type="ELFVanLang2021Model.Room" Role="Room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoan">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Room">
-              <PropertyRef Name="AdminId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2899,6 +2896,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaos">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.BaoCao">
+              <MappingFragment StoreEntitySet="BaoCao">
+                <ScalarProperty Name="maBC" ColumnName="maBC" />
+                <ScalarProperty Name="maND" ColumnName="maND" />
+                <ScalarProperty Name="maNDKhac" ColumnName="maNDKhac" />
+                <ScalarProperty Name="lyDo" ColumnName="lyDo" />
+                <ScalarProperty Name="ngayBaoCao" ColumnName="ngayBaoCao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BinhLuans">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.BinhLuan">
               <MappingFragment StoreEntitySet="BinhLuan">
@@ -2916,7 +2924,6 @@
             <EntityTypeMapping TypeName="ELFVanLang2021Model.CauHoi">
               <MappingFragment StoreEntitySet="CauHoi">
                 <ScalarProperty Name="maCauHoi" ColumnName="maCauHoi" />
-                <ScalarProperty Name="cauHoi1" ColumnName="cauHoi" />
                 <ScalarProperty Name="noiDungCauHoi" ColumnName="noiDungCauHoi" />
                 <ScalarProperty Name="ngayTao" ColumnName="ngayTao" />
                 <ScalarProperty Name="ngayThayDoi" ColumnName="ngayThayDoi" />
@@ -2946,7 +2953,6 @@
           <EntitySetMapping Name="ChuDeBaiQuizs">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.ChuDeBaiQuiz">
               <MappingFragment StoreEntitySet="ChuDeBaiQuiz">
-                <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="maChuDe" ColumnName="maChuDe" />
                 <ScalarProperty Name="tenChuDe" ColumnName="tenChuDe" />
               </MappingFragment>
@@ -3069,6 +3075,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+                <ScalarProperty Name="ToRoomId" ColumnName="ToRoomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="NguoiDungs">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.NguoiDung">
               <MappingFragment StoreEntitySet="NguoiDung">
@@ -3131,6 +3148,15 @@
                 <ScalarProperty Name="trangThai" ColumnName="trangThai" />
                 <ScalarProperty Name="hinhAnh" ColumnName="hinhAnh" />
                 <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="ELFVanLang2021Model.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3212,37 +3238,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="BaoCaos">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.BaoCao">
-              <MappingFragment StoreEntitySet="BaoCao">
-                <ScalarProperty Name="ngayBaoCao" ColumnName="ngayBaoCao" />
-                <ScalarProperty Name="lyDo" ColumnName="lyDo" />
-                <ScalarProperty Name="maNDKhac" ColumnName="maNDKhac" />
-                <ScalarProperty Name="maND" ColumnName="maND" />
-                <ScalarProperty Name="maBC" ColumnName="maBC" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.Message">
-              <MappingFragment StoreEntitySet="Messages">
-                <ScalarProperty Name="ToRoomId" ColumnName="ToRoomId" />
-                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rooms">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.Room">
-              <MappingFragment StoreEntitySet="Rooms">
-                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

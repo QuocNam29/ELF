@@ -264,7 +264,6 @@
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangThongTinsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaoCaosController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BinhLuansController.cs" />
-    <Compile Include="Areas\NguoiDung\Controllers\ChuDeBaiQuizsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DiemTichLuysController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\DonQuasController.cs" />
@@ -602,9 +601,6 @@
     <Content Include="images\resources\Qua_senDa.jpg" />
     <Content Include="images\resources\Qua_XuongRong.jpg" />
     <Content Include="images\resources\Qua_xuongRongTron.jpg" />
-    <Content Include="images\resources\quiz_dat.jpg" />
-    <Content Include="images\resources\quiz_khongkhi.jpg" />
-    <Content Include="images\resources\quiz_nuoc.jpg" />
     <Content Include="images\resources\recent-1.jpg" />
     <Content Include="images\resources\recent-11.jpg" />
     <Content Include="images\resources\recent-2.jpg" />
@@ -862,13 +858,6 @@
     <Content Include="Areas\NguoiDung\Views\QuaTangs\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuaTangs\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuaTangs\Index.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\NguoiDung\Views\DonQuas\Create.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DonQuas\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DonQuas\Details.cshtml" />
@@ -883,11 +872,6 @@
     <Content Include="Areas\NguoiDung\Views\BaoCaos\Index.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Details_BDTT.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Details_DonQG.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ChuDeBaiQuizs\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ChuDeBaiQuizs\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ChuDeBaiQuizs\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ChuDeBaiQuizs\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ChuDeBaiQuizs\Index.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_DonQuas\Create.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_DonQuas\Delete.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_DonQuas\Details.cshtml" />
@@ -895,6 +879,13 @@
     <Content Include="Areas\KiemDuyets\Views\KD_DonQuas\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Quizz\SelectQuizz.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Quizz\QuizTest.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

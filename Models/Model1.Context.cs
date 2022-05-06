@@ -33,6 +33,7 @@ namespace ELF.Models
         public virtual DbSet<BaiDangSanPham> BaiDangSanPhams { get; set; }
         public virtual DbSet<BaiDangThongTin> BaiDangThongTins { get; set; }
         public virtual DbSet<BaiQuiz> BaiQuizs { get; set; }
+        public virtual DbSet<BaoCao> BaoCaos { get; set; }
         public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<CauHoi> CauHois { get; set; }
         public virtual DbSet<CauHoi_BaiQuiz> CauHoi_BaiQuiz { get; set; }
@@ -48,19 +49,18 @@ namespace ELF.Models
         public virtual DbSet<LoaiQuyenGop> LoaiQuyenGops { get; set; }
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<PhuongThiTran> PhuongThiTrans { get; set; }
         public virtual DbSet<QuanHuyen> QuanHuyens { get; set; }
         public virtual DbSet<QuaTang> QuaTangs { get; set; }
         public virtual DbSet<QuyenGop> QuyenGops { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<Tinh_ThanhPho> Tinh_ThanhPho { get; set; }
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<TrangThaiBaiDang> TrangThaiBaiDangs { get; set; }
         public virtual DbSet<TraoDoi> TraoDois { get; set; }
-        public virtual DbSet<BaoCao> BaoCaos { get; set; }
-        public virtual DbSet<Message> Messages { get; set; }
-        public virtual DbSet<Room> Rooms { get; set; }
     }
 }

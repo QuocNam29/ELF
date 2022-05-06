@@ -4,41 +4,44 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b0816915a81a4d92ae8b9a4bac688e69" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="83733292de0e4a45a53f09f63e43f54c" Name="Diagram1">
         <EntityTypeShape EntityType="ELFVanLang2021Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiDangSanPham" Width="1.5" PointX="9.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiDangThongTin" Width="1.5" PointX="12.75" PointY="24.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiQuiz" Width="1.5" PointX="5.25" PointY="36.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.BinhLuan" Width="1.5" PointX="15" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.CauHoi" Width="1.5" PointX="5.25" PointY="38.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.CauHoi_BaiQuiz" Width="1.5" PointX="7.5" PointY="37.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.ChucNangTaiKhoan" Width="1.5" PointX="12" PointY="45.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.ChuDeBaiQuiz" Width="1.5" PointX="3" PointY="39.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.DapAn" Width="1.5" PointX="7.5" PointY="41.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.DiemTichLuy" Width="1.5" PointX="15" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.DonQua" Width="1.5" PointX="9.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiDangSanPham" Width="1.5" PointX="9.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiDangThongTin" Width="1.5" PointX="12.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BaiQuiz" Width="1.5" PointX="5.25" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BaoCao" Width="1.5" PointX="9.75" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.BinhLuan" Width="1.5" PointX="15" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.CauHoi" Width="1.5" PointX="5.25" PointY="41.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.CauHoi_BaiQuiz" Width="1.5" PointX="7.5" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.ChucNangTaiKhoan" Width="1.5" PointX="12" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.ChuDeBaiQuiz" Width="1.5" PointX="3" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.DapAn" Width="1.5" PointX="7.5" PointY="43.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.DiemTichLuy" Width="1.5" PointX="15" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.DonQua" Width="1.5" PointX="9.75" PointY="22.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.DonThuGom" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.DonViThuGom" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.KetQua" Width="1.5" PointX="9.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.KetQua" Width="1.5" PointX="9.75" PointY="32.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiDiemTichLuy" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiQuyenGop" Width="1.5" PointX="10.5" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiSanPham" Width="1.5" PointX="7.5" PointY="31.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiTaiKhoan" Width="1.5" PointX="9.75" PointY="42.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.NguoiDung" Width="1.5" PointX="7.5" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.PhuongThiTran" Width="1.5" PointX="5.25" PointY="28.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.QuanHuyen" Width="1.5" PointX="3" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.QuaTang" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.QuyenGop" Width="1.5" PointX="12.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiQuyenGop" Width="1.5" PointX="10.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiSanPham" Width="1.5" PointX="7.5" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.LoaiTaiKhoan" Width="1.5" PointX="9.75" PointY="47.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.Message" Width="1.5" PointX="14.25" PointY="53.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.NguoiDung" Width="1.5" PointX="7.5" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.PhuongThiTran" Width="1.5" PointX="5.25" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.QuanHuyen" Width="1.5" PointX="3" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.QuaTang" Width="1.5" PointX="7.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.QuyenGop" Width="1.5" PointX="12.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.Room" Width="1.5" PointX="12" PointY="57.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ELFVanLang2021Model.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.TaiKhoan" Width="1.5" PointX="9.75" PointY="45.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.Tinh_ThanhPho" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.ThongBao" Width="1.5" PointX="17.25" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.TrangThaiBaiDang" Width="1.5" PointX="7.5" PointY="33.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.TraoDoi" Width="1.5" PointX="15" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.TaiKhoan" Width="1.5" PointX="9.75" PointY="50.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.Tinh_ThanhPho" Width="1.5" PointX="0.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.ThongBao" Width="1.5" PointX="17.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.TrangThaiBaiDang" Width="1.5" PointX="7.5" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="ELFVanLang2021Model.TraoDoi" Width="1.5" PointX="15" PointY="31.25" IsExpanded="true" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_BaiDangSanPham_LoaiSanPham" ManuallyRouted="false" />
@@ -54,6 +57,8 @@
         <AssociationConnector Association="ELFVanLang2021Model.FK_DiemTichLuy_BaiDangThongTin" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_BaiDangThongTin" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_CauHoi_BaiQuiz_BaiQuiz" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaoCao_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BaoCao_NguoiDung1" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_BinhLuan_NguoiDung" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_BinhLuan" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_CauHoi_BaiQuiz_CauHoi" ManuallyRouted="false" />
@@ -72,6 +77,8 @@
         <AssociationConnector Association="ELFVanLang2021Model.FK_DonThuGom_DonViThuGom" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_KetQua_NguoiDung" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_QuyenGop_LoaiQuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_Messages_Rooms" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_Messages_TaiKhoan" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_NguoiDung_PhuongThiTran" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_NguoiDung_QuanHuyen" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_NguoiDung_Tinh_ThanhPho" ManuallyRouted="false" />
@@ -84,16 +91,9 @@
         <AssociationConnector Association="ELFVanLang2021Model.FK_PhuongThiTran_QuanHuyen" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_QuanHuyen_ThanhPho" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_QuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_Rooms_TaiKhoan" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_TraoDoi" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.BaoCao" Width="1.5" PointX="9.75" PointY="34" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.Message" Width="1.5" PointX="14.25" PointY="46.75" />
-        <EntityTypeShape EntityType="ELFVanLang2021Model.Room" Width="1.5" PointX="12" PointY="48.875" />
-        <AssociationConnector Association="ELFVanLang2021Model.FK_BaoCao_NguoiDung" />
-        <AssociationConnector Association="ELFVanLang2021Model.FK_BaoCao_NguoiDung1" />
-        <AssociationConnector Association="ELFVanLang2021Model.FK_Messages_Rooms" />
-        <AssociationConnector Association="ELFVanLang2021Model.FK_Messages_TaiKhoan" />
-        <AssociationConnector Association="ELFVanLang2021Model.FK_Rooms_TaiKhoan" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

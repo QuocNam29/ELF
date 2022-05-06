@@ -69,13 +69,14 @@ else
             @Html.ValidationMessageFor(model => model.dienThoai, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            @Html.EditorFor(model => model.ngaySinh, new
-       {
-           htmlAttributes = new
-           {
-               @type = "text"
-           }
-       })
+            @*@Html.EditorFor(model => model.ngaySinh, new
+        {
+            htmlAttributes = new
+            {
+                @type = "date"
+            }
+        })*@
+            @Html.TextBoxFor(model => model.ngaySinh, "{0:dd/MM/yyyy}", new { @class = "datepicker" })
             <label class="control-label" for="input">Ngày sinh</label><i class="mtrl-select"></i>
             @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @type = "date", @class = "text-danger" })
         </div>

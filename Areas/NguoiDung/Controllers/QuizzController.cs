@@ -52,6 +52,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         public ActionResult QuizTest()
         {
             QuizVM quizSelected = Session["SelectedQuiz"] as QuizVM;
+            TempData["tenChuDe"] = quizSelected.QuizName;
             IQueryable<QuestionVM> questions = null;
 
             if (quizSelected != null)

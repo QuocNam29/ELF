@@ -11,7 +11,7 @@
 
         <div class="Quiz">
 
-            <h4 style="margin-top: 4%;"> <span class="label label-info">Questions :</span> </h4>
+            <h4 style="margin-top: 4%; color: #c02424; font-weight: 500 "> <span class="label label-info">Câu hỏi chủ đề @TempData["tenChuDe"]:</span> </h4>
 
             @if (Model != null && Model.Any())
             {
@@ -21,17 +21,17 @@
                     <div class="BlockQ" style="border: 1px solid #bdbdbd; width: 100%; border-radius: 4px; margin-top: 40px; background-color: #def2f8; padding: 8px;">
 
                         <div class="Question" style="padding: 2%;">
-                            <span class="label label-warning"> @string.Format("{0}{1}.", "Q", count)</span>
+                            <span class="label label-warning" style="color: #c02424; font-weight: bold; "> @string.Format("{0}{1}.", "Q", count)</span>
                             <span id="@string.Format("{0}{1}", "ID_Q", count)" style="display:none;">@question.QuestionID</span>
-                            <p style="display: inline; padding: 2%; font-size: calc(.90375rem + .045vw)" id="@string.Format("{0}{1}", "Q", count)">@question.QuestionText</p>
+                            <p style="display: inline; padding: 2%; font-size: 16px; color: #2f6473;" id="@string.Format("{0}{1}", "Q", count)">@question.QuestionText</p>
                         </div>
 
                         <div class="Choices" style="margin-left: 8%;">
 
                             @foreach (var choice in question.Choices)
                             {
-                                <label class="radio-inline">
-                                    <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions",count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="@choice.ChoiceText" style="margin-left: -16px;"> @choice.ChoiceText
+                                <label class="radio-inline" style="font-size: 14px">
+                                    <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions",count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="@choice.ChoiceText" style="margin-left: -16px"> @choice.ChoiceText
                                 </label><br />
                                 countR++;
                             }
@@ -47,6 +47,7 @@
                     count++;
                 }
                 <span id="countQuections" style="display:none;">@count</span>
+                <button type="button" class="btn btn-secondary" style="margin-top: 10px; margin-right: 10px">Quay về</button>
                 <button type="button" id="SubmitQuiz" class="btn btn-primary" style="margin-top: 10px; background-color: #088dcd"><span class="glyphicon glyphicon-ok"></span>   Submit Quiz </button>
 
 

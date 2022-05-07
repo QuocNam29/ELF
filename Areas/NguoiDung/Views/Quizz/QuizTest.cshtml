@@ -16,7 +16,7 @@
             @if (Model != null && Model.Any())
             {
 
-                foreach (var question in Model)
+                foreach (var question in Model.OrderBy(x => Guid.NewGuid()).Take(Model.Count()))
                 {
                     <div class="BlockQ" style="border: 1px solid #bdbdbd; width: 100%; border-radius: 4px; margin-top: 40px; background-color: #def2f8; padding: 8px;">
 
@@ -28,7 +28,7 @@
 
                         <div class="Choices" style="margin-left: 8%;">
 
-                            @foreach (var choice in question.Choices.OrderBy(x =>Guid.NewGuid()).Take(4))
+                            @foreach (var choice in question.Choices.OrderBy(x => Guid.NewGuid()).Take(4))
                             {
                                 <label class="radio-inline" style="font-size: 14px">
                                     <input type="radio" name="@string.Format("{0}{1}", "inlineRadioOptions",count)" id="@string.Format("{0}{1}", "inlineRadio", countR)" value="@choice.ChoiceText" style="margin-left: -16px"> @choice.ChoiceText

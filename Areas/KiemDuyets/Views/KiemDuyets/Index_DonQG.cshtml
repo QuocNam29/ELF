@@ -8,8 +8,11 @@
 <div class="blog-sec right-pading">
     <div class="post-filter-sec">
         <form method="post" class="filter-form">
-            <input type="post" placeholder="Search post">
-            <button><i class="ti-search"></i></button>
+            @using (@Html.BeginForm("Index_DonQG", "KiemDuyets", FormMethod.Get))
+            {
+                <input type="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword">
+                <button><i class="ti-search"></i></button>
+            }
         </form>
         <div class="purify">
             <span>filter by</span>
@@ -43,6 +46,7 @@
                                 <h4><a title="" href="@Url.Action("Details_DonQG","KiemDuyets",new { id = item.maQG })">@item.LoaiQuyenGop.tenLoai</a></h4>
 
                                 <p style="color: black"> Số lượng quyên góp:  @item.soLuong  @item.donVi</p>
+                                <p style="color: dodgerblue"> Người quyên góp:  @item.NguoiDung.hoVaTen</p>
 
                             </div>
 

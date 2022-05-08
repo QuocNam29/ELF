@@ -8,8 +8,11 @@
 <div class="blog-sec right-pading">
     <div class="post-filter-sec">
         <form method="post" class="filter-form">
-            <input type="post" placeholder="Search post">
-            <button><i class="ti-search"></i></button>
+            @using (@Html.BeginForm("Index_BDTT", "KiemDuyets", FormMethod.Get))
+            {
+                <input type="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword">
+                <button><i class="ti-search"></i></button>
+            }
         </form>
         <div class="purify">
             <span>filter by</span>

@@ -6,26 +6,31 @@
 }
 <div class="blog-sec right-pading">
     <div class="post-filter-sec">
+        
         <form method="post" class="filter-form">
-            <input type="post" placeholder="Search post">
-            <button><i class="ti-search"></i></button>
-        </form>
-        <div class="purify">
-            <span>filter by</span>
-            <select>
-                <option>All categories</option>
-                <option>By Favouirtes</option>
-                <option>By Likes</option>
-            </select>
-            <select>
-                <option>Assending A-Z</option>
-                <option>Desending Z-A</option>
-                <option>Desending (date)</option>
-                <option>Asending (date)</option>
-            </select>
-            <a href="#" title="">purify</a>
+            @using (@Html.BeginForm("Index", "KiemDuyets", FormMethod.Get))
+            {
+                <input type="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword">
+                <button><i class="ti-search"></i></button>
+            }
+            </form>
+        
+            <div class="purify">
+                <span>filter by</span>
+                <select>
+                    <option>All categories</option>
+                    <option>By Favouirtes</option>
+                    <option>By Likes</option>
+                </select>
+                <select>
+                    <option>Assending A-Z</option>
+                    <option>Desending Z-A</option>
+                    <option>Desending (date)</option>
+                    <option>Asending (date)</option>
+                </select>
+                <a href="#" title="">purify</a>
+            </div>
         </div>
-    </div>
     <div class="row">
         @foreach (var item in Model)
         {

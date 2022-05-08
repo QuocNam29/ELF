@@ -15,21 +15,53 @@ namespace ELF.Areas.KiemDuyets.Controllers
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: KiemDuyets/KiemDuyets
-        public ActionResult Index()
+        public ActionResult Index(string keyword)
         {
-            var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 1);
-            return View(baiDangSanPhams.ToList());
+            var links = from l in db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung)
+                        .Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 1)
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.tenSP.ToLower().Contains(keyword.ToLower())
+                || b.noiDung.Contains(keyword) || b.NguoiDung.hoVaTen.Contains(keyword));
+                TempData["keyword"] = keyword;
+                return View(links);
+            }
+            return View(links);
+            
         }
-        public ActionResult Index_BDTT()
+        public ActionResult Index_BDTT(string keyword)
         {
-            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 1);
-            return View(baiDangThongTins.ToList());
+            var links = from l in db.BaiDangThongTins.Include(b => b.NguoiDung)
+                        .Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 1)
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.tieuDe.ToLower().Contains(keyword.ToLower())
+                || b.noiDung.Contains(keyword) || b.NguoiDung.hoVaTen.Contains(keyword));
+                TempData["keyword"] = keyword;
+                return View(links);
+            }
+            return View(links);
+           
         }
 
-        public ActionResult Index_DonQG()
+        public ActionResult Index_DonQG(string keyword)
         {
-            var quyenGops = db.QuyenGops.Include(q => q.LoaiQuyenGop).Include(q => q.NguoiDung).Where(b => b.trangThai == "Chờ duyệt");
-            return View(quyenGops.ToList());
+            var links = from l in db.QuyenGops.Include(q => q.LoaiQuyenGop)
+                        .Include(q => q.NguoiDung).Where(b => b.trangThai == "Chờ duyệt")
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.NguoiDung.hoVaTen.Contains(keyword));
+                TempData["keyword"] = keyword;
+                return View(links);
+            }
+            return View(links);
+
         }
 
         // GET: KiemDuyets/KiemDuyets/Details/5

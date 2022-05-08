@@ -20,7 +20,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         public ActionResult Index()
         {
             int mand = int.Parse(Session["maND"].ToString());
-            var quyenGops = db.QuyenGops.Include(q => q.LoaiQuyenGop).Include(q => q.NguoiDung).Where(q => q.maND == mand).OrderByDescending(q => q.ngayQG);
+            var quyenGops = db.QuyenGops.Include(q => q.LoaiQuyenGop).Include(q => q.NguoiDung).Where(q => q.maND == mand).OrderByDescending(q => q.maQG);
             return View(quyenGops.ToList());
         }
 

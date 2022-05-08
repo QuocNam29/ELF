@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ELF.Models.BaiDangThongTin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/KiemDuyets/Views/Shared/_Layout_NguoiKiemDuyet.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<div class="central-meta">
+    <div class="new-postbox">
+        <div class="newpst-input">
+            <form method="post">
+                <textarea rows="2" placeholder="write something"></textarea>
+                <div class="attachments">
+                    <ul>
+
+                        <li>
+                            <button type="button" class="btn-block" id="New-box" hidden></button>
+                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","KD_BaiDangs")"></div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+            @*<button type="button" class="btn-block">Open Modal</button>
+                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangSanPhams")"></div>*@
+
+        </div>
+    </div>
+</div> <!-- add post new box -->
+@foreach (var item in Model)
+{
+<div class="l-post">
+    <figure>
+        @if (item.hinhAnh != null)
+        {
+            <img src="@Url.Content(item.hinhAnh)" alt="">
+        }
+
+    </figure>
+    <div class="l-post-meta">
+        <h4><a href="#" title="">@item.tieuDe</a></h4>
+        <div class="l-post-ranking">
+            @if (item.ghiChu == "ELF")
+            {
+                <a class="admin" href="#" title=""><b style="color: darkgreen">ELF</b></a>
+            }
+            else
+            {
+                <a class="admin" href="#" title="">@item.NguoiDung.hoVaTen</a>
+            }
+            <br />
+            <a class="pdate" href="#" title="">@item.ngayDang</a>
+
+        </div>
+        <p>@item.noiDung
+        </p>
+      
+
+
+        <a href="#" title="" class="read">Read More</a>
+    </div>
+</div>
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.btn-block').click(function () {
+
+            var url = $('#myModal').data('url');
+            $.get(url, function (data) {
+
+                $("#myModal").html(data);
+                $("#myModal").modal('show')
+
+            });
+        });
+    });
+</script>
+

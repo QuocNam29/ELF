@@ -66,27 +66,50 @@
                 <div class="friend-name">
                     @if (maND != item.maND)
                     {
-                        <ins>
-                            <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangThongTins",
-                                new { maND_k = item.maND, hoVaTen_NDK = item.NguoiDung.hoVaTen,
-                                avartar_NDK = item.NguoiDung.avatar })" title="">@item.NguoiDung.hoVaTen</a>
+                        if (item.ghiChu == "ELF")
+                        {
+                            <ins>
+                                <a href="#" title=""><b style="color: darkgreen">ELF</b></a>
                             </ins>
                         }
                         else
                         {
                             <ins>
-                                <a href="@Url.Action("Index_TrangCaNhan", "BaiDangThongTins",
-                                new { maND = item.maND })" title="">@item.NguoiDung.hoVaTen</a>
+                                <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangThongTins",
+                    new
+                    {
+                        maND_k = item.maND,
+                        hoVaTen_NDK = item.NguoiDung.hoVaTen,
+                        avartar_NDK = item.NguoiDung.avatar
+                    })" title="">@item.NguoiDung.hoVaTen</a>
+                        </ins>
+                        }
+                    }
+
+                    else
+                    {
+                        if (item.ghiChu == "ELF")
+                        {
+                        <ins>
+                            <a href="#" title=""><b style="color: darkgreen">ELF</b></a>
+                        </ins>
+                        }
+                        else
+                        {
+                        <ins>
+                            <a href="@Url.Action("Index_TrangCaNhan", "BaiDangThongTins",
+                            new { maND = item.maND })" title="">@item.NguoiDung.hoVaTen</a>
                             </ins>
                         }
+                    }
 
-                    <div>
-                        <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+                        <div>
+                            <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+
+                        </div>
 
                     </div>
-
-                </div>
               
                 <div class="post-meta">
                     @if (item.hinhAnh != null)

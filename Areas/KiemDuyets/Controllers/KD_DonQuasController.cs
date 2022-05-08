@@ -15,10 +15,26 @@ namespace ELF.Areas.KiemDuyets.Controllers
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: KiemDuyets/KD_DonQuas
-        public ActionResult Index()
+        public ActionResult Index(string keyword, int? maQT)
         {
-            var donQuas = db.DonQuas.Include(d => d.NguoiDung).Include(d => d.QuaTang);
-            return View(donQuas.ToList());
+            var links = from l in db.DonQuas
+                        .Include(d => d.NguoiDung).Include(d => d.QuaTang)
+                        select l;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.NguoiDung.hoVaTen.Contains(keyword));
+                TempData["keyword"] = keyword;
+                return View(links);
+            }
+            if (maQT != null)
+            {
+                links = links.Where(b => b.MaQT == maQT);
+                TempData["maQT"] = maQT;
+                return View(links);
+            }
+            return View(links);
+        
         }
 
         // GET: KiemDuyets/KD_DonQuas/Details/5
@@ -106,6 +122,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
             else 
             {
                 donQua.TrangThai = "Đã hoàn tất";
+                donQua.GhiChu = "Hoàn tất ngày: " + DateTime.Now;
                 db.ThongBaos.Add(new ThongBao
                 {
                     maDQ = donQua.MaDQ,

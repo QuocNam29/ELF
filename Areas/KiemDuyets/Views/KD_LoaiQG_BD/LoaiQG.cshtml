@@ -1,0 +1,27 @@
+﻿@model List<ELF.Models.LoaiQuyenGop>
+
+
+<div class="purify">
+    @using (Html.BeginForm("Index_DonQG", "KiemDuyets", FormMethod.Get))
+    {
+        <span><b>Loại quên góp:</b> </span>
+
+        <select name="maLoaiQG">
+            <option>Tất cả</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.maLQG">@item.tenLoai</option>
+
+            }
+        </select>
+      
+        <button style="   
+    color: #fff;
+    display: inline-block;
+    font-size: 12px; 
+    letter-spacing: 1px;
+    line-height: initial;
+    padding: 15px 20px;
+    text-transform: capitalize;  ">Lọc</button>
+    }
+</div>

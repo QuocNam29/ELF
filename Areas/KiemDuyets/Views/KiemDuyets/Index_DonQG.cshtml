@@ -14,21 +14,9 @@
                 <button><i class="ti-search"></i></button>
             }
         </form>
-        <div class="purify">
-            <span>filter by</span>
-            <select>
-                <option>All categories</option>
-                <option>By Favouirtes</option>
-                <option>By Likes</option>
-            </select>
-            <select>
-                <option>Assending A-Z</option>
-                <option>Desending Z-A</option>
-                <option>Desending (date)</option>
-                <option>Asending (date)</option>
-            </select>
-            <a href="#" title="">purify</a>
-        </div>
+
+        @Html.Action("LoaiQG", "KD_LoaiQG_BD")
+        
     </div>
     <div class="row">
         @foreach (var item in Model)

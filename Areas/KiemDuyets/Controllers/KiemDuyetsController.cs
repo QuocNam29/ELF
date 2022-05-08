@@ -48,7 +48,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
            
         }
 
-        public ActionResult Index_DonQG(string keyword)
+        public ActionResult Index_DonQG(string keyword, int? maLoaiQG)
         {
             var links = from l in db.QuyenGops.Include(q => q.LoaiQuyenGop)
                         .Include(q => q.NguoiDung).Where(b => b.trangThai == "Chờ duyệt")
@@ -60,9 +60,16 @@ namespace ELF.Areas.KiemDuyets.Controllers
                 TempData["keyword"] = keyword;
                 return View(links);
             }
+            if (maLoaiQG != null)
+            {
+                links = links.Where(b => b.maLQG == maLoaiQG);
+                TempData["maLoaiQG"] = maLoaiQG;
+                return View(links);
+            }
             return View(links);
 
         }
+        
 
         // GET: KiemDuyets/KiemDuyets/Details/5
         public ActionResult Details(int? id)

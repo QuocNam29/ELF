@@ -1,0 +1,29 @@
+﻿@model List<ELF.Models.QuaTang>
+
+
+<div class="purify">
+    @using (Html.BeginForm("Index", "KD_DonQuas", FormMethod.Get))
+    {
+        <span><b>Loại quà tặng:</b> </span>
+
+        <select name="maQT">
+            <option>Tất cả</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.maQuaTang">@item.tenQuaTang</option>
+
+            }
+        </select>
+
+        <button style="
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: initial;
+    padding: 15px 20px;
+    text-transform: capitalize;  ">
+            Lọc
+        </button>
+    }
+</div>

@@ -11,68 +11,72 @@
         <span><i class="fa fa-file-text-o"></i> Lịch sử quyên góp</span>
     </div>
 
+
+
     @if (Model.Count() == 0)
     {
-    <div class="error-meta">
-        <h4>Bạn chưa có quyên góp nào 😓</h4>
-    </div>
-        
+        <div class="error-meta">
+            <h4>Bạn chưa có quyên góp nào 😓</h4>
+        </div>
+
     }
 
-    <ul class="nearby-contct">
-        @foreach (var item in Model)
-        {
-            <li>
-                <div class="nearly-pepls">
-                    <figure>
-                        <img src="@Url.Content(item.hinhAnh)" alt="">
-                    </figure>
-                    <div class="pepl-info">
-                        <h4>@item.LoaiQuyenGop.tenLoai</h4>
-                        <span style="color:#545454">@item.soLuong @item.donVi</span>
-                        @if (item.trangThai == "Chờ duyệt")
-                        {
-                            <em style="color: #545454; border: 1px solid; padding: 2px; ">@item.trangThai</em>
-                            <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#exampleModalCenter">Huỷ yêu cầu</a>
 
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Bạn có chắc muốn xoá quyên góp này?
-                                        </div>
-                                        <div class="modal-footer">
-                                            @using (Html.BeginForm("Delete", "QuyenGops", new { id = item.maQG }))
-                                            {
-                                                @Html.AntiForgeryToken()
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                                                <button type="submit" class="btn btn-primary">Xoá</button>
-                                            }
-                                        </div>
+<ul class="nearby-contct">
+    @foreach (var item in Model)
+    {
+        <li>
+            <div class="nearly-pepls">
+                <figure>
+                    <img src="@Url.Content(item.hinhAnh)" alt="">
+                </figure>
+                <div class="pepl-info">
+                    <h4>@item.LoaiQuyenGop.tenLoai</h4>
+                    <span style="color:#545454">@item.soLuong @item.donVi</span>
+                    @if (item.trangThai == "Chờ duyệt")
+                    {
+                        var myModal = "exampleModalCenter" + item.maQG;
+                        <em style="color: #545454; border: 1px solid; padding: 2px; ">@item.trangThai</em>
+                        <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#@myModal">Huỷ yêu cầu</a>
+
+                        <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc muốn xoá quyên góp @item.soLuong @item.donVi @item.LoaiQuyenGop.tenLoai này?
+                                    </div>
+                                    <div class="modal-footer">
+                                        @using (Html.BeginForm("Delete", "QuyenGops", new {id = item.maQG}))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                            <button type="submit" class="btn btn-primary">Xoá</button>
+                                        }
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                        }
-                        else if (item.trangThai == "Đã duyệt")
-                        {
-                            <em style="color: green; border: 1px solid; padding: 2px; ">@item.trangThai</em>
-                        }
-                        else
-                        {
-                            <em style="color: red; border: 1px solid; padding: 2px; ">@item.trangThai</em>
-                        }
-                        <span>@item.ngayQG.ToString("dd/MM/yyyy")</span>
-                    </div>
+                    }
+                    else if (item.trangThai == "Đã duyệt")
+                    {
+                        <em style="color: green; border: 1px solid; padding: 2px; ">@item.trangThai</em>
+                    }
+                    else
+                    {
+                        <em style="color: red; border: 1px solid; padding: 2px; ">@item.trangThai</em>
+                    }
+                    <span>@item.ngayQG.ToString("dd/MM/yyyy")</span>
                 </div>
-            </li>
-        }
-    </ul>
+            </div>
+        </li>
+    }
+</ul>
 </div>
 

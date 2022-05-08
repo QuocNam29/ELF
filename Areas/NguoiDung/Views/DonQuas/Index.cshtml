@@ -33,10 +33,11 @@
                         <span style="color:#545454">@soLuong cái</span>
                         @if (item.TrangThai == "Chờ xác nhận")
                         {
+                            var myModal = "exampleModalCenter" + item.MaDQ;
                             <em style="color: #545454; border: 1px solid; padding: 2px; ">@item.TrangThai</em>
-                            <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#exampleModalCenter">Huỷ đơn quà</a>
+                            <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#@myModal">Huỷ đơn quà</a>
 
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">

@@ -6,8 +6,6 @@
     String hovatenND = Session["hoVaTen"].ToString();
 }
 
-<h2>@ViewBag.FileStatus</h2>
-
 @using (Html.BeginForm("Create", "QuyenGops", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

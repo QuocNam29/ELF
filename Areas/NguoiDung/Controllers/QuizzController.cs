@@ -68,8 +68,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                            ChoiceText = c.NoiDungDapAn
                        }).ToList()
 
-                   }).AsQueryable();
-
+                   }).OrderBy(q => Guid.NewGuid()).Take(20).AsQueryable();
 
             }
 

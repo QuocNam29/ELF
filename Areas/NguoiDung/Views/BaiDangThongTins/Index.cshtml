@@ -12,7 +12,7 @@
     }
     else
     {
-        avt = "~/images/resources/User-avatar.svg.png";
+        avt = "~/images/resources/User-avatar.svg";
     }
     int hidden = 0;
 }
@@ -22,7 +22,7 @@
 <div class="central-meta">
     <div class="new-postbox">
         <figure>
-            <img src="@Url.Content(avt)" alt="">
+            <img width="65" src="@Url.Content(avt)" alt="">
         </figure>
         <div class="newpst-input">
             <form method="post">
@@ -54,14 +54,14 @@
     }
     else
     {
-        avt_BD = "~/images/resources/User-avatar.svg.png";
+        avt_BD = "~/images/resources/User-avatar.svg";
     }
 
    <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
-                    <img src="@Url.Content(avt_BD)" alt="">
+                    <img width="65" src="@Url.Content(avt_BD)" alt="">
                 </figure>
                 <div class="friend-name">
                     @if (maND != item.maND)

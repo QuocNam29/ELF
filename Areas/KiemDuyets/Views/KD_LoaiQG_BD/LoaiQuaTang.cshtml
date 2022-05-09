@@ -10,7 +10,22 @@
             <option>Tất cả</option>
             @foreach (var item in Model)
             {
-                <option value="@item.maQuaTang">@item.tenQuaTang</option>
+                if (TempData["tenQuaTang"] != null)
+                {
+                    if (TempData["tenQuaTang"].ToString() == item.tenQuaTang)
+                    {
+                        <option selected="selected" value="@item.maQuaTang">@item.tenQuaTang</option>
+                    }
+                    else
+                    {
+                        <option value="@item.maQuaTang">@item.tenQuaTang</option>
+                    }
+                }
+                else
+                {
+                    <option value="@item.maQuaTang">@item.tenQuaTang</option>
+                }
+                
 
             }
         </select>

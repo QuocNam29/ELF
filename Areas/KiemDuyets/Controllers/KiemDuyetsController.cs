@@ -62,8 +62,11 @@ namespace ELF.Areas.KiemDuyets.Controllers
             }
             if (maLoaiQG != null)
             {
+                LoaiQuyenGop loaiQuyenGop = db.LoaiQuyenGops.Find(maLoaiQG);
+                string tenLoaiQG = loaiQuyenGop.tenLoai;
                 links = links.Where(b => b.maLQG == maLoaiQG);
-                TempData["maLoaiQG"] = maLoaiQG;
+                
+                TempData["tenLoaiQG"] = tenLoaiQG;
                 return View(links);
             }
             return View(links);

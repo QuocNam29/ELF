@@ -7,10 +7,30 @@
         <span><b>Loại quên góp:</b> </span>
 
         <select name="maLoaiQG">
+
             <option>Tất cả</option>
+
+
+
             @foreach (var item in Model)
             {
-                <option value="@item.maLQG">@item.tenLoai</option>
+                if (TempData["tenLoaiQG"] != null)
+                {
+                    if (TempData["tenLoaiQG"].ToString() == item.tenLoai)
+                    {
+                        <option selected="selected" value="@item.maLQG">@item.tenLoai</option>
+                    }
+                    else
+                    {
+                        <option value="@item.maLQG">@item.tenLoai</option>
+                    }
+                }
+                else
+                {
+                        <option value="@item.maLQG">@item.tenLoai</option>
+                }
+
+
 
             }
         </select>

@@ -30,7 +30,10 @@ namespace ELF.Areas.KiemDuyets.Controllers
             if (maQT != null)
             {
                 links = links.Where(b => b.MaQT == maQT);
-                TempData["maQT"] = maQT;
+
+                QuaTang quaTang = db.QuaTangs.Find(maQT);
+
+                TempData["tenQuaTang"] = quaTang.tenQuaTang;
                 return View(links);
             }
             return View(links);

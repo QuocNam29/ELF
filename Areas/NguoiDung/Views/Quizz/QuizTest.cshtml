@@ -133,7 +133,13 @@
                                 }
                                 j++;
                             }
-                            $('#countR').html('<div class="modal-body" id="countR">Xin chúc mừng bạn đã đúng được ' + scoreQuiz / 10 + ' câu, bạn được thêm <b>' + scoreQuiz + ' điểm</b> vào điểm tích luỹ của bạn 🎁.</div>');
+
+                            if (scoreQuiz == 0) {
+                                $('#countR').html('<div class="modal-body" id="countR">Thật đáng tiếc vì tất cả câu trả lời của bạn chưa chính xác, chúc bạn làm bài tốt hơn ở lần tiếp theo !!! 😥</div>');
+                            }
+                            else {
+                                $('#countR').html('<div class="modal-body" id="countR">Xin chúc mừng bạn đã đúng được ' + scoreQuiz / 10 + ' câu, bạn được thêm <b>' + scoreQuiz + ' điểm</b> vào điểm tích luỹ của bạn 🎁.</div>');
+                            }
                             $("#SubmitQuiz").hide();
                         }
                         else

@@ -27,7 +27,7 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         public ActionResult Index_TrangCaNhan(int maND)
         {
-            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND).OrderByDescending(B => B.maBDTT);
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND).Where(b => b.maTT == 2 || b.maTT == 3).OrderByDescending(B => B.maBDTT);
             return View(baiDangThongTins.ToList());
         }
         public ActionResult Index_BDTT_one(int maND, int maBDTT)

@@ -31,37 +31,129 @@
 </div> <!-- add post new box -->
 @foreach (var item in Model)
 {
-<div class="l-post">
-    <figure>
-        @if (item.hinhAnh != null)
-        {
-            <img src="@Url.Content(item.hinhAnh)" alt="">
-        }
-
-    </figure>
-    <div class="l-post-meta">
-        <h4><a href="#" title="">@item.tieuDe</a></h4>
-        <div class="l-post-ranking">
-            @if (item.ghiChu == "ELF")
+    string avt_BD = "";
+    if (item.NguoiDung.avatar != null)
+    {
+        avt_BD = item.NguoiDung.avatar;
+    }
+    else
+    {
+        avt_BD = "~/images/resources/User-avatar.svg";
+    }
+    <div class="central-meta item">
+        <div class="user-post">
+            @if (item.hinhAnh == null)
             {
-                <a class="admin" href="#" title=""><b style="color: darkgreen">ELF</b></a>
+                <div class="friend-info">
+                    @if (item.ghiChu == "ELF")
+                    {
+                        <figure>
+                            <img src="~/images/resources/admin.jpg" />
+                        </figure>
+                        <div class="friend-name">
+
+                            <a class="admin" href="#" title=""><b style="color: darkgreen">ELF</b></a>
+                            <div>
+                                <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit", "BaiDangThongTins")"></div>
+
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <figure>
+                            <img width="65" src="@Url.Content(avt_BD)" alt="">
+                        </figure>
+                        <div class="friend-name">
+
+                            <a class="admin" href="#" title=""><b style="color: black">@item.NguoiDung.hoVaTen</b></a>
+
+
+                            <div>
+                                <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit", "BaiDangThongTins")"></div>
+
+                            </div>
+                        </div>
+
+                    }
+
+                    <div class="post-meta">
+                        <div class="description">
+                            <a style="color: red; font-size: 22px;"><br /> @item.tieuDe</a>
+                            <br />
+                            <p>
+                                @item.noiDung
+                            </p>
+                        </div>
+                    </div>
+                </div>
             }
             else
             {
-                <a class="admin" href="#" title="">@item.NguoiDung.hoVaTen</a>
+                <div class="friend-info">
+                    @if (item.ghiChu == "ELF")
+                    {
+                        <figure>
+                            <img src="~/images/resources/admin.jpg" />
+                        </figure>
+                        <div class="friend-name">
+
+                            <a class="admin" href="#" title=""><b style="color: darkgreen">ELF</b></a>
+                            <div>
+                                <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit", "BaiDangThongTins")"></div>
+
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <figure>
+                            <img width="65" src="@Url.Content(avt_BD)" alt="">
+                        </figure>
+                        <div class="friend-name">
+
+                            <a class="admin" href="#" title=""><b style="color: black">@item.NguoiDung.hoVaTen</b></a>
+
+
+                            <div>
+                                <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit", "BaiDangThongTins")"></div>
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+
+                <div class="l-post">
+                    <figure>
+                        <img src="@Url.Content(item.hinhAnh)" alt="">
+                    </figure>
+                    <div class="l-post-meta">
+                        <h4><a href="#" title="" style="color: red">@item.tieuDe</a></h4>
+                        <div class="l-post-ranking">
+
+                            <a class="pdate" href="#" title="">@item.ngayDang</a>
+
+                        </div>
+                        <p>
+                            @item.noiDung
+                        </p>
+
+
+
+                        <a href="#" title="" class="read">Read More</a>
+                    </div>
+                </div>
             }
-            <br />
-            <a class="pdate" href="#" title="">@item.ngayDang</a>
-
         </div>
-        <p>@item.noiDung
-        </p>
-      
-
-
-        <a href="#" title="" class="read">Read More</a>
     </div>
-</div>
+
 }
 
 

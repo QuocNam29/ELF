@@ -5820,8 +5820,7 @@ form.filter-form input {
 /*--- blog kitkat style ---*/
 
 .l-post {
-    background: #fff none repeat scroll 0 0;
-    border: 1px solid #ede9e9;
+  
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -5836,14 +5835,14 @@ form.filter-form input {
     margin-bottom: 40px;
 }
 
-.l-post:hover {
+/*.l-post:hover {
     -webkit-box-shadow: 3px 3px 15px #a9a9a9;
     -moz-box-shadow: 3px 3px 15px #a9a9a9;
     -ms-box-shadow: 3px 3px 15px #a9a9a9;
     -o-box-shadow: 3px 3px 15px #a9a9a9;
     box-shadow: 3px 3px 15px #a9a9a9;
 }
-
+*/
 .l-post > figure {
     display: inline-block;
     margin-bottom: 0;

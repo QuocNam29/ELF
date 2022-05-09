@@ -650,7 +650,8 @@ header.sticky {
 
 .logo {
     display: inline-block;
-    vertical-align: inherit;
+    vertical-align: top;
+    margin-top: 10px;
     width: 15%;
     position: relative;
     z-index: 10;

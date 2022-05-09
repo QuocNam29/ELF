@@ -12,11 +12,11 @@
 
     <br />
 
-    <h6>Chọn chủ đề quiz bạn muốn làm: </h6>
+    <h6>Chọn chủ đề quiz bạn muốn làm 😊</h6>
 
     @using (Html.BeginForm("SelectQuizz", "Quizz", FormMethod.Post))
     {
-        @Html.DropDownListFor(model => model.QuizID, Model.ListOfQuizz, new { @class = "form-control selectpicker", @style = "margin-left:51px;" })<br /> <br />
+        @Html.DropDownListFor(model => model.QuizID, Model.ListOfQuizz, new { @class = "form-control selectpicker" })<br /> <br />
         <button type="submit" id="Enter" class="btn btn-success btn-lg" style="width:100%;"><span class="glyphicon glyphicon-ok"></span>   GÉT GÔ </button>
     }
 

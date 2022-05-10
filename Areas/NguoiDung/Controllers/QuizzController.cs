@@ -61,9 +61,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         {
             QuizVM quizSelected = Session["SelectedQuiz"] as QuizVM;
             TempData["maChuDe"] = quizSelected.QuizID;
-            TempData["tenChuDe"] = quizSelected.QuizName;
-
-            
+            TempData["tenChuDe"] = quizSelected.QuizName;        
 
             IQueryable<QuestionVM> questions = null;
 

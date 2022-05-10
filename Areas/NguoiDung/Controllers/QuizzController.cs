@@ -17,6 +17,14 @@ namespace ELF.Areas.NguoiDung.Controllers
         [HttpGet]
         public ActionResult SelectQuizz()
         {
+            int mand = int.Parse(Session["maND"].ToString());
+
+            var dateCriteria = DateTime.Now.Date.AddDays(-2);
+            var query = db.DiemTichLuys.Where(m => m.thoiGian >= dateCriteria && m.maND == mand && m.maKQBQ != null);
+            if(query.Count() >= 3)
+            {
+                TempData["ErrorAttempts"] = "Bạn đã hết giới hạn làm bài quiz của mình 😥. Xin hãy đợi 3 ngày kể từ ngày làm bài quiz để được làm bài tiếp.";
+            }
             QuizVM quiz = new viewModels.QuizVM();
             quiz.ListOfQuizz = db.ChuDeBaiQuizs.Select(q => new SelectListItem
             {

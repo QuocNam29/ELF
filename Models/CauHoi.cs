@@ -17,7 +17,6 @@ namespace ELF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CauHoi()
         {
-            this.CauHoi_BaiQuiz = new HashSet<CauHoi_BaiQuiz>();
             this.DapAns = new HashSet<DapAn>();
         }
     
@@ -27,8 +26,6 @@ namespace ELF.Models
         public Nullable<System.DateTime> ngayThayDoi { get; set; }
         public int maChuDe { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CauHoi_BaiQuiz> CauHoi_BaiQuiz { get; set; }
         public virtual ChuDeBaiQuiz ChuDeBaiQuiz { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DapAn> DapAns { get; set; }

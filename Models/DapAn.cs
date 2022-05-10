@@ -14,19 +14,11 @@ namespace ELF.Models
     
     public partial class DapAn
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DapAn()
-        {
-            this.KetQuas = new HashSet<KetQua>();
-        }
-    
         public int maDapAn { get; set; }
         public int maCauHoi { get; set; }
         public string NoiDungDapAn { get; set; }
         public bool dapAn1 { get; set; }
     
         public virtual CauHoi CauHoi { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KetQua> KetQuas { get; set; }
     }
 }

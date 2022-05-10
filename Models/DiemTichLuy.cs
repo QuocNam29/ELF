@@ -22,10 +22,12 @@ namespace ELF.Models
         public Nullable<int> maBDSP { get; set; }
         public Nullable<int> maQG { get; set; }
         public Nullable<int> maDQ { get; set; }
+        public Nullable<int> maKQBQ { get; set; }
     
         public virtual BaiDangSanPham BaiDangSanPham { get; set; }
         public virtual BaiDangThongTin BaiDangThongTin { get; set; }
         public virtual DonQua DonQua { get; set; }
+        public virtual KetQua KetQua { get; set; }
         public virtual NguoiDung NguoiDung { get; set; }
         public virtual QuyenGop QuyenGop { get; set; }
     }

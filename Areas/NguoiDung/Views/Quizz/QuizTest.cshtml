@@ -147,21 +147,38 @@
                             else {
                                 $('#countR').html('<div class="modal-body" id="countR">Xin chúc mừng bạn đã đúng được ' + scoreQuiz / 10 + ' câu, bạn được thêm <b>' + scoreQuiz + ' điểm</b> vào điểm tích luỹ của bạn 🎁.</div>');
 
-                                var diemTichLuy = {};
-                                diemTichLuy.maND = @maND;
-                                diemTichLuy.thoiGian = dateTime;
-                                diemTichLuy.diem = scoreQuiz;
+                                var ketQuaBaiQuiz = {};
+                                ketQuaBaiQuiz.maND = @maND;
+                                ketQuaBaiQuiz.maCDBQ = @TempData["maChuDe"];
+                                ketQuaBaiQuiz.TongDiem = scoreQuiz;
 
                                 $.ajax({
                                     type: 'POST',
-                                    url: '@Url.Action("InsertDiemTichLuys", "Quizz")',
-                                    data: JSON.stringify(diemTichLuy),
+                                    url: '@Url.Action("InsertKetQuaBaiQuiz", "Quizz")',
+                                    data: JSON.stringify(ketQuaBaiQuiz),
                                     contentType: 'application/json; charset=utf-8',
                                     dataType: 'json',
                                     success: function (r) {
-                                        alert("haha");
+
+                                        var diemTichLuy = {};
+                                        diemTichLuy.maND = @maND;
+                                        diemTichLuy.thoiGian = dateTime;
+                                        diemTichLuy.diem = scoreQuiz;
+                                        diemTichLuy.maKQBQ = r.maKQ;
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '@Url.Action("InsertDiemTichLuys", "Quizz")',
+                                            data: JSON.stringify(diemTichLuy),
+                                            contentType: 'application/json; charset=utf-8',
+                                            dataType: 'json',
+                                            success: function (j) {
+
+                                            }
+                                        });
                                     }
                                 });
+
                             }
                             $("#SubmitQuiz").hide();
                         }

@@ -32,11 +32,9 @@ namespace ELF.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BaiDangSanPham> BaiDangSanPhams { get; set; }
         public virtual DbSet<BaiDangThongTin> BaiDangThongTins { get; set; }
-        public virtual DbSet<BaiQuiz> BaiQuizs { get; set; }
         public virtual DbSet<BaoCao> BaoCaos { get; set; }
         public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<CauHoi> CauHois { get; set; }
-        public virtual DbSet<CauHoi_BaiQuiz> CauHoi_BaiQuiz { get; set; }
         public virtual DbSet<ChucNangTaiKhoan> ChucNangTaiKhoans { get; set; }
         public virtual DbSet<ChuDeBaiQuiz> ChuDeBaiQuizs { get; set; }
         public virtual DbSet<DapAn> DapAns { get; set; }

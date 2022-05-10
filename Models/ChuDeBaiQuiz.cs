@@ -18,6 +18,7 @@ namespace ELF.Models
         public ChuDeBaiQuiz()
         {
             this.CauHois = new HashSet<CauHoi>();
+            this.KetQuas = new HashSet<KetQua>();
         }
     
         public int maChuDe { get; set; }
@@ -25,5 +26,7 @@ namespace ELF.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CauHoi> CauHois { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KetQua> KetQuas { get; set; }
     }
 }

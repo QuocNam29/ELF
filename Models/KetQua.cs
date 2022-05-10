@@ -14,15 +14,20 @@ namespace ELF.Models
     
     public partial class KetQua
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KetQua()
+        {
+            this.DiemTichLuys = new HashSet<DiemTichLuy>();
+        }
+    
         public int maKQ { get; set; }
         public int maND { get; set; }
-        public int maCHBQ { get; set; }
-        public Nullable<int> MaDA { get; set; }
-        public Nullable<int> LuotLamBai { get; set; }
+        public int maCDBQ { get; set; }
         public Nullable<double> TongDiem { get; set; }
     
-        public virtual CauHoi_BaiQuiz CauHoi_BaiQuiz { get; set; }
-        public virtual DapAn DapAn { get; set; }
+        public virtual ChuDeBaiQuiz ChuDeBaiQuiz { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DiemTichLuy> DiemTichLuys { get; set; }
         public virtual NguoiDung NguoiDung { get; set; }
     }
 }

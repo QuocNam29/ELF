@@ -99,14 +99,6 @@
           <Property Name="ngayThayDoi" Type="datetime" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
         </EntityType>
-        <EntityType Name="BaiQuiz">
-          <Key>
-            <PropertyRef Name="maBaiQuiz" />
-          </Key>
-          <Property Name="maBaiQuiz" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NgayTao" Type="datetime" Nullable="false" />
-          <Property Name="TongDiem" Type="float" Nullable="false" />
-        </EntityType>
         <EntityType Name="BaoCao">
           <Key>
             <PropertyRef Name="maBC" />
@@ -138,15 +130,6 @@
           <Property Name="ngayTao" Type="datetime" Nullable="false" />
           <Property Name="ngayThayDoi" Type="datetime" />
           <Property Name="maChuDe" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CauHoi_BaiQuiz">
-          <Key>
-            <PropertyRef Name="MaCHBQ" />
-          </Key>
-          <Property Name="MaCHBQ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaCH" Type="int" Nullable="false" />
-          <Property Name="MaBQ" Type="int" Nullable="false" />
-          <Property Name="Diem" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="ChucNangTaiKhoan">
           <Key>
@@ -184,6 +167,7 @@
           <Property Name="maBDSP" Type="int" />
           <Property Name="maQG" Type="int" />
           <Property Name="maDQ" Type="int" />
+          <Property Name="maKQBQ" Type="int" />
         </EntityType>
         <EntityType Name="DonQua">
           <Key>
@@ -231,9 +215,7 @@
           </Key>
           <Property Name="maKQ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="maND" Type="int" Nullable="false" />
-          <Property Name="maCHBQ" Type="int" Nullable="false" />
-          <Property Name="MaDA" Type="int" />
-          <Property Name="LuotLamBai" Type="int" />
+          <Property Name="maCDBQ" Type="int" Nullable="false" />
           <Property Name="TongDiem" Type="float" />
         </EntityType>
         <EntityType Name="LoaiDiemTichLuy">
@@ -544,34 +526,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CauHoi_BaiQuiz_BaiQuiz">
-          <End Role="BaiQuiz" Type="Self.BaiQuiz" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BaiQuiz">
-              <PropertyRef Name="maBaiQuiz" />
-            </Principal>
-            <Dependent Role="CauHoi_BaiQuiz">
-              <PropertyRef Name="MaBQ" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CauHoi_BaiQuiz_CauHoi">
-          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CauHoi">
-              <PropertyRef Name="maCauHoi" />
-            </Principal>
-            <Dependent Role="CauHoi_BaiQuiz">
-              <PropertyRef Name="MaCH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CauHoi_ChuDeBaiQuiz">
           <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -696,6 +650,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DiemTichLuy_KetQua">
+          <End Role="KetQua" Type="Self.KetQua" Multiplicity="0..1" />
+          <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KetQua">
+              <PropertyRef Name="maKQ" />
+            </Principal>
+            <Dependent Role="DiemTichLuy">
+              <PropertyRef Name="maKQBQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DiemTichLuy_NguoiDung">
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
           <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
@@ -762,29 +728,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_KetQua_CauHoi_BaiQuiz">
-          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_KetQua_ChuDeBaiQuiz">
+          <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1" />
           <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CauHoi_BaiQuiz">
-              <PropertyRef Name="MaCHBQ" />
+            <Principal Role="ChuDeBaiQuiz">
+              <PropertyRef Name="maChuDe" />
             </Principal>
             <Dependent Role="KetQua">
-              <PropertyRef Name="maCHBQ" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_KetQua_DapAn">
-          <End Role="DapAn" Type="Self.DapAn" Multiplicity="0..1" />
-          <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DapAn">
-              <PropertyRef Name="maDapAn" />
-            </Principal>
-            <Dependent Role="KetQua">
-              <PropertyRef Name="MaDA" />
+              <PropertyRef Name="maCDBQ" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1119,11 +1071,9 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BaiDangSanPham" EntityType="Self.BaiDangSanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BaiDangThongTin" EntityType="Self.BaiDangThongTin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BaiQuiz" EntityType="Self.BaiQuiz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BaoCao" EntityType="Self.BaoCao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CauHoi" EntityType="Self.CauHoi" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CauHoi_BaiQuiz" EntityType="Self.CauHoi_BaiQuiz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChucNangTaiKhoan" EntityType="Self.ChucNangTaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChuDeBaiQuiz" EntityType="Self.ChuDeBaiQuiz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DapAn" EntityType="Self.DapAn" Schema="dbo" store:Type="Tables" />
@@ -1189,14 +1139,6 @@
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="BinhLuan" EntitySet="BinhLuan" />
           </AssociationSet>
-          <AssociationSet Name="FK_CauHoi_BaiQuiz_BaiQuiz" Association="Self.FK_CauHoi_BaiQuiz_BaiQuiz">
-            <End Role="BaiQuiz" EntitySet="BaiQuiz" />
-            <End Role="CauHoi_BaiQuiz" EntitySet="CauHoi_BaiQuiz" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CauHoi_BaiQuiz_CauHoi" Association="Self.FK_CauHoi_BaiQuiz_CauHoi">
-            <End Role="CauHoi" EntitySet="CauHoi" />
-            <End Role="CauHoi_BaiQuiz" EntitySet="CauHoi_BaiQuiz" />
-          </AssociationSet>
           <AssociationSet Name="FK_CauHoi_ChuDeBaiQuiz" Association="Self.FK_CauHoi_ChuDeBaiQuiz">
             <End Role="ChuDeBaiQuiz" EntitySet="ChuDeBaiQuiz" />
             <End Role="CauHoi" EntitySet="CauHoi" />
@@ -1233,6 +1175,10 @@
             <End Role="DonQua" EntitySet="DonQua" />
             <End Role="DiemTichLuy" EntitySet="DiemTichLuy" />
           </AssociationSet>
+          <AssociationSet Name="FK_DiemTichLuy_KetQua" Association="Self.FK_DiemTichLuy_KetQua">
+            <End Role="KetQua" EntitySet="KetQua" />
+            <End Role="DiemTichLuy" EntitySet="DiemTichLuy" />
+          </AssociationSet>
           <AssociationSet Name="FK_DiemTichLuy_NguoiDung" Association="Self.FK_DiemTichLuy_NguoiDung">
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="DiemTichLuy" EntitySet="DiemTichLuy" />
@@ -1253,12 +1199,8 @@
             <End Role="DonViThuGom" EntitySet="DonViThuGom" />
             <End Role="DonThuGom" EntitySet="DonThuGom" />
           </AssociationSet>
-          <AssociationSet Name="FK_KetQua_CauHoi_BaiQuiz" Association="Self.FK_KetQua_CauHoi_BaiQuiz">
-            <End Role="CauHoi_BaiQuiz" EntitySet="CauHoi_BaiQuiz" />
-            <End Role="KetQua" EntitySet="KetQua" />
-          </AssociationSet>
-          <AssociationSet Name="FK_KetQua_DapAn" Association="Self.FK_KetQua_DapAn">
-            <End Role="DapAn" EntitySet="DapAn" />
+          <AssociationSet Name="FK_KetQua_ChuDeBaiQuiz" Association="Self.FK_KetQua_ChuDeBaiQuiz">
+            <End Role="ChuDeBaiQuiz" EntitySet="ChuDeBaiQuiz" />
             <End Role="KetQua" EntitySet="KetQua" />
           </AssociationSet>
           <AssociationSet Name="FK_KetQua_NguoiDung" Association="Self.FK_KetQua_NguoiDung">
@@ -1471,15 +1413,6 @@
           <NavigationProperty Name="DiemTichLuys" Relationship="Self.FK_DiemTichLuy_BaiDangThongTin" FromRole="BaiDangThongTin" ToRole="DiemTichLuy" />
           <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_BaiDangThongTin" FromRole="BaiDangThongTin" ToRole="ThongBao" />
         </EntityType>
-        <EntityType Name="BaiQuiz">
-          <Key>
-            <PropertyRef Name="maBaiQuiz" />
-          </Key>
-          <Property Name="maBaiQuiz" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TongDiem" Type="Double" Nullable="false" />
-          <NavigationProperty Name="CauHoi_BaiQuiz" Relationship="Self.FK_CauHoi_BaiQuiz_BaiQuiz" FromRole="BaiQuiz" ToRole="CauHoi_BaiQuiz" />
-        </EntityType>
         <EntityType Name="BaoCao">
           <Key>
             <PropertyRef Name="maBC" />
@@ -1517,21 +1450,8 @@
           <Property Name="ngayTao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ngayThayDoi" Type="DateTime" Precision="3" />
           <Property Name="maChuDe" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CauHoi_BaiQuiz" Relationship="Self.FK_CauHoi_BaiQuiz_CauHoi" FromRole="CauHoi" ToRole="CauHoi_BaiQuiz" />
           <NavigationProperty Name="ChuDeBaiQuiz" Relationship="Self.FK_CauHoi_ChuDeBaiQuiz" FromRole="CauHoi" ToRole="ChuDeBaiQuiz" />
           <NavigationProperty Name="DapAns" Relationship="Self.FK_DapAn_CauHoi" FromRole="CauHoi" ToRole="DapAn" />
-        </EntityType>
-        <EntityType Name="CauHoi_BaiQuiz">
-          <Key>
-            <PropertyRef Name="MaCHBQ" />
-          </Key>
-          <Property Name="MaCHBQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaCH" Type="Int32" Nullable="false" />
-          <Property Name="MaBQ" Type="Int32" Nullable="false" />
-          <Property Name="Diem" Type="Double" Nullable="false" />
-          <NavigationProperty Name="BaiQuiz" Relationship="Self.FK_CauHoi_BaiQuiz_BaiQuiz" FromRole="CauHoi_BaiQuiz" ToRole="BaiQuiz" />
-          <NavigationProperty Name="CauHoi" Relationship="Self.FK_CauHoi_BaiQuiz_CauHoi" FromRole="CauHoi_BaiQuiz" ToRole="CauHoi" />
-          <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_CauHoi_BaiQuiz" FromRole="CauHoi_BaiQuiz" ToRole="KetQua" />
         </EntityType>
         <EntityType Name="ChucNangTaiKhoan">
           <Key>
@@ -1550,6 +1470,7 @@
           <Property Name="maChuDe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tenChuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CauHois" Relationship="Self.FK_CauHoi_ChuDeBaiQuiz" FromRole="ChuDeBaiQuiz" ToRole="CauHoi" />
+          <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_ChuDeBaiQuiz" FromRole="ChuDeBaiQuiz" ToRole="KetQua" />
         </EntityType>
         <EntityType Name="DapAn">
           <Key>
@@ -1560,7 +1481,6 @@
           <Property Name="NoiDungDapAn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="dapAn1" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CauHoi" Relationship="Self.FK_DapAn_CauHoi" FromRole="DapAn" ToRole="CauHoi" />
-          <NavigationProperty Name="KetQuas" Relationship="Self.FK_KetQua_DapAn" FromRole="DapAn" ToRole="KetQua" />
         </EntityType>
         <EntityType Name="DiemTichLuy">
           <Key>
@@ -1574,9 +1494,11 @@
           <Property Name="maBDSP" Type="Int32" />
           <Property Name="maQG" Type="Int32" />
           <Property Name="maDQ" Type="Int32" />
+          <Property Name="maKQBQ" Type="Int32" />
           <NavigationProperty Name="BaiDangSanPham" Relationship="Self.FK_DiemTichLuy_BaiDangSanPham" FromRole="DiemTichLuy" ToRole="BaiDangSanPham" />
           <NavigationProperty Name="BaiDangThongTin" Relationship="Self.FK_DiemTichLuy_BaiDangThongTin" FromRole="DiemTichLuy" ToRole="BaiDangThongTin" />
           <NavigationProperty Name="DonQua" Relationship="Self.FK_DiemTichLuy_DonQua" FromRole="DiemTichLuy" ToRole="DonQua" />
+          <NavigationProperty Name="KetQua" Relationship="Self.FK_DiemTichLuy_KetQua" FromRole="DiemTichLuy" ToRole="KetQua" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_DiemTichLuy_NguoiDung" FromRole="DiemTichLuy" ToRole="NguoiDung" />
           <NavigationProperty Name="QuyenGop" Relationship="Self.FK_DiemTichLuy_QuyenGop" FromRole="DiemTichLuy" ToRole="QuyenGop" />
         </EntityType>
@@ -1632,12 +1554,10 @@
           </Key>
           <Property Name="maKQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="maND" Type="Int32" Nullable="false" />
-          <Property Name="maCHBQ" Type="Int32" Nullable="false" />
-          <Property Name="MaDA" Type="Int32" />
-          <Property Name="LuotLamBai" Type="Int32" />
+          <Property Name="maCDBQ" Type="Int32" Nullable="false" />
           <Property Name="TongDiem" Type="Double" />
-          <NavigationProperty Name="CauHoi_BaiQuiz" Relationship="Self.FK_KetQua_CauHoi_BaiQuiz" FromRole="KetQua" ToRole="CauHoi_BaiQuiz" />
-          <NavigationProperty Name="DapAn" Relationship="Self.FK_KetQua_DapAn" FromRole="KetQua" ToRole="DapAn" />
+          <NavigationProperty Name="ChuDeBaiQuiz" Relationship="Self.FK_KetQua_ChuDeBaiQuiz" FromRole="KetQua" ToRole="ChuDeBaiQuiz" />
+          <NavigationProperty Name="DiemTichLuys" Relationship="Self.FK_DiemTichLuy_KetQua" FromRole="KetQua" ToRole="DiemTichLuy" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_KetQua_NguoiDung" FromRole="KetQua" ToRole="NguoiDung" />
         </EntityType>
         <EntityType Name="LoaiDiemTichLuy">
@@ -2058,20 +1978,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CauHoi_BaiQuiz_BaiQuiz">
-          <End Role="BaiQuiz" Type="Self.BaiQuiz" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BaiQuiz">
-              <PropertyRef Name="maBaiQuiz" />
-            </Principal>
-            <Dependent Role="CauHoi_BaiQuiz">
-              <PropertyRef Name="MaBQ" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_BaoCao_NguoiDung">
           <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
           <End Role="BaoCao" Type="Self.BaoCao" Multiplicity="*" />
@@ -2120,20 +2026,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CauHoi_BaiQuiz_CauHoi">
-          <End Role="CauHoi" Type="Self.CauHoi" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CauHoi">
-              <PropertyRef Name="maCauHoi" />
-            </Principal>
-            <Dependent Role="CauHoi_BaiQuiz">
-              <PropertyRef Name="MaCH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CauHoi_ChuDeBaiQuiz">
           <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2159,20 +2051,6 @@
             </Principal>
             <Dependent Role="DapAn">
               <PropertyRef Name="maCauHoi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_KetQua_CauHoi_BaiQuiz">
-          <End Role="CauHoi_BaiQuiz" Type="Self.CauHoi_BaiQuiz" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CauHoi_BaiQuiz">
-              <PropertyRef Name="MaCHBQ" />
-            </Principal>
-            <Dependent Role="KetQua">
-              <PropertyRef Name="maCHBQ" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2204,15 +2082,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_KetQua_DapAn">
-          <End Role="DapAn" Type="Self.DapAn" Multiplicity="0..1" />
+        <Association Name="FK_KetQua_ChuDeBaiQuiz">
+          <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1" />
           <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DapAn">
-              <PropertyRef Name="maDapAn" />
+            <Principal Role="ChuDeBaiQuiz">
+              <PropertyRef Name="maChuDe" />
             </Principal>
             <Dependent Role="KetQua">
-              <PropertyRef Name="MaDA" />
+              <PropertyRef Name="maCDBQ" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2227,6 +2105,18 @@
             </Principal>
             <Dependent Role="DiemTichLuy">
               <PropertyRef Name="maDQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiemTichLuy_KetQua">
+          <End Role="KetQua" Type="Self.KetQua" Multiplicity="0..1" />
+          <End Role="DiemTichLuy" Type="Self.DiemTichLuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KetQua">
+              <PropertyRef Name="maKQ" />
+            </Principal>
+            <Dependent Role="DiemTichLuy">
+              <PropertyRef Name="maKQBQ" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2552,11 +2442,9 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="BaiDangSanPhams" EntityType="Self.BaiDangSanPham" />
           <EntitySet Name="BaiDangThongTins" EntityType="Self.BaiDangThongTin" />
-          <EntitySet Name="BaiQuizs" EntityType="Self.BaiQuiz" />
           <EntitySet Name="BaoCaos" EntityType="Self.BaoCao" />
           <EntitySet Name="BinhLuans" EntityType="Self.BinhLuan" />
           <EntitySet Name="CauHois" EntityType="Self.CauHoi" />
-          <EntitySet Name="CauHoi_BaiQuiz" EntityType="Self.CauHoi_BaiQuiz" />
           <EntitySet Name="ChucNangTaiKhoans" EntityType="Self.ChucNangTaiKhoan" />
           <EntitySet Name="ChuDeBaiQuizs" EntityType="Self.ChuDeBaiQuiz" />
           <EntitySet Name="DapAns" EntityType="Self.DapAn" />
@@ -2638,10 +2526,6 @@
             <End Role="BaiDangThongTin" EntitySet="BaiDangThongTins" />
             <End Role="ThongBao" EntitySet="ThongBaos" />
           </AssociationSet>
-          <AssociationSet Name="FK_CauHoi_BaiQuiz_BaiQuiz" Association="Self.FK_CauHoi_BaiQuiz_BaiQuiz">
-            <End Role="BaiQuiz" EntitySet="BaiQuizs" />
-            <End Role="CauHoi_BaiQuiz" EntitySet="CauHoi_BaiQuiz" />
-          </AssociationSet>
           <AssociationSet Name="FK_BaoCao_NguoiDung" Association="Self.FK_BaoCao_NguoiDung">
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
             <End Role="BaoCao" EntitySet="BaoCaos" />
@@ -2658,10 +2542,6 @@
             <End Role="BinhLuan" EntitySet="BinhLuans" />
             <End Role="ThongBao" EntitySet="ThongBaos" />
           </AssociationSet>
-          <AssociationSet Name="FK_CauHoi_BaiQuiz_CauHoi" Association="Self.FK_CauHoi_BaiQuiz_CauHoi">
-            <End Role="CauHoi" EntitySet="CauHois" />
-            <End Role="CauHoi_BaiQuiz" EntitySet="CauHoi_BaiQuiz" />
-          </AssociationSet>
           <AssociationSet Name="FK_CauHoi_ChuDeBaiQuiz" Association="Self.FK_CauHoi_ChuDeBaiQuiz">
             <End Role="ChuDeBaiQuiz" EntitySet="ChuDeBaiQuizs" />
             <End Role="CauHoi" EntitySet="CauHois" />
@@ -2669,10 +2549,6 @@
           <AssociationSet Name="FK_DapAn_CauHoi" Association="Self.FK_DapAn_CauHoi">
             <End Role="CauHoi" EntitySet="CauHois" />
             <End Role="DapAn" EntitySet="DapAns" />
-          </AssociationSet>
-          <AssociationSet Name="FK_KetQua_CauHoi_BaiQuiz" Association="Self.FK_KetQua_CauHoi_BaiQuiz">
-            <End Role="CauHoi_BaiQuiz" EntitySet="CauHoi_BaiQuiz" />
-            <End Role="KetQua" EntitySet="KetQuas" />
           </AssociationSet>
           <AssociationSet Name="FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan" Association="Self.FK_TaiKhoan_LoaiTaiKhoan_LoaiTaiKhoan">
             <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoans" />
@@ -2682,12 +2558,16 @@
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="ChucNangTaiKhoan" EntitySet="ChucNangTaiKhoans" />
           </AssociationSet>
-          <AssociationSet Name="FK_KetQua_DapAn" Association="Self.FK_KetQua_DapAn">
-            <End Role="DapAn" EntitySet="DapAns" />
+          <AssociationSet Name="FK_KetQua_ChuDeBaiQuiz" Association="Self.FK_KetQua_ChuDeBaiQuiz">
+            <End Role="ChuDeBaiQuiz" EntitySet="ChuDeBaiQuizs" />
             <End Role="KetQua" EntitySet="KetQuas" />
           </AssociationSet>
           <AssociationSet Name="FK_DiemTichLuy_DonQua" Association="Self.FK_DiemTichLuy_DonQua">
             <End Role="DonQua" EntitySet="DonQuas" />
+            <End Role="DiemTichLuy" EntitySet="DiemTichLuys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiemTichLuy_KetQua" Association="Self.FK_DiemTichLuy_KetQua">
+            <End Role="KetQua" EntitySet="KetQuas" />
             <End Role="DiemTichLuy" EntitySet="DiemTichLuys" />
           </AssociationSet>
           <AssociationSet Name="FK_DiemTichLuy_NguoiDung" Association="Self.FK_DiemTichLuy_NguoiDung">
@@ -2887,15 +2767,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BaiQuizs">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.BaiQuiz">
-              <MappingFragment StoreEntitySet="BaiQuiz">
-                <ScalarProperty Name="maBaiQuiz" ColumnName="maBaiQuiz" />
-                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
-                <ScalarProperty Name="TongDiem" ColumnName="TongDiem" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BaoCaos">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.BaoCao">
               <MappingFragment StoreEntitySet="BaoCao">
@@ -2928,16 +2799,6 @@
                 <ScalarProperty Name="ngayTao" ColumnName="ngayTao" />
                 <ScalarProperty Name="ngayThayDoi" ColumnName="ngayThayDoi" />
                 <ScalarProperty Name="maChuDe" ColumnName="maChuDe" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CauHoi_BaiQuiz">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.CauHoi_BaiQuiz">
-              <MappingFragment StoreEntitySet="CauHoi_BaiQuiz">
-                <ScalarProperty Name="MaCHBQ" ColumnName="MaCHBQ" />
-                <ScalarProperty Name="MaCH" ColumnName="MaCH" />
-                <ScalarProperty Name="MaBQ" ColumnName="MaBQ" />
-                <ScalarProperty Name="Diem" ColumnName="Diem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2979,6 +2840,7 @@
                 <ScalarProperty Name="maBDSP" ColumnName="maBDSP" />
                 <ScalarProperty Name="maQG" ColumnName="maQG" />
                 <ScalarProperty Name="maDQ" ColumnName="maDQ" />
+                <ScalarProperty Name="maKQBQ" ColumnName="maKQBQ" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3030,9 +2892,7 @@
               <MappingFragment StoreEntitySet="KetQua">
                 <ScalarProperty Name="maKQ" ColumnName="maKQ" />
                 <ScalarProperty Name="maND" ColumnName="maND" />
-                <ScalarProperty Name="maCHBQ" ColumnName="maCHBQ" />
-                <ScalarProperty Name="MaDA" ColumnName="MaDA" />
-                <ScalarProperty Name="LuotLamBai" ColumnName="LuotLamBai" />
+                <ScalarProperty Name="maCDBQ" ColumnName="maCDBQ" />
                 <ScalarProperty Name="TongDiem" ColumnName="TongDiem" />
               </MappingFragment>
             </EntityTypeMapping>

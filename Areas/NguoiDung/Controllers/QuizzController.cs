@@ -54,6 +54,9 @@ namespace ELF.Areas.NguoiDung.Controllers
             QuizVM quizSelected = Session["SelectedQuiz"] as QuizVM;
             TempData["maChuDe"] = quizSelected.QuizID;
             TempData["tenChuDe"] = quizSelected.QuizName;
+
+            
+
             IQueryable<QuestionVM> questions = null;
 
             if (quizSelected != null)
@@ -98,6 +101,21 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
         [HttpPost]
+        public ActionResult InsertKetQuaBaiQuiz(KetQua ketQua)
+        {
+            using (ELFVanLang2021Entities entities = new ELFVanLang2021Entities())
+            {
+                entities.KetQuas.Add(ketQua);
+                entities.SaveChanges();
+
+                int maKQ = ketQua.maKQ;
+                TempData["maKQ"] = maKQ;
+            }
+
+            return Json(ketQua);
+        }
+
+        [HttpPost]
         public ActionResult InsertDiemTichLuys(DiemTichLuy diemTichLuy)
         {
             using (ELFVanLang2021Entities entities = new ELFVanLang2021Entities())
@@ -108,5 +126,6 @@ namespace ELF.Areas.NguoiDung.Controllers
 
             return Json(diemTichLuy);
         }
+        
     }
 }

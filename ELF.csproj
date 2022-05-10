@@ -301,9 +301,6 @@
     <Compile Include="Models\BaiDangThongTin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaiQuiz.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BaoCao.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -311,9 +308,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CauHoi.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CauHoi_BaiQuiz.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChucNangTaiKhoan.cs">
@@ -880,13 +874,6 @@
     <Content Include="Areas\KiemDuyets\Views\KD_DonQuas\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Quizz\SelectQuizz.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Quizz\QuizTest.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\KiemDuyets\Views\KD_LoaiQG_BD\LoaiQG.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_LoaiQG_BD\LoaiQuaTang.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Create.cshtml" />
@@ -894,6 +881,13 @@
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Details.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Edit.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Index.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

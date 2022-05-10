@@ -52,6 +52,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         public ActionResult QuizTest()
         {
             QuizVM quizSelected = Session["SelectedQuiz"] as QuizVM;
+            TempData["maChuDe"] = quizSelected.QuizID;
             TempData["tenChuDe"] = quizSelected.QuizName;
             IQueryable<QuestionVM> questions = null;
 
@@ -94,6 +95,18 @@ namespace ELF.Areas.NguoiDung.Controllers
             }
 
             return Json(new { result = finalResultQuiz }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult InsertDiemTichLuys(DiemTichLuy diemTichLuy)
+        {
+            using (ELFVanLang2021Entities entities = new ELFVanLang2021Entities())
+            {
+                entities.DiemTichLuys.Add(diemTichLuy);
+                entities.SaveChanges();
+            }
+
+            return Json(diemTichLuy);
         }
     }
 }

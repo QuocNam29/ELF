@@ -4,6 +4,8 @@
     ViewBag.Title = "QuizTest";
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
     int count = 1, countR = 0;
+    int maND = int.Parse(Session["maND"].ToString());
+    var thoiGian = DateTime.Now;
 }
 
 <div class="central-meta">
@@ -97,6 +99,12 @@
                 console.log(sel);
 
                 var resultQuiz = [], countQuestion = parseInt(sel), question = {}, j = 1;
+                var scoreQuiz = 0;
+
+                var today = new Date();
+                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                var dateTime = date + ' ' + time;
 
                 for (var i = 1; i < countQuestion; i++) {
                     question = {
@@ -116,7 +124,6 @@
 
                     success: function (response) {
 
-                        var scoreQuiz = 0;
 
                         if (response.result.length > 0)
                         {
@@ -139,6 +146,22 @@
                             }
                             else {
                                 $('#countR').html('<div class="modal-body" id="countR">Xin chúc mừng bạn đã đúng được ' + scoreQuiz / 10 + ' câu, bạn được thêm <b>' + scoreQuiz + ' điểm</b> vào điểm tích luỹ của bạn 🎁.</div>');
+
+                                var diemTichLuy = {};
+                                diemTichLuy.maND = @maND;
+                                diemTichLuy.thoiGian = dateTime;
+                                diemTichLuy.diem = scoreQuiz;
+
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '@Url.Action("InsertDiemTichLuys", "Quizz")',
+                                    data: JSON.stringify(diemTichLuy),
+                                    contentType: 'application/json; charset=utf-8',
+                                    dataType: 'json',
+                                    success: function (r) {
+                                        alert("haha");
+                                    }
+                                });
                             }
                             $("#SubmitQuiz").hide();
                         }
@@ -157,7 +180,6 @@
                 });
 
                 console.log(resultQuiz);
-
             });
 
 

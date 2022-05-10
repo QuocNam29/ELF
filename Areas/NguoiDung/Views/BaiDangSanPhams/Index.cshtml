@@ -155,28 +155,30 @@
                 </div>
             </div>
 
-            <div class="coment-area">
-                <ul class="we-comet">
-                    <li>
-                        <a href="@Url.Action("Index", "BinhLuans",
-    new
-    {
-        maBDSP = item.maBDSP,
-        tenNguoiDang = item.NguoiDung.hoVaTen,
-        ngayDang = item.ngayDang,
-        tenSP = item.tenSP,
-        noiDung = item.noiDung,
-        hinhAnh = item.hinhAnh,
-        giaBan = item.gia,
-        avt_BD = avt_BD,
-        flat = flat,
-        maTD = maTD,
-        maND_BDSP = item.maND
-    })" title="" class="showmore underline">more comments</a>
-                    </li>
+            @*  <div class="coment-area">
+                    <ul class="we-comet">
+                        <li>
+                            <a href="@Url.Action("Index", "BinhLuans",
+        new
+        {
+            maBDSP = item.maBDSP,
+            tenNguoiDang = item.NguoiDung.hoVaTen,
+            ngayDang = item.ngayDang,
+            tenSP = item.tenSP,
+            noiDung = item.noiDung,
+            hinhAnh = item.hinhAnh,
+            giaBan = item.gia,
+            avt_BD = avt_BD,
+            flat = flat,
+            maTD = maTD,
+            maND_BDSP = item.maND
+        })" title="" class="showmore underline">more comments</a>
+                        </li>
 
-                </ul>
-            </div>
+                    </ul>
+                </div>*@
+            @Html.Action("listComment", "BinhLuans", new { maBDSP = item.maBDSP })
+          
         </div>
     </div>
 }
@@ -199,4 +201,43 @@
     });
 </script>
 
+@*
+    <script type="text/javascript">
 
+        $(document).ready(function () {
+            jQuery(".post-comt-box textarea").on("keydown", function (event) {
+                if (event.keyCode == 13) {
+                
+                    var txtComent = $("#coment");
+                    var txtMaBDSP = $("#MaBDSP_cmt");
+
+                    var today = new Date();
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                    var dateTime = date + ' ' + time;
+                    //count Questions
+                    var binhLuanBDSP = {};
+                    binhLuanBDSP.noiDung = txtComent.val();
+                    binhLuanBDSP.maND = @maND;
+                binhLuanBDSP.maBDSP = txtMaBDSP.val();
+                binhLuanBDSP.ngayBL = dateTime.val();
+                    binhLuanBDSP.trangThai = "Hien".val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("InsertBinhLuansBDSP", "BinhLuans")',
+                        data: JSON.stringify(binhLuanBDSP),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        success: function (r) {
+                            alert("haha");
+                        }
+                    });
+                });
+        }
+
+    </script>
+
+
+
+*@

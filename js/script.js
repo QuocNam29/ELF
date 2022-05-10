@@ -314,13 +314,86 @@ $(function() {
 	}
 	
 /** Post a Comment **/
-	jQuery(".post-comt-box textarea").on("keydown", function (event) {
+	jQuery(".post-comt-box1 textarea").on("keydown", function (event) {
 		
 	if (event.keyCode == 13) {
 		
 		jQuery(this).blur();
 		jQuery('#submit_cmt').focus().click();
 	}
+	}); 
+
+	jQuery(".post-comt-box textarea").on("keydown", function (event) {
+		var value = "";
+		var avt = "";
+		var txtMaBDSP = "";
+		var txtMaND = "";
+		var URL = "";
+		if (event.keyCode == 13) {
+			var comment = jQuery(this).val();
+			$('#MaBDSP_cmt')
+				.keypress(function () {
+					txtMaBDSP = $(this).val();
+
+				})
+				.keypress();
+
+			$('#MaND_cmt')
+				.keypress(function () {
+					txtMaND = $(this).val();
+
+				})
+				.keypress();
+
+			$('#URL_CMT')
+				.keypress(function () {
+					URL = $(this).val();
+
+				})
+				.keypress();
+
+			var today = new Date();
+			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			var dateTime = date + ' ' + time;
+			//count Questions
+			var binhLuanBDSP = {};
+			binhLuanBDSP.noiDung = comment;
+			binhLuanBDSP.maND = txtMaND;
+			binhLuanBDSP.maBDSP = txtMaBDSP;
+			binhLuanBDSP.ngayBL = dateTime;
+			binhLuanBDSP.trangThai = "Hien";
+
+			$.ajax({
+				type: "POST",
+				url: URL,
+				data: JSON.stringify(binhLuanBDSP),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				success: function (r) {
+				
+				}
+			});
+
+			$('#name_cmt')
+				.keypress(function () {
+					value = $(this).val();
+
+				})
+				.keypress();
+			$('#avt_cmt')
+				.keypress(function () {
+					avt = $(this).val();
+
+				})
+				.keypress();
+
+			
+			var parent = jQuery(".showmore").parent("li");
+			var comment_HTML = '	<li><div class="comet-avatar"><img src="' + avt + '" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">' + value + '</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' + comment + '</p></div></li>';
+			$(comment_HTML).insertBefore(parent);
+			jQuery(this).val('');
+		}
 	}); 
 
 	jQuery(".newpst-input textarea").on("click", function (event) {

@@ -613,6 +613,28 @@ namespace ELF.Areas.NguoiDung.Controllers
             });
         }
 
+        [HttpPost]
+        public ActionResult InsertBinhLuansBDSP(BinhLuan binhLuanBDSP)
+        {
+            using (ELFVanLang2021Entities entities = new ELFVanLang2021Entities())
+            {
+
+                entities.BinhLuans.Add(binhLuanBDSP);
+                entities.SaveChanges();
+            }
+            return Json(binhLuanBDSP);
+        }
+
+        [ChildActionOnly]
+        public ActionResult listComment(int maBDSP)
+        {
+
+            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP == maBDSP).OrderByDescending(bl => bl.maBL);
+            TempData["maBDSP"] = maBDSP;
+
+            return PartialView("listComment", binhLuans.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

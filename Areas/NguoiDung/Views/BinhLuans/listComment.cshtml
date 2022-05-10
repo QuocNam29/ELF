@@ -1,0 +1,139 @@
+﻿@model List<ELF.Models.BinhLuan>
+
+@{
+    int maND = int.Parse(Session["maND"].ToString());
+    string name = Session["HoVaTen"].ToString();
+    string avt = "";
+    if (Session["avatar"] != null)
+    {
+        avt = Session["avatar"].ToString();
+    }
+    else
+    {
+        avt = "~/images/resources/User-avatar.svg";
+    }
+    string hidden = "";
+    string avt_ND = "";
+}
+
+<div class="coment-area">
+    <ul class="we-comet">
+        @foreach (var item in Model)
+        {
+            if (item.NguoiDung.avatar != null)
+            {
+                avt_ND = item.NguoiDung.avatar;
+            }
+            else
+            {
+                avt_ND = "~/images/resources/User-avatar.svg.png";
+            }
+            hidden = item.trangThai;
+            if (hidden == "Hien")
+            {
+                <li>
+                    <div class="comet-avatar">
+                        <img src="@Url.Content(avt_ND)" alt="">
+                    </div>
+                    <div class="we-comment">
+                        <div class="coment-head">
+                            <h5><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h5>
+                            <span>@item.ngayBL</span>
+                            @if (item.maND == maND || item.BaiDangSanPham.maND == maND)
+                            {
+                                <div class="more">
+                                    <div class="more-post-optns">
+                                        <i class="ti-more-alt"></i>
+                                        <ul>
+                                            <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
+                                            @if (hidden == "An")
+                                            {
+                                                <li> @Html.ActionLink("Hiện comment", "Appear", new { id = item.maBL })</li>
+                                            }
+                                            else
+                                            {
+                                                <li> @Html.ActionLink("Ẩn comment", "Hidden", new { id = item.maBL })</li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <p>
+                            @item.noiDung
+
+                        </p>
+                    </div>
+                </li>
+            }
+            else if (hidden == "An" && (item.maND == maND || item.BaiDangSanPham.maND == maND))
+            {
+                <li>
+                    <div class="comet-avatar">
+                        <img src="@Url.Content(avt_ND)" alt="">
+                    </div>
+                    <div class="we-comment">
+                        <div class="coment-head">
+                            <h5><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h5>
+                            <span>@item.ngayBL </span>
+                            <span> Đã Ẩn </span>
+                            @if (item.maND == maND || item.BaiDangSanPham.maND == maND)
+                            {
+                                <div class="more">
+                                    <div class="more-post-optns">
+                                        <i class="ti-more-alt"></i>
+                                        <ul>
+                                            <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
+                                            @if (hidden == "An")
+                                            {
+                                                <li> @Html.ActionLink("Hiện comment", "Appear", new { id = item.maBL })</li>
+                                            }
+                                            else
+                                            {
+                                                <li> @Html.ActionLink("Ẩn comment", "Hidden", new { id = item.maBL })</li>
+                                            }
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <p>
+                            @item.noiDung
+
+                        </p>
+                    </div>
+                </li>
+            }
+            else
+            {
+
+            }
+        }
+            <li>
+                <a href="#" title="" class="showmore underline">more comments</a>
+            </li>
+            <li class="post-comment">
+                <div class="comet-avatar">
+                    <img src="@Url.Content(avt)" alt="">
+                </div>
+                <div class="post-comt-box">
+
+                    <form method="post">
+                        <textarea placeholder="Post your comment" name="coment"></textarea>
+                        <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansBDSP", "BinhLuans")">
+                        <input hidden type="text" id="MaND_cmt" value="@maND">
+                        <input hidden type="text" id="MaBDSP_cmt" value=" @TempData["maBDSP"].ToString()">
+                        <input hidden type="text" id="name_cmt" value="@name">
+                        <input hidden type="text" id="avt_cmt" value="@Url.Content(avt)">
+                        <button type="submit">Nhấn vào đây nè</button>
+                    </form>
+
+                </div>
+            </li>
+
+
+        </ul>
+</div>

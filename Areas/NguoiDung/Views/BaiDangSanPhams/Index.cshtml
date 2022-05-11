@@ -176,10 +176,16 @@
 
                     </ul>
                 </div>*@
-            <div class="coment-area">
-                <ul class="we-comet">
-                    @Html.Action("listComment", "BinhLuans", new { maBDSP = item.maBDSP })
-                    <li class="post-comment">
+        <div class="coment-area">
+            <ul class="we-comet">
+                @Html.Action("listComment", "BinhLuans", new { maBDSP = item.maBDSP })
+
+
+                <li>
+                    <a href="#" title="" class="showmore underline">more comments</a>
+                </li>
+               
+                <li class="post-comment">
                     <div class="comet-avatar">
                         <img src="@Url.Content(avt)" alt="">
                     </div>
@@ -195,11 +201,10 @@
                         </form>
 
                     </div>
-                    </li>
+                </li>
 
-
-                </ul>
-            </div>
+            </ul>
+        </div>
 
         </div>
         </div>

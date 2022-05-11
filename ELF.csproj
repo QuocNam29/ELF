@@ -894,6 +894,7 @@
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Details.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Edit.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Index.cshtml" />
+	 <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

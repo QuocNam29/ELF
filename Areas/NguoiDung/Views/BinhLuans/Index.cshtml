@@ -40,7 +40,7 @@
                 <img src="@Url.Content(avt_BD)" alt="">
             </figure>
             <div class="friend-name">
-              
+
                 @if (maND != maND_BDSP)
                 {
                     <ins>
@@ -137,7 +137,7 @@
                         avt_ND = "~/images/resources/User-avatar.svg.png";
                     }
                     hidden = item.trangThai;
-                    if (hidden == "Hien" )
+                    if (hidden == "Hien")
                     {
                         <li>
                             <div class="comet-avatar">
@@ -170,12 +170,12 @@
                                 </div>
                                 <p>
                                     @item.noiDung
-                                    
+
                                 </p>
                             </div>
                         </li>
                     }
-                     else if (hidden == "An" && (item.maND == maND || item.BaiDangSanPham.maND == maND))
+                    else if (hidden == "An" && (item.maND == maND || item.BaiDangSanPham.maND == maND))
                     {
                         <li>
                             <div class="comet-avatar">
@@ -210,7 +210,7 @@
                                 </div>
                                 <p>
                                     @item.noiDung
-                                    
+
                                 </p>
                             </div>
                         </li>

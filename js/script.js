@@ -1,4 +1,4 @@
-
+﻿
 jQuery(document).ready(function ($) {
 	
 	"use strict";
@@ -331,6 +331,9 @@ $(function() {
 		var URL = "";
 		if (event.keyCode == 13) {
 			var comment = jQuery(this).val();
+
+		
+
 			$('#MaBDSP_cmt')
 				.keypress(function () {
 					txtMaBDSP = $(this).val();
@@ -490,6 +493,202 @@ $(function() {
 
 });//document ready end
 
+
+//-------------------------------------------------------------
+document.querySelectorAll('.truck-button').forEach(button => {
+	button.addEventListener('click', e => {
+
+		e.preventDefault();
+
+		let box = button.querySelector('.box'),
+			truck = button.querySelector('.truck');
+		var MaND_TraoDoi = "";
+		var URL_TraoDoi = "";
+		var MaBDSP_TraoDoi = "";
+		var maNDKhac_TraoDoi = "";
+
+		$('#MaND_TraoDoi')
+			.keypress(function () {
+				MaND_TraoDoi = $(this).val();
+
+			})
+			.keypress();
+
+		$('#URL_TraoDoi')
+			.keypress(function () {
+				URL_TraoDoi = $(this).val();
+
+			})
+			.keypress();
+
+		$('#MaBDSP_TraoDoi')
+			.keypress(function () {
+				MaBDSP_TraoDoi = $(this).val();
+
+			})
+			.keypress();
+
+		$('#maNDKhac_TraoDoi')
+			.keypress(function () {
+				maNDKhac_TraoDoi = $(this).val();
+
+			})
+			.keypress();
+
+		var URLDelete_TraoDoi = "";
+
+
+		$('#URLDelete_TraoDoi')
+			.keypress(function () {
+				URLDelete_TraoDoi = $(this).val();
+
+			})
+			.keypress();
+
+
+		if (!button.classList.contains('done')) {
+			
+			
+			if (!button.classList.contains('animation')) {
+				
+				var today = new Date();
+				var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+				var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+				var dateTime = date + ' ' + time;
+
+				var traoDoi = {};
+				traoDoi.maND = MaND_TraoDoi;
+				traoDoi.maNDKhac = maNDKhac_TraoDoi;
+				traoDoi.maBDSP = MaBDSP_TraoDoi;
+				traoDoi.ngayDangKyTD = dateTime;
+				traoDoi.trangThai = "Đăng ký";
+
+				$.ajax({
+					type: "POST",
+					url: URL_TraoDoi,
+					data: JSON.stringify(traoDoi),
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'json',
+					success: function (r) {
+
+					}
+				});
+
+				button.classList.add('animation');
+
+				gsap.to(button, {
+					'--box-s': 1,
+					'--box-o': 1,
+					duration: .3,
+					delay: .5
+				});
+
+				gsap.to(box, {
+					x: 0,
+					duration: .4,
+					delay: .7
+				});
+
+				gsap.to(button, {
+					'--hx': -5,
+					'--bx': 50,
+					duration: .18,
+					delay: .92
+				});
+
+				gsap.to(box, {
+					y: 0,
+					duration: .1,
+					delay: 1.15
+				});
+
+				gsap.set(button, {
+					'--truck-y': 0,
+					'--truck-y-n': -26
+				});
+
+				gsap.to(button, {
+					'--truck-y': 1,
+					'--truck-y-n': -25,
+					duration: .2,
+					delay: 1.25,
+					onComplete() {
+						gsap.timeline({
+							onComplete() {
+								button.classList.add('done');
+							}
+						}).to(truck, {
+							x: 0,
+							duration: .4
+						}).to(truck, {
+							x: 40,
+							duration: 1
+						}).to(truck, {
+							x: 20,
+							duration: .6
+						}).to(truck, {
+							x: 96,
+							duration: .4
+						});
+						gsap.to(button, {
+							'--progress': 1,
+							duration: 2.4,
+							ease: "power2.in"
+						});
+					}
+				});
+
+			}
+
+		} else {
+			button.classList.remove('animation', 'done');
+			
+			var URLDelete_TraoDoi = "";
+			
+
+			$('#URLDelete_TraoDoi')
+				.keypress(function () {
+					URLDelete_TraoDoi = $(this).val();
+
+				})
+				.keypress();
+
+			var traoDoi = {};
+			traoDoi.maND = MaND_TraoDoi;
+			traoDoi.maBDSP = MaBDSP_TraoDoi;
+			
+
+			$.ajax({
+				type: "POST",
+				url: URLDelete_TraoDoi,
+				data: JSON.stringify(traoDoi),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				success: function (r) {
+
+				}
+			});
+
+			gsap.set(truck, {
+				x: 4
+			});
+			gsap.set(button, {
+				'--progress': 0,
+				'--hx': 0,
+				'--bx': 0,
+				'--box-s': .5,
+				'--box-o': 0,
+				'--truck-y': 0,
+				'--truck-y-n': -26
+			});
+			gsap.set(box, {
+				x: -24,
+				y: -6
+			});
+		}
+
+	});
+});
 
 
 

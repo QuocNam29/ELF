@@ -686,7 +686,6 @@
     <Content Include="js\main.min.js" />
     <Content Include="js\map-init.js" />
     <Content Include="js\script.js" />
-    <Content Include="js\script_btn.js" />
     <Content Include="js\strip.pkgd.min.js" />
     <Content Include="js\userincr.js" />
     <Content Include="js\world.js" />
@@ -894,7 +893,8 @@
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Details.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Edit.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Index.cshtml" />
-	 <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_oneBDSP.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

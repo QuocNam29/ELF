@@ -110,7 +110,7 @@
 
 
                     <div class="description">
-                        @if (flat == 1)
+                        @if (flat >= 1)
                         {
                             using (Html.BeginForm("Delete", "TraoDois"))
                             {
@@ -182,25 +182,12 @@
 
 
                 <li>
-                    <a href="#" title="" class="showmore underline">more comments</a>
-                </li>
-               
-                <li class="post-comment">
-                    <div class="comet-avatar">
-                        <img src="@Url.Content(avt)" alt="">
-                    </div>
-                    <div class="post-comt-box">
-                        <form method="post">
-                            <textarea placeholder="Post your comment" name="coment"></textarea>
-                            <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansBDSP", "BinhLuans")">
-                            <input hidden type="text" id="MaND_cmt" value="@maND">
-                            <input hidden type="text" id="MaBDSP_cmt" value="@item.maBDSP">
-                            <input hidden type="text" id="name_cmt" value="@name">
-                            <input hidden type="text" id="avt_cmt" value="@Url.Content(avt)">
-                            <button type="submit">Nhấn vào đây nè</button>
-                        </form>
-
-                    </div>
+                    <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams",
+        new
+        {
+            maBDSP = item.maBDSP,  
+            maND = item.maND
+        })" title="" class="showmore underline">more comments</a>
                 </li>
 
             </ul>

@@ -635,6 +635,14 @@ namespace ELF.Areas.NguoiDung.Controllers
 
             return PartialView("listComment", binhLuans.ToList());
         }
+        public ActionResult listComment_oneBDSP(int maBDSP)
+        {
+
+            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP == maBDSP).OrderByDescending(bl => bl.maBL);
+
+
+            return PartialView("listComment_oneBDSP", binhLuans.ToList());
+        }
 
 
         protected override void Dispose(bool disposing)

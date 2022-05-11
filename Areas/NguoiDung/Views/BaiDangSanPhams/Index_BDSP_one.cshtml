@@ -2,14 +2,25 @@
 @model IEnumerable<ELF.Models.BaiDangSanPham>
 @{
     ViewBag.Title = "Index_BDSP_one";
-    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
     int maND = int.Parse(Session["maND"].ToString());
     int hidden = 0;
 
+    string avt = "";
+    string name = Session["HoVaTen"].ToString();
+    if (Session["avatar"] != null)
+    {
+        avt = Session["avatar"].ToString();
+    }
+    else
+    {
+        avt = "~/images/resources/User-avatar.svg";
+    }
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<link href="~/css/style_btn.css" rel="stylesheet" />
+<script src='https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js'></script>
 
 @foreach (var item in Model)
 {
@@ -31,7 +42,8 @@
         flat = item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td).Count();
         maTD = int.Parse((item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString()));
 
-    }<div class="central-meta item">
+    }
+    <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -96,14 +108,41 @@
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
 
-                    @if (flat == 1)
+                    @if (flat >= 1)
                     {
-                        using (Html.BeginForm("Delete", "TraoDois"))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.Hidden("id", maTD)
-                            <button type="submit"> Đã đăng kí </button>
-                        }
+                        <div class="description">
+
+                            <input hidden type="text" id="URL_TraoDoi" value="@Url.Action("InsertTraoDoi", "TraoDois")">
+                            <input hidden type="text" id="MaND_TraoDoi" value="@maND">
+                            <input hidden type="text" id="MaBDSP_TraoDoi" value="@item.maBDSP">
+                            <input hidden type="text" id="maNDKhac_TraoDoi" value="@item.maND">
+
+                            <input hidden type="text" id="URLDelete_TraoDoi" value="@Url.Action("DeleteTraoDoi", "TraoDois")">
+                            <input hidden type="text" id="maTD" value="@maTD">
+
+                            <button class="truck-button" style="float: right; margin-top: 10px;">
+                                <span class="default">Đã đăng ký
+                                </span>
+                                <span class="success">
+                                    Đăng ký trao đổi                                
+                                </span>
+                                <div class="truck">
+                                    <div class="wheel"></div>
+                                    <div class="back"></div>
+                                    <div class="front"></div>
+                                    <div class="box"></div>
+                                </div>
+                            </button>
+
+                            <span style="color: orangered ; font-size: 16px">
+                                Tên sản phẩm: @item.tenSP
+                            </span>
+                            <br />
+                            <span style="color: red; font-size: 16px"> Giá sản phẩm: @item.gia đ</span>
+                            <p>
+                                @item.noiDung
+                            </p>
+                        </div>
                     }
                     else if (flat == -100)
                     {
@@ -111,47 +150,72 @@
                     }
                     else
                     {
-                        using (Html.BeginForm("Create", "TraoDois"))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.Hidden("maND", maND)
-                            @Html.Hidden("maNDKhac", item.maND)
-                            @Html.Hidden("maBDSP", item.maBDSP)
-                            <button type="submit"> Đăng kí </button>
-                        }
+                        <div class="description">
+
+                            <input hidden type="text" id="URL_TraoDoi" value="@Url.Action("InsertTraoDoi", "TraoDois")">
+                            <input hidden type="text" id="MaND_TraoDoi" value="@maND">
+                            <input hidden type="text" id="MaBDSP_TraoDoi" value="@item.maBDSP">
+                            <input hidden type="text" id="maNDKhac_TraoDoi" value="@item.maND">
+
+                            <input hidden type="text" id="URLDelete_TraoDoi" value="@Url.Action("DeleteTraoDoi", "TraoDois")">
+                            <input hidden type="text" id="maTD" value="@maTD">
+
+                            <button class="truck-button" style="float: right; margin-top: 10px;">
+                                <span class="default">Đăng ký trao đổi</span>
+                                <span class="success">
+                                    Đã đăng ký
+                                    <svg viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span>
+                                <div class="truck">
+                                    <div class="wheel"></div>
+                                    <div class="back"></div>
+                                    <div class="front"></div>
+                                    <div class="box"></div>
+                                </div>
+                            </button>
+
+                            <span style="color: orangered ; font-size: 16px">
+                                Tên sản phẩm: @item.tenSP
+                            </span>
+                            <br />
+                            <span style="color: red; font-size: 16px"> Giá sản phẩm: @item.gia đ</span>
+                            <p>
+                                @item.noiDung
+                            </p>
+                        </div>
 
                     }
 
-                    <div class="description">
 
-                        <span style="color: orangered ; font-size: 16px">
-                            Tên sản phẩm: @item.tenSP
-                        </span>
-                        <br />
-                        <span style="color: red; font-size: 16px"> Giá sản phẩm: @item.gia đ</span>
-                        <p>
-                            @item.noiDung
-                        </p>
-                    </div>
                 </div>
             </div>
 
             <div class="coment-area">
                 <ul class="we-comet">
-                    <li>
-                        <a href="@Url.Action("Index_BLBDSP_TrangCaNhan","BinhLuans",
-                                new { maBDSP = item.maBDSP,
-                                tenNguoiDang = item.NguoiDung.hoVaTen,
-                                ngayDang = item.ngayDang,
-                                tenSP=item.tenSP,
-                                noiDung=item.noiDung,
-                                hinhAnh=item.hinhAnh,
-                                giaBan = item.gia,
-                                avt_BD = avt_BD,
-                                flat = flat,
-                                maTD = maTD,
-                                maND_BDSP = item.maND})" title="" class="showmore underline">more comments</a>
+                    <li class="post-comment">
+                        <div class="comet-avatar">
+                            <img src="@Url.Content(avt)" alt="">
+                        </div>
+                        <div class="post-comt-box">
+                            <form method="post">
+
+                                <textarea placeholder="Post your comment" name="coment"></textarea>
+                                <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansBDSP", "BinhLuans")">
+                                <input hidden type="text" id="MaND_cmt" value="@maND">
+                                <input hidden type="text" id="MaBDSP_cmt" value="@item.maBDSP">
+                                <input hidden type="text" id="name_cmt" value="@name">
+                                <input hidden type="text" id="avt_cmt" value="@Url.Content(avt)">
+                                <button type="submit">Nhấn vào đây nè</button>
+                            </form>
+
+                        </div>
                     </li>
+
+                    @Html.Action("listComment_oneBDSP", "BinhLuans", new { maBDSP = item.maBDSP })
+
+
 
                 </ul>
             </div>

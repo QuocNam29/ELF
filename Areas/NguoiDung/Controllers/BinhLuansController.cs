@@ -613,6 +613,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             });
         }
 
+
         [HttpPost]
         public ActionResult InsertBinhLuansBDSP(BinhLuan binhLuanBDSP)
         {
@@ -629,11 +630,12 @@ namespace ELF.Areas.NguoiDung.Controllers
         public ActionResult listComment(int maBDSP)
         {
 
-            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP == maBDSP).OrderByDescending(bl => bl.maBL);
-            TempData["maBDSP"] = maBDSP;
+            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDSP == maBDSP).OrderByDescending(bl => bl.maBL).Take(2);
+            
 
             return PartialView("listComment", binhLuans.ToList());
         }
+
 
         protected override void Dispose(bool disposing)
         {

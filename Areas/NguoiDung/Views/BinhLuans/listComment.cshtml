@@ -2,7 +2,6 @@
 
 @{
     int maND = int.Parse(Session["maND"].ToString());
-    string name = Session["HoVaTen"].ToString();
     string avt = "";
     if (Session["avatar"] != null)
     {
@@ -14,12 +13,15 @@
     }
     string hidden = "";
     string avt_ND = "";
+
 }
 
-<div class="coment-area">
-    <ul class="we-comet">
         @foreach (var item in Model)
         {
+            
+                
+            
+
             if (item.NguoiDung.avatar != null)
             {
                 avt_ND = item.NguoiDung.avatar;
@@ -107,33 +109,5 @@
                     </div>
                 </li>
             }
-            else
-            {
-
-            }
         }
-            <li>
-                <a href="#" title="" class="showmore underline">more comments</a>
-            </li>
-            <li class="post-comment">
-                <div class="comet-avatar">
-                    <img src="@Url.Content(avt)" alt="">
-                </div>
-                <div class="post-comt-box">
-
-                    <form method="post">
-                        <textarea placeholder="Post your comment" name="coment"></textarea>
-                        <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansBDSP", "BinhLuans")">
-                        <input hidden type="text" id="MaND_cmt" value="@maND">
-                        <input hidden type="text" id="MaBDSP_cmt" value=" @TempData["maBDSP"].ToString()">
-                        <input hidden type="text" id="name_cmt" value="@name">
-                        <input hidden type="text" id="avt_cmt" value="@Url.Content(avt)">
-                        <button type="submit">Nhấn vào đây nè</button>
-                    </form>
-
-                </div>
-            </li>
-
-
-        </ul>
-</div>
+        

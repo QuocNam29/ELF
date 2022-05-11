@@ -154,7 +154,6 @@
                     </div>
                 </div>
             </div>
-
             @*  <div class="coment-area">
                     <ul class="we-comet">
                         <li>
@@ -177,10 +176,33 @@
 
                     </ul>
                 </div>*@
-            @Html.Action("listComment", "BinhLuans", new { maBDSP = item.maBDSP })
-          
+            <div class="coment-area">
+                <ul class="we-comet">
+                    @Html.Action("listComment", "BinhLuans", new { maBDSP = item.maBDSP })
+                    <li class="post-comment">
+                    <div class="comet-avatar">
+                        <img src="@Url.Content(avt)" alt="">
+                    </div>
+                    <div class="post-comt-box">
+                        <form method="post">
+                            <textarea placeholder="Post your comment" name="coment"></textarea>
+                            <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansBDSP", "BinhLuans")">
+                            <input hidden type="text" id="MaND_cmt" value="@maND">
+                            <input hidden type="text" id="MaBDSP_cmt" value="@item.maBDSP">
+                            <input hidden type="text" id="name_cmt" value="@name">
+                            <input hidden type="text" id="avt_cmt" value="@Url.Content(avt)">
+                            <button type="submit">Nhấn vào đây nè</button>
+                        </form>
+
+                    </div>
+                    </li>
+
+
+                </ul>
+            </div>
+
         </div>
-    </div>
+        </div>
 }
 
 
@@ -201,43 +223,4 @@
     });
 </script>
 
-@*
-    <script type="text/javascript">
 
-        $(document).ready(function () {
-            jQuery(".post-comt-box textarea").on("keydown", function (event) {
-                if (event.keyCode == 13) {
-                
-                    var txtComent = $("#coment");
-                    var txtMaBDSP = $("#MaBDSP_cmt");
-
-                    var today = new Date();
-                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-                    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-                    var dateTime = date + ' ' + time;
-                    //count Questions
-                    var binhLuanBDSP = {};
-                    binhLuanBDSP.noiDung = txtComent.val();
-                    binhLuanBDSP.maND = @maND;
-                binhLuanBDSP.maBDSP = txtMaBDSP.val();
-                binhLuanBDSP.ngayBL = dateTime.val();
-                    binhLuanBDSP.trangThai = "Hien".val();
-
-                    $.ajax({
-                        type: 'POST',
-                        url: '@Url.Action("InsertBinhLuansBDSP", "BinhLuans")',
-                        data: JSON.stringify(binhLuanBDSP),
-                        contentType: 'application/json; charset=utf-8',
-                        dataType: 'json',
-                        success: function (r) {
-                            alert("haha");
-                        }
-                    });
-                });
-        }
-
-    </script>
-
-
-
-*@

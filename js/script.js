@@ -315,13 +315,13 @@ $(function() {
 	
 /** Post a Comment **/
 	jQuery(".post-comt-box1 textarea").on("keydown", function (event) {
-		
-	if (event.keyCode == 13) {
-		
-		jQuery(this).blur();
-		jQuery('#submit_cmt').focus().click();
-	}
-	}); 
+
+		if (event.keyCode == 13) {
+
+			jQuery(this).blur();
+			jQuery('#submit_cmt').focus().click();
+		}
+	});
 
 	jQuery(".post-comt-box textarea").on("keydown", function (event) {
 		var value = "";
@@ -364,16 +364,16 @@ $(function() {
 			binhLuanBDSP.ngayBL = dateTime;
 			binhLuanBDSP.trangThai = "Hien";
 
-			$.ajax({
+			/*$.ajax({
 				type: "POST",
 				url: URL,
 				data: JSON.stringify(binhLuanBDSP),
 				contentType: 'application/json; charset=utf-8',
 				dataType: 'json',
 				success: function (r) {
-				
+
 				}
-			});
+			});*/
 
 			$('#name_cmt')
 				.keypress(function () {
@@ -388,7 +388,7 @@ $(function() {
 				})
 				.keypress();
 
-			
+
 			var parent = jQuery(".showmore").parent("li");
 			var comment_HTML = '	<li><div class="comet-avatar"><img src="' + avt + '" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">' + value + '</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' + comment + '</p></div></li>';
 			$(comment_HTML).insertBefore(parent);

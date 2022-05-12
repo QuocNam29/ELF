@@ -63,7 +63,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     {
                         string fileName = System.IO.Path.GetFileName(img.FileName);
                         string path = System.IO.Path.Combine(
-                        Server.MapPath("~/images/"), fileName);
+                        Server.MapPath("~/images/hinhQuyenGops"), fileName);
                         img.SaveAs(path);
                         db.QuyenGops.Add(new QuyenGop
                         {
@@ -74,7 +74,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                             soLuong = quyenGop.soLuong,
                             donVi = quyenGop.donVi,
                             trangThai = "Chờ duyệt",
-                            hinhAnh = "~/images/" + img.FileName,                        
+                            hinhAnh = "~/images/hinhQuyenGops/" + img.FileName,                        
                             ghiChu = quyenGop.ghiChu
                         });
                         db.DiemTichLuys.Add(new DiemTichLuy

@@ -446,7 +446,8 @@
     <Content Include="css\strip-skins\strip\previous.svg" />
     <Content Include="css\strip.css" />
     <Content Include="css\style.css" />
-    <Content Include="css\style_btn.css" />
+    <Content Include="css\button_traoDoi\style_btn.css" />
+    <Content Include="css\button_traoDoi\style_btn2.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\css\font-awesome.min.css" />

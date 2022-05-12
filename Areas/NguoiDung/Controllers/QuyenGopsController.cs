@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -61,33 +62,43 @@ namespace ELF.Areas.NguoiDung.Controllers
                 {
                     if (img != null)
                     {
-                        string fileName = System.IO.Path.GetFileName(img.FileName);
-                        string path = System.IO.Path.Combine(
-                        Server.MapPath("~/images/hinhQuyenGops"), fileName);
-                        img.SaveAs(path);
-                        db.QuyenGops.Add(new QuyenGop
+                        string extension = Path.GetExtension(img.FileName);
+
+                        if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
                         {
-                            maQG = quyenGop.maQG,
-                            maND = mand,
-                            ngayQG = quyenGop.ngayQG,
-                            maLQG = quyenGop.maLQG,
-                            soLuong = quyenGop.soLuong,
-                            donVi = quyenGop.donVi,
-                            trangThai = "Chờ duyệt",
-                            hinhAnh = "~/images/hinhQuyenGops/" + img.FileName,                        
-                            ghiChu = quyenGop.ghiChu
-                        });
-                        db.DiemTichLuys.Add(new DiemTichLuy
+                            string fileName = Path.GetFileName(img.FileName);
+                            string path = Path.Combine(
+                            Server.MapPath("~/images/hinhQuyenGops"), fileName);
+                            img.SaveAs(path);
+                            db.QuyenGops.Add(new QuyenGop
+                            {
+                                maQG = quyenGop.maQG,
+                                maND = mand,
+                                ngayQG = quyenGop.ngayQG,
+                                maLQG = quyenGop.maLQG,
+                                soLuong = quyenGop.soLuong,
+                                donVi = quyenGop.donVi,
+                                trangThai = "Chờ duyệt",
+                                hinhAnh = "~/images/hinhQuyenGops/" + img.FileName,
+                                ghiChu = quyenGop.ghiChu
+                            });
+                            db.DiemTichLuys.Add(new DiemTichLuy
+                            {
+                                maND = int.Parse(Session["maND"].ToString()),
+                                thoiGian = DateTime.Now,
+                                maQG = quyenGop.maQG,
+                                diem = 10
+                            });
+                            db.SaveChanges();
+                            return RedirectToAction("Index", "LoaiQuyenGops");
+                        } else
                         {
-                            maND = int.Parse(Session["maND"].ToString()),
-                            thoiGian = DateTime.Now,
-                            maQG = quyenGop.maQG,
-                            diem = 10
-                        });
-                        db.SaveChanges();
-                        return RedirectToAction("Index", "LoaiQuyenGops");
+                            ViewBag.FileStatus = "Định dạng file không hợp lệ!";
+                        }
+                    } else
+                    {
+                        ViewBag.FileStatus = "Bạn chưa chọn hình ảnh";
                     }
-                    ViewBag.FileStatus = "Bạn chưa chọn hình ảnh";
                 }
                 catch (Exception)
                 {

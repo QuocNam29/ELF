@@ -24,7 +24,7 @@ namespace ELF.Models
     
         public int maQG { get; set; }
         public int maND { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true)]
         [DateValidation(ErrorMessage = "Vui lòng chọn ngày <= ngày hiện tại")]
         public System.DateTime ngayQG { get; set; }
         public int maLQG { get; set; }

@@ -179,17 +179,18 @@
                 </div>*@
         <div class="coment-area">
             <ul class="we-comet">
-                @Html.Action("listComment", "BinhLuans", new { maBDSP = item.maBDSP })
+                @Html.Action("listComment_BDSP", "BinhLuans", new { maBDSP = item.maBDSP })
 
 
                 <li>
                     <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams",
         new
         {
-            maBDSP = item.maBDSP,  
+            maBDSP = item.maBDSP,
             maND = item.maND
         })" title="" class="showmore underline">more comments</a>
                 </li>
+           
 
             </ul>
         </div>

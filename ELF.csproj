@@ -750,11 +750,8 @@
     <Content Include="Areas\NguoiDung\Views\TraoDois\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TraoDois\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TraoDois\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Create.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Details.cshtml" />
@@ -764,9 +761,6 @@
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDSP_TrangCaNhan.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BDTT.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDTT_TrangCaNhan.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan_NguoiDungKhac.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_TrangCaNhan_NDK.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Create.cshtml" />
@@ -894,8 +888,10 @@
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Details.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Edit.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_BDSP.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_oneBDSP.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_BDTT.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_oneBDTT.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -216,12 +216,8 @@ namespace ELF.Areas.NguoiDung.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(id);
-            if (baiDangSanPham == null)
-            {
-                return HttpNotFound();
-            }
-           
-            db.BaiDangSanPhams.Remove(baiDangSanPham);
+            baiDangSanPham.maTT = 6;
+            db.Entry(baiDangSanPham).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = int.Parse(Session["maND"].ToString()) });
 

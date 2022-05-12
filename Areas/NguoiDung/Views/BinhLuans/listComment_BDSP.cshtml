@@ -84,7 +84,7 @@
                             <div class="more-post-optns">
                                 <i class="ti-more-alt"></i>
                                 <ul>
-                                    <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
+                                    <li> @Html.ActionLink("Xóa", "Delete","BinhLuans", new { maBL = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
                                     @if (hidden == "An")
                                     {
                                         <li> @Html.ActionLink("Hiện comment", "Appear", new { id = item.maBL })</li>

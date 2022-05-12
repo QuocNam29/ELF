@@ -146,8 +146,9 @@
                             }
                             else {
                                 $('#countR').html('<div class="modal-body" id="countR">Xin chúc mừng bạn đã đúng được ' + scoreQuiz / 10 + ' câu, bạn được thêm <b>' + scoreQuiz + ' điểm</b> vào điểm tích luỹ của bạn 🎁.</div>');
+                            }
 
-                                var ketQuaBaiQuiz = {};
+                             var ketQuaBaiQuiz = {};
                                 ketQuaBaiQuiz.maND = @maND;
                                 ketQuaBaiQuiz.maCDBQ = @TempData["maChuDe"];
                                 ketQuaBaiQuiz.TongDiem = scoreQuiz;
@@ -179,7 +180,6 @@
                                     }
                                 });
 
-                            }
                             $("#SubmitQuiz").hide();
                         }
                         else

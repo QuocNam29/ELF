@@ -51,7 +51,15 @@
                     <div class="input-group js-input-file">
                         @*<input class="input-file" type="file" name="file_cv" id="file">*@
                         <input accept="image/*" type="file" name="img" id="imgInp"><br>
-                        <img id="blah" src="@Url.Content(Model.hinhAnh)" width="200" alt="Image preview...">
+                        @if (Model.hinhAnh != null)
+                        {
+                            <img id="blah" src="@Url.Content(Model.hinhAnh)" width="200" alt="Image preview...">
+                        }
+                        else
+                        {
+                            <img id="blah" src="#" width="200" alt="Image preview...">
+                        }
+
                         <label class="control-label" for="textarea">Hình ảnh</label>
                         <script>
                             imgInp.onchange = evt => {

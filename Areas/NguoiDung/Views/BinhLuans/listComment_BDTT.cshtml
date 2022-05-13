@@ -45,7 +45,7 @@
                             <div class="more-post-optns">
                                 <i class="ti-more-alt"></i>
                                 <ul>
-                                    <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
+                                    <li> @Html.ActionLink("Xóa", "Delete", new { id_indexBDTT = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
                                     @if (hidden == "An")
                                     {
                                         <li> @Html.ActionLink("Hiện comment", "Appear", new { id = item.maBL })</li>
@@ -78,7 +78,7 @@
                     <h5><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h5>
                     <span>@item.ngayBL </span>
                     <span> Đã Ẩn </span>
-                    @if (item.maND == maND || item.BaiDangThongTin.maND == maND)
+                    @*@if (item.maND == maND || item.BaiDangThongTin.maND == maND)
                     {
                         <div class="more">
                             <div class="more-post-optns">
@@ -98,7 +98,7 @@
                                 </ul>
                             </div>
                         </div>
-                    }
+                    }*@
                 </div>
                 <p>
                     @item.noiDung

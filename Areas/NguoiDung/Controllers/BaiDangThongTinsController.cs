@@ -85,10 +85,11 @@ namespace ELF.Areas.NguoiDung.Controllers
                 try
                 {
                     string filePath = "";
+                    string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
                     if (img != null)
                     {
                         string fileName = System.IO.Path.GetFileName(img.FileName);
-                        filePath = "~/images/" + fileName;
+                        filePath = "~/images/" + time + fileName;
                         Console.WriteLine(filePath);
                         img.SaveAs(Server.MapPath(filePath));
                         /*string path = System.IO.Path.Combine(
@@ -120,7 +121,6 @@ namespace ELF.Areas.NguoiDung.Controllers
                         return RedirectToAction("Index");
 
                     }
-                    ViewBag.FileStatus = "File uploaded successfully.";
                 }
                 catch (DbEntityValidationException dbEx)
                 {
@@ -171,13 +171,14 @@ namespace ELF.Areas.NguoiDung.Controllers
             if (ModelState.IsValid)
             {
                 string oldfilePath = baiDangThongTin.hinhAnh;
+                string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
                 if (img != null && img.ContentLength > 0)
                 {
                     var fileName = System.IO.Path.GetFileName(img.FileName);
                     string path = System.IO.Path.Combine(
                     Server.MapPath("~/images/"), fileName);
                     img.SaveAs(path);
-                    baiDangThongTin.hinhAnh = "~/images/" + img.FileName;
+                    baiDangThongTin.hinhAnh = "~/images/" +time+ img.FileName;
                     string fullPath = Request.MapPath(oldfilePath);
 
                     if (System.IO.File.Exists(fullPath))

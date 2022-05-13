@@ -30,12 +30,13 @@
                     <ul>
                         @foreach (var item in Model)
                         {
-
+                            int soCauDung = (int)item.TongDiem/10;
                             <li>
                                 <div class="notifi-meta">
-                                    <a href="" >Bạn đã làm bài Quiz @item.ChuDeBaiQuiz.tenChuDe  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.TongDiem</a></a>
+                                    <a href="">Bạn đã làm bài Quiz @item.ChuDeBaiQuiz.tenChuDe  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.TongDiem</a></a>
                                     <br />
-                                    <span>@*@item.DiemTichLuys.thoiGian*@</span>
+                                    <span>@item.ngayLamQuiz</span>
+                                    <span>Bạn đã đúng @soCauDung câu</span>
                                 </div>
                             </li>
 

@@ -174,7 +174,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                 string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
                 if (img != null && img.ContentLength > 0)
                 {
-                    var fileName = System.IO.Path.GetFileName(img.FileName);
+                    var fileName = time + System.IO.Path.GetFileName(img.FileName);
                     string path = System.IO.Path.Combine(
                     Server.MapPath("~/images/"), fileName);
                     img.SaveAs(path);

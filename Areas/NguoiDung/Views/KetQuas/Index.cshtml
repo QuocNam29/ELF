@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ELF.Models.KetQua>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+}
+
+<div class="central-meta">
+    <div class="groups">
+        <span><i class="fa fa-file-text-o"></i> Lịch sử bài Quiz</span>
+    </div>
+
+
+
+    @if (Model.Count() == 0)
+    {
+        <div class="error-meta">
+            <h4>Bạn chưa làm bài Quiz nào 😓</h4>
+        </div>
+
+    }
+
+
+    <div class="frnds">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">Chi tiết điểm tích lũy</a>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active fade show " id="frends">
+                <div class="notification-box">
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="">Bạn đã làm bài Quiz @item.ChuDeBaiQuiz.tenChuDe  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.TongDiem</a></a>
+                                    <br />
+                                    <span>@*@item.DiemTichLuys.thoiGian*@</span>
+                                </div>
+                            </li>
+
+                        }
+
+
+                    </ul>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

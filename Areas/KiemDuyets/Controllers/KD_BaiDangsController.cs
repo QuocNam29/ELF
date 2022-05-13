@@ -189,6 +189,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
             return View(baiDangThongTin);
         }
 
+
         // POST: KiemDuyets/BaiDangThongTins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -198,6 +199,31 @@ namespace ELF.Areas.KiemDuyets.Controllers
             db.BaiDangThongTins.Remove(baiDangThongTin);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Index_BDTT_one(int maND, int maBDTT)
+        {
+            var baiDangThongTins = db.BaiDangThongTins.Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND).Where(b => b.maBDTT == maBDTT);
+
+
+            return View(baiDangThongTins.ToList());
+        }
+        public ActionResult listComment_oneBDTT(int maBDTT)
+        {
+            var binhLuans = db.BinhLuans.Include(b => b.BaiDangSanPham).Include(b => b.BaiDangThongTin).Include(b => b.NguoiDung).Where(bl => bl.maBDTT == maBDTT).OrderByDescending(bl => bl.maBL);
+            return PartialView("listComment_oneBDTT", binhLuans.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult InsertBinhLuansBDTT(BinhLuan binhLuanBDTT)
+        {
+            using (ELFVanLang2021Entities entities = new ELFVanLang2021Entities())
+            {
+
+                entities.BinhLuans.Add(binhLuanBDTT);
+                entities.SaveChanges();
+            }
+            return Json(binhLuanBDTT);
         }
 
         protected override void Dispose(bool disposing)

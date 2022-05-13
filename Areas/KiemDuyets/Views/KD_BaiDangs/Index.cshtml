@@ -25,7 +25,7 @@
                 </div>
             </form>
             @*<button type="button" class="btn-block">Open Modal</button>
-                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","BaiDangSanPhams")"></div>*@
+                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Create","KD_BaiDangs")"></div>*@
 
         </div>
     </div>
@@ -55,8 +55,8 @@
 
                             <a class="admin" href="#" title=""><b style="color: darkgreen">ELF</b></a>
                             <div>
-                                <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit", "BaiDangThongTins")"></div>
+                                <button hidden type="button" class="btn-block1" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                <div class="modal fade" id="myModal1" role="dialog" data-url="@Url.Action("Edit", "KD_BaiDangs")"></div>
 
                             </div>
                             <div class="more">
@@ -65,8 +65,8 @@
                                     <ul>
                                         <li>
 
-                                            <button type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
+                                            <button type="button" class="btn-block1" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                            <div class="modal fade" id="myModal1" role="dialog" data-url="@Url.Action("Edit","KD_BaiDangs")"></div>
                                         </li>
                                         <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
                                         @if (item.maTT == 3)
@@ -92,20 +92,43 @@
                         <div class="friend-name">
 
                             <a class="admin" href="#" title=""><b style="color: black">@item.NguoiDung.hoVaTen</b></a>
-
                             <div>
-                                <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit", "BaiDangThongTins")"></div>
+                                <button hidden type="button" class="btn-block1" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                <div class="modal fade" id="myModal1" role="dialog" data-url="@Url.Action("Edit", "KD_BaiDangs")"></div>
 
                             </div>
-                         
+                            <div class="more">
+                                <div class="more-post-optns">
+                                    <i class="ti-more-alt"></i>
+                                    <ul>
+                                        <li>
+
+                                            <button type="button" class="btn-block1" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                            <div class="modal fade" id="myModal1" role="dialog" data-url="@Url.Action("Edit","KD_BaiDangs")"></div>
+
+
+                                        </li>
+                                        <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
+                                        @if (item.maTT == 3)
+                                        {
+                                            <li> @Html.ActionLink("Hiện bài đăng", "Appear", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn hiện bài Sản Phẩm?');" })</li>
+                                        }
+                                        else
+                                        {
+                                            <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Sản Phẩm?');" })</li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+
 
                     }
 
                     <div class="post-meta">
                         <div class="description">
-                            <a style="color: red; font-size: 22px;"><br /> @item.tieuDe</a>
+                            <a style="color: red; font-size: 22px;" href="@Url.Action("Index_BDTT_one", "KD_BaiDangs", new {maND =item.maND, maBDTT = item.maBDTT })"><br /> @item.tieuDe</a>
                             <br />
                             <p>
                                 @item.noiDung
@@ -126,8 +149,8 @@
 
                             <a class="admin" href="#" title=""><b style="color: darkgreen">ELF</b></a>
                             <div>
-                                <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit", "KD_BaiDangs")"></div>
+                                <button hidden type="button" class="btn-block1" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                <div class="modal fade" id="myModal1" role="dialog" data-url="@Url.Action("Edit", "KD_BaiDangs")"></div>
 
                             </div>
                             <div class="more">
@@ -136,8 +159,8 @@
                                     <ul>
                                         <li>
 
-                                            <button type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","KD_BaiDangs")"></div>
+                                            <button type="button" class="btn-block1" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                            <div class="modal fade" id="myModal1" role="dialog" data-url="@Url.Action("Edit","KD_BaiDangs")"></div>
 
 
                                         </li>
@@ -167,12 +190,36 @@
 
                             <a class="admin" href="#" title=""><b style="color: black">@item.NguoiDung.hoVaTen</b></a>
 
-
                             <div>
-                                <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                                <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit", "BaiDangThongTins")"></div>
+                                <button hidden type="button" class="btn-block1" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                <div class="modal fade" id="myModal1" role="dialog" data-url="@Url.Action("Edit", "KD_BaiDangs")"></div>
 
                             </div>
+                            <div class="more">
+                                <div class="more-post-optns">
+                                    <i class="ti-more-alt"></i>
+                                    <ul>
+                                        <li>
+
+                                            <button type="button" class="btn-block1" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                            <div class="modal fade" id="myModal1" role="dialog" data-url="@Url.Action("Edit","KD_BaiDangs")"></div>
+
+
+                                        </li>
+                                        <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
+                                        @if (item.maTT == 3)
+                                        {
+                                            <li> @Html.ActionLink("Hiện bài đăng", "Appear", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn hiện bài Sản Phẩm?');" })</li>
+                                        }
+                                        else
+                                        {
+                                            <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Sản Phẩm?');" })</li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+
                         </div>
 
                     }
@@ -183,7 +230,7 @@
                         <img src="@Url.Content(item.hinhAnh)" alt="">
                     </figure>
                     <div class="l-post-meta">
-                        <h4><a href="#" title="" style="color: red">@item.tieuDe</a></h4>
+                        <h4><a title="" style="color: red"  href="@Url.Action("Index_BDTT_one", "KD_BaiDangs", new {maND =item.maND, maBDTT = item.maBDTT })">@item.tieuDe</a></h4>
                         <div class="l-post-ranking">
 
                             <a class="pdate" href="#" title="">@item.ngayDang</a>
@@ -210,6 +257,8 @@
         $('.btn-block').click(function () {
 
             var url = $('#myModal').data('url');
+           
+
             $.get(url, function (data) {
 
                 $("#myModal").html(data);
@@ -217,6 +266,16 @@
 
             });
         });
+
+            $('.btn-block1').click(function () {
+                var url = $("#myModal1").attr('data-url');
+                var id = $(this).attr('data-id');
+
+                $.get(url + '/' + id, function (data) {
+                    $("#myModal1").html(data);
+                    $("#myModal1").modal('show')
+                });
+            });
     });
 </script>
 

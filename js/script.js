@@ -326,58 +326,90 @@ $(function() {
 	jQuery(".post-comt-box textarea").on("keydown", function (event) {
 		var value = "";
 		var avt = "";
-		var txtMaBDSP = "";
+		var txtMaBD = "";
 		var txtMaND = "";
 		var URL = "";
+		var BD_cmt = "";
 		if (event.keyCode == 13) {
 			var comment = jQuery(this).val();
 
-		
-
-			$('#MaBDSP_cmt')
+			$('#BD_cmt')
 				.keypress(function () {
-					txtMaBDSP = $(this).val();
+					BD_cmt = $(this).val();
 
 				})
 				.keypress();
+			
 
-			$('#MaND_cmt')
-				.keypress(function () {
-					txtMaND = $(this).val();
 
-				})
-				.keypress();
+				$('#MaBD_cmt')
+					.keypress(function () {
+						txtMaBD = $(this).val();
 
-			$('#URL_CMT')
-				.keypress(function () {
-					URL = $(this).val();
+					})
+					.keypress();
 
-				})
-				.keypress();
+				$('#MaND_cmt')
+					.keypress(function () {
+						txtMaND = $(this).val();
 
-			var today = new Date();
-			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-			var dateTime = date + ' ' + time;
-			//count Questions
-			var binhLuanBDSP = {};
-			binhLuanBDSP.noiDung = comment;
-			binhLuanBDSP.maND = txtMaND;
-			binhLuanBDSP.maBDSP = txtMaBDSP;
-			binhLuanBDSP.ngayBL = dateTime;
-			binhLuanBDSP.trangThai = "Hien";
+					})
+					.keypress();
 
-			$.ajax({
-				type: "POST",
-				url: URL,
-				data: JSON.stringify(binhLuanBDSP),
-				contentType: 'application/json; charset=utf-8',
-				dataType: 'json',
-				success: function (r) {
+				$('#URL_CMT')
+					.keypress(function () {
+						URL = $(this).val();
 
-				}
-			});
+					})
+					.keypress();
+			if (BD_cmt == "2") {
+				var today = new Date();
+				var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+				var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+				var dateTime = date + ' ' + time;
+				//count Questions
+				var binhLuanBDSP = {};
+				binhLuanBDSP.noiDung = comment;
+				binhLuanBDSP.maND = txtMaND;
+				binhLuanBDSP.maBDSP = txtMaBD;
+				binhLuanBDSP.ngayBL = dateTime;
+				binhLuanBDSP.trangThai = "Hien";
 
+				$.ajax({
+					type: "POST",
+					url: URL,
+					data: JSON.stringify(binhLuanBDSP),
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'json',
+					success: function (r) {
+
+					}
+				});
+			}
+			else if (BD_cmt == "1") {
+				var today = new Date();
+				var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+				var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+				var dateTime = date + ' ' + time;
+				//count Questions
+				var binhLuanBDTT = {};
+				binhLuanBDTT.noiDung = comment;
+				binhLuanBDTT.maND = txtMaND;
+				binhLuanBDTT.maBDTT = txtMaBD;
+				binhLuanBDTT.ngayBL = dateTime;
+				binhLuanBDTT.trangThai = "Hien";
+
+				$.ajax({
+					type: "POST",
+					url: URL,
+					data: JSON.stringify(binhLuanBDTT),
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'json',
+					success: function (r) {
+
+					}
+				});
+            }
 			$('#name_cmt')
 				.keypress(function () {
 					value = $(this).val();

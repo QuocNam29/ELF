@@ -888,6 +888,8 @@
     <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_oneBDSP.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_BDTT.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_oneBDTT.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Index_BDTT_one.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\listComment_oneBDTT.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

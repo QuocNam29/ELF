@@ -1,0 +1,67 @@
+﻿@model List<ELF.Models.BinhLuan>
+
+@{
+    int maND = int.Parse(Session["maND"].ToString());
+   
+    string avt = "~/images/resources/admin.jpg";
+    string hidden = "";
+
+    string avt_ND = "";
+    string name = Session["HoVaTen"].ToString();
+
+}
+
+@foreach (var item in Model)
+{
+
+    if (item.NguoiDung.avatar != null)
+    {
+        avt_ND = item.NguoiDung.avatar;
+    }
+    else
+    {
+        avt_ND = "~/images/resources/User-avatar.svg.png";
+    }
+    hidden = item.trangThai;
+    if (hidden == "Hien")
+    {
+        <li>
+            <div class="comet-avatar">
+                <img src="@Url.Content(avt_ND)" alt="">
+            </div>
+            <div class="we-comment">
+                <div class="coment-head">
+                    <h5><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h5>
+                    <span>@item.ngayBL</span>
+                   
+                </div>
+                <p>
+                    @item.noiDung
+
+                </p>
+            </div>
+        </li>
+    }
+    else if (hidden == "An" && (item.maND == maND || item.BaiDangThongTin.maND == maND))
+    {
+        <li>
+            <div class="comet-avatar">
+                <img src="@Url.Content(avt_ND)" alt="">
+            </div>
+            <div class="we-comment">
+                <div class="coment-head">
+                    <h5><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></h5>
+                    <span>@item.ngayBL </span>
+                    <span> Đã Ẩn </span>
+                </div>
+                <p>
+                    @item.noiDung
+
+                </p>
+            </div>
+        </li>
+
+    }
+
+}
+

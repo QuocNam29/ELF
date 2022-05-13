@@ -32,14 +32,7 @@
         avt_BD = "~/images/resources/User-avatar.svg";
     }
 
-    int flat = -100;
-    int maTD = -1;
-    if (item.maND != maND)
-    {
-        flat = item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td).Count();
-        maTD = int.Parse((item.TraoDois.Where(td => td.maBDSP == item.maBDSP).Where(td => td.maND == maND).Select(td => td.maTD).FirstOrDefault().ToString()));
-
-    }<div class="central-meta item">
+   <div class="central-meta item">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -95,32 +88,6 @@
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
 
-                    @if (flat == 1)
-                    {
-                        using (Html.BeginForm("Delete", "TraoDois"))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.Hidden("id", maTD)
-                            <button type="submit"> Đã đăng kí </button>
-                        }
-                    }
-                    else if (flat == -100)
-                    {
-
-                    }
-                    else
-                    {
-                        using (Html.BeginForm("Create", "TraoDois"))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.Hidden("maND", maND)
-                            @Html.Hidden("maNDKhac", item.maND)
-                            @Html.Hidden("maBDSP", item.maBDSP)
-                            <button type="submit"> Đăng kí </button>
-                        }
-
-                    }
-
                     <div class="description">
 
                         <span style="color: orangered ; font-size: 16px">
@@ -137,7 +104,7 @@
 
             <div class="coment-area">
                 <ul class="we-comet">
-                    @Html.Action("listComment_oneBDTT", "BinhLuans", new { maBDSP = item.maBDSP })
+                    @Html.Action("listComment_oneBDSP", "BinhLuans", new { maBDSP = item.maBDSP })
 
 
                     <li>

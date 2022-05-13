@@ -88,7 +88,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     if (img != null)
                     {
                         string fileName = System.IO.Path.GetFileName(img.FileName);
-                        filePath = "~/images/" + fileName;
+                        filePath = "~/images/" + fileName + DateTime.Now;
                         Console.WriteLine(filePath);
                         img.SaveAs(Server.MapPath(filePath));
                         /*string path = System.IO.Path.Combine(
@@ -120,7 +120,6 @@ namespace ELF.Areas.NguoiDung.Controllers
                         return RedirectToAction("Index");
 
                     }
-                    ViewBag.FileStatus = "File uploaded successfully.";
                 }
                 catch (DbEntityValidationException dbEx)
                 {

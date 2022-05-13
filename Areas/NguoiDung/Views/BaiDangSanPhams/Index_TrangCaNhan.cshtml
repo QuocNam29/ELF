@@ -4,7 +4,16 @@
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
     int maND = int.Parse(Session["maND"].ToString());
     int hidden = 0;
-
+    string avt = "";
+    string name = Session["HoVaTen"].ToString();
+    if (Session["avatar"] != null)
+    {
+        avt = Session["avatar"].ToString();
+    }
+    else
+    {
+        avt = "~/images/resources/User-avatar.svg";
+    }
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -70,11 +79,11 @@
                                 <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDSP }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
                                 @if (hidden == 3)
                                 {
-                                    <li> @Html.ActionLink("Hiện bài đăng", "Appear", new { id = item.maBDSP }, new { onclick = "return confirm('Bạn có chắc chắn muốn hiện bài Thông tin?');" })</li>
+                                    <li> @Html.ActionLink("Hiện bài đăng", "Appear", new { id = item.maBDSP }, new { onclick = "return confirm('Bạn có chắc chắn muốn hiện bài Sản Phẩm?');" })</li>
                                 }
                                 else
                                 {
-                                    <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDSP }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Thông tin?');" })</li>
+                                    <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDSP }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Sản Phẩm?');" })</li>
                                 }
 
                             </ul>
@@ -128,18 +137,28 @@
 
             <div class="coment-area">
                 <ul class="we-comet">
+                    @Html.Action("listComment_oneBDTT", "BinhLuans", new { maBDSP = item.maBDSP })
+
+
                     <li>
-                        <a href="@Url.Action("Index_BLBDSP_TrangCaNhan","BinhLuans",
-                                new { maBDSP = item.maBDSP,
-                                tenNguoiDang = item.NguoiDung.hoVaTen,
-                                ngayDang = item.ngayDang,
-                                tenSP=item.tenSP,
-                                noiDung=item.noiDung,
-                                hinhAnh=item.hinhAnh,
-                                giaBan = item.gia,
-                                avt_BD = avt_BD,
-                                flat = flat,
-                                maTD = maTD})" title="" class="showmore underline">more comments</a>
+                        <a href="" title="" class="showmore underline">more comments</a>
+                    </li>
+                    <li class="post-comment">
+                        <div class="comet-avatar">
+                            <img src="@Url.Content(avt)" alt="">
+                        </div>
+                        <div class="post-comt-box">
+                            <form method="post">
+                                <textarea placeholder="Post your comment" name="coment"></textarea>
+                                <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansBDSP", "BinhLuans")">
+                                <input hidden type="text" id="MaND_cmt" value="@maND">
+                                <input hidden type="text" id="MaBDSP_cmt" value="@item.maBDSP">
+                                <input hidden type="text" id="name_cmt" value="@name">
+                                <input hidden type="text" id="avt_cmt" value="@Url.Content(avt)">
+                                <button type="submit"></button>
+                            </form>
+
+                        </div>
                     </li>
 
                 </ul>

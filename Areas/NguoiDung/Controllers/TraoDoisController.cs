@@ -272,6 +272,35 @@ namespace ELF.Areas.NguoiDung.Controllers
             return RedirectToAction("Index", "TraoDois");
         }
 
+        public ActionResult InsertTraoDoi(TraoDoi traoDoi)
+        {
+            using (ELFVanLang2021Entities entities = new ELFVanLang2021Entities())
+            {
+                entities.TraoDois.Add(traoDoi);
+                entities.SaveChanges();
+            }
+            return Json(traoDoi);
+        }
+        public ActionResult DeleteTraoDoi(TraoDoi traoDoi)
+        {
+            using (ELFVanLang2021Entities entities = new ELFVanLang2021Entities())
+            {
+                TraoDoi traoDoi1 = (from c in entities.TraoDois
+                                     where c.maBDSP == traoDoi.maBDSP && c.maND == traoDoi.maND
+                                     select c).FirstOrDefault();
+
+                if (traoDoi1 != null)
+                {
+                    entities.TraoDois.Remove(traoDoi1);
+                    entities.SaveChanges();
+                   return Json(traoDoi1);
+                }
+                entities.SaveChanges();
+            }
+             return new EmptyResult();
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

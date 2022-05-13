@@ -440,7 +440,8 @@
     <Content Include="css\strip-skins\strip\previous.svg" />
     <Content Include="css\strip.css" />
     <Content Include="css\style.css" />
-    <Content Include="css\style_btn.css" />
+    <Content Include="css\button_traoDoi\style_btn.css" />
+    <Content Include="css\button_traoDoi\style_btn2.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -680,7 +681,6 @@
     <Content Include="js\main.min.js" />
     <Content Include="js\map-init.js" />
     <Content Include="js\script.js" />
-    <Content Include="js\script_btn.js" />
     <Content Include="js\strip.pkgd.min.js" />
     <Content Include="js\userincr.js" />
     <Content Include="js\world.js" />
@@ -744,11 +744,8 @@
     <Content Include="Areas\NguoiDung\Views\TraoDois\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TraoDois\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TraoDois\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Create.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Details.cshtml" />
@@ -758,9 +755,6 @@
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDSP_TrangCaNhan.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BDTT.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Index_BLBDTT_TrangCaNhan.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan_NguoiDungKhac.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_TrangCaNhan_NDK.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Create.cshtml" />
@@ -888,6 +882,17 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\KiemDuyets\Views\KD_LoaiQG_BD\LoaiQG.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KD_LoaiQG_BD\LoaiQuaTang.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Create.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Delete.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Details.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Edit.cshtml" />
+    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Index.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_BDSP.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_oneBDSP.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_BDTT.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_oneBDTT.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

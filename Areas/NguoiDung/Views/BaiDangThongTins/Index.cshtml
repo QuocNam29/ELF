@@ -58,92 +58,93 @@
     }
 
    <div class="central-meta item">
-        <div class="user-post">
-            <div class="friend-info">
-                <figure>
-                    <img width="65" src="@Url.Content(avt_BD)" alt="">
-                </figure>
-                <div class="friend-name">
-                    @if (maND != item.maND)
-                    {
-                        if (item.ghiChu == "ELF")
-                        {
-                            <ins>
-                                <a href="#" title=""><b style="color: darkgreen">ELF</b></a>
-                            </ins>
-                        }
-                        else
-                        {
-                            <ins>
-                                <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangThongTins",
+       <div class="user-post">
+           <div class="friend-info">
+               <figure>
+                   <img width="65" src="@Url.Content(avt_BD)" alt="">
+               </figure>
+               <div class="friend-name">
+                   @if (maND != item.maND)
+                   {
+                       if (item.ghiChu == "ELF")
+                       {
+                           <ins>
+                               <a href="#" title=""><b style="color: darkgreen">ELF</b></a>
+                           </ins>
+                       }
+                       else
+                       {
+                           <ins>
+                               <a href="@Url.Action("Index_TrangCaNhan_NDK", "BaiDangThongTins",
                     new
                     {
                         maND_k = item.maND,
                         hoVaTen_NDK = item.NguoiDung.hoVaTen,
                         avartar_NDK = item.NguoiDung.avatar
                     })" title="">@item.NguoiDung.hoVaTen</a>
-                        </ins>
-                        }
-                    }
+               </ins>
+           }
+       }
 
-                    else
-                    {
-                        if (item.ghiChu == "ELF")
-                        {
-                        <ins>
-                            <a href="#" title=""><b style="color: darkgreen">ELF</b></a>
-                        </ins>
-                        }
-                        else
-                        {
-                        <ins>
-                            <a href="@Url.Action("Index_TrangCaNhan", "BaiDangThongTins",
+       else
+       {
+           if (item.ghiChu == "ELF")
+           {
+               <ins>
+                   <a href="#" title=""><b style="color: darkgreen">ELF</b></a>
+               </ins>
+           }
+           else
+           {
+               <ins>
+                   <a href="@Url.Action("Index_TrangCaNhan", "BaiDangThongTins",
                             new { maND = item.maND })" title="">@item.NguoiDung.hoVaTen</a>
-                            </ins>
-                        }
-                    }
+                       </ins>
+                   }
+               }
 
-                        <div>
-                            <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                            <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
+                   <div>
+                       <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                       <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangThongTins")"></div>
 
-                        </div>
+                   </div>
 
-                    </div>
-              
-                <div class="post-meta">
-                    @if (item.hinhAnh != null)
-                    {
-                     <img src="@Url.Content(item.hinhAnh)" alt="">
-                    }
-       
-                <div class="description">
-                    <a style="color: red; font-size: 16px; font-weight: bold"><br /> @item.tieuDe</a>
-                    <br />
-                    <p>
-                        @item.noiDung
-                    </p>
-                </div>
-                </div>
-            </div>
+               </div>
 
-            <div class="coment-area">
-                <ul class="we-comet">
-                    <li>
-                        <a href="@Url.Action("Index_BDTT","BinhLuans",
-                                new { maBDTT = item.maBDTT,
-                                tenNguoiDang = item.NguoiDung.hoVaTen,
-                                ngayDang = item.ngayDang,
-                                noiDung=item.noiDung,
-                                hinhAnh=item.hinhAnh,
-                                tieuDe = item.tieuDe,
-                                avt_BD = avt_BD,
-                                maND_BDTT = item.maND})" title="" class="showmore underline">more comments</a>
-                    </li>
+               <div class="post-meta">
+                   @if (item.hinhAnh != null)
+                   {
+                       <img src="@Url.Content(item.hinhAnh)" alt="">
+                   }
 
-                </ul>
-            </div>
-        </div>
+                   <div class="description">
+                       <a style="color: red; font-size: 16px; font-weight: bold"><br /> @item.tieuDe</a>
+                       <br />
+                       <p>
+                           @item.noiDung
+                       </p>
+                   </div>
+               </div>
+           </div>
+
+           <div class="coment-area">
+               <ul class="we-comet">
+                   @Html.Action("listComment_BDTT", "BinhLuans", new { maBDTT = item.maBDTT })
+
+
+                   <li>
+                       <a href="@Url.Action("Index_BDTT_one", "BaiDangThongTins",
+        new
+        {
+            maBDTT = item.maBDTT,
+            maND = item.maND
+        })" title="" class="showmore underline">more comments</a>
+                   </li>
+
+
+               </ul>
+           </div>
+       </div>
     </div>
 }
 

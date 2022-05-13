@@ -41,7 +41,7 @@
                 </figure>
                 <div class="friend-name">
                     <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
-                    
+
 
                     @if (hidden == 3)
                     {
@@ -79,8 +79,8 @@
 
 
                                 @*<li>view hidden replies</li>
-                    <li>Report post</li>
-                    <li>Block</li>*@
+                            <li>Report post</li>
+                            <li>Block</li>*@
                             </ul>
                         </div>
                     </div>
@@ -104,17 +104,18 @@
 
             <div class="coment-area">
                 <ul class="we-comet">
+                    @Html.Action("listComment_BDTT", "BinhLuans", new { maBDTT = item.maBDTT })
+
+
                     <li>
-                        <a href="@Url.Action("Index_BLBDTT_TrangCaNhan","BinhLuans",
-                                new { maBDTT = item.maBDTT,
-                                tenNguoiDang = item.NguoiDung.hoVaTen,
-                                ngayDang = item.ngayDang,
-                                noiDung=item.noiDung,
-                                hinhAnh=item.hinhAnh,
-                                tieuDe = item.tieuDe,
-                                avt_BD = avt_BD,
-                                 maND_BDTT = item.maND})" title="" class="showmore underline">more comments</a>
+                        <a href="@Url.Action("Index_BDTT_one", "BaiDangThongTins",
+        new
+        {
+            maBDTT = item.maBDTT,
+            maND = item.maND
+        })" title="" class="showmore underline">more comments</a>
                     </li>
+
 
                 </ul>
             </div>

@@ -53,6 +53,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             return View(baiDangSanPhams.ToList());
         }
 
+       
         public ActionResult Index_TrangCaNhan_NDK(int maND_K, string hoVaTen_NDK, string avartar_NDK)
         {
             var baiDangSanPhams = db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung).Include(b => b.TrangThaiBaiDang).Where(b => b.maND == maND_K).OrderByDescending(B => B.maBDSP);
@@ -215,12 +216,8 @@ namespace ELF.Areas.NguoiDung.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BaiDangSanPham baiDangSanPham = db.BaiDangSanPhams.Find(id);
-            if (baiDangSanPham == null)
-            {
-                return HttpNotFound();
-            }
-           
-            db.BaiDangSanPhams.Remove(baiDangSanPham);
+            baiDangSanPham.maTT = 6;
+            db.Entry(baiDangSanPham).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = int.Parse(Session["maND"].ToString()) });
 

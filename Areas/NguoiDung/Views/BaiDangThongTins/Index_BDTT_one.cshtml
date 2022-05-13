@@ -4,6 +4,17 @@
     Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_TrangCaNhan.cshtml";
     int maND = int.Parse(Session["maND"].ToString());
     int hidden = 0;
+
+    string avt = "";
+    string name = Session["HoVaTen"].ToString();
+    if (Session["avatar"] != null)
+    {
+        avt = Session["avatar"].ToString();
+    }
+    else
+    {
+        avt = "~/images/resources/User-avatar.svg";
+    }
 }
 
 
@@ -21,87 +32,97 @@
     }
 
    <div class="central-meta item">
-        <div class="user-post">
-            <div class="friend-info">
-                <figure>
-                    <img src="@Url.Content(avt_BD)" alt="">
-                </figure>
-                <div class="friend-name">
-                    <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
-                    @if (hidden == 3)
-                    {
-                        <span>Đã ẩn </span>
-                    }
-                    else
-                    {
-                        <span>published: @item.ngayDang</span>
-                    }
-                    <div>
-                        <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                        <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
+       <div class="user-post">
+           <div class="friend-info">
+               <figure>
+                   <img src="@Url.Content(avt_BD)" alt="">
+               </figure>
+               <div class="friend-name">
+                   <ins><a href="time-line.html" title="">@item.NguoiDung.hoVaTen</a></ins>
+                   @if (hidden == 3)
+                   {
+                       <span>Đã ẩn </span>
+                   }
+                   else
+                   {
+                       <span>published: @item.ngayDang</span>
+                   }
+                   <div>
+                       <button hidden type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                       <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
 
-                    </div>
-                    <div class="more">
-                        <div class="more-post-optns">
-                            <i class="ti-more-alt"></i>
-                            <ul>
-                                <li>
+                   </div>
+                   <div class="more">
+                       <div class="more-post-optns">
+                           <i class="ti-more-alt"></i>
+                           <ul>
+                               <li>
 
-                                    <button type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
-                                    <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
-
-
-                                </li>
-                                <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
-                                @if (hidden == 3)
-                                {
-                                    <li> @Html.ActionLink("Hiện bài đăng", "Appear", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn hiện bài Thông tin?');" })</li>
-                                }
-                                else
-                                {
-                                    <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Thông tin?');" })</li>
-                                }
-
-                            </ul>
-                        </div>
-                    </div>
+                                   <button type="button" class="btn-block" data-id="@item.maBDTT">Chỉnh sửa</button>
+                                   <div class="modal fade" id="myModal" role="dialog" data-url="@Url.Action("Edit","BaiDangSanPhams")"></div>
 
 
-                </div>
-                <div class="post-meta">
-                    @if (item.hinhAnh != null)
-                    {
-                        <img src="@Url.Content(item.hinhAnh)" alt="">
-                    }
+                               </li>
+                               <li> @Html.ActionLink("Xóa", "Delete", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa bài Thông tin?');" })</li>
+                               @if (hidden == 3)
+                               {
+                                   <li> @Html.ActionLink("Hiện bài đăng", "Appear", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn hiện bài Thông tin?');" })</li>
+                               }
+                               else
+                               {
+                                   <li> @Html.ActionLink("Ẩn bài đăng", "Hidden", new { id = item.maBDTT }, new { onclick = "return confirm('Bạn có chắc chắn muốn ẩn bài Thông tin?');" })</li>
+                               }
 
-                    <div class="description">
-                        <a style="color: red; font-size: 16px; font-weight: bold"><br /> @item.tieuDe</a>
-                        <br />
-                        <p>
-                            @item.noiDung
-                        </p>
-                    </div>
-                </div>
-                
-            </div>
+                           </ul>
+                       </div>
+                   </div>
 
-            <div class="coment-area">
-                <ul class="we-comet">
-                    <li>
-                        <a href="@Url.Action("Index_BLBDTT_TrangCaNhan","BinhLuans",
-                                new { maBDTT = item.maBDTT,
-                                tenNguoiDang = item.NguoiDung.hoVaTen,
-                                ngayDang = item.ngayDang,
-                                noiDung=item.noiDung,
-                                hinhAnh=item.hinhAnh,
-                                tieuDe = item.tieuDe,
-                                avt_BD = avt_BD, 
-                                maND_BDTT = item.maND})" title="" class="showmore underline">more comments</a>
-                    </li>
 
-                </ul>
-            </div>
-        </div>
+               </div>
+               <div class="post-meta">
+                   @if (item.hinhAnh != null)
+                   {
+                       <img src="@Url.Content(item.hinhAnh)" alt="">
+                   }
+
+                   <div class="description">
+                       <a style="color: red; font-size: 16px; font-weight: bold"><br /> @item.tieuDe</a>
+                       <br />
+                       <p>
+                           @item.noiDung
+                       </p>
+                   </div>
+               </div>
+
+           </div>
+
+           <ul class="we-comet">
+               @Html.Action("listComment_oneBDTT", "BinhLuans", new { maBDTT = item.maBDTT })
+
+
+               <li>
+                   <a href="" title="" class="showmore underline"></a>
+               </li>
+               <li class="post-comment">
+                   <div class="comet-avatar">
+                       <img src="@Url.Content(avt)" alt="">
+                   </div>
+                   <div class="post-comt-box">
+                       <form method="post">
+                           <textarea placeholder="Post your comment" name="coment"></textarea>
+                           <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansBDSP", "BinhLuans")">
+                           <input hidden type="text" id="MaND_cmt" value="@maND">
+                           <input hidden type="text" id="MaBDSP_cmt" value="@item.maBDTT">
+                           <input hidden type="text" id="name_cmt" value="@name">
+                           <input hidden type="text" id="avt_cmt" value="@Url.Content(avt)">
+                           <button type="submit">Nhấn vào đây nè</button>
+                       </form>
+
+                   </div>
+               </li>
+
+           </ul>
+       </div>
     </div>
 }
 

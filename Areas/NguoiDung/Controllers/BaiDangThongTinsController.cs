@@ -204,11 +204,8 @@ namespace ELF.Areas.NguoiDung.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BaiDangThongTin baiDangThongTin = db.BaiDangThongTins.Find(id);
-            if (baiDangThongTin == null)
-            {
-                return HttpNotFound();
-            }
-            db.BaiDangThongTins.Remove(baiDangThongTin);
+            baiDangThongTin.maTT = 6;
+            db.Entry(baiDangThongTin).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index_TrangCaNhan", "BaiDangThongTins", new { maND = int.Parse(Session["maND"].ToString()) });
         }

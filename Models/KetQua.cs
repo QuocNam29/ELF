@@ -24,6 +24,7 @@ namespace ELF.Models
         public int maND { get; set; }
         public int maCDBQ { get; set; }
         public Nullable<double> TongDiem { get; set; }
+        public Nullable<System.DateTime> ngayLamQuiz { get; set; }
     
         public virtual ChuDeBaiQuiz ChuDeBaiQuiz { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

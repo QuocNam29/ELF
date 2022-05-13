@@ -1,0 +1,43 @@
+﻿@model ELF.Models.KetQua
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NguoiDung/Views/Shared/_Layout_NguoiDung.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KetQua</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TongDiem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TongDiem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChuDeBaiQuiz.tenChuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuDeBaiQuiz.tenChuDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiDung.hoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiDung.hoVaTen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maKQ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

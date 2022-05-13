@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -217,6 +217,7 @@
           <Property Name="maND" Type="int" Nullable="false" />
           <Property Name="maCDBQ" Type="int" Nullable="false" />
           <Property Name="TongDiem" Type="float" />
+          <Property Name="ngayLamQuiz" Type="datetime" />
         </EntityType>
         <EntityType Name="LoaiDiemTichLuy">
           <Key>
@@ -1304,8 +1305,7 @@
             <End Role="TraoDoi" EntitySet="TraoDoi" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ELFVanLang2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1559,6 +1559,7 @@
           <NavigationProperty Name="ChuDeBaiQuiz" Relationship="Self.FK_KetQua_ChuDeBaiQuiz" FromRole="KetQua" ToRole="ChuDeBaiQuiz" />
           <NavigationProperty Name="DiemTichLuys" Relationship="Self.FK_DiemTichLuy_KetQua" FromRole="KetQua" ToRole="DiemTichLuy" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_KetQua_NguoiDung" FromRole="KetQua" ToRole="NguoiDung" />
+          <Property Name="ngayLamQuiz" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="LoaiDiemTichLuy">
           <Key>
@@ -2890,6 +2891,7 @@
           <EntitySetMapping Name="KetQuas">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.KetQua">
               <MappingFragment StoreEntitySet="KetQua">
+                <ScalarProperty Name="ngayLamQuiz" ColumnName="ngayLamQuiz" />
                 <ScalarProperty Name="maKQ" ColumnName="maKQ" />
                 <ScalarProperty Name="maND" ColumnName="maND" />
                 <ScalarProperty Name="maCDBQ" ColumnName="maCDBQ" />

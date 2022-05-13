@@ -66,10 +66,10 @@ namespace ELF.Areas.NguoiDung.Controllers
 
                         if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
                         {
+                            string time = DateTime.Now.ToString("yymmssfff");
                             string fileName = Path.GetFileName(img.FileName);
-                            string path = Path.Combine(
-                            Server.MapPath("~/images/hinhQuyenGops"), fileName);
-                            img.SaveAs(path);
+                            string filePath = "~/images/hinhQuyenGops/" + time + fileName;
+                            img.SaveAs(Server.MapPath(filePath));
                             db.QuyenGops.Add(new QuyenGop
                             {
                                 maQG = quyenGop.maQG,
@@ -79,7 +79,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                                 soLuong = quyenGop.soLuong,
                                 donVi = quyenGop.donVi,
                                 trangThai = "Chờ duyệt",
-                                hinhAnh = "~/images/hinhQuyenGops/" + img.FileName,
+                                hinhAnh = "~/images/hinhQuyenGops/" + time + img.FileName,
                                 ghiChu = quyenGop.ghiChu
                             });
                             db.DiemTichLuys.Add(new DiemTichLuy

@@ -875,7 +875,6 @@
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Create.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Delete.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Details.cshtml" />
-    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Edit.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Index.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -886,11 +885,7 @@
     </Content>
     <Content Include="Areas\KiemDuyets\Views\KD_LoaiQG_BD\LoaiQG.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_LoaiQG_BD\LoaiQuaTang.cshtml" />
-    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Create.cshtml" />
-    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Delete.cshtml" />
-    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Details.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Edit.cshtml" />
-    <Content Include="Areas\KiemDuyets\Views\KD_BaiDangs\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_BDSP.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_oneBDSP.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BinhLuans\listComment_BDTT.cshtml" />

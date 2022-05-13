@@ -96,7 +96,7 @@ namespace ELF.Areas.KiemDuyets.Controllers
                         return RedirectToAction("Index");
 
                     }
-                    ViewBag.FileStatus = "File uploaded successfully.";
+                   
                 }
                 catch (DbEntityValidationException dbEx)
                 {
@@ -142,10 +142,29 @@ namespace ELF.Areas.KiemDuyets.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maBDTT,maND,tieuDe,noiDung,hinhAnh,video,maTT,ngayDang,ngayThayDoi,ghiChu")] BaiDangThongTin baiDangThongTin)
+        public ActionResult Edit([Bind(Include = "maBDTT,maND,tieuDe,noiDung,hinhAnh,video,maTT,ngayDang,ngayThayDoi,ghiChu")] BaiDangThongTin baiDangThongTin, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
+                string oldfilePath = baiDangThongTin.hinhAnh;
+                string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
+                if (img != null && img.ContentLength > 0)
+                {
+                    var fileName = time +  System.IO.Path.GetFileName(img.FileName);
+                    
+                    string path = System.IO.Path.Combine(
+                    Server.MapPath("~/images/"), fileName);
+                    img.SaveAs(path);
+                    baiDangThongTin.hinhAnh = "~/images/" + time + img.FileName;
+                    string fullPath = Request.MapPath(oldfilePath);
+
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                }
+
+                baiDangThongTin.ngayThayDoi = DateTime.Now;
                 db.Entry(baiDangThongTin).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

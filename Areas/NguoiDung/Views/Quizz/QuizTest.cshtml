@@ -174,7 +174,7 @@
                                             contentType: 'application/json; charset=utf-8',
                                             dataType: 'json',
                                             success: function (j) {
-
+                                                $('.tab-content').load('@Url.Action("TongDTL_header", "DiemTichLuys")');
                                             }
                                         });
                                     }

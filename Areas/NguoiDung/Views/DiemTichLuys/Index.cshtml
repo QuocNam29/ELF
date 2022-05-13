@@ -83,6 +83,16 @@
                                 </div>
                             </li>
                         }
+                        else if (item.maKQBQ != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bạn đã làm bài quiz  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.KetQua.TongDiem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
 
                     }
 
@@ -118,11 +128,21 @@
                             </li>
                         }
 
-                         else if (item.maQG != null)
+                        else if (item.maQG != null)
                         {
                             <li>
                                 <div class="notifi-meta">
                                     <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Thông tin quyên góp của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <br />
+                                    <span>@item.thoiGian</span>
+                                </div>
+                            </li>
+                        }
+                        else if (item.maKQBQ != null)
+                        {
+                            <li>
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bạn đã làm bài quiz  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.KetQua.TongDiem</a></a>
                                     <br />
                                     <span>@item.thoiGian</span>
                                 </div>

@@ -256,6 +256,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChucNangTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuaTangsController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_BaiDangsController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_DonQuasController.cs" />
@@ -922,6 +923,12 @@
     <Content Include="Areas\Admin\Views\QuaTangs\Index.cshtml" />
     <Content Include="fonts\Admin\Flaticon.woff" />
     <Content Include="fonts\Admin\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\list_user.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

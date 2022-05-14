@@ -1,0 +1,33 @@
+﻿@model List<ELF.Models.ChucNangTaiKhoan>
+
+@{
+    Layout = null;
+}
+<ul class="usr-lst">
+    @foreach (var item in Model)
+    {
+        <li>
+            <div class="usr-lst-inf">
+                <img src="images/resource/usr-icn1.png" alt="">
+                <h2><a href="#" title="">@item.TaiKhoan.NguoiDung.hoVaTen - @item.TaiKhoan.email</a></h2>
+                @if (item.maLoaiTK == 1)
+                {
+                    <i>Admin</i>
+                }
+                else if (item.maLoaiTK == 2)
+                {
+                    <i>Người dùng</i>
+                }
+                else if (item.maLoaiTK == 3)
+                {
+                    <i>Kiểm Duyệt</i>
+                }
+                else if (item.maLoaiTK == 4)
+                {
+                    <i>Đơn vị thu gom</i>
+                }
+            </div>
+            <div class="usr-btns"> <a class="ad-usr" href="#" title="">Add User</a> <a class="ad-usr" href="#" title=""><i class="fa fa-pencil"></i> Edit</a> </div>
+        </li>
+    }
+</ul>

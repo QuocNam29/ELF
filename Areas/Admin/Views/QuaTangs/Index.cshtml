@@ -4,67 +4,303 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
+<div class="widget">
+    <div class="add-content-form">
+        <textarea placeholder="What Is In Your Mind"></textarea>
+        <div class="add-content">
+            <ul>
+                <li><a href="#" title=""><i class="fa fa-location-arrow"></i></a></li>
+                <li><a href="#" title=""><i class="fa fa-microphone"></i></a></li>
+                <li><a href="#" title=""><i class="fa fa-picture-o"></i></a></li>
+                <li><a href="#" title=""><i class="fa fa-cloud-upload"></i></a></li>
+            </ul>
+            <button type="submit" class="purple-skin">POST</button>
+        </div>
+    </div>
+</div>
+<div class="widget no-color">
+    <div class="activity-feed">
+        <ul class="fltrs-lst">
+            <li class="selected"><a href="#" title="" data-filter="*">All Feeds</a></li>
+            <li><a href="#" title="" data-filter=".fb-pst"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#" title="" data-filter=".tw-pst"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#" title="" data-filter=".fr-pst"><i class="fa fa-foursquare"></i></a></li>
+            <li><a href="#" title="" data-filter=".glp-pst"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#" title="" data-filter=".in-pst"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+        <div class="widget-title">
+            <h3>All Activity Feeds</h3>
+            <span>Your last activity is posted 4 hours ago</span>
+        </div>
+        <ul class="activity-timeline masonry" style="position: relative; height: 5944.11px;">
+            <li class="fb-pst flt-itm" style="position: absolute; left: 0px; top: 30px;">
+                <span class="user-device"><i class="fa fa-facebook"></i></span>
+                <div class="user-activity">
+                    <div class="who-post-this">
+                        <span><img src="images/resource/user.jpg" alt=""></span>
+                        <div class="who-post-detail">
+                            <div class="pst-shr-inf">
+                                <i>2 minutes ago</i>
+                                <div class="slct-whr-pst">
+                                    <span><i class="fa fa-lock"></i> Only Me</span>
+                                    <ul>
+                                        <li><i class="fa fa-lock"></i> Only Me</li>
+                                        <li><i class="fa fa-globe"></i> Public</li>
+                                        <li><i class="fa fa-users"></i> Friends</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h3><a href="#" title="">Diana Dare<i class="poster-status online"></i></a></h3>
+                            <span>Posted in <a href="#" title="">Beauty album</a></span> <a href="#" title="" class="lnk">https://themeforest.net/item/electric-admin-panel-dashboard-angular-js-template/14879635</a>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="pst-frmt">
+                            <a href="#" title=""><img src="images/resource/pst-big-img1.jpg" alt=""></a>
+                            <div class="pst-inf">
+                                <h2><a href="#" title="">Electric - Admin Panel Dashboard Angular JS Templete</a></h2>
+                                <p>Exhibiting a cool and engaging layout, Electric Admin is an extraordinarily complete Angular JS template for an easier and more...</p>
+                                <span>themeforest.net</span>
+                            </div>
+                        </div>
+                        <div class="cmnts-liks"> <a href="#" title="" class="viw-prv-cmt">View Previous Comments</a> <a href="#" title="" class="lks">25 Likes</a> <a href="#" title="" class="cmts">30 Coments</a> </div>
+                    </div>
+                    <div class="comment-form">
+                        <ul class="comments-thread">
+                            <li>
+                                <div class="comment">
+                                    <img class="comment-thumb" src="images/resource/comment1.jpg" alt="">
+                                    <div class="comment-detail">
+                                        <h2><a href="#" title="">Alexander</a></h2>
+                                        <span class="cmt-tm">15 Min Ago</span>
+                                        <p>Exhibiting a cool and engaging layout.</p>
+                                        <ul class="cmnt-meta">
+                                            <li><a href="#" title="">Like</a></li>
+                                            <li><a href="#" title="">Reply</a></li>
+                                        </ul>
+                                        <div class="cmt-opt">
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul>
+                                                <li><a href="#" title="">Delete</a></li>
+                                                <li><a href="#" title="">Edit</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="comment">
+                                    <img class="comment-thumb" src="images/resource/comment2.jpg" alt="">
+                                    <div class="comment-detail">
+                                        <h2><a href="#" title="">Micheal Doe</a></h2>
+                                        <span class="cmt-tm">10 Min Ago</span>
+                                        <p>Exhibiting a cool and engaging layout.</p>
+                                        <ul class="cmnt-meta">
+                                            <li><a href="#" title="">Like</a></li>
+                                            <li><a href="#" title="">Reply</a></li>
+                                        </ul>
+                                        <div class="cmt-opt">
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul>
+                                                <li><a href="#" title="">Delete</a></li>
+                                                <li><a href="#" title="">Edit</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="sub-comment">
+                                    <li>
+                                        <div class="comment">
+                                            <img class="comment-thumb" src="images/resource/comment3.jpg" alt="">
+                                            <div class="comment-detail">
+                                                <h2><a href="#" title="">Edwards Hill</a></h2>
+                                                <span class="cmt-tm">45 Min Ago</span>
+                                                <p>Exhibiting a cool and engaging layout.</p>
+                                                <ul class="cmnt-meta">
+                                                    <li><a href="#" title="">Like</a></li>
+                                                    <li><a href="#" title="">Reply</a></li>
+                                                </ul>
+                                                <div class="cmt-opt">
+                                                    <i class="fa fa-angle-down"></i>
+                                                    <ul>
+                                                        <li><a href="#" title="">Delete</a></li>
+                                                        <li><a href="#" title="">Edit</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="comment">
+                                    <img class="comment-thumb" src="images/resource/comment4.jpg" alt="">
+                                    <div class="comment-detail">
+                                        <h2><a href="#" title="">Robinson Baker</a></h2>
+                                        <span class="cmt-tm">22 Min Ago</span>
+                                        <p>Exhibiting a cool and engaging layout.</p>
+                                        <ul class="cmnt-meta">
+                                            <li><a href="#" title="">Like</a></li>
+                                            <li><a href="#" title="">Reply</a></li>
+                                        </ul>
+                                        <div class="cmt-opt">
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul>
+                                                <li><a href="#" title="">Delete</a></li>
+                                                <li><a href="#" title="">Edit</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="comment">
+                                    <img class="comment-thumb" src="images/resource/comment5.jpg" alt="">
+                                    <div class="comment-detail">
+                                        <h2><a href="#" title="">Lopez Perez</a></h2>
+                                        <span class="cmt-tm">15 Min Ago</span>
+                                        <p>Exhibiting a cool and engaging layout.</p>
+                                        <ul class="cmnt-meta">
+                                            <li><a href="#" title="">Like</a></li>
+                                            <li><a href="#" title="">Reply</a></li>
+                                        </ul>
+                                        <div class="cmt-opt">
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul>
+                                                <li><a href="#" title="">Delete</a></li>
+                                                <li><a href="#" title="">Edit</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <form>
+                            <textarea placeholder="Add Commemts"></textarea>
+                        </form>
+                        <span><i class="fa fa-thumbs-o-up"></i> Like</span> <span><i class="fa fa-comment-o"></i> Comments</span> <a href="#" title="" class="purple-skin">Send</a>
+                        <ul class="pst-rt">
+                            <li><a href="#" title=""><i class="flaticon-smile"></i></a></li>
+                            <li><a href="#" title=""><i class="flaticon-meh-face-emoticon"></i></a></li>
+                            <li><a href="#" title=""><i class="flaticon-frown"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="tw-pst flt-itm" style="position: absolute; left: 0px; top: 1483px;">
+                <span class="user-device"><i class="fa fa-twitter"></i></span>
+                <div class="user-activity">
+                    <div class="who-post-this">
+                        <span><img src="images/resource/user.jpg" alt=""></span>
+                        <div class="who-post-detail">
+                            <div class="pst-shr-inf">
+                                <i>2 minutes ago</i>
+                                <div class="slct-whr-pst">
+                                    <span><i class="fa fa-lock"></i> Only Me</span>
+                                    <ul>
+                                        <li><i class="fa fa-lock"></i> Only Me</li>
+                                        <li><i class="fa fa-globe"></i> Public</li>
+                                        <li><i class="fa fa-users"></i> Friends</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h3><a href="#" title="">Diana Dare<i class="poster-status online"></i></a></h3>
+                            <span>Posted in <a href="#" title="">Beauty album</a></span> <a href="#" title="" class="lnk">https://themeforest.net/item/electric-admin-panel-dashboard-angular-js-template/14879635</a> <a href="#" title="" class="lnk">https://themeforest.net/item/kraft-simple-portfolio-wordpress-theme/17515270</a> <a href="#" title="" class="lnk">https://themeforest.net/item/picstock-ultra-advanced-stock-media-html-template/14312683</a>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="pst-carousel owl-carousel owl-theme owl-loaded">
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tenQuaTang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.diemDoi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.trangThai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayTao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayThayDoi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hinhAnh)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tenQuaTang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.diemDoi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayTao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayThayDoi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ghiChu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hinhAnh)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maQuaTang }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maQuaTang }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maQuaTang })
-        </td>
-    </tr>
-}
-
-</table>
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage" style="transform: translate3d(-498px, 0px, 0px); transition: all 0s ease 0s; width: 1494px;">
+                                    <div class="owl-item" style="width: 483px; margin-right: 15px;">
+                                        <div class="pst-frmt">
+                                            <a href="#" title=""><img src="images/resource/pst-md-img1.jpg" alt=""></a>
+                                            <div class="pst-inf">
+                                                <h2><a href="#" title="">Electric - Admin Panel Dashboard Angular JS Templete</a></h2>
+                                                <span>themeforest.net</span>
+                                            </div>
+                                        </div>
+                                    </div><div class="owl-item active" style="width: 483px; margin-right: 15px;">
+                                        <div class="pst-frmt">
+                                            <a href="#" title=""><img src="images/resource/pst-md-img2.jpg" alt=""></a>
+                                            <div class="pst-inf">
+                                                <h2><a href="#" title="">Kraft - Simple Prtfolio WordPress Theme</a></h2>
+                                                <span>themeforest.net</span>
+                                            </div>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 483px; margin-right: 15px;">
+                                        <div class="pst-frmt">
+                                            <a href="#" title=""><img src="images/resource/pst-md-img3.jpg" alt=""></a>
+                                            <div class="pst-inf">
+                                                <h2><a href="#" title="">PicStock- Ultra Advanced Stock Media HTML Template</a></h2>
+                                                <span>themeforest.net</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;"><i class="fa fa-angle-left"></i></div><div class="owl-next" style="display: none;"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots" style="display: none;"></div></div>
+                        </div>
+                    </div>
+                    <div class="comment-form">
+                        <form>
+                            <textarea placeholder="Add Commemts"></textarea>
+                        </form>
+                        <span><i class="fa fa-thumbs-o-up"></i> Like</span> <span><i class="fa fa-comment-o"></i> Comments</span> <a href="#" title="" class="purple-skin">Send</a>
+                        <ul class="pst-rt">
+                            <li><a href="#" title=""><i class="flaticon-smile"></i></a></li>
+                            <li><a href="#" title=""><i class="flaticon-meh-face-emoticon"></i></a></li>
+                            <li><a href="#" title=""><i class="flaticon-frown"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="tw-pst flt-itm" style="position: absolute; left: 0px; top: 2385px;">
+                <span class="user-device"><i class="fa fa-twitter"></i></span>
+                <div class="user-activity">
+                    <div class="who-post-this">
+                        <span><img src="images/resource/user.jpg" alt=""></span>
+                        <div class="who-post-detail">
+                            <div class="pst-shr-inf">
+                                <i>2 minutes ago</i>
+                                <div class="slct-whr-pst">
+                                    <span><i class="fa fa-lock"></i> Only Me</span>
+                                    <ul>
+                                        <li><i class="fa fa-lock"></i> Only Me</li>
+                                        <li><i class="fa fa-globe"></i> Public</li>
+                                        <li><i class="fa fa-users"></i> Friends</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h3><a href="#" title="">Diana Dare<i class="poster-status online"></i></a></h3>
+                            <span>Posted in <a href="#" title="">Beauty album</a></span>
+                            <p>Exhibiting a cool and engaging layout, Electric Admin is an extraordinarily complete Angular JS template for an easier and more comprehensive backend &amp; frontend management of a single or multiple projects. Its all-purpose framework is replete with active and energetic features, including 4+ dashboard styles...</p>
+                            <a href="#" title="" class="lnk">Read More</a>
+                            <ul class="hsh-tgs">
+                                <li><a href="#" title=""># Facebook</a>,</li>
+                                <li><a href="#" title=""># Health</a>,</li>
+                                <li><a href="#" title=""># Beauty</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="post-content no-pd"> </div>
+                    <div class="comment-form">
+                        <form>
+                            <textarea placeholder="Add Commemts"></textarea>
+                        </form>
+                        <span><i class="fa fa-thumbs-o-up"></i> Like</span> <span><i class="fa fa-comment-o"></i> Comments</span> <a href="#" title="" class="purple-skin">Send</a>
+                        <ul class="pst-rt">
+                            <li><a href="#" title=""><i class="flaticon-smile"></i></a></li>
+                            <li><a href="#" title=""><i class="flaticon-meh-face-emoticon"></i></a></li>
+                            <li><a href="#" title=""><i class="flaticon-frown"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+         
+        </ul>
+    </div>
+    <!-- Activity Feed -->
+</div>

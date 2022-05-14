@@ -202,11 +202,6 @@ namespace ELF.Areas.NguoiDung.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, HttpPostedFileBase avt, int gioiTinh, FormCollection formcollection)
         {
-            if (ModelState["ngaySinh"].Errors.Count > 0)
-            {
-                ModelState["ngaySinh"].Errors.Clear();
-                ModelState["ngaySinh"].Errors.Add("Ngày sinh chưa đúng định dạng ngày/tháng/năm, vui lòng nhập lại");
-            }
             int maND_ss = int.Parse(Session["maND"].ToString());
             if (ModelState.IsValid)
             {

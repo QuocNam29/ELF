@@ -33,10 +33,12 @@
                             int soCauDung = (int)item.TongDiem/10;
                             <li>
                                 <div class="notifi-meta">
-                                    <a href="">Bạn đã làm bài Quiz @item.ChuDeBaiQuiz.tenChuDe  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.TongDiem</a></a>
+                                    <a style="font-weight: bold">Bài Quiz chủ đề @item.ChuDeBaiQuiz.tenChuDe<a style=" font-weight: bold; float: right; color: cadetblue "> + @item.TongDiem</a></a>
                                     <br />
-                                    <span>@item.ngayLamQuiz</span>
-                                    <span>Bạn đã đúng @soCauDung câu</span>
+                                    <span style="color: #545454; font-size: 13px">Bạn đã đúng <span style="color: crimson">@soCauDung câu</span></span>
+                                    <br />
+                                    <span  style="color: #088dcd; font-size: 13px">@item.ngayLamQuiz</span>
+                                    <br />
                                 </div>
                             </li>
 

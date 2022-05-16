@@ -182,30 +182,7 @@ else
 
                         populatePhuong(id_Quan);
 
-                        function populatePhuong(id_Quan) {
-                            $("#maQuan").change(function () {
-                                $("#maP").empty();
-                                $.ajax({
-                                    type: 'POST',
-                                    url: RootUrl + 'NguoiDung/NguoiDungs/GetPList',
-                                    dataType: 'json',
-                                    data: { maQuan: $('#maQuan').val() },
-                                    success: function (phuongs) {
-                                        $("#maP").append('<option value="" disabled="disabled">Phường/Thị Trấn</option>');
-                                        $.each(phuongs, function (i, phuong) {
-                                            $("#maP").append('<option value="' + phuong.maPhuong + '">' + phuong.tenPhuong + '</option>');
-                                        });
-                                        $('#maP').selectpicker('render');
-                                        $('#maP').selectpicker('val', @TempData["maP"]);
-                                        $('#maP').selectpicker('refresh');
-                                    },
-                                    error: function (ex) {
-                                        @*alert('Failed to retrieve states.' + ex);*@
-                                    }
-                                });
-                                return false;
-                            }).change();
-                        }
+
                     },
                     error: function (ex) {
                         @*alert('Failed to retrieve states.' + ex);*@
@@ -215,7 +192,31 @@ else
             }).change();
         }
 
-
+        function populatePhuong(id_Quan) {
+            $("#maQuan").change(function () {
+                $("#maP").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: RootUrl + 'NguoiDung/NguoiDungs/GetPList',
+                    dataType: 'json',
+                    data: { maQuan: $('#maQuan').val() },
+                    success: function (phuongs) {
+                        $("#maP").empty();
+                        $("#maP").append('<option value="" disabled="disabled">Phường/Thị Trấn</option>');
+                        $.each(phuongs, function (i, phuong) {
+                            $("#maP").append('<option value="' + phuong.maPhuong + '">' + phuong.tenPhuong + '</option>');
+                        });
+                        $('#maP').selectpicker('render');
+                        $('#maP').selectpicker('val', @TempData["maP"]);
+                        $('#maP').selectpicker('refresh');
+                    },
+                    error: function (ex) {
+                        @*alert('Failed to retrieve states.' + ex);*@
+                    }
+                });
+                return false;
+            }).change();
+        }
 
     });
 

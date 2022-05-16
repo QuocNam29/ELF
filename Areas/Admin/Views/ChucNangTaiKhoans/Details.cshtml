@@ -3,33 +3,89 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+    string TP = "";
+    string Quan = "";
+    string thiTran = "";
+
+    if (Model.TaiKhoan.NguoiDung.maTinh_TP != null)
+    {
+        TP = Model.TaiKhoan.NguoiDung.Tinh_ThanhPho.tenTinh_TP;
+    }
+    if (Model.TaiKhoan.NguoiDung.maQuan != null)
+    {
+        Quan = Model.TaiKhoan.NguoiDung.QuanHuyen.tenQuan;
+    }
+    if (Model.TaiKhoan.NguoiDung.maP != null)
+    {
+        thiTran = Model.TaiKhoan.NguoiDung.PhuongThiTran.tenPhuong;
+    }
 }
 
-<h2>Details</h2>
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4>Profile Setting</h4>
+    </div>
+    <!-- Panel Title -->
+    <div class="pnl-bdy billing-sec">
+        <div class="row">
+            <div class="col-md-6 field">
+                <label>Họ và tên  <span>*</span> </label>
+                <input type="text" value="@Model.TaiKhoan.NguoiDung.hoVaTen" disabled>
+            </div>
+            <div class="col-md-6 field">
+                <label>Email <span>*</span> </label>
+                <input type="text" value="@Model.TaiKhoan.email" disabled>
+            </div>
+            <div class="col-md-6 field">
+                <label>Chức vụ tài khoản <span>*</span> </label>
+                @Html.Action("list_LoaiTK", "ChucNangTaiKhoans", new { maTK = Model.ID_TaiKhoan })
+            </div>
+            <div class="col-md-6 field">
+                <label>Số điện thoại <span>*</span> </label>
+                <input type="text" placeholder="@Model.TaiKhoan.NguoiDung.dienThoai" disabled>
+            </div>
+            <div class="col-md-6 field">
+                <label>Tỉnh/Thành phố <span>*</span> </label>
+                <input type="text" placeholder="@TP" disabled>
+            </div>
+            <div class="col-md-6 field">
+                <label>Quận/Huyện<span>*</span> </label>
+                <input type="text" placeholder="@Quan" disabled>
+            </div>
+            <div class="col-md-6 field">
+                <label>Phường/Thị trấn<span>*</span> </label>
+                <input type="text" placeholder="@thiTran" disabled>
+            </div>
+            <div class="col-md-6 field">
+                <label>Địa chỉ <span>*</span> </label>
+                <input type="text" placeholder="@Model.TaiKhoan.NguoiDung.diaChi" disabled>
+            </div>
+            <div class="col-md-12 field">
+                <label>Trạng thái tài khoản<span>*</span> </label>
+                @if (Model.TaiKhoan.trangThai == true)
+                {
+                    <input type="text" placeholder="Đang hoạt động" disabled>
+                }
+                else
+                {
+                    <input type="text" placeholder="Bị khóa" disabled>
+                }
 
-<div>
-    <h4>ChucNangTaiKhoan</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiTaiKhoan.vaiTro)
-        </dt>
+            </div>
+            <div class="col-md-6 field">
+                <label>State / Province <span>*</span> </label>
+                <input type="text" placeholder="">
+            </div>
+            <div class="col-md-6 field">
+                <label>Zip / Postal Code <span>*</span> </label>
+                <input type="text" value="">
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiTaiKhoan.vaiTro)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TaiKhoan.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TaiKhoan.email)
-        </dd>
-
-    </dl>
+            <div class="col-md-12">
+                <a href="#" class="btn1 crt-grp-btn">Chỉnh sửa </a>
+            </div>
+        </div>
+    </div>
+    <!-- Panel Body -->
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

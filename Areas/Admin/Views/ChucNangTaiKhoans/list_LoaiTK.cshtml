@@ -1,0 +1,15 @@
+﻿@model List<ELF.Models.ChucNangTaiKhoan>
+
+@{
+    Layout = null;
+}
+
+<select tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+    <option>Chức năng tài khoản</option>
+
+    @foreach (var item in Model)
+    {
+        <option disabled >@item.LoaiTaiKhoan.vaiTro</option>
+    }
+   
+</select>

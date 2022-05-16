@@ -40,6 +40,30 @@ namespace ELF.Areas.Admin.Controllers
             return PartialView("list_user", links.ToList());
         }
 
+        public ActionResult list_LoaiTK(int? maTK )
+        {
+           var chucNangTaiKhoans = db.ChucNangTaiKhoans.Include(c => c.LoaiTaiKhoan).Include(c => c.TaiKhoan).Where(c => c.ID_TaiKhoan == maTK);
+            
+            
+            return PartialView("list_LoaiTK", chucNangTaiKhoans.ToList());
+        }
+
+        public ActionResult Edit_TT_TaiKhoan(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan == null)
+            {
+                return HttpNotFound();
+            }
+            taiKhoan.trangThai = false;
+
+            return View(taiKhoan);
+        }
+
         // GET: Admin/ChucNangTaiKhoans/Details/5
         public ActionResult Details(int? id)
         {
@@ -48,6 +72,7 @@ namespace ELF.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ChucNangTaiKhoan chucNangTaiKhoan = db.ChucNangTaiKhoans.Find(id);
+
             if (chucNangTaiKhoan == null)
             {
                 return HttpNotFound();

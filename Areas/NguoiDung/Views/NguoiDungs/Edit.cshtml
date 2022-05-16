@@ -68,8 +68,8 @@ else
             <label class="control-label" for="input">Số điện thoại</label><i class="mtrl-select"></i>
             @Html.ValidationMessageFor(model => model.dienThoai, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">      
-            @Html.TextBoxFor(m => m.ngaySinh, "{0:yyyy-MM-dd}", new { @type = "date"})
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.ngaySinh, "{0:yyyy-MM-dd}", new { @type = "date" })
             <label class="control-label" for="input">Ngày sinh</label><i class="mtrl-select"></i>
             @Html.ValidationMessageFor(model => model.ngaySinh, "", new { @type = "date", @class = "text-danger" })
         </div>
@@ -102,20 +102,19 @@ else
         <div class="form-group">
             @if (ViewBag.maTinh_TP != null)
             {
-                @*@Html.DropDownListFor(model => model.maTinh_TP, ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
-                @*@Html.DropDownList("maTinh_TP", ViewBag.maTinh_TP as SelectList, "Tỉnh/Thành Phố")*@
                 @Html.DropDownList("maTinh_TP", null, htmlAttributes: new { @class = "form-control selectpicker", @title = "--- Tỉnh/Thành phố ---" })
-                <input type="hidden" id="hftenTinh_TP" name="tenTinh_TP"/>
+                <input type="hidden" id="hftenTinh_TP" name="tenTinh_TP" />
             }
         </div>
         <div class="form-group">
-            @Html.DropDownList("maQuan", new SelectList(String.Empty, "maQuan", "tenQuan", TempData["maQuan"]), "--- Quận/Huyện ---", new { @class = "form-control selectpicker", @title = "--- Quận/Huyện ---" })
+            @Html.DropDownList("maQuan", new SelectList(String.Empty, "maQuan", "tenQuan"), "--- Quận/Huyện ---", new { @class = "form-control", @title = "--- Quận/Huyện ---" })
+            <input type="hidden" id="hfmaQuan" value="@TempData["maQuan"]" />
             <input type="hidden" id="hftenQuan" name="tenQuan" />
         </div>
 
         <div class="form-group">
-            @*@Html.DropDownListFor(model => model.maP, new SelectList(""), "Phường/Thị Trấn")*@
-            @Html.DropDownList("maP", new SelectList(String.Empty, "maPhuong", "tenPhuong"), "--- Phường/Thị Trấn ---", new { @class = "form-control selectpicker", @title = "--- Phường/Thị Trấn ---" })
+            @Html.DropDownList("maP", new SelectList(String.Empty, "maPhuong", "tenPhuong"), "--- Phường/Thị Trấn ---", new { @class = "form-control", @title = "--- Phường/Thị Trấn ---" })
+            <input type="hidden" id="hfmaP" value="@TempData["maP"]" />
             <input type="hidden" id="hftenPhuong" name="tenPhuong" />
         </div>
         <div class="form-group">
@@ -156,17 +155,12 @@ else
 
     $(document).ready(function () {
 
-        var id = $('select#maTinh_TP').val();
+        var id_TP = $('select#maTinh_TP').val();
 
-        populate(id);
+        populateQuan(id_TP);
 
-        $("#maTinh_TP").change(function () {
-            var id = $('select#maTinh_TP').val();
-            populate(id);
-            @*$('#maQuan').selectpicker('val', [@TempData["maQuan"]]);*@
-        }).change();
 
-        function populate(id) {
+        function populateQuan(id_TP) {
             $("#maTinh_TP").change(function () {
                 $("#maQuan").empty();
                 $.ajax({
@@ -179,42 +173,54 @@ else
                         $.each(quans, function (i, quan) {
                             $("#maQuan").append('<option value="' + quan.maQuan + '">' + quan.tenQuan + '</option>');
                         });
-                        $('.selectpicker').selectpicker('refresh');
+                        $('#maQuan').selectpicker('render');
+                        $('#maQuan').selectpicker('val', @TempData["maQuan"]);
+                        $('#maQuan').selectpicker('refresh');
+
+
+                        var id_Quan = $('select#maQuan').val();
+
+                        populatePhuong(id_Quan);
+
+                        function populatePhuong(id_Quan) {
+                            $("#maQuan").change(function () {
+                                $("#maP").empty();
+                                $.ajax({
+                                    type: 'POST',
+                                    url: RootUrl + 'NguoiDung/NguoiDungs/GetPList',
+                                    dataType: 'json',
+                                    data: { maQuan: $('#maQuan').val() },
+                                    success: function (phuongs) {
+                                        $("#maP").append('<option value="" disabled="disabled">Phường/Thị Trấn</option>');
+                                        $.each(phuongs, function (i, phuong) {
+                                            $("#maP").append('<option value="' + phuong.maPhuong + '">' + phuong.tenPhuong + '</option>');
+                                        });
+                                        $('#maP').selectpicker('render');
+                                        $('#maP').selectpicker('val', @TempData["maP"]);
+                                        $('#maP').selectpicker('refresh');
+                                    },
+                                    error: function (ex) {
+                                        @*alert('Failed to retrieve states.' + ex);*@
+                                    }
+                                });
+                                return false;
+                            }).change();
+                        }
                     },
                     error: function (ex) {
-                        alert('Failed to retrieve states.' + ex);
+                        @*alert('Failed to retrieve states.' + ex);*@
                     }
                 });
                 return false;
-            })
+            }).change();
         }
-        });
 
 
 
-    $(document).ready(function () {
-
-        $("#maQuan").change(function () {
-            $("#maP").empty();
-            $.ajax({
-                type: 'POST',
-                url: RootUrl + 'NguoiDung/NguoiDungs/GetPList',
-                dataType: 'json',
-                data: { maQuan: $("#maQuan").val() },
-                success: function (phuongs) {
-                    $("#maP").append('<option value="" disabled="disabled">Phường/Thị Trấn</option>');
-                    $.each(phuongs, function (i, phuong) {
-                        $("#maP").append('<option value="' + phuong.maPhuong + '">' + phuong.tenPhuong + '</option>');
-                    });
-                    $('.selectpicker').selectpicker('refresh');
-                },
-                error: function (ex) {
-                    alert('Failed to retrieve states.' + ex);
-                }
-            });
-            return false;
-        })
     });
+
+
+
 </script>
 
 

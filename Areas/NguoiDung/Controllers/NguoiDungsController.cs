@@ -190,8 +190,28 @@ namespace ELF.Areas.NguoiDung.Controllers
             }
 
             ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
-            TempData["maQuan"] = nguoiDung.maQuan;
-            ViewBag.maP = new SelectList(db.PhuongThiTrans, "maPhuong", "tenPhuong", nguoiDung.maP);
+
+            if (string.IsNullOrEmpty(nguoiDung.maQuan.ToString()))
+            {
+                TempData["maQuan"] = null;
+                TempData["tenQuan"] = "--- Quận/Huyện ---";
+            }
+            else
+            {
+                TempData["maQuan"] = nguoiDung.maQuan;
+                TempData["tenQuan"] = nguoiDung.QuanHuyen.tenQuan;
+            }
+
+            if (string.IsNullOrEmpty(nguoiDung.maP.ToString()))
+            {
+                TempData["maP"] = null;
+                TempData["tenP"] = "--- Phường/Thị Trấn ---";
+            } else
+            {
+                TempData["maP"] = nguoiDung.maP;
+                TempData["tenP"] = nguoiDung.PhuongThiTran.tenPhuong;
+            }            
+            
             return View(nguoiDung);
         }
 

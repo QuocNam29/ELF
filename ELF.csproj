@@ -936,6 +936,7 @@
     <Content Include="Areas\Admin\Views\TaiKhoans\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoans\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\list_LoaiTK.cshtml" />
+    <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\list_LoaiTK_checkbox.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

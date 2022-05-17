@@ -47,6 +47,13 @@ namespace ELF.Areas.Admin.Controllers
             
             return PartialView("list_LoaiTK", chucNangTaiKhoans.ToList());
         }
+        public ActionResult list_LoaiTK_checkbox(int? maTK)
+        {
+            var chucNangTaiKhoans = db.ChucNangTaiKhoans.Include(c => c.LoaiTaiKhoan).Include(c => c.TaiKhoan).Where(c => c.ID_TaiKhoan == maTK);
+
+
+            return PartialView("list_LoaiTK_checkbox", chucNangTaiKhoans.ToList());
+        }
 
         public ActionResult Edit_TT_TaiKhoan(int? id)
         {
@@ -59,9 +66,19 @@ namespace ELF.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            taiKhoan.trangThai = false;
-
-            return View(taiKhoan);
+            if (taiKhoan.trangThai == true)
+            {
+                taiKhoan.trangThai = false;
+            }
+            else
+            {
+                taiKhoan.trangThai = true;
+            }
+            
+            db.Entry(taiKhoan).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            
         }
 
         // GET: Admin/ChucNangTaiKhoans/Details/5
@@ -78,6 +95,24 @@ namespace ELF.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             return View(chucNangTaiKhoan);
+        }
+        public ActionResult lock_TK(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+
+            if (taiKhoan == null)
+            {
+                return HttpNotFound();
+            }
+            taiKhoan.trangThai = false;
+            db.Entry(taiKhoan).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+           
         }
 
         // GET: Admin/ChucNangTaiKhoans/Create

@@ -1,0 +1,51 @@
+﻿@model List<ELF.Models.ChucNangTaiKhoan>
+
+@{
+    Layout = null;
+}
+
+
+<div class="col-md-4 col-sm-4">
+    <div class="abl-grp">
+        @if (Model.Where(t => t.maLoaiTK == 2).Count() >= 1 )
+        {
+            <input type="checkbox" id="mng-grp1" name="grp-mng" checked>
+        }
+        else
+        {
+            <input type="checkbox" id="mng-grp1" name="grp-mng" >
+        }
+        <label for="mng-grp1"><img src="images/usr-icn1.png" alt=""> Người dùng</label>
+    </div>
+</div>
+
+
+<div class="col-md-4 col-sm-4">
+    <div class="abl-grp">
+        @if (Model.Where(t => t.maLoaiTK == 3).Count() >=1)
+        {
+            <input type="checkbox" id="mng-grp2" name="grp-mng" checked>
+        }
+        else
+        {
+            <input type="checkbox" id="mng-grp2" name="grp-mng">
+        }
+       
+        <label for="mng-grp2"><img src="images/usr-icn1.png" alt=""> Kiểm duyệt</label>
+    </div>
+</div>
+
+<div class="col-md-4 col-sm-4">
+    <div class="abl-grp">
+        @if (Model.Where(t => t.maLoaiTK == 1).Count() >= 1)
+        {
+            <input type="checkbox" id="mng-grp3" name="grp-mng" checked disabled>
+        }
+        else
+        {
+            <input type="checkbox" id="mng-grp3" name="grp-mng">
+        }
+        
+        <label for="mng-grp3"><img src="images/usr-icn1.png" alt=""> Admin</label>
+    </div>
+</div>

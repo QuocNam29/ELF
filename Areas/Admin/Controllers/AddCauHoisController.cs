@@ -95,6 +95,27 @@ namespace ELF.Areas.Admin.Controllers
                         dapAn1 = bool.Parse(row["ATrue"].ToString())
 
                     });
+                    db.DapAns.Add(new DapAn
+                    {
+                        maCauHoi = lastProductId,
+                        NoiDungDapAn = row["dapAnB"].ToString(),
+                        dapAn1 = bool.Parse(row["BTrue"].ToString())
+
+                    });
+                    db.DapAns.Add(new DapAn
+                    {
+                        maCauHoi = lastProductId,
+                        NoiDungDapAn = row["dapAnC"].ToString(),
+                        dapAn1 = bool.Parse(row["CTrue"].ToString())
+
+                    });
+                    db.DapAns.Add(new DapAn
+                    {
+                        maCauHoi = lastProductId,
+                        NoiDungDapAn = row["dapAnD"].ToString(),
+                        dapAn1 = bool.Parse(row["DTrue"].ToString())
+
+                    });
                 }
                 db.SaveChanges();
 

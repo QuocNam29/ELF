@@ -257,6 +257,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ChucNangTaiKhoansController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DiemTichLuysController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuaTangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_BaiDangsController.cs" />
@@ -937,6 +938,12 @@
     <Content Include="Areas\Admin\Views\TaiKhoans\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\list_LoaiTK.cshtml" />
     <Content Include="Areas\Admin\Views\ChucNangTaiKhoans\list_LoaiTK_checkbox.cshtml" />
+    <Content Include="Areas\Admin\Views\DiemTichLuys\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DiemTichLuys\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DiemTichLuys\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DiemTichLuys\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DiemTichLuys\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DiemTichLuys\List_DTL.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

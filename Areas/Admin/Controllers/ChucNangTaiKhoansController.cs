@@ -21,6 +21,7 @@ namespace ELF.Areas.Admin.Controllers
 
             return View(chucNangTaiKhoans.ToList());
         }
+        
         public ActionResult list_user(int? maLTK, string keyword)
         {
             

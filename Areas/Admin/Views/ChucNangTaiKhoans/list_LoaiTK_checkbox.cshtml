@@ -9,11 +9,11 @@
     <div class="abl-grp">
         @if (Model.Where(t => t.maLoaiTK == 2).Count() >= 1 )
         {
-            <input type="checkbox" id="mng-grp1" name="grp-mng" checked>
+            <input type="checkbox" id="mng-grp1" name="maL2" value="2" checked>
         }
         else
         {
-            <input type="checkbox" id="mng-grp1" name="grp-mng" >
+            <input type="checkbox" id="mng-grp1" name="maL2" value="2" >
         }
         <label for="mng-grp1"><img src="images/usr-icn1.png" alt=""> Người dùng</label>
     </div>
@@ -24,11 +24,11 @@
     <div class="abl-grp">
         @if (Model.Where(t => t.maLoaiTK == 3).Count() >=1)
         {
-            <input type="checkbox" id="mng-grp2" name="grp-mng" checked>
+            <input type="checkbox" id="mng-grp2" name="maL3" value="3" checked>
         }
         else
         {
-            <input type="checkbox" id="mng-grp2" name="grp-mng">
+            <input type="checkbox" id="mng-grp2"name="maL3" value="3">
         }
        
         <label for="mng-grp2"><img src="images/usr-icn1.png" alt=""> Kiểm duyệt</label>
@@ -39,11 +39,11 @@
     <div class="abl-grp">
         @if (Model.Where(t => t.maLoaiTK == 1).Count() >= 1)
         {
-            <input type="checkbox" id="mng-grp3" name="grp-mng" checked disabled>
+            <input type="checkbox" id="mng-grp3" name="maL2" value="1" checked disabled>
         }
         else
         {
-            <input type="checkbox" id="mng-grp3" name="grp-mng">
+            <input type="checkbox" id="mng-grp3" name="maL2" value="1">
         }
         
         <label for="mng-grp3"><img src="images/usr-icn1.png" alt=""> Admin</label>

@@ -96,6 +96,8 @@ namespace ELF.Areas.Admin.Controllers
             }
             return View(chucNangTaiKhoan);
         }
+
+
         public ActionResult lock_TK(int? id)
         {
             if (id == null)
@@ -116,31 +118,107 @@ namespace ELF.Areas.Admin.Controllers
         }
 
         // GET: Admin/ChucNangTaiKhoans/Create
-        public ActionResult Create()
+        public ActionResult Create(int maTK, int? maL1, int? maL2, int? maL3, int? maL4, int maChucNang)
         {
-            ViewBag.maLoaiTK = new SelectList(db.LoaiTaiKhoans, "maLoaiTK", "vaiTro");
-            ViewBag.ID_TaiKhoan = new SelectList(db.TaiKhoans, "ID", "email");
-            return View();
-        }
-
-        // POST: Admin/ChucNangTaiKhoans/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_TaiKhoan,maLoaiTK")] ChucNangTaiKhoan chucNangTaiKhoan)
-        {
-            if (ModelState.IsValid)
+            ChucNangTaiKhoan chucNangTaiKhoan = new ChucNangTaiKhoan();
+            chucNangTaiKhoan.ID_TaiKhoan = maTK;
+            if (maL1 == 1)
             {
-                db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ChucNangTaiKhoan chucNangTK = (from c in db.ChucNangTaiKhoans
+                                    where c.ID_TaiKhoan == maTK && c.maLoaiTK == maL1
+                                    select c).FirstOrDefault();
+                if (chucNangTK == null)
+                {
+                     chucNangTaiKhoan.maLoaiTK = 1;
+                    db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
+                }
+
+            }
+            else
+            {
+                ChucNangTaiKhoan chucNangTK = (from c in db.ChucNangTaiKhoans
+                                               where c.ID_TaiKhoan == maTK && c.maLoaiTK == 1
+                                               select c).FirstOrDefault();
+                if (chucNangTK != null)
+                {
+                    db.ChucNangTaiKhoans.Remove(chucNangTK);
+                }
+            }
+            if (maL2 == 2)
+            {
+                ChucNangTaiKhoan chucNangTK = (from c in db.ChucNangTaiKhoans
+                                               where c.ID_TaiKhoan == maTK && c.maLoaiTK == maL2
+                                               select c).FirstOrDefault();
+                if (chucNangTK == null)
+                {
+                    chucNangTaiKhoan.maLoaiTK = 2;
+                    db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
+                }
+
+            }
+            else
+            {
+                ChucNangTaiKhoan chucNangTK = (from c in db.ChucNangTaiKhoans
+                                               where c.ID_TaiKhoan == maTK && c.maLoaiTK == 2
+                                               select c).FirstOrDefault();
+                if (chucNangTK != null)
+                {
+                    db.ChucNangTaiKhoans.Remove(chucNangTK);
+                }
+            }
+            if (maL3 == 3)
+            {
+                ChucNangTaiKhoan chucNangTK = (from c in db.ChucNangTaiKhoans
+                                               where c.ID_TaiKhoan == maTK && c.maLoaiTK == maL3
+                                               select c).FirstOrDefault();
+                if (chucNangTK == null)
+                {
+                    chucNangTaiKhoan.maLoaiTK = 3;
+                    db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
+                }
+
+            }
+            else
+            {
+                ChucNangTaiKhoan chucNangTK = (from c in db.ChucNangTaiKhoans
+                                               where c.ID_TaiKhoan == maTK && c.maLoaiTK == 3
+                                               select c).FirstOrDefault();
+                if (chucNangTK != null)
+                {
+                    db.ChucNangTaiKhoans.Remove(chucNangTK);
+                }
+            }
+            if (maL4 == 4)
+            {
+                ChucNangTaiKhoan chucNangTK = (from c in db.ChucNangTaiKhoans
+                                               where c.ID_TaiKhoan == maTK && c.maLoaiTK == maL4
+                                               select c).FirstOrDefault();
+                if (chucNangTK == null)
+                {
+                    chucNangTaiKhoan.maLoaiTK = 4;
+                    db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
+                }
+
+            }
+            else
+            {
+                ChucNangTaiKhoan chucNangTK = (from c in db.ChucNangTaiKhoans
+                                               where c.ID_TaiKhoan == maTK && c.maLoaiTK == 4
+                                               select c).FirstOrDefault();
+                if (chucNangTK != null)
+                {
+                    db.ChucNangTaiKhoans.Remove(chucNangTK);
+                }
             }
 
-            ViewBag.maLoaiTK = new SelectList(db.LoaiTaiKhoans, "maLoaiTK", "vaiTro", chucNangTaiKhoan.maLoaiTK);
-            ViewBag.ID_TaiKhoan = new SelectList(db.TaiKhoans, "ID", "email", chucNangTaiKhoan.ID_TaiKhoan);
-            return View(chucNangTaiKhoan);
+            db.SaveChanges();
+
+            ViewBag.maLoaiTK = new SelectList(db.LoaiTaiKhoans, "maLoaiTK", "vaiTro");
+            ViewBag.ID_TaiKhoan = new SelectList(db.TaiKhoans, "ID", "email");
+            return RedirectToAction("Details", new { id = maChucNang});
         }
+
+       
 
         // GET: Admin/ChucNangTaiKhoans/Edit/5
         public ActionResult Edit(int? id)

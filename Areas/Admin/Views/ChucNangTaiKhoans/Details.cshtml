@@ -108,34 +108,40 @@
                 <div class="usr-pnl">
                     <div class="pnl-bdy">
                         <div class="ad-usr-frm">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h4>Cấp chức năng người dùng</h4>
-                                    </div>
-                                    <div class="col-md-12 field">
-                                        <label>Trạng thái tài khoản<span>*</span> </label>
-                                        @if (Model.TaiKhoan.trangThai == true)
-                                        {
-                                            <input type="text" placeholder="Đang hoạt động" disabled>
-                                        }
-                                        else
-                                        {
-                                            <input type="text" placeholder="Bị khóa" disabled>
-                                        }
-                                    </div>
-                                   
+                            @using (Html.BeginForm("Create", "ChucNangTaiKhoans"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("maTK", Model.ID_TaiKhoan)
+                                @Html.Hidden("maChucNang", Model.ID)
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>Cấp chức năng người dùng</h4>
+                                        </div>
+                                        <div class="col-md-12 field">
+                                            <label>Trạng thái tài khoản<span>*</span> </label>
+                                            @if (Model.TaiKhoan.trangThai == true)
+                                            {
+                                                <input type="text" placeholder="Đang hoạt động" disabled>
+                                            }
+                                            else
+                                            {
+                                                <input type="text" placeholder="Bị khóa" disabled>
+                                            }
+                                        </div>
 
-                                    <div class="col-md-12">
-                                        <h5>Chức năng tài khoản</h5>
-                                    </div>
-                                    @Html.Action("list_LoaiTK_checkbox", "ChucNangTaiKhoans", new { maTK = Model.ID_TaiKhoan })
 
-                                    <div class="col-md-12">
-                                        <button type="submit" class="purple-skin">Lưu thông tin</button>
+                                        <div class="col-md-12">
+                                            <h5>Chức năng tài khoản</h5>
+                                        </div>
+                                        @Html.Action("list_LoaiTK_checkbox", "ChucNangTaiKhoans", new { maTK = Model.ID_TaiKhoan })
+
+                                        <div class="col-md-12">
+                                            <button type="submit" class="purple-skin">Lưu thông tin</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            }
                         </div>
                         <!-- Add User Form -->
                     </div>

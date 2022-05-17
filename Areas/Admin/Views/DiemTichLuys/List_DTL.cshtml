@@ -1,13 +1,12 @@
-﻿@model IEnumerable<ELF.Models.ChucNangTaiKhoan>
+﻿@model List<ELF.Models.ChucNangTaiKhoan>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List_DTL";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
-
 <div class="usr-pnl">
     <div class="pnl-tl">
-        <h4>Quản lý người dùng</h4>
+        <h4>Quản lý điểm tích lũy</h4>
         <a href="#" title="" class="crt-btn"><i class="fa fa-search"></i></a> <a href="#" title="" class="scrh-grp-btn"><i class="fa fa-plus"></i></a>
     </div>
     <!-- Panel Title -->
@@ -19,36 +18,55 @@
                 {
                     <i class="fa fa-user"></i>
                     <input type="text" name="keyword" placeholder="Nhập tên người dùng hoặc email...">
-                    <button type="submit" class="btn1 crt-grp-btn" >Tìm kiếm</button> 
+                    <button type="submit" class="btn1 crt-grp-btn">Tìm kiếm</button>
                 }
-                </form>
+            </form>
         </div>
         <!-- Creat Group Form -->
         <div class="usr-itm">
-            <span class="cmpny-nm"><i class="fa fa-users"></i>ADMIN</span>
-            @Html.Action("list_user", "ChucNangTaiKhoans", new { maLTK = 1 })
-            <!-- Users List -->
-        </div>
-        <!-- User Item -->
-        <div class="usr-itm">
-            <span class="cmpny-nm"><i class="fa fa-users"></i> KIỂM DUYỆT</span>
-            @Html.Action("list_user", "ChucNangTaiKhoans", new { maLTK = 3 })
-            <!-- Users List -->
-        </div>
-        <div class="usr-itm">
-            <span class="cmpny-nm"><i class="fa fa-users"></i> ĐƠN VỊ THU GOM</span>
-            @Html.Action("list_user", "ChucNangTaiKhoans", new { maLTK = 4 })
-            <!-- Users List -->
-        </div>
-        <div class="usr-itm">
             <span class="cmpny-nm"><i class="fa fa-users"></i> NGƯỜI DÙNG</span>
-            @Html.Action("list_user", "ChucNangTaiKhoans", new { maLTK = 2 })
+            <ul class="usr-lst">
+                @foreach (var item in Model)
+                {
+                    string avt_BD = "";
+                    if (item.TaiKhoan.NguoiDung.avatar != null)
+                    {
+                        avt_BD = item.TaiKhoan.NguoiDung.avatar;
+                    }
+                    else
+                    {
+                        avt_BD = "~/images/resources/User-avatar.svg";
+                    }
+                    <li>
+                        <div class="usr-lst-inf">
+                            <img src="@Url.Content(avt_BD)" alt="" style="width: 38px">
+                            @if (item.TaiKhoan.trangThai == true)
+                            {
+                                <h2><a href="@Url.Action("Index", "DiemTichLuys", new { id = item.TaiKhoan.maND })" title="">@item.TaiKhoan.NguoiDung.hoVaTen - @item.TaiKhoan.email</a></h2>
+                            }
+                            else
+                            {
+                                <h2><a href="@Url.Action("Index", "DiemTichLuys", new { id = item.TaiKhoan.maND })" title="" style="color: red">@item.TaiKhoan.NguoiDung.hoVaTen - @item.TaiKhoan.email</a></h2>
+                            }
+                            <i style="color:darkgreen; ">@item.TaiKhoan.NguoiDung.DiemTichLuys.Where(t => t.maND == item.TaiKhoan.maND).Sum(t => t.diem) điểm </i>
+
+                        </div>
+                        <div class="usr-btns">
+
+                            <a class="ad" href="@Url.Action("Index", "DiemTichLuys", new {id = item.TaiKhoan.maND })" title="">cập nhật điểm</a>
+
+
+
+
+                        </div>
+                    </li>
+                }
+            </ul>
             <!-- Users List -->
         </div>
         <!-- User Item -->
     </div>
     <!-- Panel Body -->
-
 </div>
 <div class="popup-wrp2 srch-grp-pp">
     <span class="pp-cls"></span>
@@ -68,7 +86,6 @@
                         <div class="usr-btns"> <a class="crt-grp-frm" href="#" title=""><i class="fa fa-cog"></i> Creat Group</a> <a href="#" title=""><i class="fa fa-trash"></i> Delete Group</a> </div>
                     </div>
                     <!-- Group Form -->
-                   
                     <!-- Group List -->
                 </div>
                 <div class="crt-grp-sc">
@@ -106,6 +123,3 @@
         <!-- User Panel -->
     </div>
 </div>
-
-
-

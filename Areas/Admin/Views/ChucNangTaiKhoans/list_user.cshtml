@@ -6,10 +6,27 @@
 <ul class="usr-lst">
     @foreach (var item in Model)
     {
+        string avt_BD = "";
+        if (item.TaiKhoan.NguoiDung.avatar != null)
+        {
+            avt_BD = item.TaiKhoan.NguoiDung.avatar;
+        }
+        else
+        {
+            avt_BD = "~/images/resources/User-avatar.svg";
+        }
         <li>
             <div class="usr-lst-inf">
-                <img src="images/resource/usr-icn1.png" alt="">
-                <h2><a href="@Url.Action("Details", "ChucNangTaiKhoans", new { id = item.ID })" title="">@item.TaiKhoan.NguoiDung.hoVaTen - @item.TaiKhoan.email</a></h2>
+                <img src="@Url.Content(avt_BD)" alt="" style="width: 38px">
+                @if (item.TaiKhoan.trangThai == true)
+                {
+                    <h2><a href="@Url.Action("Details", "ChucNangTaiKhoans", new { id = item.ID })" title="">@item.TaiKhoan.NguoiDung.hoVaTen - @item.TaiKhoan.email</a></h2>
+                }
+                else
+                {
+                    <h2><a href="@Url.Action("Details", "ChucNangTaiKhoans", new { id = item.ID })" title="" style="color: red">@item.TaiKhoan.NguoiDung.hoVaTen - @item.TaiKhoan.email</a></h2>
+                }
+                
                 @if (item.maLoaiTK == 1)
                 {
                     <i>Admin</i>
@@ -27,7 +44,17 @@
                     <i>Đơn vị thu gom</i>
                 }
             </div>
-            <div class="usr-btns"> <a class="ad-usr" href="#" title="">Add User</a> <a class="ad-usr" href="#" title=""><i class="fa fa-pencil"></i> Edit</a> </div>
+            <div class="usr-btns">
+                @if (item.TaiKhoan.trangThai == true)
+                {
+                    <a class="ad" href="@Url.Action("Edit_TT_TaiKhoan", "ChucNangTaiKhoans", new {id = item.ID_TaiKhoan })" title="">Khóa tài khoản</a>
+                }
+                else
+                {
+                    <a class="ad" href="@Url.Action("Edit_TT_TaiKhoan", "ChucNangTaiKhoans", new {id = item.ID_TaiKhoan })" title="">Mở khóa tài khoản</a>
+                }
+               
+            </div>
         </li>
     }
 </ul>

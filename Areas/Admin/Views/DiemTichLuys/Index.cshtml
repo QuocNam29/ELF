@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ELF.Models.DiemTichLuy>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="usr-pnl">
+    <div class="pnl-bdy">
+        <!-- Tab panes -->
+        <div class="usr-itm">
+            <span class="cmpny-nm"><i class="fa fa-users"></i> Chi tiết điểm tích lũy</span>
+            <ul class="usr-lst">
+
+                @foreach (var item in Model)
+                {
+                    if (item.maBDSP != null)
+                    {
+                        <li>
+                            <div class="usr-lst-inf">
+                                <h2><a title="" style="color: black ">Bài đăng sản phẩm của người dùng được duyệt bài đăng sản phẩm <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem điểm</a></a></h2>
+                                <i style="color:darkgreen; "> </i>
+                            </div>
+                        </li>
+                    }
+                    else if (item.maBDTT != null)
+                    {
+                        <li>
+                            <div class="usr-lst-inf">
+                                <h2><a title="" style="color: black "> Bài đăng thông tin của người dùng được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem điểm</a></a></h2>
+                                <i style="color:darkgreen; "> </i>
+                            </div>
+                        </li>
+                    }
+
+                    else if (item.maQG != null)
+                    {
+                        <li>
+                            <div class="usr-lst-inf">
+                                <h2><a title="" style="color: black ">Đơn quyên góp của người dùng được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem điểm</a></a></h2>
+                                <i style="color:darkgreen; "> </i>
+                            </div>
+                        </li>
+                    }
+                    else if (item.maDQ != null)
+                    {
+                        <li>
+                            <div class="usr-lst-inf">
+                                <h2><a title="" style="color: black   ">Người dùng đổi quà thành công <a style=" font-weight: bold; float: right; color: red ">  @item.diem điểm</a></a></h2>
+                                <i style="color:darkgreen; "> </i>
+                            </div>
+                        </li>
+                    }
+                    else if (item.maKQBQ != null && item.diem != 0)
+                    {
+                        <li>
+                            <div class="usr-lst-inf">
+                                <h2><a title="" style="color: black ">Người dùng làm bài Quiz <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem điểm</a></a></h2>
+                                <i style="color:darkgreen; "> </i>
+                            </div>
+                        </li>
+
+                    }
+                }
+
+
+            </ul>
+        </div>
+        </div>
+    </div>
+
+
+

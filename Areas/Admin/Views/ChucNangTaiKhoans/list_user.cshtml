@@ -53,7 +53,7 @@
                 {
                     <a class="ad" href="@Url.Action("Edit_TT_TaiKhoan", "ChucNangTaiKhoans", new {id = item.ID_TaiKhoan })" title="">Mở khóa tài khoản</a>
                 }
-                <a class="ad-usr" href="#" title=""><i class="fa fa-pencil"></i> Edit</a>
+                <a class="ad-usr" href="@Url.Action("Details", "ChucNangTaiKhoans", new { id = item.ID })" title=""> Chi tiết</a>
             </div>
         </li>
     }

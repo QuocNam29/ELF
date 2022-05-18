@@ -51,15 +51,11 @@
                             <i style="color:darkgreen; ">@item.TaiKhoan.NguoiDung.DiemTichLuys.Where(t => t.maND == item.TaiKhoan.maND).Sum(t => t.diem) điểm </i>
 
                         </div>
-                        <div class="usr-btns">
-
-                            <a class="ad" href="@Url.Action("Index", "DiemTichLuys", new {id = item.TaiKhoan.maND })" title="">cập nhật điểm</a>
-
-
-
-
-                        </div>
+                       
                     </li>
+
+
+
                 }
             </ul>
             <!-- Users List -->
@@ -123,3 +119,9 @@
         <!-- User Panel -->
     </div>
 </div>
+
+<script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+</script>

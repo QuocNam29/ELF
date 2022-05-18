@@ -47,7 +47,7 @@
                         <span class="tag green">New</span>
                     </li>
                 }
-                if (item.maBDTT != null)
+                else if (item.maBDTT != null)
                 {
                     if (Session["avatar"] != null)
                     {
@@ -80,7 +80,7 @@
                         <span class="tag green">New</span>
                     </li>
                 }
-                if (item.maQG != null)
+                else if (item.maQG != null)
                 {
                     if (Session["avatar"] != null)
                     {
@@ -114,7 +114,7 @@
                     </li>
                 }
 
-                if (item.maBL != null)
+                else if (item.maBL != null)
                 {
                     if (item.BinhLuan.NguoiDung.avatar != null)
                     {
@@ -139,7 +139,7 @@
 
                     </li>
                 }
-                if (item.maDQ != null)
+                else if (item.maDQ != null)
                 {
                     if (Session["avatar"] != null)
                     {
@@ -185,6 +185,40 @@
                                     <i>@item.ngayTB</i>
                                 </div>
                             }
+                        </a>
+                        <span class="tag green">New</span>
+                    </li>
+                }
+                else
+                {
+                    if (Session["avatar"] != null)
+                    {
+                        avt_ND = Session["avatar"].ToString();
+                    }
+                    else
+                    {
+                        avt_ND = "~/images/resources/User-avatar.svg.png";
+                    }
+                    <li>
+                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })" title="">
+                            <img src="@Url.Content(avt_ND)" alt="">
+                            @if (item.tinhTrang == "Cộng điểm")
+                            {
+                                <div class="mesg-meta">
+                                    <h6>Admin cập nhật điểm (Cộng)</h6>
+                                    <span>của bạn với lý do: "@item.noiDung"</span>
+                                    <i>@item.ngayTB</i>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mesg-meta">
+                                    <h6>Admin cập nhật điểm (Trừ)</h6>
+                                    <span>của bạn với lý do: "@item.noiDung"</span>
+                                    <i>@item.ngayTB</i>
+                                </div>
+                            }
+
                         </a>
                         <span class="tag green">New</span>
                     </li>

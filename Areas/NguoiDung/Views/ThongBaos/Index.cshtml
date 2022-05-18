@@ -45,7 +45,7 @@
 
                         </li>
                     }
-                    if (item.maBDSP != null)
+                    else if (item.maBDSP != null)
                     {
                         if (Session["avatar"] != null)
                         {
@@ -81,7 +81,7 @@
 
                         </li>
                     }
-                    if (item.maBDTT != null)
+                    else if (item.maBDTT != null)
                     {
                         if (Session["avatar"] != null)
                         {
@@ -99,7 +99,7 @@
                             {
                                 <div class="notifi-meta">
                                     <a href="@Url.Action("Index_BDTT_one","BaiDangThongTins", new {maBDTT = item.maBDTT , maND = item.maND })">
-                                    <b>Bài đăng thông tin</b> của bạn đã được <a style="color: darkcyan">duyệt</a> 
+                                        <b>Bài đăng thông tin</b> của bạn đã được <a style="color: darkcyan">duyệt</a>
                                     </a>
                                     <br />
                                     <span>@item.ngayTB</span>
@@ -117,7 +117,7 @@
 
                         </li>
                     }
-                    if (item.maQG != null)
+                    else if (item.maQG != null)
                     {
                         if (Session["avatar"] != null)
                         {
@@ -151,8 +151,7 @@
 
                         </li>
                     }
-
-                    if (item.maDQ != null)
+                    else if (item.maDQ != null)
                     {
                         if (Session["avatar"] != null)
                         {
@@ -163,59 +162,95 @@
                             avt_ND = "~/images/resources/User-avatar.svg.png";
                         }
 
-            <li>
+                        <li>
 
-                <figure><img src="@Url.Content(avt_ND)" alt=""></figure>
-                @if (item.tinhTrang == "Đã đổi")
-                {
-                    <div class="notifi-meta">
-                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
-                            <b>Đơn quà</b> Của Bạn <a style="color: blue">Đã Được Đổi Thành Công </a>, Bạn Vui Lòng Đợi Vài Ngày Để Chúng Mình Liên Lạc Và Giao Hàng Đến Cho Bạn
-                        </a>
-                        <br />
-                        <span>@item.ngayTB</span>
-                    </div>
-                }
-                else if (item.tinhTrang == "Đang giao hàng")
+                            <figure><img src="@Url.Content(avt_ND)" alt=""></figure>
+                            @if (item.tinhTrang == "Đã đổi")
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                        <b>Đơn quà</b> Của Bạn <a style="color: blue">Đã Được Đổi Thành Công </a>, Bạn Vui Lòng Đợi Vài Ngày Để Chúng Mình Liên Lạc Và Giao Hàng Đến Cho Bạn
+                                    </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+                            else if (item.tinhTrang == "Đang giao hàng")
 
-                {
-                    <div class="notifi-meta">
-                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
-                            <b>Đơn quà</b>của bạn đã được <a style="color: darkseagreen">xác nhận thành công</a> , bạn vui lòng đợi vài ngày để chúng mình giao hàng đến cho bạn
-                        </a>
-                        <br />
-                        <span>@item.ngayTB</span>
-                    </div>
-                }
-                else if (item.tinhTrang == "Đã hoàn tất")
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                        <b>Đơn quà</b>của bạn đã được <a style="color: darkseagreen">xác nhận thành công</a> , bạn vui lòng đợi vài ngày để chúng mình giao hàng đến cho bạn
+                                    </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+                            else if (item.tinhTrang == "Đã hoàn tất")
 
-                {
-                    <div class="notifi-meta">
-                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
-                            <b>Đơn quà</b> đã được <a style="color: forestgreen">giao đến cho bạn</a> , mong bạn thích món quà của ELF
-                        </a>
-                        <br />
-                        <span>@item.ngayTB</span>
-                    </div>
-                }
-                else if (item.tinhTrang == "Hủy đơn")
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                        <b>Đơn quà</b> đã được <a style="color: forestgreen">giao đến cho bạn</a> , mong bạn thích món quà của ELF
+                                    </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+                            else if (item.tinhTrang == "Hủy đơn")
 
-                {
-                    <div class="notifi-meta">
-                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
-                            <b>Đơn quà</b>của bạn đã bị <a style="color: red">hủy</a> với lý do: <b>"@item.noiDung.Substring(36)"</b>
-                        </a>
-                        <br />
-                        <span>@item.ngayTB</span>
-                    </div>
-                }
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                        <b>Đơn quà</b>của bạn đã bị <a style="color: red">hủy</a> với lý do: <b>"@item.noiDung.Substring(36)"</b>
+                                    </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
 
 
-            </li>
+                        </li>
                     }
+                    else
+                    {
+                        if (Session["avatar"] != null)
+                        {
+                            avt_ND = Session["avatar"].ToString();
+                        }
+                        else
+                        {
+                            avt_ND = "~/images/resources/User-avatar.svg.png";
+                        }
 
-                }
-            </ul>
+                        <li>
+
+                            <figure><img src="@Url.Content(avt_ND)" alt=""></figure>
+                            @if (item.tinhTrang == "Cộng điểm")
+                            {
+                                <div class="notifi-meta">
+                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                        <b>Admin cập nhật điểm (Cộng)</b> của bạn với lý do : "@item.noiDung" 
+                                    </a>
+                                    <br />
+                                    <span>@item.ngayTB</span>
+                                </div>
+                            }
+                            else
+                            {
+                        <div class="notifi-meta">
+                            <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                <b>Admin cập nhật điểm (Trừ)</b> của bạn với lý do : "@item.noiDung"
+                            </a>
+                            <br />
+                            <span>@item.ngayTB</span>
+                        </div>
+                            }
+                            </li>
+                            }
+
+                            }
+                    </ul>
         </div>
     </div>
     </div>

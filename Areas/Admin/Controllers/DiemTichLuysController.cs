@@ -17,7 +17,7 @@ namespace ELF.Areas.Admin.Controllers
         // GET: Admin/DiemTichLuys
         public ActionResult Index(int? id)
         {
-            var diemTichLuys = db.DiemTichLuys.Include(d => d.BaiDangSanPham).Include(d => d.BaiDangThongTin).Include(d => d.DonQua).Include(d => d.KetQua).Include(d => d.NguoiDung).Include(d => d.QuyenGop).Where(t => t.maND == id);
+            var diemTichLuys = db.DiemTichLuys.Include(d => d.BaiDangSanPham).Include(d => d.BaiDangThongTin).Include(d => d.DonQua).Include(d => d.KetQua).Include(d => d.NguoiDung).Include(d => d.QuyenGop).Where(t => t.maND == id).OrderByDescending(B => B.maDTL);
             return View(diemTichLuys.ToList());
         }
 
@@ -56,15 +56,38 @@ namespace ELF.Areas.Admin.Controllers
         }
 
         // GET: Admin/DiemTichLuys/Create
-        public ActionResult Create()
+        public ActionResult Update_DTL(int maND, int diemTL, string lydo)
         {
-            ViewBag.maBDSP = new SelectList(db.BaiDangSanPhams, "maBDSP", "tenSP");
-            ViewBag.maBDTT = new SelectList(db.BaiDangThongTins, "maBDTT", "tieuDe");
-            ViewBag.maDQ = new SelectList(db.DonQuas, "MaDQ", "TrangThai");
-            ViewBag.maKQBQ = new SelectList(db.KetQuas, "maKQ", "maKQ");
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen");
-            ViewBag.maQG = new SelectList(db.QuyenGops, "maQG", "donVi");
-            return View();
+            db.DiemTichLuys.Add(new DiemTichLuy
+            {
+                maND = maND,
+                thoiGian = DateTime.Now,
+                diem = diemTL
+            });
+            if (diemTL > 0)
+            {
+             db.ThongBaos.Add(new ThongBao
+                        { 
+                            maND = maND,
+                            tinhTrang = "Cộng điểm",
+                            ngayTB = DateTime.Now,
+                            noiDung = lydo
+                        });
+            }
+            else
+            {
+                db.ThongBaos.Add(new ThongBao
+                {
+                    maND = maND,
+                    tinhTrang = "Trừ điểm",
+                    ngayTB = DateTime.Now,
+                    noiDung = lydo
+                });
+            }
+           
+            db.SaveChanges();
+            return RedirectToAction("Index", new {id = maND });
+            
         }
 
         // POST: Admin/DiemTichLuys/Create

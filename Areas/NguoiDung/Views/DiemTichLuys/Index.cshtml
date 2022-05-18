@@ -93,6 +93,34 @@
                                 </div>
                             </li>
                         }
+                        else
+                        {
+                            if (item.diem > 0)
+                            {
+                                <li>
+                                    <div class="notifi-meta">
+                                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                            Admin cập nhật điểm (Cộng) của bạn  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a>
+                                        </a>
+                                        <br />
+                                        <span>@item.thoiGian</span>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="notifi-meta">
+                                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                            Admin cập nhật điểm (Trừ) của bạn  <a style=" font-weight: bold; float: right; color: crimson ">  @item.diem</a>
+                                        </a>
+                                        <br />
+                                        <span>@item.thoiGian</span>
+                                    </div>
+                                </li>
+                            }
+
+                        }
 
                     }
 
@@ -111,7 +139,7 @@
                         {
                             <li>
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bài đăng sản phẩm của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams", new { maBDSP = item.maBDSP, maND = item.maND })">Bài đăng sản phẩm của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
                                     <br />
                                     <span>@item.thoiGian</span>
                                 </div>
@@ -121,7 +149,7 @@
                         {
                             <li>
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bài đăng thông tin của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams", new { maBDSP = item.maBDSP, maND = item.maND })">Bài đăng thông tin của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
                                     <br />
                                     <span>@item.thoiGian</span>
                                 </div>
@@ -132,7 +160,7 @@
                         {
                             <li>
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Thông tin quyên góp của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
+                                    <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams", new { maBDSP = item.maBDSP, maND = item.maND })">Thông tin quyên góp của bạn đã được duyệt <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a></a>
                                     <br />
                                     <span>@item.thoiGian</span>
                                 </div>
@@ -142,17 +170,33 @@
                         {
                             <li>
                                 <div class="notifi-meta">
-                                    <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">Bạn đã làm bài quiz  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.KetQua.TongDiem</a></a>
+                                    <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams", new { maBDSP = item.maBDSP, maND = item.maND })">Bạn đã làm bài quiz  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.KetQua.TongDiem</a></a>
                                     <br />
                                     <span>@item.thoiGian</span>
                                 </div>
                             </li>
                         }
 
+                        if (item.maBDSP == null && item.maBDTT == null && item.maDQ == null && item.maKQBQ == null && item.maQG == null)
+                        {
+                            if (item.diem > 0)
+                            {
+                                <li>
+                                    <div class="notifi-meta">
+                                        <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams", new { maBDSP = item.maBDSP, maND = item.maND })">
+                                            Admin cập nhật điểm (Cộng) của bạn  <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem</a>
+                                        </a>
+                                        <br />
+                                        <span>@item.thoiGian</span>
+                                    </div>
+                                </li>
+                            }
+
+                        }
                     }
 
 
-                </ul>
+                    </ul>
             </div>
           
         </div>
@@ -162,7 +206,7 @@
                 <ul>
                     @foreach (var item in Model)
                     {
-                        
+
                         if (item.maDQ != null)
                         {
                             <li>
@@ -173,6 +217,23 @@
                                 </div>
                             </li>
                         }
+                        if(item.maBDSP == null && item.maBDTT == null && item.maDQ == null && item.maKQBQ == null && item.maQG == null)
+                        {
+                            if (item.diem <  0)
+                            {
+                                <li>
+                                    <div class="notifi-meta">
+                                        <a href="@Url.Action("Index_BDSP_one","BaiDangSanPhams", new {maBDSP = item.maBDSP , maND = item.maND })">
+                                            Admin cập nhật điểm (Trừ) của bạn  <a style=" font-weight: bold; float: right; color: crimson ">  @item.diem</a>
+                                        </a>
+                                        <br />
+                                        <span>@item.thoiGian</span>
+                                    </div>
+                                </li>
+                            }
+
+                        }
+
 
                     }
 

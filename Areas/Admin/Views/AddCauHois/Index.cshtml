@@ -4,6 +4,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
 
+
 @using (Html.BeginForm("Index", "AddCauHois", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <input type="file" name="postedFile" style="margin-top: 150px" />

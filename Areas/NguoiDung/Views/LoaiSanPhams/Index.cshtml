@@ -1,0 +1,49 @@
+﻿@model List<ELF.Models.LoaiSanPham>
+
+
+<div class="purify">
+    @using (Html.BeginForm("Index", "BaiDangSanPhams", FormMethod.Get))
+    {
+        <span><b>Loại sản phẩm:</b> </span>
+
+        <select name="maLSP">
+
+            <option>Tất cả</option>
+
+
+
+            @foreach (var item in Model)
+            {
+                if (TempData["tenLoaiSP"] != null)
+                {
+                    if (TempData["tenLoaiSP"].ToString() == item.tenLSP)
+                    {
+                        <option selected="selected" value="@item.maLSP">@item.tenLSP</option>
+                    }
+                    else
+                    {
+                        <option value="@item.maLSP">@item.tenLSP</option>
+                    }
+                }
+                else
+                {
+                    <option value="@item.maLSP">@item.tenLSP</option>
+                }
+
+
+
+            }
+        </select>
+
+        <button style="
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: initial;
+    padding: 15px 20px;
+    text-transform: capitalize;  ">
+            Lọc
+        </button>
+    }
+</div>

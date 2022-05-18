@@ -19,7 +19,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: NguoiDung/BaiDangSanPhams
-        public ActionResult Index(string keyword)
+        public ActionResult Index(string keyword, int? maLSP)
         {
             var links = from l in db.BaiDangSanPhams.Include(b => b.LoaiSanPham).Include(b => b.NguoiDung)
                         .Include(b => b.TrangThaiBaiDang).Where(b => b.maTT == 2).OrderByDescending(B => B.maBDSP)
@@ -30,6 +30,15 @@ namespace ELF.Areas.NguoiDung.Controllers
                 links = links.Where(b => b.tenSP.ToLower().Contains(keyword.ToLower())
                 || b.noiDung.Contains(keyword) || b.NguoiDung.hoVaTen.Contains(keyword));
                 TempData["keyword"] = keyword;
+                return View(links);
+            }
+            if (maLSP != null)
+            {
+                LoaiSanPham loaiSanPham = db.LoaiSanPhams.Find(maLSP);
+                string tenLoaiSP = loaiSanPham.tenLSP;
+                links = links.Where(b => b.maLSP == maLSP);
+
+                TempData["tenLoaiSP"] = tenLoaiSP;
                 return View(links);
             }
             return View(links);

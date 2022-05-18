@@ -18,52 +18,9 @@ namespace ELF.Areas.NguoiDung.Controllers
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
-        // GET: NguoiDung/TaiKhoans
-        public ActionResult Index()
-        {
-            var taiKhoans = db.TaiKhoans.Include(t => t.NguoiDung);
-            return View(taiKhoans.ToList());
-        }
+       
 
-        // GET: NguoiDung/TaiKhoans/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
-            if (taiKhoan == null)
-            {
-                return HttpNotFound();
-            }
-            return View(taiKhoan);
-        }
-
-        // GET: NguoiDung/TaiKhoans/Create
-        public ActionResult Create()
-        {
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen");
-            return View();
-        }
-
-        // POST: NguoiDung/TaiKhoans/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,email,maND,matKhau,xacNhanMatKhau,ngayTao,trangThai")] TaiKhoan taiKhoan)
-        {
-            if (ModelState.IsValid)
-            {
-                db.TaiKhoans.Add(taiKhoan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", taiKhoan.maND);
-            return View(taiKhoan);
-        }
+        
 
         // GET: NguoiDung/TaiKhoans/Edit/5
         public ActionResult Edit(int? id)
@@ -124,32 +81,6 @@ namespace ELF.Areas.NguoiDung.Controllers
             }
             ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", taiKhoan.maND);
             return RedirectToAction("Index_TrangCaNhan", "BaiDangSanPhams", new { maND = int.Parse(Session["maND"].ToString()) });
-        }
-
-        // GET: NguoiDung/TaiKhoans/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
-            if (taiKhoan == null)
-            {
-                return HttpNotFound();
-            }
-            return View(taiKhoan);
-        }
-
-        // POST: NguoiDung/TaiKhoans/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
-            db.TaiKhoans.Remove(taiKhoan);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

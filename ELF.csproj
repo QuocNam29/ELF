@@ -579,6 +579,7 @@
     <Content Include="images\resources\nearly5.jpg" />
     <Content Include="images\resources\nearly6.jpg" />
     <Content Include="images\resources\newsletter-bg.jpg" />
+    <Content Include="images\resources\office_logo.png" />
     <Content Include="images\resources\page1.jpg" />
     <Content Include="images\resources\page2.jpg" />
     <Content Include="images\resources\page3.jpg" />
@@ -686,6 +687,7 @@
     <Content Include="images\resources\userlist-5.jpg" />
     <Content Include="images\resources\userlist-6.jpg" />
     <Content Include="images\resources\userlist-7.jpg" />
+    <Content Include="images\resources\vlu_logo.png" />
     <Content Include="images\thumbnail_POSTER Done 2.png" />
     <Content Include="images\welcome-sign.png" />
     <Content Include="images\wink.png" />

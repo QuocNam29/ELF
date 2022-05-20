@@ -21,7 +21,7 @@ namespace ELF.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("ELFVanLang2021Entities", throwIfV1Schema: false)
+            : base("IdentityConnection", throwIfV1Schema: false)
         {
         }
 

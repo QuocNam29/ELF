@@ -228,11 +228,11 @@ namespace ELF.Areas.NguoiDung.Controllers
                 string oldfilePath = nguoiDung.avatar;
                 if (avt != null && avt.ContentLength > 0)
                 {
+                    string time = DateTime.Now.ToString("yymmssfff");
                     var fileName = System.IO.Path.GetFileName(avt.FileName);
-                    string path = System.IO.Path.Combine(
-                    Server.MapPath("~/images/"), fileName);
-                    avt.SaveAs(path);
-                    nguoiDung.avatar = "~/images/" + avt.FileName;
+                    string filePath = "~/images/" + time + fileName;
+                    avt.SaveAs(Server.MapPath(filePath));
+                    nguoiDung.avatar = "~/images/" + time + avt.FileName;
                     string fullPath = Request.MapPath(oldfilePath);
 
                     if (System.IO.File.Exists(fullPath))

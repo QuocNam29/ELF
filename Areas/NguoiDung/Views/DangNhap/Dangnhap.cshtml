@@ -1,4 +1,6 @@
-﻿
+﻿@using ELF.Models
+@model LoginViewModel
+
 @{
     ViewBag.Title = "Đăng Nhập";
     Layout = null;
@@ -71,10 +73,10 @@
                     </span>
                 </div>
 
-                <div class="flex-c p-b-112">              
-                    <a href="#" class="login100-social-item">
-                        <img src="~/images/resources/office_logo.png" alt="Email Van Lang">
-                    </a>
+                <div class="flex-c p-b-112">
+                    <section id="socialLoginForm">
+                        @Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    </section>
                 </div>
 
                 <div class="text-center">
@@ -83,8 +85,7 @@
                     </a>
                 </div>
             </form>
-
-
+           
         </div>
     </div>
 

@@ -59,11 +59,11 @@ namespace ELF.Areas.Admin.Controllers
                             {
                                 cmdExcel.Connection = connExcel;
 
-                                //Get the name of First Sheet.
                                 connExcel.Open();
                                 DataTable dtExcelSchema;
                                 dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
 
+                                //Get the name of First Sheet.
                                 string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
 
                                 connExcel.Close();
@@ -121,6 +121,7 @@ namespace ELF.Areas.Admin.Controllers
                         });
                     }
                     db.SaveChanges();
+                    ViewBag.Success = "Import bài quiz thành công!";
                 }
                 else
                 {
@@ -132,7 +133,6 @@ namespace ELF.Areas.Admin.Controllers
             {
                 ViewBag.FileStatus = "Bạn chưa chọn file để import!";
             }
-
             return View();
         }
     }

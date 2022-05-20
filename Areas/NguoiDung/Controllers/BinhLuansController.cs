@@ -19,59 +19,8 @@ namespace ELF.Areas.NguoiDung.Controllers
 
         
 
-        // GET: NguoiDung/BinhLuans/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
-            if (binhLuan == null)
-            {
-                return HttpNotFound();
-            }
-            return View(binhLuan);
-        }
-
         
-        // GET: NguoiDung/BinhLuans/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
-            if (binhLuan == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.maBDSP = new SelectList(db.BaiDangSanPhams, "maBDSP", "tenSP", binhLuan.maBDSP);
-            ViewBag.maBDTT = new SelectList(db.BaiDangThongTins, "maBDTT", "tieuDe", binhLuan.maBDTT);
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", binhLuan.maND);
-            return View(binhLuan);
-        }
-
-        // POST: NguoiDung/BinhLuans/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maBL,maND,maBDSP,maBDTT,noiDung,trangThai,ngayBL")] BinhLuan binhLuan)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(binhLuan).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.maBDSP = new SelectList(db.BaiDangSanPhams, "maBDSP", "tenSP", binhLuan.maBDSP);
-            ViewBag.maBDTT = new SelectList(db.BaiDangThongTins, "maBDTT", "tieuDe", binhLuan.maBDTT);
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", binhLuan.maND);
-            return View(binhLuan);
-        }
-
+        
         [HttpPost]
         public ActionResult InsertBinhLuansBDSP(BinhLuan binhLuanBDSP)
         {

@@ -25,20 +25,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             return View(quyenGops.ToList());
         }
 
-        // GET: NguoiDung/QuyenGops/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QuyenGop quyenGop = db.QuyenGops.Find(id);
-            if (quyenGop == null)
-            {
-                return HttpNotFound();
-            }
-            return View(quyenGop);
-        }
+        
 
         // GET: NguoiDung/QuyenGops/Create
         public ActionResult Create(int maLQG)
@@ -111,67 +98,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             return View(quyenGop);
         }
 
-        // GET: NguoiDung/QuyenGops/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QuyenGop quyenGop = db.QuyenGops.Find(id);
-            if (quyenGop == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.maLQG = new SelectList(db.LoaiQuyenGops, "maLQG", "tenLoai", quyenGop.maLQG);
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", quyenGop.maND);
-            return View(quyenGop);
-        }
-
-        // POST: NguoiDung/QuyenGops/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maQG,maND,ngayQG,maLQG,soLuong,donVi,trangThai,hinhAnh,ghiChu")] QuyenGop quyenGop)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(quyenGop).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.maLQG = new SelectList(db.LoaiQuyenGops, "maLQG", "tenLoai", quyenGop.maLQG);
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", quyenGop.maND);
-            return View(quyenGop);
-        }
-
-        // GET: NguoiDung/QuyenGops/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            QuyenGop quyenGop = db.QuyenGops.Find(id);
-            if (quyenGop == null)
-            {
-                return HttpNotFound();
-            }
-            return View(quyenGop);
-        }
-
-        // POST: NguoiDung/QuyenGops/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            QuyenGop quyenGop = db.QuyenGops.Find(id);
-            db.QuyenGops.Remove(quyenGop);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+     
         protected override void Dispose(bool disposing)
         {
             if (disposing)

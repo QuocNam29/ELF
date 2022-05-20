@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -277,6 +276,7 @@
     <Compile Include="Areas\NguoiDung\Controllers\DonQuasController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\KetQuasController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\LoaiQuyenGopsController.cs" />
+    <Compile Include="Areas\NguoiDung\Controllers\LoaiSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\QuaTangsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\QuizzController.cs" />
@@ -737,42 +737,25 @@
     <Content Include="Areas\NguoiDung\Views\TrangChu\DangKy.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TrangChu\DangKyTaiKhoan.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\NguoiDungs\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\NguoiDungs\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DangNhap\Dangnhap.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\_ViewStart.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TaiKhoans\Edit.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TaiKhoans\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_TrangCaNhan.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Details.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_TrangCaNhan.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\TraoDois\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\TraoDois\Index.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BinhLuans\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuyenGops\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Create.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Delete.cshtml" />
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Details.cshtml" />
@@ -780,16 +763,8 @@
     <Content Include="Areas\NguoiDung\Views\LoaiQuyenGops\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\Shared\_Layout_TrangCaNhan_NguoiDungKhac.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_TrangCaNhan_NDK.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DiemTichLuys\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangSanPhams\Index_BDSP_one.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ThongBaos\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ThongBaos\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ThongBaos\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\ThongBaos\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\ThongBaos\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuyenGops\Index.cshtml" />
     <Content Include="fonts\DangNhap\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
@@ -865,22 +840,11 @@
     <Content Include="Areas\NguoiDung\Views\Shared\DisplayQuanHuyen.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KiemDuyet_DangNhap\KiemDuyet_DangNhap.cshtml" />
     <Content Include="Areas\NguoiDung\Views\ThongBaos\ThongBao_header.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuaTangs\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuaTangs\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuaTangs\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\QuaTangs\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\QuaTangs\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DonQuas\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DonQuas\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DonQuas\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\DonQuas\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DonQuas\Index.cshtml" />
     <Content Include="Areas\NguoiDung\Views\DiemTichLuys\TongDTL_header.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaiDangThongTins\Index_TrangCaNhan_NDK.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaoCaos\Create.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaoCaos\Delete.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaoCaos\Details.cshtml" />
-    <Content Include="Areas\NguoiDung\Views\BaoCaos\Edit.cshtml" />
     <Content Include="Areas\NguoiDung\Views\BaoCaos\Index.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Details_BDTT.cshtml" />
     <Content Include="Areas\KiemDuyets\Views\KiemDuyets\Details_DonQG.cshtml" />
@@ -947,6 +911,7 @@
     <Content Include="Areas\Admin\Views\DiemTichLuys\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DiemTichLuys\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DiemTichLuys\List_DTL.cshtml" />
+    <Content Include="Areas\NguoiDung\Views\LoaiSanPhams\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1088,10 +1053,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -3,17 +3,19 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+    int maND = 0;
 }
 
 <div class="usr-pnl">
     <div class="pnl-bdy">
         <!-- Tab panes -->
         <div class="usr-itm">
-            <span class="cmpny-nm"><i class="fa fa-users"></i> Chi tiết điểm tích lũy</span>
+            <span class="cmpny-nm"><i class="fa fa-users"></i> Chi tiết điểm tích lũy người dùng</span>
             <ul class="usr-lst">
 
                 @foreach (var item in Model)
                 {
+                    maND = item.maND;
                     if (item.maBDSP != null)
                     {
                         <li>
@@ -46,7 +48,7 @@
                     {
                         <li>
                             <div class="usr-lst-inf">
-                                <h2><a title="" style="color: black   ">Người dùng đổi quà thành công <a style=" font-weight: bold; float: right; color: red ">  @item.diem điểm</a></a></h2>
+                                <h2><a title="" style="color: black   ">Người dùng đổi quà thành công <a style=" font-weight: bold; float: right; color: crimson ">  @item.diem điểm</a></a></h2>
                                 <i style="color:darkgreen; "> </i>
                             </div>
                         </li>
@@ -61,13 +63,87 @@
                         </li>
 
                     }
+                    else
+                    {
+                        if (item.diem > 0)
+                        {
+                            <li>
+                                <div class="usr-lst-inf">
+                                    <h2><a title="" style="color: black ">Admin cập nhật điểm (Cộng) của người dùng <a style=" font-weight: bold; float: right; color: cadetblue "> + @item.diem điểm</a></a></h2>
+                                    <i style="color:darkgreen; "> </i>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="usr-lst-inf">
+                                    <h2><a title="" style="color: black ">Admin cập nhật điểm (Trừ) của người dùng <a style=" font-weight: bold; float: right; color: crimson ">  @item.diem điểm</a></a></h2>
+                                    <i style="color:darkgreen; "> </i>
+                                </div>
+                            </li>
+                        }
+
+                    }
                 }
 
 
             </ul>
+
         </div>
+        <div class="usr-btns" style="float: left">
+
+            <a class="ad" href="@Url.Action("List_DTL", "DiemTichLuys")" title="">Quay lại</a>
+
+
+            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href=""><i class="fa fa-pencil"></i> Cập nhật điểm</a>
+        </div>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cập nhật điểm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @using (Html.BeginForm("Update_DTL", "DiemTichLuys"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("maND", maND)
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Điểm: </label>
+                                    <input type="number" class="form-control" id="recipient-name" name="diemTL">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Lý do: </label>
+                                    <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    }
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+<script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+</script>
+
 
 
 

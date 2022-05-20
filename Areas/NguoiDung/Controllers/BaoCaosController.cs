@@ -25,21 +25,7 @@ namespace ELF.Areas.NguoiDung.Controllers
             
         }
 
-        // GET: NguoiDung/BaoCaos/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BaoCao baoCao = db.BaoCaos.Find(id);
-            if (baoCao == null)
-            {
-                return HttpNotFound();
-            }
-            return View(baoCao);
-        }
-
+       
         // GET: NguoiDung/BaoCaos/Create
         public ActionResult Create(int maND, int maND_K, string lydo)
         {
@@ -54,40 +40,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         }
 
        
-        // GET: NguoiDung/BaoCaos/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BaoCao baoCao = db.BaoCaos.Find(id);
-            if (baoCao == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", baoCao.maND);
-            ViewBag.maNDKhac = new SelectList(db.NguoiDungs, "maND", "hoVaTen", baoCao.maNDKhac);
-            return View(baoCao);
-        }
-
-        // POST: NguoiDung/BaoCaos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maBC,maND,maNDKhac,lyDo")] BaoCao baoCao)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(baoCao).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", baoCao.maND);
-            ViewBag.maNDKhac = new SelectList(db.NguoiDungs, "maND", "hoVaTen", baoCao.maNDKhac);
-            return View(baoCao);
-        }
+       
 
         // GET: NguoiDung/BaoCaos/Delete/5
         public ActionResult Delete(int? id)

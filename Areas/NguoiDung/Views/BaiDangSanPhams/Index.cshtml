@@ -49,6 +49,19 @@
     </div>
 </div> <!-- add post new box -->
 
+<div class="post-filter-sec">
+   @* <form method="post" class="filter-form">
+        @using (@Html.BeginForm("Index_DonQG", "KiemDuyets", FormMethod.Get))
+        {
+            <input type="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword">
+            <button><i class="ti-search"></i></button>
+        }
+    </form>*@
+
+   @Html.Action("Index", "LoaiSanPhams")
+
+</div>
+
 @if (Model.Count() == 0)
 {
     <div class="error-meta">

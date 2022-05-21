@@ -1,13 +1,35 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
 
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4>Import câu hỏi</h4>
+    </div>
 
-@using (Html.BeginForm("Index", "AddCauHois", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <input type="file" name="postedFile" style="margin-top: 150px" />
-    <input type="submit" value="Import" />
-}
+    <!-- Panel Title -->
+    <div class="pnl-bdy billing-sec">
 
+        @if (ViewBag.FileStatus != null)
+        {
+            <div class="alert alert-warning" role="alert">
+                @ViewBag.FileStatus
+            </div>
+        }
+
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @ViewBag.Success
+            </div>
+        }
+
+        @using (Html.BeginForm("Index", "AddCauHois", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" accept=".xlsx, .xls" name="postedFile" />
+            <input type="submit" value="Import" />
+        }
+    </div>
+    <!-- Panel Body -->
+</div>

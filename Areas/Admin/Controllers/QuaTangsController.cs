@@ -97,35 +97,39 @@ namespace ELF.Areas.Admin.Controllers
         }
 
         // GET: Admin/QuaTangs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string tenQuaTang, int diemDoi, string ghichu, HttpPostedFileBase img)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             QuaTang quaTang = db.QuaTangs.Find(id);
-            if (quaTang == null)
+            string oldfilePath = quaTang.hinhAnh ;
+            string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
+            if (img != null && img.ContentLength > 0)
             {
-                return HttpNotFound();
+                var fileName = time + System.IO.Path.GetFileName(img.FileName);
+                string path = System.IO.Path.Combine(
+                Server.MapPath("~/images/resources/"), fileName);
+                img.SaveAs(path);
+                quaTang.hinhAnh = time + img.FileName;
+                string fullPath = Request.MapPath(oldfilePath);
+
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
             }
-            return View(quaTang);
+            else
+            {
+               
+            }
+            quaTang.tenQuaTang = tenQuaTang;
+            quaTang.diemDoi = diemDoi;
+            quaTang.ghiChu = ghichu;
+            quaTang.ngayThayDoi = DateTime.Now;
+            db.Entry(quaTang).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details", "QuaTangs", new { id = id });
         }
 
-        // POST: Admin/QuaTangs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maQuaTang,tenQuaTang,diemDoi,trangThai,ngayTao,ngayThayDoi,ghiChu,hinhAnh")] QuaTang quaTang)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(quaTang).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(quaTang);
-        }
+       
 
         // GET: Admin/QuaTangs/Delete/5
         public ActionResult Delete(int? id)

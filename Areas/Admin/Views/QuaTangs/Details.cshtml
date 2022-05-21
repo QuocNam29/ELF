@@ -62,40 +62,54 @@
 
                         <div class="adrs-frm">
                             <h4>Thông tin quà tặng</h4>
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <input type="text" placeholder="Tên Quà" value="@Model.tenQuaTang">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input type="number" placeholder="Điểm đổi"  value="@Model.diemDoi">
-                                            </div>
+                            @using (Html.BeginForm("Edit", "QuaTangs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", Model.maQuaTang)
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input type="text" placeholder="Tên Quà" value="@Model.tenQuaTang" name="tenQuaTang">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="number" placeholder="Điểm đổi" value="@Model.diemDoi" name="diemDoi">
+                                                </div>
 
-                                            <div class="col-md-12">
-                                                <input type="text" placeholder="Loại vật dụng"  value="@Model.ghiChu">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="cmp-bnr">
-                                                    <label class="fileContainer">
-                                                        <i class="fa fa-camera" style="line-height: 128px;"></i>
-                                                        <input id="chng2" type="file">
-                                                    </label>
-                                                    <img id="utp2" src="~/images/resources/@Model.hinhAnh"  alt="">
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Loại vật dụng" value="@Model.ghiChu" name="ghiChu">
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="cmp-bnr">
+                                                        <label class="fileContainer">
+                                                            <i class="fa fa-camera" style="line-height: 128px;"></i>
+                                                            <input accept="image/*" id="chng2" type="file" name="img">
+
+                                                            <script>
+                                                                chng2.onchange = evt => {
+                                                                    const [file] = chng2.files
+                                                                    if (file) {
+                                                                        blah.src = URL.createObjectURL(file)
+                                                                    }
+                                                                }
+                                                            </script>
+                                                        </label>
+                                                        <img id="utp2" src="~/images/resources/@Model.hinhAnh" alt="">
+                                                    </div>
+                                                </div>
+
+                                            </div>
 
                                         </div>
-
                                     </div>
-                                </div>
-                                <a href="#" title="" class="sv-btn">Lưu</a>
-                            </form>
+                                    <button type="submit" title="" class="sv-btn">Lưu</button>
+                                </form>
+                            }
 
                         </div><!-- Address Form -->
                     </div><!-- Panel Body -->

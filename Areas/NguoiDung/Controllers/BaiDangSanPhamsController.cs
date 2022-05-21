@@ -114,7 +114,9 @@ namespace ELF.Areas.NguoiDung.Controllers
                     if (img != null)
                     {
                         string fileName = System.IO.Path.GetFileName(img.FileName);
+
                         filePath = "~/images/" + time + fileName;
+                        
                         Console.WriteLine(filePath);
                         img.SaveAs(Server.MapPath(filePath));
                         /*string path = System.IO.Path.Combine(

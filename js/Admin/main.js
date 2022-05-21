@@ -114,10 +114,10 @@ $(document).ready(function(){
 	});
 	
 	//location management page 
-	$('.cmp-bnr > a').on('click',function(){
+/*	$('.cmp-bnr > a').on('click',function(){
 			$('.lc-edt').addClass('active');
 			return false;
-		});
+		});*/
 		$('.pp-cls').on('click',function(){
 			$('.lc-edt').removeClass('active');
 			return false;

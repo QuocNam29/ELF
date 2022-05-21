@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,16 +48,52 @@ namespace ELF.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maQuaTang,tenQuaTang,diemDoi,trangThai,ngayTao,ngayThayDoi,ghiChu,hinhAnh")] QuaTang quaTang)
+        public ActionResult Create(string tenQuaTang, int diemDoi, string ghichu, HttpPostedFileBase img)
         {
-            if (ModelState.IsValid)
-            {
-                db.QuaTangs.Add(quaTang);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            QuaTang quaTang = new QuaTang();
+           
+                string filePath = "";
+                string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
+                if (img != null)
+                {
+                    string fileName = System.IO.Path.GetFileName(img.FileName);
+                    filePath =  time + fileName;
+                    Console.WriteLine(  filePath);
+                    img.SaveAs(Server.MapPath("~/images/resources/" + filePath));
+                    /*string path = System.IO.Path.Combine(
+                             Server.MapPath("~/images/"), fileName);*/
 
-            return View(quaTang);
+                    /* img.SaveAs(path);*/
+                   
+
+                   
+                    quaTang.tenQuaTang = tenQuaTang;
+                    quaTang.ghiChu = ghichu;
+                    quaTang.diemDoi = diemDoi;
+                    quaTang.ngayTao = DateTime.Now;
+                    quaTang.hinhAnh = filePath;
+                quaTang.trangThai = "Còn";
+                    db.QuaTangs.Add(quaTang);
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.FileStatus = "Bạn chưa chọn hình ảnh";
+
+                }
+                ViewBag.FileStatus = "File uploaded successfully.";
+            
+           
+          
+                
+               
+                return RedirectToAction("Index");
+            
+
+           
         }
 
         // GET: Admin/QuaTangs/Edit/5

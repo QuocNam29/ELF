@@ -5,71 +5,102 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
 
-<h2>Details</h2>
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4>Quà tặng</h4>
 
-<div>
-    <h4>QuaTang</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tenQuaTang)
-        </dt>
+      
+    </div><!-- Panel Title -->
+    <div class="pnl-bdy">
 
-        <dd>
-            @Html.DisplayFor(model => model.tenQuaTang)
-        </dd>
+        <div class="cmp-loc">
+            <div class="cmp-sc1">
+                <div class="cmp-thm">
+                    <img src="~/images/resources/@Model.hinhAnh" alt="">
+                </div>
+            </div>
+            <div class="cmp-sc2">
+                <h2>@Model.tenQuaTang</h2>
+                <span>Vật dụng:  @Model.ghiChu</span>
+                <span>Tình trạng: @Model.trangThai</span>
+            </div>
+            <div class="cmp-sc3">
+                <h2>Thời gian tạo quà </h2>
+                <span><i class="fa fa-clock-o"></i> @Model.ngayTao</span>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.diemDoi)
-        </dt>
+            </div>
+            <div class="cmp-sc4">
+                <div class="cmp-bnr">
+                    <img src="~/images/resources/@Model.hinhAnh" alt="">
+                    <a href="#" title="" class="scrh-grp-btn" style="width: auto "><i class="fa fa-pencil"></i> Edit</a>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.diemDoi)
-        </dd>
+        </div>
+        <div class="usr-btns" style="float: right" >
+            <a class="ad-usr" href="#" title="">Xóa quà tặng</a>
+            <a class="scrh-grp-btn" href="#" title="" style="width: auto "><i class="fa fa-pencil"></i> Chỉnh sửa</a>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.trangThai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.trangThai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayTao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ngayTao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayThayDoi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ngayThayDoi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ghiChu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.hinhAnh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hinhAnh)
-        </dd>
-
-    </dl>
+    </div><!-- Panel Body -->
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maQuaTang }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="popup-wrp2 srch-grp-pp">
+    <span class="pp-cls"></span>
+    <div class="popup-innr loc-edt" style="max-width: 1040px;">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 500px;">
+            <div class="scrl" style="overflow: hidden; width: auto; height: 500px;">
+                <div class="usr-pnl">
+                    <div class="pnl-tl">
+                        <h4>Thêm quà tặng</h4>
+                        <ul class="brd-crmb">
+                            <li><a href="#" title=""><i class="fa fa-home"></i></a></li>
+                            <li>Locations</li>
+                        </ul>
+                    </div><!-- Panel Title -->
+                    <div class="pnl-bdy">
+
+                        <div class="adrs-frm">
+                            <h4>Thông tin quà tặng</h4>
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <input type="text" placeholder="Tên Quà" value="@Model.tenQuaTang">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="number" placeholder="Điểm đổi"  value="@Model.diemDoi">
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <input type="text" placeholder="Loại vật dụng"  value="@Model.ghiChu">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="cmp-bnr">
+                                                    <label class="fileContainer">
+                                                        <i class="fa fa-camera" style="line-height: 128px;"></i>
+                                                        <input id="chng2" type="file">
+                                                    </label>
+                                                    <img id="utp2" src="~/images/resources/@Model.hinhAnh"  alt="">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <a href="#" title="" class="sv-btn">Lưu</a>
+                            </form>
+
+                        </div><!-- Address Form -->
+                    </div><!-- Panel Body -->
+                </div><!-- User panel -->
+            </div>
+        </div>
+    </div>
+</div>

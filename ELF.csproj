@@ -461,6 +461,7 @@
     <Content Include="css\Admin\main-style.css" />
     <Content Include="css\Admin\owl.carousel.css" />
     <Content Include="css\Admin\responsive.css" />
+    <Content Include="css\Admin\wickedpicker.css" />
     <Content Include="css\chosen-sprite%402x.html" />
     <Content Include="css\chosen-sprite.html" />
     <Content Include="css\color.css" />

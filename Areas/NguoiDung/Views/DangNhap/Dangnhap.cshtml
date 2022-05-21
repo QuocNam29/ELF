@@ -68,24 +68,25 @@
                 </div>
             </form>
 
-                <div class="text-center p-t-57 p-b-20">
-                    <span class="txt1">
-                        Hoặc đăng nhập bằng
-                    </span>
-                </div>
+            <div class="text-center p-t-57 p-b-20">
+                <span class="txt1">
+                    Hoặc đăng nhập bằng
+                </span>
+            </div>
 
-                <div class="flex-c p-b-112">
-                    <section id="socialLoginForm">
-                        @Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                    </section>
-                </div>
+            <div class="flex-c p-b-112">
+                <section id="socialLoginForm">
+                    @Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+            </div>
 
-                <div class="text-center">
-                    <a href="@Url.Action("Create", "NguoiDungs")" class="txt2 hov1">
-                        Đăng ký
-                    </a>
-                </div>
-                     
+
+            <div class="text-center">
+                <a href="@Url.Action("Create", "NguoiDungs")" class="txt2 hov1">
+                    Đăng ký
+                </a>
+            </div>
+
         </div>
     </div>
 

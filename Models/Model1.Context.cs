@@ -9,7 +9,6 @@
 
 namespace ELF.Models
 {
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -23,13 +22,7 @@ namespace ELF.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<IdentityUser>().ToTable("Users");
-            modelBuilder.Entity<IdentityRole>().ToTable("Role");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
-            //throw new UnintentionalCodeFirstException();
+            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
@@ -60,7 +53,6 @@ namespace ELF.Models
         public virtual DbSet<QuanHuyen> QuanHuyens { get; set; }
         public virtual DbSet<QuaTang> QuaTangs { get; set; }
         public virtual DbSet<QuyenGop> QuyenGops { get; set; }
-        public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<Tinh_ThanhPho> Tinh_ThanhPho { get; set; }

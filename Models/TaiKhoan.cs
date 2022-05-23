@@ -19,7 +19,6 @@ namespace ELF.Models
         {
             this.ChucNangTaiKhoans = new HashSet<ChucNangTaiKhoan>();
             this.Messages = new HashSet<Message>();
-            this.Rooms = new HashSet<Room>();
         }
     
         public int ID { get; set; }
@@ -35,7 +34,5 @@ namespace ELF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }
         public virtual NguoiDung NguoiDung { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace ELF.Models
     
         public int maChuDe { get; set; }
         public string tenChuDe { get; set; }
+        public string trangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CauHoi> CauHois { get; set; }

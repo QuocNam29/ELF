@@ -18,9 +18,7 @@ namespace ELF.Models
         public string Content { get; set; }
         public Nullable<System.DateTime> Timestamp { get; set; }
         public Nullable<int> FromUserId { get; set; }
-        public Nullable<int> ToRoomId { get; set; }
     
-        public virtual Room Room { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

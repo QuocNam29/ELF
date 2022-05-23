@@ -28,20 +28,55 @@
             </div>
         <!-- Creat Group Form -->
         <div class="usr-itm">
-            <span class="cmpny-nm"><i class="fa fa-users"></i>Danh sách chủ đề</span>
+            <span class="cmpny-nm">Danh sách chủ đề</span>
             <ul class="usr-lst">
                 @foreach (var item in Model)
                 {
-                    <li>
-                        <div class="usr-lst-inf">
-                            <h2><a href="@Url.Action("Details", "ChucNangTaiKhoans")" title="">@item.tenChuDe</a></h2>
-                            <i>Mã chủ đề: @item.maChuDe</i>
+                    if (item.trangThai != "Đã xóa")
+                    {
+                        var myModal = "exampleModalCenter" + item.maChuDe;
+                <li>
+                    <div class="usr-lst-inf">
+                        <h2><a href="@Url.Action("Index", "CauHois", new { maCD = item.maChuDe})" title="">@item.tenChuDe</a></h2>
+                        <i>Mã chủ đề: @item.maChuDe</i>
+                    </div>
+                    <div class="usr-btns">
+
+                        <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa chủ đề</a>
+                        
+
+                        <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc muốn xoá bộ câu hỏi và chủ đề "@item.tenChuDe""
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        @using (Html.BeginForm("Delete", "ChuDeBaiQuizs", new { id = item.maChuDe }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                            <button type="submit" class="btn btn-primary">Xoá</button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="usr-btns">
-                            <a class="ad" href="@Url.Action("Delete", "ChuDeBaiQuizs", new { id = item.maChuDe})" title="">Xóa chủ đề</a>
-                            <a class="ad" href="#" title="">Bộ câu hỏi</a>
-                        </div>
-                    </li>
+                    </div>
+
+                   
+                </li>
+
+                      
+
+                    }
                 }
             </ul>
             <!-- Users List -->

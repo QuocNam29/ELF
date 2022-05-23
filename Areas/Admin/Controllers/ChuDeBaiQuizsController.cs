@@ -79,28 +79,14 @@ namespace ELF.Areas.Admin.Controllers
         // GET: Admin/ChuDeBaiQuizs/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             ChuDeBaiQuiz chuDeBaiQuiz = db.ChuDeBaiQuizs.Find(id);
-            if (chuDeBaiQuiz == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chuDeBaiQuiz);
-        }
-
-        // POST: Admin/ChuDeBaiQuizs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ChuDeBaiQuiz chuDeBaiQuiz = db.ChuDeBaiQuizs.Find(id);
-            db.ChuDeBaiQuizs.Remove(chuDeBaiQuiz);
+            chuDeBaiQuiz.trangThai = "Đã xóa";
+            db.Entry(chuDeBaiQuiz).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+           }
+
+      
 
         protected override void Dispose(bool disposing)
         {

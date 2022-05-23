@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ELF.Models.CauHoi>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4><b>Chủ đề:</b>  @TempData["TenChuDe"].ToString()</h4>
+        <a href="#" title="" class="crt-btn"><i class="fa fa-plus"></i></a>
+    </div>
+    <!-- Panel Title -->
+    <div class="pnl-bdy">
+        <div class="crt-grp">
+            <h4>Tạo chủ đề</h4>
+            @using (Html.BeginForm("Create", "ChuDeBaiQuizs"))
+            {
+                @Html.AntiForgeryToken()
+                <form>
+
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz cần thêm mới...">
+                    <button type="submit" class="btn1 crt-grp-btn">Thêm mới</button>
+
+                </form>
+            }
+        </div>
+        <!-- Creat Group Form -->
+        <div class="usr-itm">
+            <span class="cmpny-nm">Danh sách câu hỏi</span>
+            <ul class="usr-lst">
+                @foreach (var item in Model)
+                {
+                   
+                        var myModal = "exampleModalCenter" + item.maCauHoi;
+                        <li>
+                            <div class="usr-lst-inf">
+                                <h2><a href="@Url.Action("Index_DA", "CauHois", new { maCH = item.maCauHoi})" title="">@item.noiDungCauHoi</a></h2>
+                                <i>Ngày tạo: @item.ngayTao</i>
+                            </div>
+                            <div class="usr-btns">
+
+                                <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa câu hỏi</a>
+                                
+
+                                <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Bạn có chắc muốn xoá câu hỏi "@item.noiDungCauHoi""
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @using (Html.BeginForm("Delete", "CauHois", new { id = item.maCauHoi }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                                    <button type="submit" class="btn btn-primary">Xoá</button>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </li>
+
+
+
+                    
+                }
+            </ul>
+            <!-- Users List -->
+        </div>
+
+        <!-- User Item -->
+    </div>
+    <!-- Panel Body -->
+
+</div>

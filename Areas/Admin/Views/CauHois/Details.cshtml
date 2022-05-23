@@ -1,0 +1,51 @@
+﻿@model ELF.Models.CauHoi
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CauHoi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.noiDungCauHoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noiDungCauHoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayThayDoi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayThayDoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChuDeBaiQuiz.tenChuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuDeBaiQuiz.tenChuDe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maCauHoi }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

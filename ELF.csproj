@@ -286,6 +286,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AddCauHoisController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CauHoisController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChucNangTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChuDeBaiQuizsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiemTichLuysController.cs" />
@@ -905,6 +906,12 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\CauHois\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CauHois\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CauHois\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CauHois\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CauHois\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CauHois\Index_DA.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

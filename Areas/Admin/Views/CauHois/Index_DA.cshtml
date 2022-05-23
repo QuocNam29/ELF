@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ELF.Models.DapAn>
+
+@{
+    ViewBag.Title = "Index_DA";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+    int i = 0 ;
+}
+
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4><b>Câu hỏi</h4>
+        <a href="#" title="" class="crt-btn"><i class="fa fa-plus"></i></a>
+    </div>
+    <!-- Panel Title -->
+    <div class="pnl-bdy">
+        <div class="crt-grp">
+            <h4>Tạo chủ đề</h4>
+            @using (Html.BeginForm("Create", "ChuDeBaiQuizs"))
+            {
+                @Html.AntiForgeryToken()
+                <form>
+
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz cần thêm mới...">
+                    <button type="submit" class="btn1 crt-grp-btn">Thêm mới</button>
+
+                </form>
+            }
+        </div>
+        <!-- Creat Group Form -->
+        <div class="usr-itm">
+            <span class="cmpny-nm">Câu hỏi: @TempData["NoiDungCauHoi"].ToString()</span>
+            <ul class="usr-lst">
+                @foreach (var item in Model)
+                {
+                    i++;
+                    var myModal = "exampleModalCenter" + item.maCauHoi;
+                    <li>
+                        <div class="usr-lst-inf">
+                            <h2><a  title="" style="color: black;  font-weight: normal;">@i. @item.NoiDungDapAn</a></h2>
+                            
+                        </div>
+
+
+                    </li>
+                }
+            </ul>
+            <!-- Users List -->
+        </div>
+
+        <!-- User Item -->
+    </div>
+    <!-- Panel Body -->
+
+</div>

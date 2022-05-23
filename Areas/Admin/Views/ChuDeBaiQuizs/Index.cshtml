@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ELF.Models.ChuDeBaiQuiz>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4>Chủ đề bài Quiz</h4>
+        <a href="#" title="" class="crt-btn"><i class="fa fa-plus"></i></a>
+    </div>
+    <!-- Panel Title -->
+    <div class="pnl-bdy">
+        <div class="crt-grp">
+            <h4>Tạo chủ đề</h4>
+            @using (Html.BeginForm("Create", "ChuDeBaiQuizs"))
+            {
+                @Html.AntiForgeryToken()
+                <form>
+
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz cần thêm mới...">
+                    <button type="submit" class="btn1 crt-grp-btn">Thêm mới</button>
+                    
+                </form>
+            }
+            </div>
+        <!-- Creat Group Form -->
+        <div class="usr-itm">
+            <span class="cmpny-nm"><i class="fa fa-users"></i>Danh sách chủ đề</span>
+            <ul class="usr-lst">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <div class="usr-lst-inf">
+                            <h2><a href="@Url.Action("Details", "ChucNangTaiKhoans")" title="">@item.tenChuDe</a></h2>
+                            <i>Mã chủ đề: @item.maChuDe</i>
+                        </div>
+                        <div class="usr-btns">
+                            <a class="ad" href="@Url.Action("Delete", "ChuDeBaiQuizs", new { id = item.maChuDe})" title="">Xóa chủ đề</a>
+                            <a class="ad" href="#" title="">Bộ câu hỏi</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <!-- Users List -->
+        </div>
+
+        <!-- User Item -->
+    </div>
+    <!-- Panel Body -->
+
+</div>

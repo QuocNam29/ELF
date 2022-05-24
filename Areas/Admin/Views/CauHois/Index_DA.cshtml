@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Index_DA";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
-    int i = 0 ;
+    int i = 0;
+    int maCD = -1;
 }
 
 <div class="usr-pnl">
@@ -33,12 +34,21 @@
             <ul class="usr-lst">
                 @foreach (var item in Model)
                 {
+                    maCD = item.CauHoi.maChuDe;
                     i++;
                     var myModal = "exampleModalCenter" + item.maCauHoi;
                     <li>
                         <div class="usr-lst-inf">
-                            <h2><a  title="" style="color: black;  font-weight: normal;">@i. @item.NoiDungDapAn</a></h2>
-                            
+                            @if (item.dapAn1 == true)
+                            {
+                                <h2><a title="" style="color: red;  font-weight: normal;">@i. @item.NoiDungDapAn</a></h2>
+                            }
+                            else
+                            {
+                                <h2><a title="" style="color: black;  font-weight: normal;">@i. @item.NoiDungDapAn</a></h2>
+                            }
+
+
                         </div>
 
 
@@ -47,7 +57,9 @@
             </ul>
             <!-- Users List -->
         </div>
-
+        <div class="usr-btns" style="float: left">
+            <a class="ad" href="@Url.Action("Index", "CauHois", new {maCD = maCD})" title="">Quay lại</a> 
+        </div>
         <!-- User Item -->
     </div>
     <!-- Panel Body -->

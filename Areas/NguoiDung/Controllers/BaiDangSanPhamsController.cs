@@ -105,8 +105,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "maBDSP,maND,maLSP,tenSP,noiDung,hinhAnh,video,maTT,gia,soLuong,ngayDang,ngayThayDoi,ghiChu")] BaiDangSanPham baiDangSanPham, int maND, HttpPostedFileBase img)
         {
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     string filePath = "";
@@ -155,7 +154,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                     }
                 }
                
-            }
+            
 
             ViewBag.maLSP = new SelectList(db.LoaiSanPhams, "maLSP", "tenLSP", baiDangSanPham.maLSP);
             ViewBag.maND = new SelectList(db.NguoiDungs, "maND", "hoVaTen", baiDangSanPham.maND);

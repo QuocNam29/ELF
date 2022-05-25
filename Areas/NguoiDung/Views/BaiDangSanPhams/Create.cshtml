@@ -28,33 +28,51 @@
             </div>
             <div class="modal-body">
                 <div class="form-group half" style="width:320px">
-                    @Html.EditorFor(model => model.tenSP, new { htmlAttributes = new { @class = "form-control" } })
+                    <label class="control-label" for="input" style="position: absolute">Tên sản phẩm</label>
+                    @Html.EditorFor(model => model.tenSP, new
+                    {
+                        htmlAttributes = new
+               {
+                   @class = "form-control",
+                   
+
+                   @required = "required",
+                   @oninvalid = "this.setCustomValidity('Bạn chưa nhập tên sản phẩm')",
+                   @oninput = "setCustomValidity('')",
+               }
+                    })
                     @Html.ValidationMessageFor(model => model.tenSP, "", new { @class = "text-danger" })
-                    <label class="control-label" for="input">Tên sản phẩm</label>
+                    <label class="control-label" for="input" style="position: absolute">Tên sản phẩm</label>
                     <i class="mtrl-select" style="width:300px"></i>
                 </div>
                 <div class="form-group half" style="width:320px">
-                    @Html.DropDownList("maLSP", null, htmlAttributes: new { style = "height: 30.4px;", @class = "form-control" })
+                    @Html.DropDownList("maLSP", null, htmlAttributes: new { @style = "height: 30.4px;", @class = "form-control",
+                  
+               })
                     @Html.ValidationMessageFor(model => model.maLSP, "", new { @class = "text-danger" })
                     <label class="control-label" for="input">Loại sản phẩm</label>
                     <i class="mtrl-select" style="width:320px"></i>
                 </div>
                 <div class="form-group">
                     <div class="form-group half" style="width:320px">
-                        @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control",
+                      
+                   } })
+                        @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" , })
                         <label class="control-label" for="input">Giá sản phẩm</label>
                         <i class="mtrl-select" style="width:300px"></i>
                     </div>
                     <div class="form-group half" style="width:320px">
-                        @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @class = "form-control",
+                    
+                   } })
                         @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
                         <label class="control-label" for="input">Số lượng</label>
                         <i class="mtrl-select" style="width:320px"></i>
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { style = "height: 50px;", @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { @style = "height: 50px;", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
                     <label class="control-label" for="textarea">Mô tả</label>
                     <i class="mtrl-select"></i>

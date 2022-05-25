@@ -17,13 +17,14 @@
             @using (Html.BeginForm("Create", "ChuDeBaiQuizs"))
             {
                 @Html.AntiForgeryToken()
-                <form>
+        <form>
 
-                    <i class="fa fa-user"></i>
-                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz cần thêm mới...">
-                    <button type="submit" class="btn1 crt-grp-btn">Thêm mới</button>
-                    
-                </form>
+            <i class="fa fa-user"></i>
+            
+            <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz cần thêm mới..." required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên chủ đề bài Quiz')" oninput="setCustomValidity('')">
+            <button type="submit" class="btn1 crt-grp-btn">Thêm mới</button>
+
+        </form>
             }
             </div>
         <!-- Creat Group Form -->

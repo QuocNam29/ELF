@@ -98,7 +98,8 @@
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Nội dung câu hỏi" value="@TempData["NoiDungCauHoi"].ToString()" name="cauHoi" style="width: 134%">
+                                                    <input type="text" placeholder="Nội dung câu hỏi" value="@TempData["NoiDungCauHoi"].ToString()" name="cauHoi" style="width: 134%"
+                                                            required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập câu hỏi')" oninput="setCustomValidity('')">
                                                 </div>
 
                                                 @foreach (var item in Model)
@@ -107,7 +108,8 @@
                                                     {
                                                         @Html.Hidden("maDA1", item.maDapAn)
                                                         <div class="col-md-8">
-                                                            <input type="text" placeholder="Đáp án 1" value="@item.NoiDungDapAn" name="DA1">
+                                                            <input type="text" placeholder="Đáp án 1" value="@item.NoiDungDapAn" name="DA1"
+                                                                    required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án 1')" oninput="setCustomValidity('')">
                                                         </div>
                                                         if (item.dapAn1 == true)
                                                         {
@@ -119,7 +121,8 @@
                                                     {
                                                         @Html.Hidden("maDA2", item.maDapAn)
                                                         <div class="col-md-4">
-                                                            <input type="text" placeholder="Đáp án 2" name="DA2" value="@item.NoiDungDapAn" style="width: 205%">
+                                                            <input type="text" placeholder="Đáp án 2" name="DA2" value="@item.NoiDungDapAn" style="width: 205%"
+                                                                    required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án 2')" oninput="setCustomValidity('')">
                                                         </div>
                                                         if (item.dapAn1 == true)
                                                         {
@@ -131,7 +134,8 @@
                                                     {
                                                         @Html.Hidden("maDA3", item.maDapAn)
                                                         <div class="col-md-8">
-                                                            <input type="text" placeholder="Đáp án 3" value="@item.NoiDungDapAn" name="DA3">
+                                                            <input type="text" placeholder="Đáp án 3" value="@item.NoiDungDapAn" name="DA3"
+                                                                    required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án 3')" oninput="setCustomValidity('')">
                                                         </div>
                                                         if (item.dapAn1 == true)
                                                         {
@@ -144,7 +148,8 @@
                                                         @Html.Hidden("maDA4", item.maDapAn)
 
                                                     <div class="col-md-4">
-                                                        <input type="text" placeholder="Đáp án 4" name="DA4" value="@item.NoiDungDapAn" style="width: 205%">
+                                                        <input type="text" placeholder="Đáp án 4" name="DA4" value="@item.NoiDungDapAn" style="width: 205%" 
+                                                               required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án 4')" oninput="setCustomValidity('')">
                                                     </div>
                                                     if (item.dapAn1 == true)
                                                     {
@@ -158,7 +163,8 @@
 
 
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Đáp án đúng" value="@DA" name="DA_true">
+                                                    <input type="text" placeholder="Đáp án đúng" value="@DA" name="DA_true"
+                                                            required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án đúng')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                         </div>

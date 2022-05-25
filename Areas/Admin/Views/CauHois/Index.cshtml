@@ -22,7 +22,8 @@
                 <form>
 
                     <i class="fa fa-user"></i>
-                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz mới...">
+                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz mới..."
+                            required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên chủ đề Quiz mới)" oninput="setCustomValidity('')">
                     <button type="submit" class="btn1 crt-grp-btn">Thay đổi</button>
 
                 </form>
@@ -116,25 +117,25 @@
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Nội dung câu hỏi" name="cauHoi" style="width: 134%">
+                                                    <input type="text" placeholder="Nội dung câu hỏi" name="cauHoi" style="width: 134%" required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập câu hỏi')" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="text" placeholder="Đáp án 1" name="DA1">
+                                                    <input type="text" placeholder="Đáp án 1" name="DA1"  required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án 1')" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" placeholder="Đáp án 2" name="DA2" style="width: 205%">
+                                                    <input type="text" placeholder="Đáp án 2" name="DA2" style="width: 205%"  required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án 2')" oninput="setCustomValidity('')">
                                                 </div>
 
                                                 <div class="col-md-8">
-                                                    <input type="text" placeholder="Đáp án 3" name="DA3">
+                                                    <input type="text" placeholder="Đáp án 3" name="DA3"  required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án 3')" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" placeholder="Đáp án 4" name="DA4" style="width: 205%">
+                                                    <input type="text" placeholder="Đáp án 4" name="DA4" style="width: 205%" required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án 4')" oninput="setCustomValidity('')">
                                                 </div>
                                                 <br />
 
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Đáp án đúng" name="DA_true" >
+                                                    <input type="text" placeholder="Đáp án đúng" name="DA_true"  required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập đáp án đúng')" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                         </div>

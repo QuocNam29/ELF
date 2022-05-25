@@ -83,30 +83,12 @@
                         </div>
                         
                        
-                        <div class="form-row">
-                            <div class="name">Mật khẩu </div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input type="password" class="input--style-5" name="matKhau">
-                                </div>
-                                @Html.ValidationMessage("loimatkhau", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Xác nhận<br />mật khẩu </div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input type="password" class="input--style-5" name="xacNhanMatKhau">
-                                </div>
-                                @Html.ValidationMessage("loixacnhanmatkhau", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                       
 
                         <br />
 
                         <div>
-                            <button class="btn btn--radius-2 btn--grey" type="button" onclick="window.location.href = '@Url.Action("DangNhap", "DangNhap")'">Quay về</button>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Đăng ký</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Hoàn thành</button>
                         </div>
                     }
                 </div>

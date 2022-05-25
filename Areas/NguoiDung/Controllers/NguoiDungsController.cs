@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using ELF.Areas.NguoiDung.Middleware;
 using ELF.Models;
 namespace ELF.Areas.NguoiDung.Controllers
@@ -46,6 +47,12 @@ namespace ELF.Areas.NguoiDung.Controllers
         {
             
             ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP");
+            return View();
+        }
+
+        public ActionResult VLU_Create()
+        {
+
             return View();
         }
         public List<Tinh_ThanhPho> GetTinh_ThanhPhosList()
@@ -173,6 +180,108 @@ namespace ELF.Areas.NguoiDung.Controllers
             ViewBag.maTinh_TP = new SelectList(GetTinh_ThanhPhosList(), "maTinh_TP", "tenTinh_TP", nguoiDung.maTinh_TP);
             return View(nguoiDung);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VLU_Create([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, string email, string matKhau, string xacNhanMatKhau, string gioiTinh)
+        {
+            if (string.IsNullOrEmpty(gioiTinh))
+            {
+                ModelState.AddModelError("loigioitinh", "Bạn chưa chọn giới tính");
+            }                      
+            if (string.IsNullOrEmpty(matKhau))
+            {
+                ModelState.AddModelError("loimatkhau", "Bạn chưa nhập mật khẩu");
+            }
+            if (string.IsNullOrEmpty(xacNhanMatKhau))
+            {
+                ModelState.AddModelError("loixacnhanmatkhau", "Bạn chưa xác nhận mật khẩu");
+            }
+            if (ModelState.IsValid)
+            {
+               
+                if (GetMD5(matKhau) == GetMD5(xacNhanMatKhau))
+                {
+                    nguoiDung.gioiTinh = int.Parse(gioiTinh);
+                    db.NguoiDungs.Add(nguoiDung);
+                    db.SaveChanges();
+
+                    int maND = nguoiDung.maND;
+                    TaiKhoan taiKhoan = new TaiKhoan();
+                    taiKhoan.email = email;
+                    taiKhoan.matKhau = GetMD5(matKhau);
+                    taiKhoan.xacNhanMatKhau = GetMD5(xacNhanMatKhau);
+                    taiKhoan.trangThai = true;
+                    taiKhoan.maND = maND;
+                    taiKhoan.ngayTao = DateTime.Now;
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.TaiKhoans.Add(taiKhoan);
+                    db.SaveChanges();
+
+                    int id_taiKhoan = taiKhoan.ID;
+                    ChucNangTaiKhoan chucNangTaiKhoan = new ChucNangTaiKhoan();
+                    chucNangTaiKhoan.ID_TaiKhoan = id_taiKhoan;
+                    chucNangTaiKhoan.maLoaiTK = 2;
+                    db.ChucNangTaiKhoans.Add(chucNangTaiKhoan);
+                    db.SaveChanges();
+
+                    // Redirect to BaiDangSanPhams
+
+                    var account = db.TaiKhoans.Where(acc => acc.email.Equals(email)).FirstOrDefault();
+
+                    Session["hoVaTen"] = account.NguoiDung.hoVaTen;
+                    Session["ID"] = account.ID;
+                    Session["maND"] = account.maND;
+                    Session["matKhau"] = account.matKhau;
+                    Session["avatar"] = account.NguoiDung.avatar;
+                    Session["email"] = account.email;
+                    Session["ngayTao"] = account.ngayTao;
+                    Session["gioiTinh"] = account.NguoiDung.gioiTinh;
+
+
+
+                    if (account.NguoiDung.maP != null && account.NguoiDung.maQuan != null &&
+                        account.NguoiDung.maTinh_TP != null && account.NguoiDung.diaChi != null)
+                    {
+
+                        string phuongThiTran = account.NguoiDung.PhuongThiTran.tenPhuong.Trim();
+                        string quanHuyen = account.NguoiDung.QuanHuyen.tenQuan.Trim();
+                        string tinhTP = account.NguoiDung.Tinh_ThanhPho.tenTinh_TP.Trim();
+                        string diaChi = account.NguoiDung.diaChi.Trim();
+
+                        Session["diaChiTong"] = diaChi + ", " + phuongThiTran + ", " + quanHuyen + ", " + tinhTP;
+                    }
+                    else
+                    {
+                        Session["diaChiTong"] = "";
+                    }
+
+
+                    if (account.NguoiDung.gioiTinh == 1)
+                    {
+                        Session["loaiGioiTinh"] = "Nam";
+                    }
+                    else if (account.NguoiDung.gioiTinh == 0)
+                    {
+                        Session["loaiGioiTinh"] = "Nữ";
+                    }
+                    else
+                    {
+                        Session["loaiGioiTinh"] = "Khác";
+                    }
+                    FormsAuthentication.SetAuthCookie(email, false);
+                    return RedirectToAction("Index", "BaiDangSanPhams");
+                }
+                else
+                {
+                    ModelState.AddModelError("loixacnhanmatkhau", "Xác nhận mật khẩu thất bại, vui lòng kiểm tra lại");
+                    return View(nguoiDung);
+                }
+            }
+            return View(nguoiDung);
+        }
+           
+        
 
         // GET: NguoiDung/NguoiDungs/Edit/5
         [LoginVerification]

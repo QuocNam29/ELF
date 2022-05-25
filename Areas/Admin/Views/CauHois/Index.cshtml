@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
-    int maCD = -1;
+    int maCD = int.Parse(TempData["maChuDe"].ToString());
 }
 
 <div class="usr-pnl">
@@ -14,15 +14,16 @@
     <!-- Panel Title -->
     <div class="pnl-bdy">
         <div class="crt-grp">
-            <h4>Tạo chủ đề</h4>
-            @using (Html.BeginForm("Create", "ChuDeBaiQuizs"))
+            <h4>Thay đổi tên chủ đề bài Quiz</h4>
+            @using (Html.BeginForm("Edit", "ChuDeBaiQuizs"))
             {
                 @Html.AntiForgeryToken()
+                @Html.Hidden("id", maCD)
                 <form>
 
                     <i class="fa fa-user"></i>
-                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz cần thêm mới...">
-                    <button type="submit" class="btn1 crt-grp-btn">Thêm mới</button>
+                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz mới...">
+                    <button type="submit" class="btn1 crt-grp-btn">Thay đổi</button>
 
                 </form>
             }
@@ -33,7 +34,7 @@
             <ul class="usr-lst">
                 @foreach (var item in Model)
                 {
-                    maCD = item.maChuDe;
+                    
 
                     var myModal = "exampleModalCenter" + item.maCauHoi;
                     <li>
@@ -42,10 +43,7 @@
                             <i>Ngày tạo: @item.ngayTao</i>
                         </div>
                         <div class="usr-btns">
-
                             <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa câu hỏi</a>
-
-
                             <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">

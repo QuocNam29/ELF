@@ -5,6 +5,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
     int i = 0;
     int maCD = -1;
+    int maCH = int.Parse(TempData["maCauHoi"].ToString());
+   
+    int k = 0;
+    string DA = "";
 }
 
 <div class="usr-pnl">
@@ -36,7 +40,7 @@
                 {
                     maCD = item.CauHoi.maChuDe;
                     i++;
-                    var myModal = "exampleModalCenter" + item.maCauHoi;
+                    
                     <li>
                         <div class="usr-lst-inf">
                             @if (item.dapAn1 == true)
@@ -58,10 +62,117 @@
             <!-- Users List -->
         </div>
         <div class="usr-btns" style="float: left">
-            <a class="ad" href="@Url.Action("Index", "CauHois", new {maCD = maCD})" title="">Quay lại</a> 
+            <a class="ad" href="@Url.Action("Index", "CauHois", new {maCD = maCD})" title="">Quay lại</a>
+            
+            <a class="scrh-grp-btn" href="#" title="" style="width: auto ">Chỉnh sửa</a>
         </div>
         <!-- User Item -->
     </div>
     <!-- Panel Body -->
 
+</div>
+
+<div class="popup-wrp2 srch-grp-pp">
+    <span class="pp-cls"></span>
+    <div class="popup-innr loc-edt" style="max-width: 1040px;">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 500px;">
+            <div class="scrl" style="overflow: hidden; width: auto; height: 500px;">
+                <div class="usr-pnl">
+                    <div class="pnl-tl">
+                        <h4>Thêm câu hỏi</h4>
+                        <ul class="brd-crmb">
+                            <li><a href="#" title=""><i class="fa fa-home"></i></a></li>
+                            <li>Locations</li>
+                        </ul>
+                    </div><!-- Panel Title -->
+                    <div class="pnl-bdy">
+
+                        <div class="adrs-frm">
+                            <h4>Thông tin câu hỏi</h4>
+                            @using (Html.BeginForm("Edit", "CauHois"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("maCH", maCH)
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Nội dung câu hỏi" value="@TempData["NoiDungCauHoi"].ToString()" name="cauHoi" style="width: 134%">
+                                                </div>
+
+                                                @foreach (var item in Model)
+                                                {
+                                                    if (k == 0)
+                                                    {
+                                                        @Html.Hidden("maDA1", item.maDapAn)
+                                                        <div class="col-md-8">
+                                                            <input type="text" placeholder="Đáp án 1" value="@item.NoiDungDapAn" name="DA1">
+                                                        </div>
+                                                        if (item.dapAn1 == true)
+                                                        {
+                                                            DA = item.NoiDungDapAn;
+                                                        }
+
+                                                    }
+                                                    else if (k == 1)
+                                                    {
+                                                        @Html.Hidden("maDA2", item.maDapAn)
+                                                        <div class="col-md-4">
+                                                            <input type="text" placeholder="Đáp án 2" name="DA2" value="@item.NoiDungDapAn" style="width: 205%">
+                                                        </div>
+                                                        if (item.dapAn1 == true)
+                                                        {
+                                                            DA = item.NoiDungDapAn;
+                                                        }
+                                                    }
+
+                                                    else if (k == 2)
+                                                    {
+                                                        @Html.Hidden("maDA3", item.maDapAn)
+                                                        <div class="col-md-8">
+                                                            <input type="text" placeholder="Đáp án 3" value="@item.NoiDungDapAn" name="DA3">
+                                                        </div>
+                                                        if (item.dapAn1 == true)
+                                                        {
+                                                            DA = item.NoiDungDapAn;
+                                                        }
+                                                    }
+
+                                                    else
+                                                    {
+                                                        @Html.Hidden("maDA4", item.maDapAn)
+
+                                                    <div class="col-md-4">
+                                                        <input type="text" placeholder="Đáp án 4" name="DA4" value="@item.NoiDungDapAn" style="width: 205%">
+                                                    </div>
+                                                    if (item.dapAn1 == true)
+                                                    {
+                                                        DA = item.NoiDungDapAn;
+                                                    }
+
+                                                }
+                                                k++;
+
+                                            }
+
+
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Đáp án đúng" value="@DA" name="DA_true">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <button type="submit" title="" class="sv-btn">Lưu</button>
+                                </form>
+                            }
+
+                        </div><!-- Address Form -->
+                    </div><!-- Panel Body -->
+                </div><!-- User panel -->
+            </div>
+        </div>
+    </div>
 </div>

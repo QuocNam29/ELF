@@ -46,35 +46,20 @@ namespace ELF.Areas.Admin.Controllers
         }
 
         // GET: Admin/ChuDeBaiQuizs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string tenCD)
         {
-            if (id == null)
+            if (tenCD =="" || tenCD == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ChuDeBaiQuiz chuDeBaiQuiz = db.ChuDeBaiQuizs.Find(id);
-            if (chuDeBaiQuiz == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chuDeBaiQuiz);
-        }
-
-        // POST: Admin/ChuDeBaiQuizs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maChuDe,tenChuDe")] ChuDeBaiQuiz chuDeBaiQuiz)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(chuDeBaiQuiz).State = EntityState.Modified;
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(chuDeBaiQuiz);
+            ChuDeBaiQuiz chuDeBaiQuiz = db.ChuDeBaiQuizs.Find(id);
+            chuDeBaiQuiz.tenChuDe = tenCD;
+            db.Entry(chuDeBaiQuiz).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
+
+       
 
         // GET: Admin/ChuDeBaiQuizs/Delete/5
         public ActionResult Delete(int? id)

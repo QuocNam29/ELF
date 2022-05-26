@@ -14,6 +14,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.VanLang;
+using System.Net.Mail;
 
 namespace ELF.Areas.NguoiDung.Controllers
 {
@@ -164,6 +165,14 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 return RedirectToAction("DangNhap");
             }
+            MailAddress address = new MailAddress(loginInfo.Email);
+            string host = address.Host;
+            if (host != "vanlanguni.vn")
+            {
+                TempData["MailDomainError"] = "Oopss, địa chỉ email của bạn không phải email của Văn Lang, bạn hãy thử lại nhé";
+                return RedirectToAction("DangNhap");
+            }
+
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync2(loginInfo, UserManager);

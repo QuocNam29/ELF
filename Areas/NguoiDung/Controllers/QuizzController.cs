@@ -26,7 +26,7 @@ namespace ELF.Areas.NguoiDung.Controllers
                 TempData["ErrorAttempts"] = "Bạn đã hết giới hạn làm bài quiz của mình 😥. Xin hãy đợi 3 ngày kể từ ngày làm bài quiz để được làm bài tiếp.";
             }
             QuizVM quiz = new viewModels.QuizVM();
-            quiz.ListOfQuizz = db.ChuDeBaiQuizs.Select(q => new SelectListItem
+            quiz.ListOfQuizz = db.ChuDeBaiQuizs.Where(q => q.trangThai != "Đã xóa").Select(q => new SelectListItem
             {
                 Text = q.tenChuDe,
                 Value = q.maChuDe.ToString()
@@ -39,10 +39,11 @@ namespace ELF.Areas.NguoiDung.Controllers
         [HttpPost]
         public ActionResult SelectQuizz(QuizVM quiz)
         {
-            QuizVM quizSelected = db.ChuDeBaiQuizs.Where(q => q.maChuDe == quiz.QuizID).Select(q => new QuizVM
+            QuizVM quizSelected = db.ChuDeBaiQuizs.Where(q => q.maChuDe == quiz.QuizID && q.trangThai != "Đã xóa").Select(q => new QuizVM
             {
                 QuizID = q.maChuDe,
                 QuizName = q.tenChuDe,
+
 
             }).FirstOrDefault();
 

@@ -50,9 +50,12 @@ namespace ELF.Areas.NguoiDung.Controllers
             return View();
         }
 
-        public ActionResult VLU_Create()
+        public ActionResult VLU_Create(string email)
         {
-
+            if (string.IsNullOrEmpty(email))
+            {
+                return RedirectToAction("DangNhap", "DangNhap");
+            }
             return View();
         }
         public List<Tinh_ThanhPho> GetTinh_ThanhPhosList()
@@ -185,6 +188,7 @@ namespace ELF.Areas.NguoiDung.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult VLU_Create([Bind(Include = "maND,hoVaTen,gioiTinh,dienThoai,maTinh_TP,maQuan,maP,diaChi,avatar,ngaySinh,ghiChu")] Models.NguoiDung nguoiDung, string email, string gioiTinh)
         {
+            
             if (string.IsNullOrEmpty(gioiTinh))
             {
                 ModelState.AddModelError("loigioitinh", "Bạn chưa chọn giới tính");

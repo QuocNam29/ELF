@@ -17,16 +17,16 @@
             @using (Html.BeginForm("Create", "ChuDeBaiQuizs"))
             {
                 @Html.AntiForgeryToken()
-        <form>
+                <form>
 
-            <i class="fa fa-user"></i>
-            
-            <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz cần thêm mới..." required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên chủ đề bài Quiz')" oninput="setCustomValidity('')">
-            <button type="submit" class="btn1 crt-grp-btn">Thêm mới</button>
+                    <i class="fa fa-user"></i>
 
-        </form>
+                    <input type="text" name="tenCD" placeholder="Nhập tên chủ đề bài Quiz cần thêm mới..." required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên chủ đề bài Quiz')" oninput="setCustomValidity('')">
+                    <button type="submit" class="btn1 crt-grp-btn">Thêm mới</button>
+
+                </form>
             }
-            </div>
+        </div>
         <!-- Creat Group Form -->
         <div class="usr-itm">
             <span class="cmpny-nm">Danh sách chủ đề</span>
@@ -36,55 +36,69 @@
                     if (item.trangThai != "Đã xóa")
                     {
                         var myModal = "exampleModalCenter" + item.maChuDe;
-                <li>
-                    <div class="usr-lst-inf">
-                        <h2><a href="@Url.Action("Index", "CauHois", new { maCD = item.maChuDe})" title="">@item.tenChuDe</a></h2>
-                        <i>Mã chủ đề: @item.maChuDe</i>
-                    </div>
-                    <div class="usr-btns">
+                        <li>
+                            <div class="usr-lst-inf">
+                                <h2><a href="@Url.Action("Index", "CauHois", new { maCD = item.maChuDe})" title="">@item.tenChuDe</a></h2>
+                                <i>Mã chủ đề: @item.maChuDe</i>
+                            </div>
+                            <div class="usr-btns">
 
-                        <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa chủ đề</a>
-                        
+                                <a href="" title="" class="add-butn" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa chủ đề</a>
 
-                        <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Bạn có chắc muốn xoá bộ câu hỏi và chủ đề <b>"@item.tenChuDe"</b>
 
-                                    </div>
-                                    <div class="modal-footer">
-                                        @using (Html.BeginForm("Delete", "ChuDeBaiQuizs", new { id = item.maChuDe }))
-                                        {
-                                            @Html.AntiForgeryToken()
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                                            <button type="submit" class="btn btn-primary">Xoá</button>
-                                        }
+                                <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Bạn có chắc muốn xoá bộ câu hỏi và chủ đề <b>"@item.tenChuDe"</b>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @using (Html.BeginForm("Delete", "ChuDeBaiQuizs", new { id = item.maChuDe }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                                    <button type="submit" class="btn btn-primary">Xoá</button>
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                   
-                </li>
 
-                      
+                        </li>
+
+
 
                     }
                 }
             </ul>
-            <!-- Users List -->
+
         </div>
 
         <!-- User Item -->
     </div>
     <!-- Panel Body -->
 
+</div>
+
+
+<!-- Users List -->
+<div class="usr-pnl" style="margin-top:50px">
+    <div class="pnl-tl">
+        <h4>Import câu hỏi</h4>
+    </div>
+
+    <!-- Panel Title -->
+    <div class="pnl-bdy billing-sec">
+        <button class="btn btn-default" style="width:100%" onclick="location.href = '@Url.Action("Index", "AddCauHois")'">IMPORT BÀI QUIZ</button>
+    </div>
+    <!-- Panel Body -->
 </div>

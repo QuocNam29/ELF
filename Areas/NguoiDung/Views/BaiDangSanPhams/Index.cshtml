@@ -18,7 +18,7 @@
 
 }
 <head>
-    <script src='https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js'></script>  
+    <script src='https://cdn.jsdelivr.net/npm/gsap@3.0.1/dist/gsap.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link href="~/css/button_traoDoi/style_btn2.css" rel="stylesheet" />
@@ -50,15 +50,15 @@
 </div> <!-- add post new box -->
 
 <div class="post-filter-sec">
-   @* <form method="post" class="filter-form">
-        @using (@Html.BeginForm("Index_DonQG", "KiemDuyets", FormMethod.Get))
-        {
-            <input type="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword">
-            <button><i class="ti-search"></i></button>
-        }
-    </form>*@
+    @* <form method="post" class="filter-form">
+            @using (@Html.BeginForm("Index_DonQG", "KiemDuyets", FormMethod.Get))
+            {
+                <input type="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword">
+                <button><i class="ti-search"></i></button>
+            }
+        </form>*@
 
-   @Html.Action("Index", "LoaiSanPhams")
+    @Html.Action("Index", "LoaiSanPhams")
 
 </div>
 
@@ -116,13 +116,9 @@
                         }
 
                     <span>published: @item.ngayDang</span>
-
                 </div>
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
-
-
-
                     <div class="description">
                         @if (flat >= 1)
                         {
@@ -131,10 +127,7 @@
                                 @Html.AntiForgeryToken()
                                 @Html.Hidden("id", maTD)
                                 @*<button type="submit" style="float: right; margin-top: 10px;"> Đã đăng kí </button>*@
-
                                 <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đã đăng kí</span></button>
-
-
                             }
                         }
                         else if (flat == -100)
@@ -150,12 +143,8 @@
                                 @Html.Hidden("maNDKhac", item.maND)
                                 @Html.Hidden("maBDSP", item.maBDSP)
                                 @* <button type="submit" style="float: right; margin-top: 10px;"> Đăng kí </button>*@
-
                                 <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đăng kí</span></button>
-
-
                             }
-
                         }
                         <span style="color: orangered ; font-size: 16px">
                             Tên sản phẩm: @item.tenSP
@@ -168,52 +157,23 @@
                     </div>
                 </div>
             </div>
-            @*  <div class="coment-area">
-                    <ul class="we-comet">
-                        <li>
-                            <a href="@Url.Action("Index", "BinhLuans",
-        new
-        {
-            maBDSP = item.maBDSP,
-            tenNguoiDang = item.NguoiDung.hoVaTen,
-            ngayDang = item.ngayDang,
-            tenSP = item.tenSP,
-            noiDung = item.noiDung,
-            hinhAnh = item.hinhAnh,
-            giaBan = item.gia,
-            avt_BD = avt_BD,
-            flat = flat,
-            maTD = maTD,
-            maND_BDSP = item.maND
-        })" title="" class="showmore underline">more comments</a>
-                        </li>
 
-                    </ul>
-                </div>*@
-        <div class="coment-area">
-            <ul class="we-comet">
-                @Html.Action("listComment_BDSP", "BinhLuans", new { maBDSP = item.maBDSP })
-
-
-                <li>
-                    <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams",
+            <div class="coment-area">
+                <ul class="we-comet">
+                    @Html.Action("listComment_BDSP", "BinhLuans", new { maBDSP = item.maBDSP })
+                    <li>
+                        <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams",
         new
         {
             maBDSP = item.maBDSP,
             maND = item.maND
         })" title="" class="showmore underline">more comments</a>
-                </li>
-           
-
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-        </div>
-        </div>
+    </div>
 }
-
-
-
 
 <script type="text/javascript">
     $(document).ready(function () {

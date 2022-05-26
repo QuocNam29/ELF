@@ -20,6 +20,7 @@ namespace ELF.Areas.Admin.Controllers
             var cauHois = db.CauHois.Include(c => c.ChuDeBaiQuiz).Where(b => b.maChuDe == maCD);
             ChuDeBaiQuiz chuDeBaiQuiz = db.ChuDeBaiQuizs.Find(maCD);
             TempData["TenChuDe"] = chuDeBaiQuiz.tenChuDe;
+            TempData["maChuDe"] = maCD;
             return View(cauHois.ToList());
         }
 
@@ -28,6 +29,7 @@ namespace ELF.Areas.Admin.Controllers
             var dapAns = db.DapAns.Include(d => d.CauHoi).Where(b => b.maCauHoi == maCH);
             CauHoi cauHoi = db.CauHois.Find(maCH);
             TempData["NoiDungCauHoi"] = cauHoi.noiDungCauHoi;
+            TempData["maCauHoi"] = maCH;
             return View(dapAns.ToList());
         }
 
@@ -122,37 +124,76 @@ namespace ELF.Areas.Admin.Controllers
      
 
         // GET: Admin/CauHois/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int maCH, string cauHoi, 
+            string DA1, string DA2, 
+            string DA3, string DA4, string DA_true,
+            int maDA1, int maDA2, 
+            int maDA3, int maDA4)
         {
-            if (id == null)
+           
+            CauHoi cauHoi1 = db.CauHois.Find(maCH);
+            cauHoi1.noiDungCauHoi = cauHoi;
+            db.Entry(cauHoi1).State = EntityState.Modified;
+            db.SaveChanges();
+
+            bool flat = false;
+            if (DA1 == DA_true)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                flat = true;
             }
-            CauHoi cauHoi = db.CauHois.Find(id);
-            if (cauHoi == null)
+            DapAn dapAn1 = db.DapAns.Find(maDA1);
+            dapAn1.NoiDungDapAn = DA1;
+            dapAn1.dapAn1 = flat;
+            db.Entry(dapAn1).State = EntityState.Modified;
+            db.SaveChanges();
+
+            if (DA2 == DA_true)
             {
-                return HttpNotFound();
+                flat = true;
             }
-            ViewBag.maChuDe = new SelectList(db.ChuDeBaiQuizs, "maChuDe", "tenChuDe", cauHoi.maChuDe);
-            return View(cauHoi);
+            else
+            {
+                flat = false;
+            }
+            DapAn dapAn2 = db.DapAns.Find(maDA2);
+            dapAn2.NoiDungDapAn = DA2;
+            dapAn2.dapAn1 = flat;
+            db.Entry(dapAn2).State = EntityState.Modified;
+            db.SaveChanges();
+
+            if (DA3 == DA_true)
+            {
+                flat = true;
+            }
+            else
+            {
+                flat = false;
+            }
+            DapAn dapAn3 = db.DapAns.Find(maDA3);
+            dapAn3.NoiDungDapAn = DA3;
+            dapAn3.dapAn1 = flat;
+            db.Entry(dapAn3).State = EntityState.Modified;
+            db.SaveChanges();
+
+            if (DA4 == DA_true)
+            {
+                flat = true;
+            }
+            else
+            {
+                flat = false;
+            }
+            DapAn dapAn4 = db.DapAns.Find(maDA4);
+            dapAn4.NoiDungDapAn = DA4;
+            dapAn4.dapAn1 = flat;
+            db.Entry(dapAn4).State = EntityState.Modified;
+            db.SaveChanges();
+
+          
+            return RedirectToAction("Index_DA", new { maCH = maCH });
         }
 
-        // POST: Admin/CauHois/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maCauHoi,noiDungCauHoi,ngayTao,ngayThayDoi,maChuDe")] CauHoi cauHoi)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(cauHoi).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.maChuDe = new SelectList(db.ChuDeBaiQuizs, "maChuDe", "tenChuDe", cauHoi.maChuDe);
-            return View(cauHoi);
-        }
+      
 
         // GET: Admin/CauHois/Delete/5
         public ActionResult Delete(int? id, int? maCD)

@@ -165,6 +165,9 @@ namespace ELF.Areas.NguoiDung.Controllers
             {
                 return RedirectToAction("DangNhap");
             }
+
+
+            // check email domain of Vanlanguni
             MailAddress address = new MailAddress(loginInfo.Email);
             string host = address.Host;
             if (host != "vanlanguni.vn")

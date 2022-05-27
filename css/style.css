@@ -848,7 +848,7 @@ header.sticky {
 }
 
 .timeline-info .admin-name > h5 {
-    color: #088dcd;
+    color: #18cd08;
     display: inline-block;
     font-size: 24px;
     font-weight: 500;
@@ -2078,7 +2078,7 @@ footer {
 }
 
 footer::before {
-    background: rgba(0, 0, 0, 0) linear-gradient(to right, #ffffff 0%, #2fa7cd 50%, #ffffff 100%) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, #ffffff 0%, #64ce4f 50%, #ffffff 100%) repeat scroll 0 0;
     content: "";
     height: 5px;
     position: absolute;
@@ -4574,7 +4574,7 @@ canvas {
 }
 
 .mh-head {
-    background: #4bb5ef;
+    background: #64ce4f;
     color: #fff;
     height: auto;
 }

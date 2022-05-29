@@ -54,7 +54,7 @@
                 <div class="submit-btns">
                     <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Xóa Bài</span></button>
 
-                    <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_DonQG", "KiemDuyets",  new { maQG = Model.maQG })'"><span>Duyệt Bài</span></button>
+                    <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_DonQG", "QuyenGops",  new { maQG = Model.maQG })'"><span>Duyệt Bài</span></button>
                 </div>
 
 
@@ -68,14 +68,15 @@
                                 </button>
                             </div>
 
-                            @using (Html.BeginForm("XoaBai_BDSP", "QuyenGops"))
+                            @using (Html.BeginForm("XoaBai_DonQG", "QuyenGops"))
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.Hidden("maQG", Model.maQG)
+                                @Html.Hidden("maLQG", Model.maLQG)
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-group">
-                                            <label for="message-text" class="col-form-label">Lý do:</label>
+                                            <label for="message-text" class="col-form-label" style="float: left">Lý do:</label>
                                             <textarea class="form-control" id="message-text" name="lydo"></textarea>
                                         </div>
 

@@ -45,7 +45,7 @@ namespace ELF.Areas.Admin.Controllers
            
             return PartialView("list_QG", links.ToList());
         }
-        public ActionResult XoaBai_DonQG(int? maQG, string lydo)
+        public ActionResult XoaBai_DonQG(int? maQG, string lydo, int maLQG)
         {
             if (maQG == null)
             {
@@ -71,7 +71,7 @@ namespace ELF.Areas.Admin.Controllers
 
 
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {maLQG = maLQG });
         }
         public ActionResult DuyetBai_DonQG(int? maQG)
         {
@@ -105,7 +105,7 @@ namespace ELF.Areas.Admin.Controllers
             });
 
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index" , new { maLQG = quyenGop.maLQG });
         }
 
 

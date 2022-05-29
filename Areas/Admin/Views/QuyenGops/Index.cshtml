@@ -39,19 +39,19 @@
             </div>
             <div class="frnds">
                 <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">Đã duyệt</a>
-                    <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Chờ Duyệt</a>
+                    <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">Chờ duyệt</a>
+                    <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Đã duyệt</a>
                     <li class="nav-item"><a class="" href="#frends-req1" data-toggle="tab">Đã hủy</a>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active fade show " id="frends">
-                        @Html.Action("List_QG", "QuyenGops", new { maLQG = maLQG, trangThai = "Đã duyệt" , keyword = keyword })
+                        @Html.Action("List_QG", "QuyenGops", new { maLQG = maLQG, trangThai = "Chờ duyệt" , keyword = keyword })
                         <div class="lodmore"><button class="btn-view btn-load-more"></button></div>
                     </div>
                     <div class="tab-pane fade" id="frends-req">
-                        @Html.Action("List_QG", "QuyenGops", new {maLQG = maLQG, trangThai = "Chờ duyệt", keyword = keyword })
+                        @Html.Action("List_QG", "QuyenGops", new {maLQG = maLQG, trangThai = "Đã duyệt", keyword = keyword })
                         <button class="btn-view btn-load-more"></button>
                     </div>
 

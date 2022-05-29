@@ -30,7 +30,7 @@
                         @if (item.trangThai == "Chờ duyệt")
                         {
                             <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#exampleModal">Hủy đơn</a>
-                            <a href="@Url.Action("EditTranngThai", "KD_DonQuas", new { maLQG = item.maLQG })" title="" class="add-butn" data-ripple="">Xác nhận</a>
+                            <a href="@Url.Action("DuyetBai_DonQG", "QuyenGops",  new { maQG = item.maQG })" title="" class="add-butn" data-ripple="">Xác nhận</a>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -46,6 +46,7 @@
                                         {
                                             @Html.AntiForgeryToken()
                                             @Html.Hidden("maQG", item.maQG)
+                                            @Html.Hidden("maLQG", item.maLQG)
                                             <div class="modal-body">
                                                 <form>
                                                     <div class="form-group">

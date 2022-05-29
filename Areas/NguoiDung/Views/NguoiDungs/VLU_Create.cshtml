@@ -1,0 +1,154 @@
+﻿@model ELF.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Đăng ký ELF</title>
+
+    <!-- Icons font CSS-->
+    <link href="~/vendor/DangKy/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all" />
+    <link href="~/vendor/DangKy/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="~/vendor/DangKy/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/DangKy/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="~/css/DangKy/main.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Tụi mình cần thêm một xíu thông tin từ bạn nữa thôi</h2>
+                </div>
+                <img width="300" style="display: block; margin-left: auto; margin-right: auto; width: 50%; " src="~/images/resources/Good team-pana.svg"/>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-row">
+                            <div class="name">Họ và tên </div>
+                            <div class="value">
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.hoVaTen, new { htmlAttributes = new { @class = "input--style-5" } })
+                                    @Html.ValidationMessageFor(model => model.hoVaTen, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Giới tính </div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="gioiTinh">
+                                            <option value="" disabled="disabled" selected="selected">Giới tính</option>
+                                            <option value="1">Nam</option>
+                                            <option value="0">Nữ</option>
+                                            <option value="2">Khác</option>
+                                        </select>
+                                        @Html.ValidationMessage("loigioitinh", new { @class = "text-danger" })
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">SĐT </div>
+                            <div class="value">
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.dienThoai, new { htmlAttributes = new { @class = "input--style-5" } })
+                                    @Html.ValidationMessageFor(model => model.dienThoai, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                       
+
+                        <br />
+
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Hoàn thành</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="~/vendor/DangKy/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="~/vendor/DangKy/select2/select2.min.js"></script>
+    <script src="~/vendor/DangKy/datepicker/moment.min.js"></script>
+    <script src="~/vendor/DangKy/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="~/js/DangKy/global.js"></script>
+
+    <script>
+
+        var RootUrl = '@Url.Content("~/")';
+
+        $(document).ready(function () {
+            $("#maTinh_TP").change(function () {
+                var ThanhPhoID = $(this).val();
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: RootUrl + "NguoiDung/NguoiDungs/GetQuanHuyenList?maTinh_TP=" + ThanhPhoID,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#maQuan").empty();
+                        $("#maQuan").append(response);
+                    }
+                })
+            })
+        })
+
+
+        $(document).ready(function () {
+            $("#maQuan").change(function () {
+                var QuanID = $(this).val();
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: RootUrl + "NguoiDung/NguoiDungs/GetPhuongThiTranList?maQuan=" + QuanID,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#maP").empty();
+                        $("#maP").append(response);
+                    }
+                })
+            })
+        })
+
+    </script>
+
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

@@ -2280,7 +2280,7 @@ footer li{float: left;}
 .usr-lst > li > * {
     display: table-cell;
     vertical-align: middle;
-	margin-top: -20px;
+	margin-top: 20px;
 }
 
 .usr-lst-inf > img {

@@ -60,6 +60,11 @@
                     <div class="text-danger">@Session["Message"].ToString()</div>
                     <br />
                 }
+                @if (TempData["MailDomainError"] != null)
+                {
+                    <div class="text-danger">@TempData["MailDomainError"].ToString()</div>
+                    <br />
+                }
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">

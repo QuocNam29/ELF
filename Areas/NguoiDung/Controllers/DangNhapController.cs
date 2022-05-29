@@ -14,11 +14,13 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.VanLang;
+using System.Net.Mail;
 
 namespace ELF.Areas.NguoiDung.Controllers
 {
     public class DangNhapController : Controller
     {
+        private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
         ELFVanLang2021Entities model;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -164,12 +166,73 @@ namespace ELF.Areas.NguoiDung.Controllers
                 return RedirectToAction("DangNhap");
             }
 
+
+            // check email domain of Vanlanguni
+            MailAddress address = new MailAddress(loginInfo.Email);
+            string host = address.Host;
+            if (host != "vanlanguni.vn")
+            {
+                TempData["MailDomainError"] = "Oopss, địa chỉ email của bạn không phải email của Văn Lang, bạn hãy thử lại nhé";
+                return RedirectToAction("DangNhap");
+            }
+
+
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync2(loginInfo, UserManager);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var check = db.TaiKhoans.FirstOrDefault(s => s.email == loginInfo.Email);
+                    if (check == null)
+                    {
+                        return RedirectToAction("VLU_Create", "NguoiDungs", new {email = loginInfo.Email});
+                    } else
+                    {
+                        var account = db.TaiKhoans.Where(acc => acc.email.Equals(loginInfo.Email)).FirstOrDefault();
+
+                        Session["hoVaTen"] = account.NguoiDung.hoVaTen;
+                        Session["ID"] = account.ID;
+                        Session["maND"] = account.maND;
+                        Session["matKhau"] = account.matKhau;
+                        Session["avatar"] = account.NguoiDung.avatar;
+                        Session["email"] = account.email;
+                        Session["ngayTao"] = account.ngayTao;
+                        Session["gioiTinh"] = account.NguoiDung.gioiTinh;
+
+
+
+                        if (account.NguoiDung.maP != null && account.NguoiDung.maQuan != null &&
+                            account.NguoiDung.maTinh_TP != null && account.NguoiDung.diaChi != null)
+                        {
+
+                            string phuongThiTran = account.NguoiDung.PhuongThiTran.tenPhuong.Trim();
+                            string quanHuyen = account.NguoiDung.QuanHuyen.tenQuan.Trim();
+                            string tinhTP = account.NguoiDung.Tinh_ThanhPho.tenTinh_TP.Trim();
+                            string diaChi = account.NguoiDung.diaChi.Trim();
+
+                            Session["diaChiTong"] = diaChi + ", " + phuongThiTran + ", " + quanHuyen + ", " + tinhTP;
+                        }
+                        else
+                        {
+                            Session["diaChiTong"] = "";
+                        }
+
+
+                        if (account.NguoiDung.gioiTinh == 1)
+                        {
+                            Session["loaiGioiTinh"] = "Nam";
+                        }
+                        else if (account.NguoiDung.gioiTinh == 0)
+                        {
+                            Session["loaiGioiTinh"] = "Nữ";
+                        }
+                        else
+                        {
+                            Session["loaiGioiTinh"] = "Khác";
+                        }
+                        FormsAuthentication.SetAuthCookie(loginInfo.Email, false);
+                        return RedirectToAction("Index", "BaiDangSanPhams");
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

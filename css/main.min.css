@@ -18956,7 +18956,7 @@ a.text-dark:focus, a.text-dark:hover {
     background: currentColor;
     border: 1px solid currentColor;
     font-size: 16px;
-    color: #64ce4f;
+    color: #417147;
     margin-top: 10px;
     padding: 7px 30px;
     cursor: pointer;
@@ -18979,7 +18979,7 @@ a.text-dark:focus, a.text-dark:hover {
         content: '';
         position: absolute;
         background: #071017;
-        border: 50vh solid #1d4567;
+        border: 50vh solid #9FC8A5;
         width: 30vh;
         height: 30vh;
         border-radius: 50%;

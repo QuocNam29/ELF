@@ -84,7 +84,7 @@ blockquote,
 .job-detail > ul li i,
 .company-intro > a
 {
-	color: #18cd08;	
+	color: #417147;	
 }
 svg{
 stroke: #fff;
@@ -147,8 +147,8 @@ button.submit-checkout,
 a.addnewforum,
 .apply-bttons > a
 {
-	background: #64ce4f;
-}
+	background: #417147;
+border-radius: 25px;}
 
 
 
@@ -167,7 +167,7 @@ a.addnewforum,
 a.btn2:hover,
 .single-btn > li > a.active
 {
-	border-color: #64ce4f;	
+	border-color: #417147;	
 }
 
 #nprogress .spinner-icon{

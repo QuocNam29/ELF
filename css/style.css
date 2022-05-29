@@ -2078,7 +2078,7 @@ footer {
 }
 
 footer::before {
-    background: rgba(0, 0, 0, 0) linear-gradient(to right, #ffffff 0%, #64ce4f 50%, #ffffff 100%) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, #ffffff 0%, #417147 50%, #ffffff 100%) repeat scroll 0 0;
     content: "";
     height: 5px;
     position: absolute;
@@ -3542,7 +3542,7 @@ a.add-butn {
     padding: 5px 0;
     text-transform: uppercase;
     width: 100%;
-}
+border-radius: 25px;}
 
 .nav.nav-tabs.likes-btn > li a.active {
     color: #fff;
@@ -4574,7 +4574,7 @@ canvas {
 }
 
 .mh-head {
-    background: #64ce4f;
+    background: #417147;
     color: #fff;
     height: auto;
 }

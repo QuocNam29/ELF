@@ -1,0 +1,81 @@
+﻿@model List<ELF.Models.QuyenGop>
+
+@{
+    Layout = null;
+}
+
+<ul class="nearby-contct">
+    @foreach (var item in Model)
+    {
+       
+
+            string avt_BD = "";
+            if (item.NguoiDung.avatar != null)
+            {
+                avt_BD = item.NguoiDung.avatar;
+            }
+            else
+            {
+                avt_BD = "~/images/resources/User-avatar.svg";
+            }
+            <li>
+                <div class="nearly-pepls">
+                    <figure>
+                        <a href="@Url.Action("Details", "QuyenGops", new { id = item.maQG })" title=""><img width="40" src="@Url.Content(avt_BD)" alt=""></a>
+                    </figure>
+                    <div class="pepl-info">
+                        <h4><a href="@Url.Action("Details", "QuyenGops", new { id = item.maQG })" title="">@item.LoaiQuyenGop.tenLoai</a></h4>
+                        <span>Người đổi quà: @item.NguoiDung.hoVaTen</span>
+                        <span style="color: black">Quyên góp: @item.soLuong @item.donVi</span>
+                        @if (item.trangThai == "Chờ duyệt")
+                        {
+                            <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#exampleModal">Hủy đơn</a>
+                            <a href="@Url.Action("EditTranngThai", "KD_DonQuas", new { maLQG = item.maLQG })" title="" class="add-butn" data-ripple="">Xác nhận</a>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        @using (Html.BeginForm("XoaBai_DonQG", "QuyenGops"))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("maQG", item.maQG)
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">Lý do:</label>
+                                                        <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                        <button type="submit" class="btn btn-primary" id="btn btn-primary">Xác nhận</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Details", "QuyenGops", new { id = item.maQG })" title="" class="add-butn" data-ripple="">Chi tiết</a>
+                        }
+
+
+                    </div>
+                </div>
+
+            </li>
+
+    }
+</ul>

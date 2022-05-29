@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
+
 <div class="usr-pnl">
     <div class="pnl-tl">
         <h4>Loại quên góp</h4>
@@ -13,38 +14,39 @@
     <div class="pnl-bdy">
         @foreach (var item in Model)
         {
-            <div class="cmp-loc">
-                <div class="cmp-sc1">
-                    <div class="cmp-thm">
-                        <img src="~/images/resources/@item.hinhAnh" alt="">
-                    </div>
-
-                </div>
-                <div class="cmp-sc2">
-                    <h2>@item.tenLoai</h2>
-                    <span><i class="fa fa-location-arrow"></i> @item.viTriQP ||</span>
-                   
-                    <span><i class="fa fa-globe"></i> @item.trangThai</span>
-                </div>
-                <div class="cmp-sc3">
-                    <h2>Vật dụng</h2>
-                    <span>@item.noiDung</span>
-                    @if (item.ghiChu != null)
-                    {
-                        <h2>Ghi chú</h2>
-                        <span>@item.ghiChu</span>
-                    }
-
-
-                </div>
-                <div class="cmp-sc4">
-                    <div class="cmp-bnr">
-                        <img src="~/images/resources/@item.hinhAnh" alt="">
-                        <a href="#" title=""><i class="fa fa-pencil"></i> Edit</a>
-                    </div>
+        <div class="cmp-loc">
+            <div class="cmp-sc1">
+                <div class="cmp-thm">
+                    <img src="~/images/resources/@item.hinhAnh" alt="">
                 </div>
 
             </div>
+            <div class="cmp-sc2">
+                <h2>@item.tenLoai</h2>
+                <span><i class="fa fa-location-arrow"></i> @item.viTriQP ||</span>
+
+                <span><i class="fa fa-globe"></i> @item.trangThai</span>
+            </div>
+            <div class="cmp-sc3">
+                <h2>Vật dụng</h2>
+                <span>@item.noiDung</span>
+                @if (item.ghiChu != null)
+                {
+                    <h2>Ghi chú</h2>
+                    <span>@item.ghiChu</span>
+                }
+
+
+            </div>
+            
+            <div class="cmp-sc4">
+                <div class="cmp-bnr">
+                    <img src="~/images/resources/@item.hinhAnh" alt="">
+                    <a title="" href="@Url.Action("Index","QuyenGops", new { maLQG = item.maLQG })"> Danh sách</a>
+                </div>
+            </div>
+
+        </div>
         }
 
 
@@ -100,8 +102,8 @@
                                                     <div class="cmp-bnr">
                                                         <label class="fileContainer">
                                                             <i class="fa fa-camera" style="line-height: 128px;"></i>
-                                                            <input accept="image/*" id="chng2" type="file" name="img" 
-                                                                    required="required" oninvalid="this.setCustomValidity('Bạn chưa chọn hình ảnh quyên góp)" oninput="setCustomValidity('')">
+                                                            <input accept="image/*" id="chng2" type="file" name="img"
+                                                                   required="required" oninvalid="this.setCustomValidity('Bạn chưa chọn hình ảnh quyên góp)" oninput="setCustomValidity('')">
 
                                                             <script>
                                                                 chng2.onchange = evt => {
@@ -129,4 +131,8 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+
+
+

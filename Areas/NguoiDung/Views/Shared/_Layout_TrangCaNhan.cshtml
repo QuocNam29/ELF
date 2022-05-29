@@ -46,10 +46,11 @@
             </span>
         </div>
         <div class="mh-head second">
-            <form class="mh-form">
-                <input placeholder="search" />
-                <a href="#/" class="fa fa-search"></a>
-            </form>
+            @using (@Html.BeginForm("Index", "BaiDangSanPhams", FormMethod.Get, new { @class = "mh-form" }))
+            {
+                <input type="search" class="form-control rounded" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword" />
+                <button type="submit"><i class="fa fa-search" style="top:24px"></i></button>
+            }
         </div>
         <nav id="menu" class="res-menu">
             <ul>

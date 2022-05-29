@@ -60,6 +60,17 @@ namespace ELF.Areas.NguoiDung.Controllers
         [HttpGet]
         public ActionResult QuizTest()
         {
+            int mand = int.Parse(Session["maND"].ToString());
+
+            var dateCriteria = DateTime.Now.Date.AddDays(-2);
+            var query = db.KetQuas.Where(m => m.ngayLamQuiz >= dateCriteria && m.maND == mand);
+            if (query.Count() >= 3)
+            {
+                TempData["ErrorAttempts"] = "Bạn đã hết giới hạn làm bài quiz của mình 😥. Xin hãy đợi 3 ngày kể từ ngày làm bài quiz để được làm bài tiếp.";
+                return RedirectToAction("SelectQuizz", "Quizz");
+            }
+
+
             QuizVM quizSelected = Session["SelectedQuiz"] as QuizVM;
             TempData["maChuDe"] = quizSelected.QuizID;
             TempData["tenChuDe"] = quizSelected.QuizName;        

@@ -84,7 +84,7 @@ blockquote,
 .job-detail > ul li i,
 .company-intro > a
 {
-	color: #088dcd;	
+	color: #417147;	
 }
 svg{
 stroke: #fff;
@@ -147,8 +147,8 @@ button.submit-checkout,
 a.addnewforum,
 .apply-bttons > a
 {
-	background: #088dcd;
-}
+	background: #417147;
+border-radius: 25px;}
 
 
 
@@ -167,7 +167,7 @@ a.addnewforum,
 a.btn2:hover,
 .single-btn > li > a.active
 {
-	border-color: #088dcd;	
+	border-color: #417147;	
 }
 
 #nprogress .spinner-icon{
@@ -178,5 +178,5 @@ a.btn2:hover,
 	border-top-color: #088dcd;		
 }
 .timeline-info > ul li a:after{
-	border-bottom-color: #088dcd;
+	border-bottom-color: #64ce4f;
 }

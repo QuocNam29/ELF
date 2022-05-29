@@ -1,0 +1,118 @@
+﻿@model IEnumerable<ELF.Models.LoaiQuyenGop>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4>Loại quên góp</h4>
+    </div><!-- Panel Title -->
+    <div class="pnl-bdy">
+        @foreach (var item in Model)
+        {
+            <div class="cmp-loc">
+                <div class="cmp-sc1">
+                    <div class="cmp-thm">
+                        <img src="~/images/resources/@item.hinhAnh" alt="">
+                    </div>
+
+                </div>
+                <div class="cmp-sc2">
+                    <h2>@item.tenLoai</h2>
+                    <span><i class="fa fa-location-arrow"></i> @item.viTriQP ||</span>
+                   
+                    <span><i class="fa fa-globe"></i> @item.trangThai</span>
+                </div>
+                <div class="cmp-sc3">
+                    <h2>Vật dụng:</h2>
+                    <span>@item.noiDung</span>
+                    
+                </div>
+                <div class="cmp-sc4">
+                    <div class="cmp-bnr">
+                        <img src="~/images/resources/@item.hinhAnh" alt="">
+                        <a href="#" title=""><i class="fa fa-pencil"></i> Edit</a>
+                    </div>
+                </div>
+
+            </div>
+        }
+
+
+    </div><!-- Panel Body -->
+</div>
+
+
+<div class="popup-wrp2 srch-grp-pp">
+    <span class="pp-cls"></span>
+    <div class="popup-innr loc-edt" style="max-width: 1040px;">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 500px;">
+            <div class="scrl" style="overflow: hidden; width: auto; height: 500px;">
+                <div class="usr-pnl">
+                    <div class="pnl-tl">
+                        <h4>Thêm quà tặng</h4>
+                        <ul class="brd-crmb">
+                            <li><a href="#" title=""><i class="fa fa-home"></i></a></li>
+                            <li>Locations</li>
+                        </ul>
+                    </div><!-- Panel Title -->
+                    <div class="pnl-bdy">
+
+                        <div class="adrs-frm">
+                            <h4>Thông tin quà tặng</h4>
+                            @using (Html.BeginForm("Create", "QuaTangs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input type="text" placeholder="Tên Quà" name="tenQuaTang">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="number" placeholder="Điểm đổi" name="diemDoi">
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Loại vật dụng" name="ghiChu">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="cmp-bnr">
+                                                        <label class="fileContainer">
+                                                            <i class="fa fa-camera" style="line-height: 128px;"></i>
+                                                            <input accept="image/*" id="chng2" type="file" name="img">
+
+                                                            <script>
+                                                                chng2.onchange = evt => {
+                                                                    const [file] = chng2.files
+                                                                    if (file) {
+                                                                        blah.src = URL.createObjectURL(file)
+                                                                    }
+                                                                }
+                                                            </script>
+                                                        </label>
+                                                        <img id="utp2" src="images/resource/cmp-bnr1.jpg" alt="">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button type="submit" title="" class="sv-btn">Lưu</button>
+                                </form>
+                            }
+                        </div><!-- Address Form -->
+                    </div><!-- Panel Body -->
+                </div><!-- User panel -->
+            </div>
+        </div>
+    </div>
+</div> 

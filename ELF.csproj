@@ -290,6 +290,7 @@
     <Compile Include="Areas\Admin\Controllers\ChucNangTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChuDeBaiQuizsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiemTichLuysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoaiQuyenGopsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuaTangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_BaiDangsController.cs" />
@@ -912,6 +913,11 @@
     <Content Include="Areas\Admin\Views\CauHois\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CauHois\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CauHois\Index_DA.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiQuyenGops\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiQuyenGops\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiQuyenGops\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiQuyenGops\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiQuyenGops\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

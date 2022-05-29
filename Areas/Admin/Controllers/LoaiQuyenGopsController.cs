@@ -46,16 +46,52 @@ namespace ELF.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maLQG,tenLoai,noiDung,viTriQP,ghiChu,trangThai,hinhAnh")] LoaiQuyenGop loaiQuyenGop)
+        public ActionResult Create(string loaiQG, string vitri, string noidung, string ghichu, HttpPostedFileBase img)
         {
-            if (ModelState.IsValid)
+            LoaiQuyenGop loaiQuyenGop = new LoaiQuyenGop();
+
+            string filePath = "";
+            string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
+            if (img != null)
             {
+                string fileName = System.IO.Path.GetFileName(img.FileName);
+                filePath = time + fileName;
+                Console.WriteLine(filePath);
+                img.SaveAs(Server.MapPath("~/images/resources/" + filePath));
+                /*string path = System.IO.Path.Combine(
+                         Server.MapPath("~/images/"), fileName);*/
+
+                /* img.SaveAs(path);*/
+
+
+
+                loaiQuyenGop.tenLoai = loaiQG;
+                loaiQuyenGop.noiDung = noidung;
+                loaiQuyenGop.hinhAnh = filePath;
+                loaiQuyenGop.viTriQP = vitri;
+                loaiQuyenGop.trangThai = "Đang hoạt động";
+                if (ghichu != null && ghichu !="")
+                {
+                    loaiQuyenGop.ghiChu = ghichu;
+                }
                 db.LoaiQuyenGops.Add(loaiQuyenGop);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
 
-            return View(loaiQuyenGop);
+            }
+            else
+            {
+                ViewBag.FileStatus = "Bạn chưa chọn hình ảnh";
+
+            }
+            ViewBag.FileStatus = "File uploaded successfully.";
+
+
+
+
+
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/LoaiQuyenGops/Edit/5

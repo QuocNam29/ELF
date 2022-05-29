@@ -7,6 +7,8 @@
 <div class="usr-pnl">
     <div class="pnl-tl">
         <h4>Loại quên góp</h4>
+
+        <a href="#" title="" class="scrh-grp-btn"><i class="fa fa-plus"></i></a>
     </div><!-- Panel Title -->
     <div class="pnl-bdy">
         @foreach (var item in Model)
@@ -25,9 +27,15 @@
                     <span><i class="fa fa-globe"></i> @item.trangThai</span>
                 </div>
                 <div class="cmp-sc3">
-                    <h2>Vật dụng:</h2>
+                    <h2>Vật dụng</h2>
                     <span>@item.noiDung</span>
-                    
+                    @if (item.ghiChu != null)
+                    {
+                        <h2>Ghi chú</h2>
+                        <span>@item.ghiChu</span>
+                    }
+
+
                 </div>
                 <div class="cmp-sc4">
                     <div class="cmp-bnr">
@@ -51,7 +59,7 @@
             <div class="scrl" style="overflow: hidden; width: auto; height: 500px;">
                 <div class="usr-pnl">
                     <div class="pnl-tl">
-                        <h4>Thêm quà tặng</h4>
+                        <h4>Thêm loại quyên góp</h4>
                         <ul class="brd-crmb">
                             <li><a href="#" title=""><i class="fa fa-home"></i></a></li>
                             <li>Locations</li>
@@ -60,8 +68,8 @@
                     <div class="pnl-bdy">
 
                         <div class="adrs-frm">
-                            <h4>Thông tin quà tặng</h4>
-                            @using (Html.BeginForm("Create", "QuaTangs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            <h4>Thông tin quyên góp</h4>
+                            @using (Html.BeginForm("Create", "LoaiQuyenGops", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
 
@@ -69,15 +77,20 @@
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="row">
-                                                <div class="col-md-8">
-                                                    <input type="text" placeholder="Tên Quà" name="tenQuaTang">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="number" placeholder="Điểm đổi" name="diemDoi">
-                                                </div>
-
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Loại vật dụng" name="ghiChu">
+                                                    <input type="text" placeholder="Tên Loại Quyên Góp" name="loaiQG"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên loại quên góp)" oninput="setCustomValidity('')">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="Text" placeholder="vật dụng ví dụ..." name="noidung"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập những vât dụng ví dụ...)" oninput="setCustomValidity('')">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Vị trí quyên góp" name="vitri"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập vị trí quyên góp)" oninput="setCustomValidity('')">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Ghi chú" name="ghiChu">
                                                 </div>
                                             </div>
                                         </div>
@@ -87,7 +100,8 @@
                                                     <div class="cmp-bnr">
                                                         <label class="fileContainer">
                                                             <i class="fa fa-camera" style="line-height: 128px;"></i>
-                                                            <input accept="image/*" id="chng2" type="file" name="img">
+                                                            <input accept="image/*" id="chng2" type="file" name="img" 
+                                                                    required="required" oninvalid="this.setCustomValidity('Bạn chưa chọn hình ảnh quyên góp)" oninput="setCustomValidity('')">
 
                                                             <script>
                                                                 chng2.onchange = evt => {

@@ -71,14 +71,17 @@
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                    <input type="text" placeholder="Tên Quà" name="tenQuaTang">
+                                                    <input type="text" placeholder="Tên Quà" name="tenQuaTang"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên quà tặng)" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="number" placeholder="Điểm đổi" name="diemDoi">
+                                                    <input type="number" placeholder="Điểm đổi" name="diemDoi"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập số điểm cần đổi quà)" oninput="setCustomValidity('')">
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Loại vật dụng" name="ghiChu">
+                                                    <input type="text" placeholder="Loại vật dụng" name="ghiChu"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập loại vật dụng)" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +91,8 @@
                                                     <div class="cmp-bnr">
                                                         <label class="fileContainer">
                                                             <i class="fa fa-camera" style="line-height: 128px;"></i>
-                                                            <input  accept="image/*" id="chng2" type="file" name="img"  >
+                                                            <input  accept="image/*" id="chng2" type="file" name="img"  
+                                                                   required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập hình ảnh cho quà tặng)" oninput="setCustomValidity('')">
                                                            
                                                             <script>
                                                                 chng2.onchange = evt => {

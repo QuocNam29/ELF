@@ -4,6 +4,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
+<link rel="stylesheet" href="~/css/main.min.css">
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="~/css/color.css">
+<link rel="stylesheet" href="~/css/responsive.css">
+<link rel="stylesheet" href="~/css/strip.css">
+
+<script src="~/js/main.min.js"></script>
+<script src="~/js/script.js"></script>
+<script src="~/js/map-init.js"></script>
 
 <div class="usr-pnl">
     <div class="pnl-tl">
@@ -14,7 +23,49 @@
     <div class="pnl-bdy">
         @foreach (var item in Model)
         {
+            if (item.trangThai != "Đã xóa")
+            {
+
+
         <div class="cmp-loc">
+            <div class="more" style="float:right;  padding: 15px; ">
+                <div class="more-post-optns">
+                    <i class="ti-more-alt"></i>
+                    @{
+                        var myModal = "exampleModalCenter" + item.maLQG;
+                    }
+                    <ul>
+
+                        <li> <a href="" title="" class="btn-block" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa</a></li>
+                        <li> <button type="button" class="btn-block">Ẩn</button></li>
+
+                        <li><button type="button" class="btn-block">Chỉnh sửa</button> </li>
+                    </ul>
+                    <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Thông báo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                Bạn có chắc chắn muốn xóa toàn bộ chủ đề "@item.tenLoai" không?
+                                </div>
+                                <div class="modal-footer">
+                                    @using (Html.BeginForm("Delete", "LoaiQuyenGops", new { id = item.maLQG }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                        <button type="submit" class="btn btn-primary">Xoá</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="cmp-sc1">
                 <div class="cmp-thm">
                     <img src="~/images/resources/@item.hinhAnh" alt="">
@@ -38,23 +89,26 @@
 
 
             </div>
-            
+
             <div class="cmp-sc4">
                 <div class="cmp-bnr">
                     <img src="~/images/resources/@item.hinhAnh" alt="">
-                    <a title="" href="@Url.Action("Index","QuyenGops", new { maLQG = item.maLQG })"> Danh sách</a>
+                    <a title="" href="@Url.Action("Index", "QuyenGops", new { maLQG = item.maLQG })"> Danh sách</a>
                 </div>
             </div>
 
+
+
         </div>
-        }
+                            }
+                        }
 
 
     </div><!-- Panel Body -->
 </div>
 
 
-<div class="popup-wrp2 srch-grp-pp">
+<div class="popup-wrp2 srch-grp-pp" >
     <span class="pp-cls"></span>
     <div class="popup-innr loc-edt" style="max-width: 1040px;">
         <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 500px;">

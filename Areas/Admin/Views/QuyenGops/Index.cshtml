@@ -5,11 +5,15 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
     int maLQG = int.Parse(TempData["maLQG"].ToString());
     string keyword = "";
-    if (TempData["keyword"]!= null)
+    if (TempData["keyword"] != null)
     {
-         keyword = TempData["keyword"].ToString();
+        keyword = TempData["keyword"].ToString();
     }
 
+   @* double sum_Cai = Model.Where(q => q.donVi == "Cái").Sum(q => q.soLuong);
+    double sum_Vien = Model.Where(q => q.donVi == "Viên").Sum(q => q.soLuong);
+    double sum_Kg = Model.Where(q => q.donVi == "Kg").Sum(q => q.soLuong);
+    double sum_Gram = Model.Where(q => q.donVi == "Gram").Sum(q => q.soLuong);*@
 }
 
 <link rel="stylesheet" href="~/css/main.min.css">
@@ -17,6 +21,10 @@
 <link rel="stylesheet" href="~/css/color.css">
 <link rel="stylesheet" href="~/css/responsive.css">
 <link rel="stylesheet" href="~/css/strip.css">
+
+<script src="~/js/main.min.js"></script>
+<script src="~/js/script.js"></script>
+<script src="~/js/map-init.js"></script>
 
 <div class="usr-pnl">
     <div class="pnl-tl">
@@ -30,12 +38,43 @@
                 <form method="post" class="filter-form">
                     @using (Html.BeginForm("Index", "QuyenGops", FormMethod.Get))
                     {
-                        @Html.Hidden("maLQG",maLQG)
+                        @Html.Hidden("maLQG", maLQG)
                         <input type="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword">
                         <button><i class="ti-search"></i></button>
                     }
                 </form>
+           @*     <div class="purify">
+                   
+                        <span><b>Thống kê quyên góp: </b> </span>
 
+                        <select name="maLoaiQG">
+
+                            <option>Thống kê</option>
+
+
+                            @if (sum_Cai > 0)
+                            {
+                                <option selected="">@sum_Cai Cái</option>
+                            }
+                            @if (sum_Vien > 0)
+                            {
+                                <option selected="">@sum_Vien Viên</option>
+                            }
+                            @if (sum_Kg > 0)
+                            {
+                                <option selected="">@sum_Kg Kg</option>
+                            }
+                            @if (sum_Gram > 0)
+                            {
+                                <option selected="">@sum_Gram Gram</option>
+                            }
+
+
+
+                        </select>
+
+                    
+                </div>*@
             </div>
             <div class="frnds">
                 <ul class="nav nav-tabs">
@@ -47,11 +86,11 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active fade show " id="frends">
-                        @Html.Action("List_QG", "QuyenGops", new { maLQG = maLQG, trangThai = "Chờ duyệt" , keyword = keyword })
+                        @Html.Action("List_QG", "QuyenGops", new { maLQG = maLQG, trangThai = "Chờ duyệt", keyword = keyword })
                         <div class="lodmore"><button class="btn-view btn-load-more"></button></div>
                     </div>
                     <div class="tab-pane fade" id="frends-req">
-                        @Html.Action("List_QG", "QuyenGops", new {maLQG = maLQG, trangThai = "Đã duyệt", keyword = keyword })
+                        @Html.Action("List_QG", "QuyenGops", new { maLQG = maLQG, trangThai = "Đã duyệt", keyword = keyword })
                         <button class="btn-view btn-load-more"></button>
                     </div>
 

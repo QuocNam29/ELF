@@ -146,7 +146,8 @@ namespace ELF.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             LoaiQuyenGop loaiQuyenGop = db.LoaiQuyenGops.Find(id);
-            db.LoaiQuyenGops.Remove(loaiQuyenGop);
+            loaiQuyenGop.trangThai = "Đã xóa";
+            db.Entry(loaiQuyenGop).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

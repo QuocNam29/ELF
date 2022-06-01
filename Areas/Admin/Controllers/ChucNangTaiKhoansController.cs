@@ -100,6 +100,9 @@ namespace ELF.Areas.Admin.Controllers
             return View(chucNangTaiKhoan);
         }
 
+        // GET: Admin/ChucNangTaiKhoans/Details/5
+      
+
 
         public ActionResult lock_TK(int? id)
         {

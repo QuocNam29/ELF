@@ -611,6 +611,10 @@
     <Content Include="images\resources\group7.jpg" />
     <Content Include="images\resources\help-shot.jpg" />
     <Content Include="images\resources\in-progress-animate.svg" />
+    <Content Include="images\resources\logo_elf_dark.png" />
+    <Content Include="images\resources\logo_elf_hasBackgroundColor.png" />
+    <Content Include="images\resources\logo_elf_light.png" />
+    <Content Include="images\resources\logo_elf_white.png" />
     <Content Include="images\resources\nearly1.jpg" />
     <Content Include="images\resources\nearly2.jpg" />
     <Content Include="images\resources\nearly3.jpg" />

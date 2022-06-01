@@ -119,33 +119,102 @@
                 </div>
                 <div class="post-meta">
                     <img src="@Url.Content(item.hinhAnh)" alt="">
+                   
+                    
                     <div class="description">
                         @if (flat >= 1)
                         {
-                            using (Html.BeginForm("Delete", "TraoDois"))
-                            {
-                                @Html.AntiForgeryToken()
-                                @Html.Hidden("id", maTD)
-                                @*<button type="submit" style="float: right; margin-top: 10px;"> Đã đăng kí </button>*@
-                                <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đã đăng kí</span></button>
-                            }
+                            <div class="description">
+
+                                <input hidden type="text" id="URL_TraoDoi" value="@Url.Action("InsertTraoDoi", "TraoDois")">
+                                <input hidden type="text" id="MaND_TraoDoi" value="@maND">
+                                <input hidden type="text" id="MaBDSP_TraoDoi" value="@item.maBDSP">
+                                <input hidden type="text" id="maNDKhac_TraoDoi" value="@item.maND">
+
+                                <input hidden type="text" id="URLDelete_TraoDoi" value="@Url.Action("DeleteTraoDoi", "TraoDois")">
+                                <input hidden type="text" id="maTD" value="@maTD">
+
+                                <button class="truck-button_1" style="float: right; margin-top: 10px;">
+                                    <span class="default">
+                                        Đã đăng ký
+
+                                    </span>
+
+                                    <span class="success">
+                                        đăng ký trao đổi
+
+                                    </span>
+                                    <div class="truck">
+                                        <div class="wheel"></div>
+                                        <div class="back"></div>
+                                        <div class="front"></div>
+                                        <div class="box"></div>
+                                    </div>
+                                </button>
+
+                                <span style="color: orangered ; font-size: 16px">
+                                    Tên sản phẩm: @item.tenSP
+                                </span>
+                                <br />
+                                <span style="color: red; font-size: 16px"> Giá sản phẩm: @item.gia.ToString("#,##0") đ</span>
+                                <p>
+                                    @item.noiDung
+                                </p>
+                            </div>
                         }
                         else if (flat == -100)
                         {
-
+                            <div class="description">
+                                <span style="color: orangered ; font-size: 16px">
+                                    Tên sản phẩm: @item.tenSP
+                                </span>
+                                <br />
+                                <span style="color: red; font-size: 16px"> Giá sản phẩm: @item.gia.ToString("#,##0") đ</span>
+                                <p>
+                                    @item.noiDung
+                                </p>
+                            </div>
                         }
                         else
                         {
-                            using (Html.BeginForm("Create", "TraoDois"))
-                            {
-                                @Html.AntiForgeryToken()
-                                @Html.Hidden("maND", maND)
-                                @Html.Hidden("maNDKhac", item.maND)
-                                @Html.Hidden("maBDSP", item.maBDSP)
-                                @* <button type="submit" style="float: right; margin-top: 10px;"> Đăng kí </button>*@
-                                <button type="submit" class="mtr-btn" style="float: right; margin-top: 10px;"><span>Đăng kí</span></button>
-                            }
+                            <div class="description">
+
+                                <input hidden type="text" id="URL_TraoDoi" value="@Url.Action("InsertTraoDoi", "TraoDois")">
+                                <input hidden type="text" id="MaND_TraoDoi" value="@maND">
+                                <input hidden type="text" id="MaBDSP_TraoDoi" value="@item.maBDSP">
+                                <input hidden type="text" id="maNDKhac_TraoDoi" value="@item.maND">
+
+                                <input hidden type="text" id="URLDelete_TraoDoi" value="@Url.Action("DeleteTraoDoi", "TraoDois")">
+                                <input hidden type="text" id="maTD" value="@maTD">
+
+                                <button class="truck-button" style="float: right; margin-top: 10px;">
+                                    <span class="default">Đăng ký trao đổi</span>
+                                    <span class="success">
+                                        Đã đăng ký
+                                        <svg viewBox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </svg>
+                                    </span>
+                                    <div class="truck">
+                                        <div class="wheel"></div>
+                                        <div class="back"></div>
+                                        <div class="front"></div>
+                                        <div class="box"></div>
+                                    </div>
+                                </button>
+
+                                <span style="color: orangered ; font-size: 16px">
+                                    Tên sản phẩm: @item.tenSP
+                                </span>
+                                <br />
+                                <span style="color: red; font-size: 16px"> Giá sản phẩm: @item.gia.ToString("#,##0") đ</span>
+                                <p>
+                                    @item.noiDung
+                                </p>
+                            </div>
+
                         }
+
                         <span style="color: orangered ; font-size: 16px">
                             Tên sản phẩm: @item.tenSP
                         </span>
@@ -155,39 +224,40 @@
                             @item.noiDung
                         </p>
                     </div>
+                   
+                        </div>
+                    </div>
+
+                    <div class="coment-area">
+                        <ul class="we-comet">
+                            @Html.Action("listComment_BDSP", "BinhLuans", new { maBDSP = item.maBDSP })
+                            <li>
+                                <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams",
+                new
+                {
+                    maBDSP = item.maBDSP,
+                    maND = item.maND
+                })" title="" class="showmore underline">more comments</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        }
 
-            <div class="coment-area">
-                <ul class="we-comet">
-                    @Html.Action("listComment_BDSP", "BinhLuans", new { maBDSP = item.maBDSP })
-                    <li>
-                        <a href="@Url.Action("Index_BDSP_one", "BaiDangSanPhams",
-        new
-        {
-            maBDSP = item.maBDSP,
-            maND = item.maND
-        })" title="" class="showmore underline">more comments</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.btn-block').click(function () {
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.btn-block').click(function () {
+                    var url = $('#myModal').data('url');
+                    $.get(url, function (data) {
 
-            var url = $('#myModal').data('url');
-            $.get(url, function (data) {
+                        $("#myModal").html(data);
+                        $("#myModal").modal('show')
 
-                $("#myModal").html(data);
-                $("#myModal").modal('show')
-
+                    });
+                });
             });
-        });
-    });
-</script>
+        </script>
 
 

@@ -7,9 +7,11 @@ using System.Configuration;
 using ELF.Models;
 using System;
 using System.Linq;
+using ELF.Areas.Admin.Middleware;
 
 namespace ELF.Areas.Admin.Controllers
 {
+    [LoginVerification]
     public class AddCauHoisController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();

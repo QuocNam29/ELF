@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <title>Đăng nhập kiểm duyệt ELF</title>
+    <title>Đăng nhập Admin ELF</title>
     <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
 
     <link rel="stylesheet" href="~/css/main.min.css">
@@ -29,10 +29,10 @@
                         <div class="land-meta">
                             <h1>ELF</h1>
                             <p>
-                                Chào mừng bạn đến với kiểm duyệt ELF
+                                Chào mừng bạn đến với Admin ELF
                             </p>
                             <div class="friend-logo">
-                               
+
                                 <span> <img src="~/images/resources/logo_elf_white.png" alt="" style="top: -50px" /></span>
                             </div>
                             <a href="#" title="" class="folow-me">Sang web người dùng ELF</a>
@@ -43,8 +43,8 @@
                     <div class="login-reg-bg">
                         <div class="log-reg-area sign">
                             <h2 class="log-title">Đăng nhập kiểm duyệt </h2>
-                            
-                            <form method="post" action="@Url.Action("KiemDuyet_DangNhap")">
+
+                            <form method="post" action="@Url.Action("Admin_DangNhap")">
                                 <div class="form-group">
                                     <input type="text" id="input" name="mail" required="required" />
                                     <label class="control-label" for="input">Email</label><i class="mtrl-select"></i>
@@ -53,9 +53,9 @@
                                     <input type="password" name="matKhau" required="required" />
                                     <label class="control-label" for="input">Mật khẩu</label><i class="mtrl-select"></i>
                                 </div>
-                                @if (Session["Message_KiemDuyet"] != null)
+                                @if (Session["Message_Admin"] != null)
                                 {
-                                    <div class="text-danger">@Session["Message_KiemDuyet"].ToString()</div>
+                                    <div class="text-danger">@Session["Message_Admin"].ToString()</div>
                                     <br />
                                 }
                                 <div class="checkbox">
@@ -65,19 +65,19 @@
                                 </div>
                                 <a href="#" title="" class="forgot-pwd">Forgot Password?</a>
                                 <div class="submit-btns">
-                                    <button class="mtr-btn signin" ><span>Đăng nhập</span></button>
+                                    <button class="mtr-btn signin"><span>Đăng nhập</span></button>
 
                                 </div>
                             </form>
                         </div>
-                     
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    
+
     <script src="~/js/main.min.js"></script>
     <script src="~/js/script.js"></script>
 

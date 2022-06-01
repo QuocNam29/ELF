@@ -286,6 +286,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AddCauHoisController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Admin_DangNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\CauHoisController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChucNangTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChuDeBaiQuizsController.cs" />
@@ -300,6 +301,7 @@
     <Compile Include="Areas\KiemDuyets\Controllers\KiemDuyetsController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KiemDuyet_DangNhapController.cs" />
     <Compile Include="Areas\KiemDuyets\KiemDuyetsAreaRegistration.cs" />
+    <Compile Include="Areas\KiemDuyets\Middleware\LoginVerification.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangThongTinsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaoCaosController.cs" />
@@ -1115,6 +1117,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Admin_DangNhap\" />
     <Folder Include="Areas\KiemDuyets\Data\" />
     <Folder Include="Areas\NguoiDung\Data\" />
     <Folder Include="Views\Home\" />

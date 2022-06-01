@@ -116,10 +116,8 @@ namespace ELF.Areas.Admin.Controllers
                     System.IO.File.Delete(fullPath);
                 }
             }
-            else
-            {
-               
-            }
+            
+            
             quaTang.tenQuaTang = tenQuaTang;
             quaTang.diemDoi = diemDoi;
             quaTang.ghiChu = ghichu;

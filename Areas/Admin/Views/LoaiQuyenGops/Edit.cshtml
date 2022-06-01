@@ -5,12 +5,109 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
 
-<h2>Edit</h2>
+<link rel="stylesheet" href="~/css/main.min.css">
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="~/css/color.css">
+<link rel="stylesheet" href="~/css/responsive.css">
+<link rel="stylesheet" href="~/css/strip.css">
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4>Đơn quên góp</h4>
+
+        <a href="#" title="" class="scrh-grp-btn"><i class="fa fa-plus"></i></a>
+    </div><!-- Panel Title -->
+    <div class="pnl-bdy" style="padding: 40px 40px 45px; text-align: center; ">
+        <div class="editing-info">
+            <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin quyên góp</h5>
+            <div class="form-group">
+                <img width="300" src="@Url.Content(Model.hinhAnh)" alt="">
+            </div>
+        </div>
+
+        <div class="onoff-options">
+            <div class="setting-row">
+                <span>Loại quyên góp</span>
+                <p>@Html.DisplayFor(model => model.tenLoai)</p>
+            </div>
+
+            <div class="setting-row">
+                <span>Loại quyên góp</span>
+                <p>@Html.DisplayFor(model => model.LoaiQuyenGop.tenLoai)</p>
+            </div>
+
+            <div class="setting-row">
+                <span>Số lượng quyên góp</span>
+                <p>@Html.DisplayFor(model => model.soLuong)  @Html.DisplayFor(model => model.donVi)</p>
+            </div>
+
+            <div class="setting-row">
+                <span>Ngày quyên góp</span>
+                <p>@Html.DisplayFor(model => model.ngayQG)</p>
+
+            </div>
+            <div class="setting-row">
+                <span>Ghi chú</span>
+                <p>@Html.DisplayFor(model => model.ghiChu)</p>
+            </div>
+            @if (Model.trangThai == "Chờ duyệt")
+            {
+                <div class="submit-btns">
+                    <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Xóa Bài</span></button>
+
+                    <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("DuyetBai_DonQG", "QuyenGops",  new { maQG = Model.maQG })'"><span>Duyệt Bài</span></button>
+                </div>
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            @using (Html.BeginForm("XoaBai_DonQG", "QuyenGops"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("maQG", Model.maQG)
+                                @Html.Hidden("maLQG", Model.maLQG)
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label" style="float: left">Lý do:</label>
+                                            <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn btn-primary" id="btn btn-primary">Xác nhận</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "QuyenGops",  new { maLQG = Model.maLQG })'"><span>Quay lại</span></button>
+            }
+
+
+        </div>
+    </div>
+</div>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>LoaiQuyenGop</h4>
         <hr />

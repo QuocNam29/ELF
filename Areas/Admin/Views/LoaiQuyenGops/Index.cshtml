@@ -25,8 +25,6 @@
         {
             if (item.trangThai != "Đã xóa")
             {
-
-
         <div class="cmp-loc">
             <div class="more" style="float:right;  padding: 15px; ">
                 <div class="more-post-optns">
@@ -34,13 +32,21 @@
                     @{
                         var myModal = "exampleModalCenter" + item.maLQG;
                     }
-                    <ul>
+                <ul>
 
-                        <li> <a href="" title="" class="btn-block" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa</a></li>
-                        <li> <button type="button" class="btn-block">Ẩn</button></li>
+                    <li> <a href="" title="" class="btn-block" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa</a></li>
+                    @if (item.trangThai == "Đã ẩn")
+                    {
+                        <li> @Html.ActionLink("Hiện", "Hidden", new { id = item.maLQG })</li>
+                    }
+                    else
+                    {
+                         <li> @Html.ActionLink("Ẩn", "Hidden", new { id = item.maLQG })</li>
+                    }
+                    
 
-                        <li><button type="button" class="btn-block">Chỉnh sửa</button> </li>
-                    </ul>
+                    <li><a type="button" class="btn-block" href="@Url.Action("Details", "LoaiQuyenGops",new {id = item.maLQG })" >Chi tiết</a> </li>
+                </ul>
                     <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -75,8 +81,15 @@
             <div class="cmp-sc2">
                 <h2>@item.tenLoai</h2>
                 <span><i class="fa fa-location-arrow"></i> @item.viTriQP ||</span>
+                @if (item.trangThai != "Đã ẩn")
+                {
+                    <span><i class="fa fa-globe"></i> @item.trangThai</span>
+                }
+                else
+                {
+                    <span> @item.trangThai</span>
+                }
 
-                <span><i class="fa fa-globe"></i> @item.trangThai</span>
             </div>
             <div class="cmp-sc3">
                 <h2>Vật dụng</h2>

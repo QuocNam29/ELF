@@ -95,35 +95,41 @@ namespace ELF.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiQuyenGops/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string loaiQG, string vitri, string noidung, string ghichu, HttpPostedFileBase img)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             LoaiQuyenGop loaiQuyenGop = db.LoaiQuyenGops.Find(id);
-            if (loaiQuyenGop == null)
+            string oldfilePath = loaiQuyenGop.hinhAnh;
+            string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
+            if (img != null && img.ContentLength > 0)
             {
-                return HttpNotFound();
+                var fileName = time + System.IO.Path.GetFileName(img.FileName);
+                string path = System.IO.Path.Combine(
+                Server.MapPath("~/images/resources/"), fileName);
+                img.SaveAs(path);
+                loaiQuyenGop.hinhAnh = time + img.FileName;
+                string fullPath = Request.MapPath(oldfilePath);
+
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
             }
-            return View(loaiQuyenGop);
+            
+            loaiQuyenGop.tenLoai = loaiQG;
+            loaiQuyenGop.noiDung = noidung;
+            
+            loaiQuyenGop.viTriQP = vitri;
+            
+            if (ghichu != null && ghichu != "")
+            {
+                loaiQuyenGop.ghiChu = ghichu;
+            }
+            db.Entry(loaiQuyenGop).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details", "LoaiQuyenGops", new { id = id });
         }
 
-        // POST: Admin/LoaiQuyenGops/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maLQG,tenLoai,noiDung,viTriQP,ghiChu,trangThai,hinhAnh")] LoaiQuyenGop loaiQuyenGop)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(loaiQuyenGop).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(loaiQuyenGop);
-        }
 
         // GET: Admin/LoaiQuyenGops/Delete/5
         public ActionResult Delete(int? id)
@@ -151,6 +157,24 @@ namespace ELF.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Hidden(int id)
+        {
+            LoaiQuyenGop loaiQuyenGop = db.LoaiQuyenGops.Find(id);
+            
+            if (loaiQuyenGop.trangThai == "Đã ẩn")
+            {
+                loaiQuyenGop.trangThai = "Đang diễn ra";
+            }
+            else
+            {
+                loaiQuyenGop.trangThai = "Đã ẩn";
+            }
+            db.Entry(loaiQuyenGop).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

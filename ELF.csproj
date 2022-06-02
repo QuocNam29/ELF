@@ -286,6 +286,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AddCauHoisController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Admin_DangNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\CauHoisController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChucNangTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChuDeBaiQuizsController.cs" />
@@ -294,12 +295,14 @@
     <Compile Include="Areas\Admin\Controllers\QuaTangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuyenGopsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
+    <Compile Include="Areas\Admin\Middleware\LoginVerification.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_BaiDangsController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_DonQuasController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_LoaiQG_BDController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KiemDuyetsController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KiemDuyet_DangNhapController.cs" />
     <Compile Include="Areas\KiemDuyets\KiemDuyetsAreaRegistration.cs" />
+    <Compile Include="Areas\KiemDuyets\Middleware\LoginVerification.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangSanPhamsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaiDangThongTinsController.cs" />
     <Compile Include="Areas\NguoiDung\Controllers\BaoCaosController.cs" />
@@ -932,6 +935,7 @@
     <Content Include="Areas\Admin\Views\QuyenGops\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\QuyenGops\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuyenGops\list_QG.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_DangNhap\Admin_DangNhap.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

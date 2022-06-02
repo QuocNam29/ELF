@@ -8,10 +8,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ELF.Areas.KiemDuyets.Middleware;
 using ELF.Models;
 
 namespace ELF.Areas.KiemDuyets.Controllers
 {
+    [LoginVerification]
     public class KD_BaiDangsController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();

@@ -42,44 +42,37 @@
             </div>
             <div class="col-md-6 field">
                 <label>Số điện thoại <span>*</span> </label>
-                <input type="text" placeholder="@Model.TaiKhoan.NguoiDung.dienThoai" disabled>
+                <input type="text" value="@Model.TaiKhoan.NguoiDung.dienThoai" disabled>
             </div>
             <div class="col-md-6 field">
                 <label>Tỉnh/Thành phố <span>*</span> </label>
-                <input type="text" placeholder="@TP" disabled>
+                <input type="text" value="@TP" disabled>
             </div>
             <div class="col-md-6 field">
                 <label>Quận/Huyện<span>*</span> </label>
-                <input type="text" placeholder="@Quan" disabled>
+                <input type="text" value="@Quan" disabled>
             </div>
             <div class="col-md-6 field">
                 <label>Phường/Thị trấn<span>*</span> </label>
-                <input type="text" placeholder="@thiTran" disabled>
+                <input type="text" value="@thiTran" disabled>
             </div>
             <div class="col-md-6 field">
                 <label>Địa chỉ <span>*</span> </label>
-                <input type="text" placeholder="@Model.TaiKhoan.NguoiDung.diaChi" disabled>
+                <input type="text" value="@Model.TaiKhoan.NguoiDung.diaChi" disabled>
             </div>
             <div class="col-md-12 field">
                 <label>Trạng thái tài khoản<span>*</span> </label>
                 @if (Model.TaiKhoan.trangThai == true)
                 {
-                    <input type="text" placeholder="Đang hoạt động" disabled>
+                    <input type="text" value="Đang hoạt động" disabled>
                 }
                 else
                 {
-                    <input type="text" placeholder="Bị khóa" disabled>
+                    <input type="text" value="Bị khóa" disabled>
                 }
 
             </div>
-            <div class="col-md-6 field">
-                <label>State / Province <span>*</span> </label>
-                <input type="text" placeholder="">
-            </div>
-            <div class="col-md-6 field">
-                <label>Zip / Postal Code <span>*</span> </label>
-                <input type="text" value="">
-            </div>
+          
 
             
             <div class="usr-btns">

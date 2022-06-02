@@ -1,4 +1,16 @@
-﻿<html lang="en">
+﻿@{
+    int maND = int.Parse(Session["maND"].ToString());
+    string avt = "";
+    if (Session["avatar"] != null)
+    {
+        avt = Session["avatar"].ToString();
+    }
+    else
+    {
+        avt = "~/images/resources/User-avatar.svg";
+    }
+}
+<html lang="en">
 <!--<![endif]-->
 <head>
 
@@ -23,7 +35,10 @@
 <body class="menu-active">
     <div class="panel-layout wide-content">
         <div class="top-bar">
-            <div class="logo"> <a href="index.html" title=""><img src="~/images/logo.png" alt=""></a> </div>
+            <div class="logo">
+                <a title="" href="@Url.Action("Index","ChucNangTaiKhoans")"><img width="40" src="~/images/resources/logo_elf_hasBackgroundColor.png" alt=""><span style="margin-left: 20px; font-size: 20px; font-weight: 700; color: #194822; vertical-align: middle">ELF</span></a>
+
+            </div>
             <div class="menu-options active"><span class="menu-action"><i></i></span></div>
             <div class="quick-links">
                 <ul>
@@ -41,7 +56,7 @@
                     </li>
                     <li><a title="" id="toolFullScreen" class=""><i class="fa fa-arrows-alt" style="margin: 7px"></i></a></li>
                     <li><a title="" class="refresh-page"><i class="fa fa-refresh" style="margin: 7px"></i></a></li>
-                    <li><a title="" class="right-menu-btn"><i class="fa fa-align-right" style="margin: 7px"></i></a></li>
+                    
                 </ul>
             </div>
             <form class="search-form">
@@ -51,30 +66,11 @@
         </div>
         <!-- Top Bar -->
 
-        <div class="right-menu">
-            <div class="admin-area">
-                <div class="admin-avatar"> <img src="~/images/resource/right-menu-admin.jpg" alt=""> </div>
-                <div class="admin-info">
-                    <span>welcome</span>
-                    <h5>Stephen N. Arellano</h5>
-                </div>
-            </div>
-            <ul class="admin-menu">
-                <li><a href="#" title=""><i><img src="~/images/icon-4.png" alt=""></i>Dashboard</a></li>
-                <li><a href="#" title=""><i><img src="~/images/icon-5.png" alt=""></i>layout</a></li>
-                <li><a href="#" title=""><i><img src="~/images/icon-6.png" alt=""></i>mailbox <span>05</span></a></li>
-                <li><a href="#" title=""><i><img src="~/images/icon-7.png" alt=""></i>forms</a></li>
-                <li><a href="#" title=""><i><img src="~/images/icon-8.png" alt=""></i>tables</a></li>
-                <li><a href="#" title=""><i><img src="~/images/icon-9.png" alt=""></i>maps</a></li>
-            </ul>
-        </div>
-        <!-- right menu -->
-
         <header class="side-header opened-menu slide-menu sticky">
             <div class="admin-details">
-                <span><img src="~/images/resources/admin1.jpg" alt=""></span>
-                <h3>John doe</h3>
-                <i>Web CODER</i>
+                <span><img src="@Url.Content(avt)" alt=""></span>
+                <h3>@Session["hoVaTen"].ToString()</h3>
+                
                 <h5 class="admin-status online">Online</h5>
             </div>
             <div class="menu-scroll">
@@ -84,27 +80,14 @@
                         <nav>
                             <ul>
                                 <li><a href="index.html" title=""><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                                <li><a href="@Url.Action("Index","ChuDeBaiQuizs")" title=""><i class="fa fa-question-circle-o"></i>Quản Lý Bài Quiz</a></li>
-                                <li><a href="edit-profile.html" title=""><i class="fa fa-flask"></i> edit profile</a></li>
-                                <li><a href="inbox.html" title=""><i class="fa fa-flask"></i> inbox</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="#" title=""><i class="fa fa-flask"></i> Extras</a>
-                                    <ul>
-                                        <li><a href="calendar.html" title=""><i class="fa fa-inbox"></i> calendar</a></li>
-                                        <li><a href="image-croper-panel.html" title=""><i class="fa fa-inbox"></i> image croper</a></li>
-                                        <li><a href="link-posting-panel.html" title=""><i class="fa fa-inbox"></i> Link posting</a></li>
-                                        <li><a href="notifications.html" title=""><i class="fa fa-inbox"></i> notifications</a></li>
-                                        <li><a href="opener-image-posting-panel.html" title=""><i class="fa fa-inbox"></i> image opener</a></li>
-                                        <li><a href="ticket2.html" title=""><i class="fa fa-inbox"></i> ticket style 1</a></li>
-                                        <li><a href="ticket3.html" title=""><i class="fa fa-inbox"></i> ticket style 2</a></li>
-                                        <li><a href="reviews.html" title=""><i class="fa fa-gift"></i> reviews</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="location-management.html" title=""><i class="fa fa-inbox"></i> location system</a></li>
-                                <li><a href="@Url.Action("List_DTL","DiemTichLuys")" title=""><i class="fa fa-hdd-o"></i> Quản Lý Điểm Tích Lũy</a></li>
-                                <li><a href="@Url.Action("Index","LoaiQuyenGops")" title=""><i class="fa fa-glass"></i>Quản Lý Loại Quyên Góp</a></li>
-                                <li><a href="@Url.Action("Index","QuaTangs")" title=""><i class="fa fa-gift"></i>Quản Lý Quà Tặng</a></li>
                                 <li><a href="@Url.Action("Index","ChucNangTaiKhoans")" title=""><i class="fa fa-hdd-o"></i> Quản Lý Người Dùng</a></li>
+                                <li><a href="@Url.Action("Details","ChucNangTaiKhoans", new {id = maND })" title=""><i class="fa fa-inbox"></i></i>Hồ sơ Admin</a></li>
+                                <li><a href="@Url.Action("Index","ChuDeBaiQuizs")" title=""><i class="fa fa-question-circle-o"></i>Quản Lý Bài Quiz</a></li>
+                                <li><a href="inbox.html" title=""><i class="fa fa-flask"></i> inbox</a></li>
+                                <li><a href="@Url.Action("List_DTL","DiemTichLuys")" title=""><i class="fa fa-hdd-o"></i> Quản Lý Điểm</a></li>
+                                <li><a href="@Url.Action("Index","LoaiQuyenGops")" title=""><i class="fa fa-glass"></i>Quản Lý Quyên Góp</a></li>
+                                <li><a href="@Url.Action("Index","QuaTangs")" title=""><i class="fa fa-gift"></i>Quản Lý Quà Tặng</a></li>
+
                             </ul>
                         </nav>
                     </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 2px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 500px;"></div><div class="slimScrollRail" style="width: 2px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
@@ -119,18 +102,18 @@
                 <div class="col-md-12">
                     <div class="profile-sec">
                         <div class="profile-banner-sec">
-                            <ul>
+                           @* <ul>
                                 <li>
                                     <input accept="image/*" type="file" name="file-1[]" id="file-1" class="new-img inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
                                     <label for="file-1"><i class="fa fa-picture-o"></i><span>Choose a file</span></label>
                                 </li>
                                 <li><a href="edit-profile.html" title=""><i class="fa fa-pencil"></i> Edit Profile</a></li>
-                            </ul>
+                            </ul>*@
 
                             <img src="~/images/resources/banner.jpg" alt="">
                         </div>
                         <div class="user-bar" id="bar-tops">
-                            <div class="user-thumb"> <img src="~/images/resources/admin1.jpg" alt=""> </div>
+                            <div class="user-thumb"> <img src="@Url.Content(avt)" alt=""> </div>
 
                             <a title="" class="purple-skin"><i class="fa fa-heart-o"></i> Follow</a>
                             <ul>
@@ -240,9 +223,6 @@
         </div>
     </div>
     <!-- Chat System -->
-
-   
-
     <!-- Vendor: Javascripts -->
 
     <script src="~/js/Admin/jquery.min.js"></script>

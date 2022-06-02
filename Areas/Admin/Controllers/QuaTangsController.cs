@@ -8,10 +8,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ELF.Areas.Admin.Middleware;
 using ELF.Models;
 
 namespace ELF.Areas.Admin.Controllers
 {
+    [LoginVerification]
     public class QuaTangsController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();

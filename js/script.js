@@ -524,19 +524,20 @@ $(function() {
 
 
 });//document ready end
-
+var MaBDSP_TraoDoi = "";
 
 //-------------------------------------------------------------
 document.querySelectorAll('.truck-button').forEach(button => {
 	button.addEventListener('click', e => {
 
 		e.preventDefault();
+		MaBDSP_TraoDoi = $(".truck-button").attr('data-id');
+		alert(MaBDSP_TraoDoi);
 
 		let box = button.querySelector('.box'),
 			truck = button.querySelector('.truck');
 		var MaND_TraoDoi = "";
 		var URL_TraoDoi = "";
-		var MaBDSP_TraoDoi = "";
 		var maNDKhac_TraoDoi = "";
 
 		$('#MaND_TraoDoi')
@@ -553,13 +554,7 @@ document.querySelectorAll('.truck-button').forEach(button => {
 			})
 			.keypress();
 
-		$('#MaBDSP_TraoDoi')
-			.keypress(function () {
-				MaBDSP_TraoDoi = $(".truck-button").data("id");
-				alert(MaBDSP_TraoDoi);
-			})
-			.keypress();
-
+		
 		$('#maNDKhac_TraoDoi')
 			.keypress(function () {
 				maNDKhac_TraoDoi = $(this).val();

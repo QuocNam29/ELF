@@ -555,8 +555,8 @@ document.querySelectorAll('.truck-button').forEach(button => {
 
 		$('#MaBDSP_TraoDoi')
 			.keypress(function () {
-				MaBDSP_TraoDoi = $(this).val();
-
+				MaBDSP_TraoDoi = $(".truck-button").data("id");
+				alert(MaBDSP_TraoDoi);
 			})
 			.keypress();
 

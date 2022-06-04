@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -209,6 +209,7 @@
           <Property Name="soDienThoai" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="hinhThucThuGom" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
+          <Property Name="maTK" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="KetQua">
           <Key>
@@ -253,15 +254,6 @@
           </Key>
           <Property Name="maLoaiTK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="vaiTro" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Messages">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Content" Type="nvarchar(max)" />
-          <Property Name="Timestamp" Type="datetime" />
-          <Property Name="FromUserId" Type="int" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
@@ -721,6 +713,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DonViThuGom_TaiKhoan">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+          <End Role="DonViThuGom" Type="Self.DonViThuGom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DonViThuGom">
+              <PropertyRef Name="maTK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_KetQua_ChuDeBaiQuiz">
           <End Role="ChuDeBaiQuiz" Type="Self.ChuDeBaiQuiz" Multiplicity="1" />
           <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
@@ -744,18 +748,6 @@
             </Principal>
             <Dependent Role="KetQua">
               <PropertyRef Name="maND" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Messages_TaiKhoan">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
-          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoan">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Messages">
-              <PropertyRef Name="FromUserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1055,7 +1047,6 @@
           <EntitySet Name="LoaiQuyenGop" EntityType="Self.LoaiQuyenGop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhuongThiTran" EntityType="Self.PhuongThiTran" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuanHuyen" EntityType="Self.QuanHuyen" Schema="dbo" store:Type="Tables" />
@@ -1167,6 +1158,10 @@
             <End Role="DonViThuGom" EntitySet="DonViThuGom" />
             <End Role="DonThuGom" EntitySet="DonThuGom" />
           </AssociationSet>
+          <AssociationSet Name="FK_DonViThuGom_TaiKhoan" Association="Self.FK_DonViThuGom_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="DonViThuGom" EntitySet="DonViThuGom" />
+          </AssociationSet>
           <AssociationSet Name="FK_KetQua_ChuDeBaiQuiz" Association="Self.FK_KetQua_ChuDeBaiQuiz">
             <End Role="ChuDeBaiQuiz" EntitySet="ChuDeBaiQuiz" />
             <End Role="KetQua" EntitySet="KetQua" />
@@ -1174,10 +1169,6 @@
           <AssociationSet Name="FK_KetQua_NguoiDung" Association="Self.FK_KetQua_NguoiDung">
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="KetQua" EntitySet="KetQua" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Messages_TaiKhoan" Association="Self.FK_Messages_TaiKhoan">
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
-            <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_NguoiDung_PhuongThiTran" Association="Self.FK_NguoiDung_PhuongThiTran">
             <End Role="PhuongThiTran" EntitySet="PhuongThiTran" />
@@ -1264,8 +1255,7 @@
             <End Role="TraoDoi" EntitySet="TraoDoi" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ELFVanLang2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1508,6 +1498,8 @@
           <Property Name="hinhThucThuGom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ghiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonThuGoms" Relationship="Self.FK_DonThuGom_DonViThuGom" FromRole="DonViThuGom" ToRole="DonThuGom" />
+          <Property Name="maTK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TaiKhoan" Relationship="ELFVanLang2021Model.FK_DonViThuGom_TaiKhoan" FromRole="DonViThuGom" ToRole="TaiKhoan" />
         </EntityType>
         <EntityType Name="KetQua">
           <Key>
@@ -1680,6 +1672,7 @@
           <NavigationProperty Name="ChucNangTaiKhoans" Relationship="Self.FK_TaiKhoan_LoaiTaiKhoan_TaiKhoan" FromRole="TaiKhoan" ToRole="ChucNangTaiKhoan" />
           <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_TaiKhoan" FromRole="TaiKhoan" ToRole="Messages" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TaiKhoan_NguoiDung" FromRole="TaiKhoan" ToRole="NguoiDung" />
+          <NavigationProperty Name="DonViThuGoms" Relationship="ELFVanLang2021Model.FK_DonViThuGom_TaiKhoan" FromRole="TaiKhoan" ToRole="DonViThuGom" />
         </EntityType>
         <EntityType Name="Tinh_ThanhPho">
           <Key>
@@ -2586,7 +2579,23 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_DonViThuGom_TaiKhoan" Association="ELFVanLang2021Model.FK_DonViThuGom_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="DonViThuGom" EntitySet="DonViThuGoms" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_DonViThuGom_TaiKhoan">
+          <End Type="ELFVanLang2021Model.TaiKhoan" Role="TaiKhoan" Multiplicity="1" />
+          <End Type="ELFVanLang2021Model.DonViThuGom" Role="DonViThuGom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DonViThuGom">
+              <PropertyRef Name="maTK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2794,6 +2803,7 @@
           <EntitySetMapping Name="DonViThuGoms">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.DonViThuGom">
               <MappingFragment StoreEntitySet="DonViThuGom">
+                <ScalarProperty Name="maTK" ColumnName="maTK" />
                 <ScalarProperty Name="maDVTG" ColumnName="maDVTG" />
                 <ScalarProperty Name="tenDVTG" ColumnName="tenDVTG" />
                 <ScalarProperty Name="loaiThuGom" ColumnName="loaiThuGom" />
@@ -2850,16 +2860,6 @@
               <MappingFragment StoreEntitySet="LoaiTaiKhoan">
                 <ScalarProperty Name="maLoaiTK" ColumnName="maLoaiTK" />
                 <ScalarProperty Name="vaiTro" ColumnName="vaiTro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="ELFVanLang2021Model.Message">
-              <MappingFragment StoreEntitySet="Messages">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

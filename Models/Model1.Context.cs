@@ -47,7 +47,6 @@ namespace ELF.Models
         public virtual DbSet<LoaiQuyenGop> LoaiQuyenGops { get; set; }
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
-        public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<PhuongThiTran> PhuongThiTrans { get; set; }
         public virtual DbSet<QuanHuyen> QuanHuyens { get; set; }

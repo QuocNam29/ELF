@@ -1,127 +1,17 @@
-﻿@{
-    @*int maND = int.Parse(Session["maND"].ToString());
-        string avt = "";
-        if (Session["avatar"] != null)
-        {
-            avt = Session["avatar"].ToString();
-        }
-        else
-        {
-            avt = "~/images/resources/User-avatar.svg.png";
-        }*@
+﻿
+@{
+    Layout = null;
 }
+
 <!DOCTYPE html>
-<html lang="en">
 
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <title>ELF</title>
-    <link rel="icon" href="~/images/fav.png" type="image/png" sizes="16x16">
-
-    <link rel="stylesheet" href="~/css/main.min.css">
-    <link rel="stylesheet" href="~/css/style.css">
-    <link rel="stylesheet" href="~/css/color.css">
-    <link rel="stylesheet" href="~/css/responsive.css">
-    <link rel="stylesheet" href="~/css/strip.css">
-
-
-
+    <meta name="viewport" content="width=device-width" />
+    <title>_Layout_DonViThuGom</title>
 </head>
 <body>
-    <section>
-        <div class="ext-gap bluesh high-opacity">
-            <div class="content-bg-wrap" style="background: url('@Url.Content("~/images/resources/animated-bg2.png")');"></div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="top-banner">
-                            <h1>Kiểm Duyệt ELF</h1>
-                            <nav class="breadcrumb">
-                                <a class="breadcrumb-item" href="index-2.html">Home</a>
-                                <span class="breadcrumb-item active">Blog</span>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- top area animated -->
-
-    <section>
-        <div class="gap gray-bg">
-            <div class="container-fluid">
-                <div class="row" id="page-contents">
-                    <div class="col-lg-3">
-                        <aside class="sidebar static">
-                            <div class="widget">
-                                <h4 class="widget-title">Socials</h4>
-                                <ul class="socials">
-                                    <li class="facebook">
-                                        <a title="" href="#"> <span>Bài Đăng Trao Đổi</span> </a>
-                                    </li>
-                                    <li class="twitter">
-                                        <a title="" href="@Url.Action("Index","KD_BaiDangs")"> <span>Bài Đăng Thông Tin</span></a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="widget stick-widget">
-                                <h4 class="widget-title">Phím tắt</h4>
-                                <ul class="naves">
-                                    <li>
-                                        <i class="ti-clipboard"></i>
-                                        <a href="@Url.Action("Index_DonQG","KiemDuyets")" title="">Duyệt quyên góp</a>
-                                    </li>
-                                    <li>
-                                        <i class="ti-files"></i>
-                                        <a href="@Url.Action("Index","KiemDuyets")" title="">Duyệt bài trao đổi</a>
-                                    </li>
-                                    <li>
-                                        <i class="ti-mouse-alt"></i>
-                                        <a href="@Url.Action("Index_BDTT","KiemDuyets")" title="">Duyệt bài thông tin</a>
-                                    </li>
-
-                                    <li>
-                                        <i class="ti-mouse-alt"></i>
-                                        <a href="@Url.Action("Index","KD_DonQuas")" title="">Đơn quà</a>
-                                    </li>
-
-                                    <li>
-                                        <i class="ti-comments-smiley"></i>
-                                        <a href="messages.html" title="">Tin nhắn</a>
-                                    </li>
-                                    <li>
-                                        <i class="ti-power-off"></i>
-                                        <a href="@Url.Action("LogOut", "DangNhap")" title="">Đăng xuất</a>
-                                    </li>
-                                </ul>
-                            </div><!-- Shortcuts -->
-                        </aside>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="blog-sec right-pading">
-                            @RenderBody()
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    @*<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>*@
-    <script src="~/js/main.min.js"></script>
-    <script src="~/js/script.js"></script>
-    <script src="~/js/map-init.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
-
-    @*<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>*@
-
-
-
+    <div> 
+    </div>
 </body>
-
 </html>

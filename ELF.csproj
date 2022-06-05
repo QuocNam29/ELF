@@ -296,6 +296,8 @@
     <Compile Include="Areas\Admin\Controllers\QuyenGopsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Middleware\LoginVerification.cs" />
+    <Compile Include="Areas\DonViThuGom\Controllers\DonThuGomsController.cs" />
+    <Compile Include="Areas\DonViThuGom\DonViThuGomAreaRegistration.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_BaiDangsController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_DonQuasController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_LoaiQG_BDController.cs" />
@@ -399,9 +401,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Message.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -910,13 +909,6 @@
     <Content Include="Areas\Admin\Views\ChuDeBaiQuizs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDeBaiQuizs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDeBaiQuizs\Index.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\CauHois\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CauHois\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\CauHois\Details.cshtml" />
@@ -936,6 +928,20 @@
     <Content Include="Areas\Admin\Views\QuyenGops\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuyenGops\list_QG.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_DangNhap\Admin_DangNhap.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\web.config" />
+    <Content Include="Areas\DonViThuGom\Views\Shared\_Layout_DonViThuGom.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\DonViThuGom\Views\DonThuGoms\Create.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\DonThuGoms\Delete.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\DonThuGoms\Details.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\DonThuGoms\Edit.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\DonThuGoms\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1119,6 +1125,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\DonViThuGom\Data\" />
     <Folder Include="Areas\KiemDuyets\Data\" />
     <Folder Include="Areas\NguoiDung\Data\" />
     <Folder Include="Views\Home\" />

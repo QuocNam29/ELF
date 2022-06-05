@@ -20,6 +20,8 @@ namespace ELF.Models
         {
             this.BaiDangSanPhams = new HashSet<BaiDangSanPham>();
             this.BaiDangThongTins = new HashSet<BaiDangThongTin>();
+            this.BaoCaos = new HashSet<BaoCao>();
+            this.BaoCaos1 = new HashSet<BaoCao>();
             this.BinhLuans = new HashSet<BinhLuan>();
             this.DiemTichLuys = new HashSet<DiemTichLuy>();
             this.DonQuas = new HashSet<DonQua>();
@@ -30,19 +32,19 @@ namespace ELF.Models
             this.ThongBaos1 = new HashSet<ThongBao>();
             this.TraoDois = new HashSet<TraoDoi>();
             this.TraoDois1 = new HashSet<TraoDoi>();
-            this.BaoCaos = new HashSet<BaoCao>();
-            this.BaoCaos1 = new HashSet<BaoCao>();
         }
     
         public int maND { get; set; }
         [Required(ErrorMessage = "Bạn chưa nhập họ và tên")]
         [StringLength(100, ErrorMessage = "Họ và tên không thể quá 100 kí tự!")]
         [RegularExpression(@"[\p{L} ]+$", ErrorMessage = "Họ và tên chỉ được nhập chữ!")]
+
         public string hoVaTen { get; set; }
         [Required]
         public int gioiTinh { get; set; }
         [Required(ErrorMessage = "Bạn chưa nhập số điện thoại")]
         [RegularExpression(@"^(\d{10})$", ErrorMessage = "Số điện thoại chưa đúng định dạng!")]
+
         public string dienThoai { get; set; }
         public Nullable<int> maTinh_TP { get; set; }
         public Nullable<int> maQuan { get; set; }
@@ -51,20 +53,27 @@ namespace ELF.Models
         public string avatar { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DateValidation(ErrorMessage = "Vui lòng nhập ngày <= ngày hiện tại")]
+
         public Nullable<System.DateTime> ngaySinh { get; set; }
         public string ghiChu { get; set; }
         public string maTK { get; set; }
+        public Nullable<int> maDVTG { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaiDangSanPham> BaiDangSanPhams { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaiDangThongTin> BaiDangThongTins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BaoCao> BaoCaos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BaoCao> BaoCaos1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiemTichLuy> DiemTichLuys { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonQua> DonQuas { get; set; }
+        public virtual DonViThuGom DonViThuGom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetQua> KetQuas { get; set; }
         public virtual PhuongThiTran PhuongThiTran { get; set; }
@@ -82,9 +91,5 @@ namespace ELF.Models
         public virtual ICollection<TraoDoi> TraoDois { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TraoDoi> TraoDois1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BaoCao> BaoCaos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BaoCao> BaoCaos1 { get; set; }
     }
 }

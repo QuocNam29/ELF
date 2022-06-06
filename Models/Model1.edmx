@@ -211,7 +211,7 @@
           <Property Name="soDienThoai" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="hinhThucThuGom" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
-          <Property Name="trangThai" Type="nchar" MaxLength="10" />
+          <Property Name="trangThai" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="KetQua">
           <Key>
@@ -1522,7 +1522,7 @@
           <NavigationProperty Name="DonThuGoms" Relationship="Self.FK_DonThuGom_DonViThuGom" FromRole="DonViThuGom" ToRole="DonThuGom" />
           <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_DonViThuGom" FromRole="DonViThuGom" ToRole="NguoiDung" />
           <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="trangThai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="trangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KetQua">
           <Key>

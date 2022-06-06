@@ -1,0 +1,91 @@
+﻿@model ELF.Models.DonThuGom
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DonThuGom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayGui)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayGui)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayXacNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayXacNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayHoanTat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayHoanTat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.viTriTG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.viTriTG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thanhPhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thanhPhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.khoiLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.khoiLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ghiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ghiChu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonViThuGom.tenDVTG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonViThuGom.tenDVTG)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maDonTG }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -24,19 +24,8 @@
                         var myModal = "exampleModalCenter" + item.maDVTG;
                     }
                 <ul>
-
+                    <li><a type="button" class="btn-block" href="@Url.Action("Details", "DonViThuGoms",new {id = item.maDVTG })">Chi tiết</a> </li>
                     <li> <a href="" title="" class="btn-block" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa</a></li>
-                    @if (item.trangThai == "Đã ẩn")
-                    {
-                        <li> @Html.ActionLink("Hiện", "Hidden", new { id = item.maDVTG })</li>
-                    }
-                    else
-                    {
-                         <li> @Html.ActionLink("Ẩn", "Hidden", new { id = item.maDVTG })</li>
-                    }
-                    
-
-                    <li><a type="button" class="btn-block" href="@Url.Action("Details", "LoaiQuyenGops",new {id = item.maDVTG })" >Chi tiết</a> </li>
                 </ul>
                     <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -48,10 +37,10 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                Bạn có chắc chắn muốn xóa toàn bộ chủ đề "@item.tenDVTG" không?
+                                Bạn có chắc chắn muốn xóa đơn vị thu gom "@item.tenDVTG" không?
                                 </div>
                                 <div class="modal-footer">
-                                    @using (Html.BeginForm("Delete", "LoaiQuyenGops", new { id = item.maDVTG }))
+                                    @using (Html.BeginForm("Delete", "DonViThuGoms", new { id = item.maDVTG }))
                                     {
                                         @Html.AntiForgeryToken()
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>

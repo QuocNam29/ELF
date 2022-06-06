@@ -19,7 +19,7 @@ namespace ELF.Areas.Admin.Controllers
         // GET: Admin/DonViThuGoms
         public ActionResult Index()
         {
-            return View(db.DonViThuGoms.ToList());
+            return View(db.DonViThuGoms.ToList().OrderByDescending(d => d.maDVTG));
         }
 
         // GET: Admin/DonViThuGoms/Details/5
@@ -127,25 +127,9 @@ namespace ELF.Areas.Admin.Controllers
         // GET: Admin/DonViThuGoms/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Models.DonViThuGom donViThuGom = db.DonViThuGoms.Find(id);
-            if (donViThuGom == null)
-            {
-                return HttpNotFound();
-            }
-            return View(donViThuGom);
-        }
-
-        // POST: Admin/DonViThuGoms/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Models.DonViThuGom donViThuGom = db.DonViThuGoms.Find(id);
-            db.DonViThuGoms.Remove(donViThuGom);
+            donViThuGom.trangThai = "Đã xóa";
+            db.Entry(donViThuGom).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

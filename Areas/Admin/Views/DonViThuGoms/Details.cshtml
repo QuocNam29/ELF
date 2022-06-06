@@ -1,0 +1,67 @@
+﻿@model ELF.Models.DonViThuGom
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DonViThuGom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenDVTG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenDVTG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.loaiThuGom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loaiThuGom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soDienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soDienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhThucThuGom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhThucThuGom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ghiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ghiChu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maDVTG }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

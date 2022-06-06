@@ -291,6 +291,7 @@
     <Compile Include="Areas\Admin\Controllers\ChucNangTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChuDeBaiQuizsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiemTichLuysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DonViThuGomsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiQuyenGopsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuaTangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuyenGopsController.cs" />
@@ -515,7 +516,6 @@
     <Content Include="images\bg-registration-form-1.jpg" />
     <Content Include="images\book-icon.png" />
     <Content Include="images\credit-cards.png" />
-    <Content Include="images\dot-pattern.png" />
     <Content Include="images\ELF-background.png" />
     <Content Include="images\envelop.png" />
     <Content Include="images\faq.png" />
@@ -613,6 +613,7 @@
     <Content Include="images\resources\group7.jpg" />
     <Content Include="images\resources\help-shot.jpg" />
     <Content Include="images\resources\in-progress-animate.svg" />
+    <Content Include="images\resources\logo_DVTG.jpg" />
     <Content Include="images\resources\logo_elf_dark.png" />
     <Content Include="images\resources\logo_elf_hasBackgroundColor.png" />
     <Content Include="images\resources\logo_elf_light.png" />
@@ -942,6 +943,11 @@
     <Content Include="Areas\DonViThuGom\Views\DonThuGoms\Details.cshtml" />
     <Content Include="Areas\DonViThuGom\Views\DonThuGoms\Edit.cshtml" />
     <Content Include="Areas\DonViThuGom\Views\DonThuGoms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DonViThuGoms\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DonViThuGoms\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DonViThuGoms\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DonViThuGoms\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DonViThuGoms\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

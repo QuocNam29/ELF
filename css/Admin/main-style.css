@@ -2210,7 +2210,7 @@ footer li{float: left;}
 /*===== User Mangement =====*/
 .usr-pnl {
     float: left;
-    margin-top: 150px;
+    margin-top: 20px;
     overflow: hidden;
     width: 100%;
 }

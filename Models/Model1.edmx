@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ELFVanLang2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -117,6 +117,7 @@
           <Property Name="maND" Type="int" Nullable="false" />
           <Property Name="maBDSP" Type="int" />
           <Property Name="maBDTT" Type="int" />
+          <Property Name="maDonTG" Type="int" />
           <Property Name="noiDung" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="trangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ngayBL" Type="datetime" Nullable="false" />
@@ -203,12 +204,14 @@
             <PropertyRef Name="maDVTG" />
           </Key>
           <Property Name="maDVTG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="logo" Type="nvarchar(max)" />
           <Property Name="tenDVTG" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="loaiThuGom" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="diaChi" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="soDienThoai" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="hinhThucThuGom" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
+          <Property Name="trangThai" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="KetQua">
           <Key>
@@ -496,6 +499,18 @@
             </Principal>
             <Dependent Role="BinhLuan">
               <PropertyRef Name="maBDTT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_DonThuGom">
+          <End Role="DonThuGom" Type="Self.DonThuGom" Multiplicity="0..1" />
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonThuGom">
+              <PropertyRef Name="maDonTG" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="maDonTG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1094,6 +1109,10 @@
             <End Role="BaiDangThongTin" EntitySet="BaiDangThongTin" />
             <End Role="BinhLuan" EntitySet="BinhLuan" />
           </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_DonThuGom" Association="Self.FK_BinhLuan_DonThuGom">
+            <End Role="DonThuGom" EntitySet="DonThuGom" />
+            <End Role="BinhLuan" EntitySet="BinhLuan" />
+          </AssociationSet>
           <AssociationSet Name="FK_BinhLuan_NguoiDung" Association="Self.FK_BinhLuan_NguoiDung">
             <End Role="NguoiDung" EntitySet="NguoiDung" />
             <End Role="BinhLuan" EntitySet="BinhLuan" />
@@ -1255,8 +1274,7 @@
             <End Role="TraoDoi" EntitySet="TraoDoi" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ELFVanLang2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1391,6 +1409,8 @@
           <NavigationProperty Name="BaiDangThongTin" Relationship="Self.FK_BinhLuan_BaiDangThongTin" FromRole="BinhLuan" ToRole="BaiDangThongTin" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_BinhLuan_NguoiDung" FromRole="BinhLuan" ToRole="NguoiDung" />
           <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_BinhLuan" FromRole="BinhLuan" ToRole="ThongBao" />
+          <Property Name="maDonTG" Type="Int32" />
+          <NavigationProperty Name="DonThuGom" Relationship="ELFVanLang2021Model.FK_BinhLuan_DonThuGom" FromRole="BinhLuan" ToRole="DonThuGom" />
         </EntityType>
         <EntityType Name="CauHoi">
           <Key>
@@ -1486,6 +1506,7 @@
           <Property Name="khoiLuong" Type="Double" Nullable="false" />
           <Property Name="ghiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonViThuGom" Relationship="Self.FK_DonThuGom_DonViThuGom" FromRole="DonThuGom" ToRole="DonViThuGom" />
+          <NavigationProperty Name="BinhLuans" Relationship="ELFVanLang2021Model.FK_BinhLuan_DonThuGom" FromRole="DonThuGom" ToRole="BinhLuan" />
         </EntityType>
         <EntityType Name="DonViThuGom">
           <Key>
@@ -1500,6 +1521,8 @@
           <Property Name="ghiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonThuGoms" Relationship="Self.FK_DonThuGom_DonViThuGom" FromRole="DonViThuGom" ToRole="DonThuGom" />
           <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_DonViThuGom" FromRole="DonViThuGom" ToRole="NguoiDung" />
+          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="trangThai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="KetQua">
           <Key>
@@ -2568,7 +2591,23 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_DonThuGom" Association="ELFVanLang2021Model.FK_BinhLuan_DonThuGom">
+            <End Role="DonThuGom" EntitySet="DonThuGoms" />
+            <End Role="BinhLuan" EntitySet="BinhLuans" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_BinhLuan_DonThuGom">
+          <End Type="ELFVanLang2021Model.DonThuGom" Role="DonThuGom" Multiplicity="0..1" />
+          <End Type="ELFVanLang2021Model.BinhLuan" Role="BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonThuGom">
+              <PropertyRef Name="maDonTG" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="maDonTG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2679,6 +2718,7 @@
           <EntitySetMapping Name="BinhLuans">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.BinhLuan">
               <MappingFragment StoreEntitySet="BinhLuan">
+                <ScalarProperty Name="maDonTG" ColumnName="maDonTG" />
                 <ScalarProperty Name="maBL" ColumnName="maBL" />
                 <ScalarProperty Name="maND" ColumnName="maND" />
                 <ScalarProperty Name="maBDSP" ColumnName="maBDSP" />
@@ -2776,6 +2816,8 @@
           <EntitySetMapping Name="DonViThuGoms">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.DonViThuGom">
               <MappingFragment StoreEntitySet="DonViThuGom">
+                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="maDVTG" ColumnName="maDVTG" />
                 <ScalarProperty Name="tenDVTG" ColumnName="tenDVTG" />
                 <ScalarProperty Name="loaiThuGom" ColumnName="loaiThuGom" />

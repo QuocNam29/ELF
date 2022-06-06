@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ELF.Models.LoaiQuyenGop>
+﻿@model IEnumerable<ELF.Models.DonViThuGom>
 
 @{
     ViewBag.Title = "Index";
@@ -21,22 +21,22 @@
                 <div class="more-post-optns">
                     <i class="ti-more-alt"></i>
                     @{
-                        var myModal = "exampleModalCenter" + item.maLQG;
+                        var myModal = "exampleModalCenter" + item.maDVTG;
                     }
                 <ul>
 
                     <li> <a href="" title="" class="btn-block" data-ripple="" data-toggle="modal" data-target="#@myModal">Xóa</a></li>
                     @if (item.trangThai == "Đã ẩn")
                     {
-                        <li> @Html.ActionLink("Hiện", "Hidden", new { id = item.maLQG })</li>
+                        <li> @Html.ActionLink("Hiện", "Hidden", new { id = item.maDVTG })</li>
                     }
                     else
                     {
-                         <li> @Html.ActionLink("Ẩn", "Hidden", new { id = item.maLQG })</li>
+                         <li> @Html.ActionLink("Ẩn", "Hidden", new { id = item.maDVTG })</li>
                     }
                     
 
-                    <li><a type="button" class="btn-block" href="@Url.Action("Details", "LoaiQuyenGops",new {id = item.maLQG })" >Chi tiết</a> </li>
+                    <li><a type="button" class="btn-block" href="@Url.Action("Details", "LoaiQuyenGops",new {id = item.maDVTG })" >Chi tiết</a> </li>
                 </ul>
                     <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -48,10 +48,10 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                Bạn có chắc chắn muốn xóa toàn bộ chủ đề "@item.tenLoai" không?
+                                Bạn có chắc chắn muốn xóa toàn bộ chủ đề "@item.tenDVTG" không?
                                 </div>
                                 <div class="modal-footer">
-                                    @using (Html.BeginForm("Delete", "LoaiQuyenGops", new { id = item.maLQG }))
+                                    @using (Html.BeginForm("Delete", "LoaiQuyenGops", new { id = item.maDVTG }))
                                     {
                                         @Html.AntiForgeryToken()
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
@@ -65,13 +65,23 @@
             </div>
             <div class="cmp-sc1">
                 <div class="cmp-thm">
-                    <img src="~/images/resources/@item.hinhAnh" alt="">
+                    @if (item.logo != null)
+                    {
+                        <img src="~/images/resources/@item.logo" alt="">
+                    }
+                    else
+                    {
+
+                        <img src="~/images/resources/logo_DVTG.jpg" />
+                    }
+
                 </div>
 
             </div>
             <div class="cmp-sc2">
-                <h2>@item.tenLoai</h2>
-                <span><i class="fa fa-location-arrow"></i> @item.viTriQP ||</span>
+                <h2>@item.tenDVTG</h2>
+                <span><i class="fa fa-location-arrow"></i> @item.diaChi ||</span>
+                <span><i class="fa fa-phone"></i>@item.soDienThoai</span>
                 @if (item.trangThai != "Đã ẩn")
                 {
                     <span><i class="fa fa-globe"></i> @item.trangThai</span>
@@ -83,21 +93,24 @@
 
             </div>
             <div class="cmp-sc3">
-                <h2>Vật dụng</h2>
-                <span>@item.noiDung</span>
-                @if (item.ghiChu != null)
-                {
-                    <h2>Ghi chú</h2>
-                    <span>@item.ghiChu</span>
-                }
-
-
+                <h2>Loại thu gom</h2>
+                <span>@item.loaiThuGom</span>             
+                    <h2> Hình thức thu gom</h2>
+                    <span>@item.hinhThucThuGom</span>              
             </div>
 
             <div class="cmp-sc4">
                 <div class="cmp-bnr">
-                    <img src="~/images/resources/@item.hinhAnh" alt="">
-                    <a title="" href="@Url.Action("Index", "QuyenGops", new { maLQG = item.maLQG })"> Danh sách</a>
+                    @if (item.logo != null)
+                    {
+                        <img src="~/images/resources/@item.logo" alt="">
+                    }
+                    else
+                    {
+                <img src="~/images/resources/logo_DVTG.jpg" />
+                       
+                    }
+                    <a title="" href="@Url.Action("Index", "QuyenGops", new { maLQG = item.maDVTG })"> Danh sách</a>
                 </div>
             </div>
 
@@ -119,7 +132,7 @@
             <div class="scrl" style="overflow: hidden; width: auto; height: 500px;">
                 <div class="usr-pnl">
                     <div class="pnl-tl">
-                        <h4>Thêm loại quyên góp</h4>
+                        <h4>Thêm Đơn Vị Thu Gom</h4>
                         <ul class="brd-crmb">
                             <li><a href="#" title=""><i class="fa fa-home"></i></a></li>
                             <li>Locations</li>
@@ -128,8 +141,8 @@
                     <div class="pnl-bdy">
 
                         <div class="adrs-frm">
-                            <h4>Thông tin quyên góp</h4>
-                            @using (Html.BeginForm("Create", "LoaiQuyenGops", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            <h4>Thông Tin Đơn Vị Thu Gom</h4>
+                            @using (Html.BeginForm("Create", "DonViThuGoms", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
 
@@ -137,20 +150,26 @@
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="row">
+                                                <div class="col-md-8">
+                                                    <input type="text" placeholder="Tên Đơn Vị Thu Gom" name="TenDVTG"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên đơn vị thu gom)" oninput="setCustomValidity('')">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" placeholder="Số điện thoại liên hệ" name="sdt"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập số điện thoại liên hệ)" oninput="setCustomValidity('')">
+                                                </div>
+
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Tên Loại Quyên Góp" name="loaiQG"
-                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên loại quên góp)" oninput="setCustomValidity('')">
+                                                    <input type="Text" placeholder="Địa Chỉ" name="diaChi"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập địa chỉ)" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="Text" placeholder="vật dụng ví dụ..." name="noidung"
-                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập những vât dụng ví dụ...)" oninput="setCustomValidity('')">
+                                                    <input type="text" placeholder="Loại Thu Gom" name="LoaiTG"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập loại thu gom)" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Vị trí quyên góp" name="vitri"
-                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập vị trí quyên góp)" oninput="setCustomValidity('')">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="text" placeholder="Ghi chú" name="ghiChu">
+                                                    <input type="text" placeholder="Hình Thức Thu Gom" name="hinhThucTG"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập hình thức thu gom)" oninput="setCustomValidity('')">
                                                 </div>
                                             </div>
                                         </div>
@@ -161,7 +180,7 @@
                                                         <label class="fileContainer">
                                                             <i class="fa fa-camera" style="line-height: 128px;"></i>
                                                             <input accept="image/*" id="chng2" type="file" name="img"
-                                                                   required="required" oninvalid="this.setCustomValidity('Bạn chưa chọn hình ảnh quyên góp)" oninput="setCustomValidity('')">
+                                                                   required="required" oninvalid="this.setCustomValidity('Bạn chưa chọn Logo của Đơn vị thu gom)" oninput="setCustomValidity('')">
 
                                                             <script>
                                                                 chng2.onchange = evt => {
@@ -171,8 +190,8 @@
                                                                     }
                                                                 }
                                                             </script>
-                                                        </label>
-                                                        <img id="utp2" src="images/resource/cmp-bnr1.jpg" alt="">
+                                                        </label>                                         
+                                                        <img  id="utp2" src="~/images/resources/logo_elf_dark.png" alt="" />
                                                     </div>
                                                 </div>
 
@@ -190,7 +209,3 @@
         </div>
     </div>
 </div>
-
-
-
-

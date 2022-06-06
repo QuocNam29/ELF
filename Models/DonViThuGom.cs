@@ -28,6 +28,8 @@ namespace ELF.Models
         public string soDienThoai { get; set; }
         public string hinhThucThuGom { get; set; }
         public string ghiChu { get; set; }
+        public string logo { get; set; }
+        public string trangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonThuGom> DonThuGoms { get; set; }

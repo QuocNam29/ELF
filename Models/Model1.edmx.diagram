@@ -86,6 +86,7 @@
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_QuyenGop" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.FK_ThongBao_TraoDoi" ManuallyRouted="false" />
         <AssociationConnector Association="ELFVanLang2021Model.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="ELFVanLang2021Model.FK_BinhLuan_DonThuGom" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

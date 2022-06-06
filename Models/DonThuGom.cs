@@ -14,6 +14,12 @@ namespace ELF.Models
     
     public partial class DonThuGom
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DonThuGom()
+        {
+            this.BinhLuans = new HashSet<BinhLuan>();
+        }
+    
         public int maDonTG { get; set; }
         public int maDVTG { get; set; }
         public string trangThai { get; set; }
@@ -26,5 +32,7 @@ namespace ELF.Models
         public string ghiChu { get; set; }
     
         public virtual DonViThuGom DonViThuGom { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BinhLuan> BinhLuans { get; set; }
     }
 }

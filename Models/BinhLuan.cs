@@ -27,11 +27,13 @@ namespace ELF.Models
         public string noiDung { get; set; }
         public string trangThai { get; set; }
         public System.DateTime ngayBL { get; set; }
+        public Nullable<int> maDonTG { get; set; }
     
         public virtual BaiDangSanPham BaiDangSanPham { get; set; }
         public virtual BaiDangThongTin BaiDangThongTin { get; set; }
         public virtual NguoiDung NguoiDung { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThongBao> ThongBaos { get; set; }
+        public virtual DonThuGom DonThuGom { get; set; }
     }
 }

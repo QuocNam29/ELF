@@ -95,7 +95,7 @@ namespace ELF.Areas.Admin.Controllers
             Session.Clear();
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("DangNhap", "DangNhap");
+            return RedirectToAction("Admin_DangNhap", "Admin_DangNhap");
         }
     
 }

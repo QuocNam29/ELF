@@ -31,6 +31,13 @@
     <link href="~/css/Admin/responsive.css" rel="stylesheet" />
     <link href="~/css/Admin/wickedpicker.css" rel="stylesheet" />
 
+
+    <link rel="stylesheet" href="~/css/main.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/color.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <link rel="stylesheet" href="~/css/strip.css">
+
 </head>
 <body class="menu-active">
     <div class="panel-layout wide-content">
@@ -47,16 +54,15 @@
                         <div class="noti-lst setting">
                             <div class="noti-tp"> <span>profile setting</span></div>
                             <ul>
-                                <li><a href="" title=""><i class="fa fa-user"></i>your profile</a></li>
+                                <li><a href="@Url.Action("Details","ChucNangTaiKhoans", new {id = maND })" title=""><i class="fa fa-user"></i>Hồ sơ</a></li>
                                 <li><a href="" title=""><i class="fa fa-edit"></i>Edit profile</a></li>
-                                <li><a href="" title=""><i class="fa fa-question-circle"></i>Get Help</a></li>
-                                <li><a href="" title=""><i class="fa fa-sign-out"></i>Log out</a></li>
+                                <li><a href="@Url.Action("Admin_LogOut","Admin_DangNhap")" title=""><i class="fa fa-sign-out"></i>Log out</a></li>
                             </ul>
                         </div>
                     </li>
                     <li><a title="" id="toolFullScreen" class=""><i class="fa fa-arrows-alt" style="margin: 7px"></i></a></li>
                     <li><a title="" class="refresh-page"><i class="fa fa-refresh" style="margin: 7px"></i></a></li>
-                    
+
                 </ul>
             </div>
             <form class="search-form">
@@ -70,7 +76,7 @@
             <div class="admin-details">
                 <span><img src="@Url.Content(avt)" alt=""></span>
                 <h3>@Session["hoVaTen"].ToString()</h3>
-                
+
                 <h5 class="admin-status online">Online</h5>
             </div>
             <div class="menu-scroll">
@@ -102,63 +108,26 @@
                 <div class="col-md-12">
                     <div class="profile-sec">
                         <div class="profile-banner-sec">
-                           @* <ul>
-                                <li>
-                                    <input accept="image/*" type="file" name="file-1[]" id="file-1" class="new-img inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
-                                    <label for="file-1"><i class="fa fa-picture-o"></i><span>Choose a file</span></label>
-                                </li>
-                                <li><a href="edit-profile.html" title=""><i class="fa fa-pencil"></i> Edit Profile</a></li>
-                            </ul>*@
-
-                            <img src="~/images/resources/banner.jpg" alt="">
-                        </div>
-                        <div class="user-bar" id="bar-tops">
-                            <div class="user-thumb"> <img src="@Url.Content(avt)" alt=""> </div>
-
-                            <a title="" class="purple-skin"><i class="fa fa-heart-o"></i> Follow</a>
-                            <ul>
-                                <li> 1,245 <span>Followers</span> </li>
-                                <li> 535 <span>Projects</span> </li>
-                                <li> 994 <span>Following</span> </li>
-                            </ul>
-                            <div class="notif">
-                                <span><img src="~/images/icon-bell.png" alt=""><i>3</i></span>
-                                <div class="noti-lst">
-                                    <div class="noti-tp"> <span>Notifications</span> </div>
-                                    <div class="noti-bd">
-                                        <ul>
-                                            <li class="rd-noti"><a href="#" title=""><strong>Alexander</strong></a> Liked <a href="#" title="">Zebra Styling Of Activity Feed Items</a> with <a href="#" title="">Css3 I BP Triks.</a> <span>15 Min Ago</span> <i>Read</i></li>
-                                            <li class="unrd-noti"><a href="#" title=""><strong>BuddyPress</strong> Using Dropbox To Host Your On WordPress Theme! BP-Tricks</a> <span>30 Min Ago</span> <i>Unread</i></li>
-                                            <li class="unrd-noti"><a href="#" title=""><strong>BP-Tricks:</strong> Sharing BuddyPress Knowledge made eassy!</a> <span>12 Hours Ago</span> <i>Unread</i></li>
-                                            <li class="unrd-noti"><a href="#" title=""><strong>Alexander</strong></a> Liked <a href="#" title="">Zebra Styling Of Activity Feed Items</a> with <a href="#" title="">Css3 I BP Triks.</a> <span>19 Hours Ago</span> <i>Unread</i></li>
-                                        </ul>
+                            <section>
+                                <div class="ext-gap bluesh high-opacity">
+                                    <div class="content-bg-wrap" style="background: url('@Url.Content("~/images/resources/animated-bg2.png")');"></div>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="top-banner">
+                                                    <h1>Admin ELF</h1>
+                                                    <nav class="breadcrumb">
+                                                        <a class="breadcrumb-item" href="index-2.html">Home</a>
+                                                        <span class="breadcrumb-item active">Blog</span>
+                                                    </nav>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="noti-bt"> <a href="#" title="">View All Notification</a> </div>
                                 </div>
-                            </div>
-                            <div class="notif">
-                                <span><img src="~/images/icon-envelop.png" alt=""><i>3</i></span>
-                                <div class="noti-lst">
-                                    <div class="noti-tp"> <span>Notifications</span> </div>
-                                    <div class="noti-bd">
-                                        <ul>
-                                            <li class="rd-noti"><a href="#" title=""><strong>Alexander</strong></a> Liked <a href="#" title="">Zebra Styling Of Activity Feed Items</a> with <a href="#" title="">Css3 I BP Triks.</a> <span>15 Min Ago</span> <i>Read</i></li>
-                                            <li class="unrd-noti"><a href="#" title=""><strong>BuddyPress</strong> Using Dropbox To Host Your On WordPress Theme! BP-Tricks</a> <span>30 Min Ago</span> <i>Unread</i></li>
-                                            <li class="unrd-noti"><a href="#" title=""><strong>BP-Tricks:</strong> Sharing BuddyPress Knowledge made eassy!</a> <span>12 Hours Ago</span> <i>Unread</i></li>
-                                            <li class="unrd-noti"><a href="#" title=""><strong>Alexander</strong></a> Liked <a href="#" title="">Zebra Styling Of Activity Feed Items</a> with <a href="#" title="">Css3 I BP Triks.</a> <span>19 Hours Ago</span> <i>Unread</i></li>
-                                        </ul>
-                                    </div>
-                                    <div class="noti-bt"> <a href="#" title="">View All Notification</a> </div>
-                                </div>
-                            </div>
-                            <div class="social-btns">
-                                <ul>
-                                    <li><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
+                            </section>
                         </div>
+                   
 
                         @RenderBody()
 
@@ -231,6 +200,11 @@
     <script src="~/js/Admin/isotope-int.js"></script>
     <script src="~/js/Admin/main.js"></script>
     <script src="~/js/Admin/popperjs-bootstrap.js"></script>
+
+    <script src="~/js/main.min.js"></script>
+    <script src="~/js/script.js"></script>
+    <script src="~/js/map-init.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 
 </body>
 </html>

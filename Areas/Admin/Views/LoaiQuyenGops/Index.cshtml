@@ -70,7 +70,7 @@
 
             </div>
             <div class="cmp-sc2">
-                <h2>@item.tenLoai</h2>
+                <h2><a href="@Url.Action("Details", "DonViThuGoms",new {id = item.maLQG })">@item.tenLoai</a></h2>
                 <span><i class="fa fa-location-arrow"></i> @item.viTriQP ||</span>
                 @if (item.trangThai != "Đã ẩn")
                 {

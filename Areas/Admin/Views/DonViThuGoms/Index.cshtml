@@ -67,8 +67,8 @@
                 </div>
 
             </div>
-            <div class="cmp-sc2">
-                <h2>@item.tenDVTG</h2>
+            <div class="cmp-sc2" >
+                <h2> <a href="@Url.Action("Details", "DonViThuGoms",new {id = item.maDVTG })">@item.tenDVTG</a></h2>
                 <span><i class="fa fa-location-arrow"></i> @item.diaChi ||</span>
                 <span><i class="fa fa-phone"></i>@item.soDienThoai</span>
                 @if (item.trangThai != "Đã ẩn")

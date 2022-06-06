@@ -94,34 +94,35 @@ namespace ELF.Areas.Admin.Controllers
         }
 
         // GET: Admin/DonViThuGoms/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string tenDVTG, string sdt, string diaChi, string LoaiTG, string hinhThucTG, HttpPostedFileBase img)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Models.DonViThuGom donViThuGom = db.DonViThuGoms.Find(id);
-            if (donViThuGom == null)
-            {
-                return HttpNotFound();
-            }
-            return View(donViThuGom);
-        }
 
-        // POST: Admin/DonViThuGoms/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maDVTG,tenDVTG,loaiThuGom,diaChi,soDienThoai,hinhThucThuGom,ghiChu")] Models.DonViThuGom donViThuGom)
-        {
-            if (ModelState.IsValid)
+            Models.DonViThuGom donViThuGom = db.DonViThuGoms.Find(id);
+            string oldfilePath = donViThuGom.logo;
+            string time = DateTime.Now.ToString().Replace("/", "-").Replace(":", "");
+            if (img != null && img.ContentLength > 0)
             {
-                db.Entry(donViThuGom).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var fileName = time + System.IO.Path.GetFileName(img.FileName);
+                string path = System.IO.Path.Combine(
+                Server.MapPath("~/images/resources/"), fileName);
+                img.SaveAs(path);
+                donViThuGom.logo = time + img.FileName;
+                string fullPath = Request.MapPath(oldfilePath);
+
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
             }
-            return View(donViThuGom);
+
+            donViThuGom.tenDVTG = tenDVTG;
+            donViThuGom.soDienThoai = sdt;
+            donViThuGom.loaiThuGom = LoaiTG;
+            donViThuGom.hinhThucThuGom = hinhThucTG;
+            donViThuGom.diaChi = diaChi;
+            db.Entry(donViThuGom).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details", "DonViThuGoms", new { id = id });
         }
 
         // GET: Admin/DonViThuGoms/Delete/5

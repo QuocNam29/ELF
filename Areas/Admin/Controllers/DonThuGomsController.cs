@@ -15,10 +15,33 @@ namespace ELF.Areas.Admin.Controllers
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
 
         // GET: Admin/DonThuGoms
-        public ActionResult Index()
+        public ActionResult Index(string keyword, int? maDVTG)
         {
-            var donThuGoms = db.DonThuGoms.Include(d => d.DonViThuGom);
-            return View(donThuGoms.ToList());
+            var links = from l in db.DonThuGoms.Include(q => q.DonViThuGom)
+                       .Where(q => q.maDVTG == maDVTG )
+                        select l;
+            TempData["maDVTG"] = maDVTG;
+            TempData["keyword"] = keyword;
+            return View(links);
+        }
+        public ActionResult list_DTG(int? maDVTG, string trangThai, string keyword)
+        {
+            var links = from l in db.DonThuGoms.Include(q => q.DonViThuGom)
+                         .Where(q => q.maDVTG == maDVTG && q.trangThai == trangThai)
+                        select l;
+            TempData["maDVTG"] = maDVTG;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                links = links.Where(b => b.thanhPhan.Contains(keyword)||
+                                b.viTriTG.Contains(keyword)||
+                                b.ghiChu.Contains(keyword));
+                TempData["keyword"] = keyword;
+
+                return PartialView("list_DTG", links.ToList());
+            }
+
+
+            return PartialView("list_DTG", links.ToList());
         }
 
         // GET: Admin/DonThuGoms/Details/5

@@ -1,0 +1,83 @@
+﻿@model List<ELF.Models.DonThuGom>
+
+@{
+    Layout = null;
+}
+
+<ul class="nearby-contct">
+    @foreach (var item in Model)
+    {
+        <li>
+            <div class="nearly-pepls">
+                <figure>
+                    <a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title=""><img width="40" src="~/images/resources/@item.DonViThuGom.logo" alt=""></a>
+                </figure>
+                <div class="pepl-info">
+                    <h4><a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title="">@item.thanhPhan</a></h4>
+                    <span>Khối lượng: @item.khoiLuong</span>
+                    @if (item.trangThai == "Gửi yêu cầu")
+                    {
+                        <span style="color: black">Ngày gửi yêu cầu: @item.ngayGui</span>
+                    }
+                    else if (item.trangThai == "Đã xác nhận")
+                    {
+                        <span style="color: black">Ngày Xác nhận: @item.ngayXacNhan</span>
+                    }
+                    else
+                    {
+                        <span style="color: black">Ngày hoàn tất: @item.ngayHoanTat</span>
+                    }
+
+                    @if (item.trangThai == "Gửi yêu cầu")
+                    {
+                        <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#exampleModal">Hủy yêu cầu quyên góp</a>
+                        <a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title="" class="add-butn" data-ripple="">Chi tiết</a>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    @using (Html.BeginForm("Xoa_DTG", "DonThuGoms"))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("maDonTG", item.maDonTG)
+                                        @Html.Hidden("maDVTG", item.maDVTG)
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="col-form-label">Lý do:</label>
+                                                    <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                    <button type="submit" class="btn btn-primary" id="btn btn-primary">Xác nhận</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title="" class="add-butn" data-ripple="">Chi tiết</a>
+                    }
+
+
+                </div>
+            </div>
+
+        </li>
+
+    }
+</ul>

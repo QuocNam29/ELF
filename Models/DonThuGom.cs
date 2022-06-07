@@ -23,16 +23,16 @@ namespace ELF.Models
         public int maDonTG { get; set; }
         public int maDVTG { get; set; }
         public string trangThai { get; set; }
-        public System.DateTime ngayGui { get; set; }
-        public System.DateTime ngayXacNhan { get; set; }
-        public System.DateTime ngayHoanTat { get; set; }
+        public Nullable<System.DateTime> ngayGui { get; set; }
+        public Nullable<System.DateTime> ngayXacNhan { get; set; }
+        public Nullable<System.DateTime> ngayHoanTat { get; set; }
         public string viTriTG { get; set; }
         public string thanhPhan { get; set; }
-        public double khoiLuong { get; set; }
         public string ghiChu { get; set; }
+        public string khoiLuong { get; set; }
     
-        public virtual DonViThuGom DonViThuGom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuans { get; set; }
+        public virtual DonViThuGom DonViThuGom { get; set; }
     }
 }

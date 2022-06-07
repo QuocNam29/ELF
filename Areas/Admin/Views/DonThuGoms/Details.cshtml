@@ -5,87 +5,189 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
 }
 
-<h2>Details</h2>
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4>Đơn quên góp</h4>
 
-<div>
-    <h4>DonThuGom</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.trangThai)
-        </dt>
+        <a href="#" title="" class="scrh-grp-btn"><i class="fa fa-plus"></i></a>
+    </div><!-- Panel Title -->
+    <div class="pnl-bdy" style="padding: 40px 40px 45px; text-align: center; ">
+        <div class="editing-info">
+            <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin quyên góp</h5>
+            <div class="form-group">
+                <img width="300" src="@Url.Content(Model.DonViThuGom.logo)" alt="">
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.trangThai)
-        </dd>
+        <div class="onoff-options">
+            <div class="setting-row">
+                <span>Thành phần thu gom</span>
+                <p>@Html.DisplayFor(model => model.thanhPhan)</p>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayGui)
-        </dt>
+            <div class="setting-row">
+                <span>Khối lượng thu gom</span>
+                <p>@Html.DisplayFor(model => model.khoiLuong)</p>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngayGui)
-        </dd>
+            <div class="setting-row">
+                <span>Vị Trí thu gom</span>
+                <p>@Html.DisplayFor(model => model.viTriTG)</p>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayXacNhan)
-        </dt>
+            <div class="setting-row">
+                <span>Ngày gửi yêu cầu thu gom</span>
+                <p>@Html.DisplayFor(model => model.ngayGui)</p>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngayXacNhan)
-        </dd>
+            <div class="setting-row">
+                <span>Ngày xác nhận</span>
+                <p>@Html.DisplayFor(model => model.ngayXacNhan)</p>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngayHoanTat)
-        </dt>
+            <div class="setting-row">
+                <span>Ngày hoàn tất</span>
+                <p>@Html.DisplayFor(model => model.ngayHoanTat)</p>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngayHoanTat)
-        </dd>
+            <div class="setting-row">
+                <span>Trạng thái</span>
+                <p>@Html.DisplayFor(model => model.trangThai)</p>
+            </div>
+            <div class="setting-row">
+                <span>Ghi chú</span>
+                <p>@Html.DisplayFor(model => model.ghiChu)</p>
+            </div>
+            @if (Model.trangThai == "Gửi yêu cầu")
+            {
+                <div class="submit-btns">
+                    <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Xóa Yêu Cầu</span></button>
+                </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.viTriTG)
-        </dt>
+                            @using (Html.BeginForm("Xoa_DTG", "DonThuGoms"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("maDonTG", Model.maDonTG)
+                                @Html.Hidden("maDVTG", Model.maDVTG)
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label" style="float: left">Lý do:</label>
+                                            <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.viTriTG)
-        </dd>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn btn-primary" id="btn btn-primary">Xác nhận</button>
+                                        </div>
+                                    </form>
+                                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.thanhPhan)
-        </dt>
+                            }
 
-        <dd>
-            @Html.DisplayFor(model => model.thanhPhan)
-        </dd>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Details", "DonThuGoms", new { id = Model.maDonTG })'"><span>Quay lại</span></button>
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.khoiLuong)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.khoiLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ghiChu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DonViThuGom.tenDVTG)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DonViThuGom.tenDVTG)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maDonTG }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="popup-wrp2 srch-grp-pp">
+    <span class="pp-cls"></span>
+    <div class="popup-innr loc-edt" style="max-width: 1040px;">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 500px;">
+            <div class="scrl" style="overflow: hidden; width: auto; height: 500px;">
+                <div class="usr-pnl">
+                    <div class="pnl-tl">
+                        <h4>Thêm Đơn Vị Thu Gom</h4>
+                        <ul class="brd-crmb">
+                            <li><a href="#" title=""><i class="fa fa-home"></i></a></li>
+                            <li>Locations</li>
+                        </ul>
+                    </div><!-- Panel Title -->
+                    <div class="pnl-bdy">
+                        <div class="adrs-frm">
+                            <h4>Thông Tin Đơn Vị Thu Gom</h4>
+                            @using (Html.BeginForm("Create", "DonThuGoms", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input type="text" placeholder="Tên Đơn Vị Thu Gom" name="TenDVTG"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên đơn vị thu gom)" oninput="setCustomValidity('')">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" placeholder="Số điện thoại liên hệ" name="sdt"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập số điện thoại liên hệ)" oninput="setCustomValidity('')">
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <input type="Text" placeholder="Địa Chỉ" name="diaChi"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập địa chỉ)" oninput="setCustomValidity('')">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Loại Thu Gom" name="LoaiTG"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập loại thu gom)" oninput="setCustomValidity('')">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder="Hình Thức Thu Gom" name="hinhThucTG"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập hình thức thu gom)" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="cmp-bnr">
+                                                        <label class="fileContainer">
+                                                            <i class="fa fa-camera" style="line-height: 128px;"></i>
+                                                            <input accept="image/*" id="chng2" type="file" name="img"
+                                                                   required="required" oninvalid="this.setCustomValidity('Bạn chưa chọn Logo của Đơn vị thu gom)" oninput="setCustomValidity('')">
+
+                                                            <script>
+                                                                chng2.onchange = evt => {
+                                                                    const [file] = chng2.files
+                                                                    if (file) {
+                                                                        blah.src = URL.createObjectURL(file)
+                                                                    }
+                                                                }
+                                                            </script>
+                                                        </label>
+                                                        <img id="utp2" src="~/images/resources/logo_elf_dark.png" alt="" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button type="submit" title="" class="sv-btn">Lưu</button>
+                                </form>
+                            }
+                        </div><!-- Address Form -->
+                    </div><!-- Panel Body -->
+                </div><!-- User panel -->
+            </div>
+        </div>
+    </div>
+</div>

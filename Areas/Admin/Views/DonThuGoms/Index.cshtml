@@ -3,80 +3,61 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+    int maDVTG = int.Parse(TempData["maDVTG"].ToString());
+    string keyword = "";
+    if (TempData["keyword"] != null)
+    {
+        keyword = TempData["keyword"].ToString();
+    }
 }
 
-<h2>Index</h2>
+<div class="usr-pnl">
+    <div class="pnl-tl">
+        <h4>Đơn Thu Gom</h4>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.trangThai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayGui)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayXacNhan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayHoanTat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.viTriTG)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.thanhPhan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.khoiLuong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonViThuGom.tenDVTG)
-        </th>
-        <th></th>
-    </tr>
+        <a href="#" title="" class="scrh-grp-btn"><i class="fa fa-plus"></i></a>
+    </div><!-- Panel Title -->
+    <div class="pnl-bdy">
+        <div class="blog-sec right-pading" style="padding: 40px 40px 45px; ">
+            <div class="post-filter-sec">
+                <form method="post" class="filter-form">
+                    @using (Html.BeginForm("Index", "DonThuGoms", FormMethod.Get))
+                    {
+                        @Html.Hidden("maDVTG", maDVTG)
+                        <input type="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" name="keyword">
+                        <button><i class="ti-search"></i></button>
+                    }
+                </form>
+            </div>
+            <div class="frnds">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="active" href="#frends" data-toggle="tab">Gửi Yêu Cầu</a>
+                    <li class="nav-item"><a class="" href="#frends-req" data-toggle="tab">Đã Xác Nhận</a>
+                    <li class="nav-item"><a class="" href="#frends-req1" data-toggle="tab">Hoàn Tất</a>
+                    <li class="nav-item"><a class="" href="#frends-req2" data-toggle="tab">Đã Hủy</a>
+                </ul>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.trangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayGui)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayXacNhan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayHoanTat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.viTriTG)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.thanhPhan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.khoiLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ghiChu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DonViThuGom.tenDVTG)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maDonTG }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maDonTG }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maDonTG })
-        </td>
-    </tr>
-}
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active fade show " id="frends">
+                        @Html.Action("list_DTG", "DonThuGoms", new { maDVTG = maDVTG, trangThai = "Gửi yêu cầu", keyword = keyword })
+                        <div class="lodmore"><button class="btn-view btn-load-more"></button></div>
+                    </div>
+                    <div class="tab-pane fade" id="frends-req">
+                        @Html.Action("list_DTG", "DonThuGoms", new { maDVTG = maDVTG, trangThai = "Đã xác nhận", keyword = keyword })
+                        <button class="btn-view btn-load-more"></button>
+                    </div>
 
-</table>
+                    <div class="tab-pane fade" id="frends-req1">
+                        @Html.Action("list_DTG", "DonThuGoms", new { maDVTG = maDVTG, trangThai = "Hoàn tất", keyword = keyword })
+                        <button class="btn-view btn-load-more"></button>
+                    </div>
+                    <div class="tab-pane fade" id="frends-req2">
+                        @Html.Action("list_DTG", "DonThuGoms", new { maDVTG = maDVTG, trangThai = "Đã hủy", keyword = keyword })
+                        <button class="btn-view btn-load-more"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -190,14 +190,14 @@
           </Key>
           <Property Name="maDonTG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="maDVTG" Type="int" Nullable="false" />
-          <Property Name="trangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ngayGui" Type="datetime" Nullable="false" />
-          <Property Name="ngayXacNhan" Type="datetime" Nullable="false" />
-          <Property Name="ngayHoanTat" Type="datetime" Nullable="false" />
+          <Property Name="trangThai" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngayGui" Type="datetime" />
+          <Property Name="ngayXacNhan" Type="datetime" />
+          <Property Name="ngayHoanTat" Type="datetime" />
           <Property Name="viTriTG" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="thanhPhan" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="khoiLuong" Type="float" Nullable="false" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
+          <Property Name="khoiLuong" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="DonViThuGom">
           <Key>
@@ -1402,15 +1402,15 @@
           <Property Name="maND" Type="Int32" Nullable="false" />
           <Property Name="maBDSP" Type="Int32" />
           <Property Name="maBDTT" Type="Int32" />
+          <Property Name="maDonTG" Type="Int32" />
           <Property Name="noiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="trangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ngayBL" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="BaiDangSanPham" Relationship="Self.FK_BinhLuan_BaiDangSanPham" FromRole="BinhLuan" ToRole="BaiDangSanPham" />
           <NavigationProperty Name="BaiDangThongTin" Relationship="Self.FK_BinhLuan_BaiDangThongTin" FromRole="BinhLuan" ToRole="BaiDangThongTin" />
+          <NavigationProperty Name="DonThuGom" Relationship="Self.FK_BinhLuan_DonThuGom" FromRole="BinhLuan" ToRole="DonThuGom" />
           <NavigationProperty Name="NguoiDung" Relationship="Self.FK_BinhLuan_NguoiDung" FromRole="BinhLuan" ToRole="NguoiDung" />
           <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_BinhLuan" FromRole="BinhLuan" ToRole="ThongBao" />
-          <Property Name="maDonTG" Type="Int32" />
-          <NavigationProperty Name="DonThuGom" Relationship="ELFVanLang2021Model.FK_BinhLuan_DonThuGom" FromRole="BinhLuan" ToRole="DonThuGom" />
         </EntityType>
         <EntityType Name="CauHoi">
           <Key>
@@ -1497,32 +1497,32 @@
           </Key>
           <Property Name="maDonTG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="maDVTG" Type="Int32" Nullable="false" />
-          <Property Name="trangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ngayGui" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ngayXacNhan" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ngayHoanTat" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="trangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngayGui" Type="DateTime" Precision="3" />
+          <Property Name="ngayXacNhan" Type="DateTime" Precision="3" />
+          <Property Name="ngayHoanTat" Type="DateTime" Precision="3" />
           <Property Name="viTriTG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="thanhPhan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="khoiLuong" Type="Double" Nullable="false" />
           <Property Name="ghiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_DonThuGom" FromRole="DonThuGom" ToRole="BinhLuan" />
           <NavigationProperty Name="DonViThuGom" Relationship="Self.FK_DonThuGom_DonViThuGom" FromRole="DonThuGom" ToRole="DonViThuGom" />
-          <NavigationProperty Name="BinhLuans" Relationship="ELFVanLang2021Model.FK_BinhLuan_DonThuGom" FromRole="DonThuGom" ToRole="BinhLuan" />
+          <Property Name="khoiLuong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DonViThuGom">
           <Key>
             <PropertyRef Name="maDVTG" />
           </Key>
           <Property Name="maDVTG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tenDVTG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="loaiThuGom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="diaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="soDienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="hinhThucThuGom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ghiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="trangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonThuGoms" Relationship="Self.FK_DonThuGom_DonViThuGom" FromRole="DonViThuGom" ToRole="DonThuGom" />
           <NavigationProperty Name="NguoiDungs" Relationship="Self.FK_NguoiDung_DonViThuGom" FromRole="DonViThuGom" ToRole="NguoiDung" />
-          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="trangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KetQua">
           <Key>
@@ -1954,6 +1954,18 @@
             </Principal>
             <Dependent Role="BaoCao">
               <PropertyRef Name="maNDKhac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_DonThuGom">
+          <End Role="DonThuGom" Type="Self.DonThuGom" Multiplicity="0..1" />
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonThuGom">
+              <PropertyRef Name="maDonTG" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="maDonTG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2463,6 +2475,10 @@
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
             <End Role="BaoCao" EntitySet="BaoCaos" />
           </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_DonThuGom" Association="Self.FK_BinhLuan_DonThuGom">
+            <End Role="DonThuGom" EntitySet="DonThuGoms" />
+            <End Role="BinhLuan" EntitySet="BinhLuans" />
+          </AssociationSet>
           <AssociationSet Name="FK_BinhLuan_NguoiDung" Association="Self.FK_BinhLuan_NguoiDung">
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
             <End Role="BinhLuan" EntitySet="BinhLuans" />
@@ -2591,23 +2607,7 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_BinhLuan_DonThuGom" Association="ELFVanLang2021Model.FK_BinhLuan_DonThuGom">
-            <End Role="DonThuGom" EntitySet="DonThuGoms" />
-            <End Role="BinhLuan" EntitySet="BinhLuans" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_BinhLuan_DonThuGom">
-          <End Type="ELFVanLang2021Model.DonThuGom" Role="DonThuGom" Multiplicity="0..1" />
-          <End Type="ELFVanLang2021Model.BinhLuan" Role="BinhLuan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DonThuGom">
-              <PropertyRef Name="maDonTG" />
-            </Principal>
-            <Dependent Role="BinhLuan">
-              <PropertyRef Name="maDonTG" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2718,11 +2718,11 @@
           <EntitySetMapping Name="BinhLuans">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.BinhLuan">
               <MappingFragment StoreEntitySet="BinhLuan">
-                <ScalarProperty Name="maDonTG" ColumnName="maDonTG" />
                 <ScalarProperty Name="maBL" ColumnName="maBL" />
                 <ScalarProperty Name="maND" ColumnName="maND" />
                 <ScalarProperty Name="maBDSP" ColumnName="maBDSP" />
                 <ScalarProperty Name="maBDTT" ColumnName="maBDTT" />
+                <ScalarProperty Name="maDonTG" ColumnName="maDonTG" />
                 <ScalarProperty Name="noiDung" ColumnName="noiDung" />
                 <ScalarProperty Name="trangThai" ColumnName="trangThai" />
                 <ScalarProperty Name="ngayBL" ColumnName="ngayBL" />
@@ -2800,6 +2800,7 @@
           <EntitySetMapping Name="DonThuGoms">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.DonThuGom">
               <MappingFragment StoreEntitySet="DonThuGom">
+                <ScalarProperty Name="khoiLuong" ColumnName="khoiLuong" />
                 <ScalarProperty Name="maDonTG" ColumnName="maDonTG" />
                 <ScalarProperty Name="maDVTG" ColumnName="maDVTG" />
                 <ScalarProperty Name="trangThai" ColumnName="trangThai" />
@@ -2808,7 +2809,6 @@
                 <ScalarProperty Name="ngayHoanTat" ColumnName="ngayHoanTat" />
                 <ScalarProperty Name="viTriTG" ColumnName="viTriTG" />
                 <ScalarProperty Name="thanhPhan" ColumnName="thanhPhan" />
-                <ScalarProperty Name="khoiLuong" ColumnName="khoiLuong" />
                 <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2816,15 +2816,15 @@
           <EntitySetMapping Name="DonViThuGoms">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.DonViThuGom">
               <MappingFragment StoreEntitySet="DonViThuGom">
-                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
-                <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="maDVTG" ColumnName="maDVTG" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="tenDVTG" ColumnName="tenDVTG" />
                 <ScalarProperty Name="loaiThuGom" ColumnName="loaiThuGom" />
                 <ScalarProperty Name="diaChi" ColumnName="diaChi" />
                 <ScalarProperty Name="soDienThoai" ColumnName="soDienThoai" />
                 <ScalarProperty Name="hinhThucThuGom" ColumnName="hinhThucThuGom" />
                 <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

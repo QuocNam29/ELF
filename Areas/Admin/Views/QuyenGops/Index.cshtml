@@ -10,21 +10,10 @@
         keyword = TempData["keyword"].ToString();
     }
 
-   @* double sum_Cai = Model.Where(q => q.donVi == "Cái").Sum(q => q.soLuong);
-    double sum_Vien = Model.Where(q => q.donVi == "Viên").Sum(q => q.soLuong);
-    double sum_Kg = Model.Where(q => q.donVi == "Kg").Sum(q => q.soLuong);
-    double sum_Gram = Model.Where(q => q.donVi == "Gram").Sum(q => q.soLuong);*@
+
 }
 
-<link rel="stylesheet" href="~/css/main.min.css">
-<link rel="stylesheet" href="~/css/style.css">
-<link rel="stylesheet" href="~/css/color.css">
-<link rel="stylesheet" href="~/css/responsive.css">
-<link rel="stylesheet" href="~/css/strip.css">
 
-<script src="~/js/main.min.js"></script>
-<script src="~/js/script.js"></script>
-<script src="~/js/map-init.js"></script>
 
 <div class="usr-pnl">
     <div class="pnl-tl">
@@ -43,38 +32,6 @@
                         <button><i class="ti-search"></i></button>
                     }
                 </form>
-           @*     <div class="purify">
-                   
-                        <span><b>Thống kê quyên góp: </b> </span>
-
-                        <select name="maLoaiQG">
-
-                            <option>Thống kê</option>
-
-
-                            @if (sum_Cai > 0)
-                            {
-                                <option selected="">@sum_Cai Cái</option>
-                            }
-                            @if (sum_Vien > 0)
-                            {
-                                <option selected="">@sum_Vien Viên</option>
-                            }
-                            @if (sum_Kg > 0)
-                            {
-                                <option selected="">@sum_Kg Kg</option>
-                            }
-                            @if (sum_Gram > 0)
-                            {
-                                <option selected="">@sum_Gram Gram</option>
-                            }
-
-
-
-                        </select>
-
-                    
-                </div>*@
             </div>
             <div class="frnds">
                 <ul class="nav nav-tabs">

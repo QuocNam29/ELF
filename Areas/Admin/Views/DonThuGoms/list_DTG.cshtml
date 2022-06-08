@@ -13,7 +13,8 @@
                     <a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title=""><img width="40" src="~/images/resources/@item.DonViThuGom.logo" alt=""></a>
                 </figure>
                 <div class="pepl-info">
-                    <h4><a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title="">@item.thanhPhan</a></h4>
+                    <h4><a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title="">Yêu cầu @item.maDonTG</a></h4>
+                    <span>Thành phần: @item.thanhPhan</span>
                     <span>Khối lượng: @item.khoiLuong</span>
                     @if (item.trangThai == "Gửi yêu cầu")
                     {

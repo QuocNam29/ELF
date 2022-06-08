@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ELF.Areas.Admin.Middleware;
 using ELF.Models;
 
 namespace ELF.Areas.Admin.Controllers
 {
+    [LoginVerification]
     public class DonThuGomsController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();
@@ -71,17 +73,23 @@ namespace ELF.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "maDonTG,maDVTG,trangThai,ngayGui,ngayXacNhan,ngayHoanTat,viTriTG,thanhPhan,khoiLuong,ghiChu")] DonThuGom donThuGom)
+        public ActionResult Create(string thanhPhan, string khoiLuong, string viTri, DateTime ngayHenTG, string ghiChu, int maDVTG)
         {
-            if (ModelState.IsValid)
+            DonThuGom donThuGom = new DonThuGom();
+            donThuGom.maDVTG = maDVTG;
+            donThuGom.thanhPhan = thanhPhan;
+            donThuGom.khoiLuong = khoiLuong;
+            donThuGom.viTriTG = viTri;
+            donThuGom.ngayHenTG = ngayHenTG;
+            donThuGom.ngayGui = DateTime.Now;
+            donThuGom.trangThai = "Gửi yêu cầu";
+            if (ghiChu != null && ghiChu != "")
             {
-                db.DonThuGoms.Add(donThuGom);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                donThuGom.ghiChu = ghiChu;
             }
-
-            ViewBag.maDVTG = new SelectList(db.DonViThuGoms, "maDVTG", "tenDVTG", donThuGom.maDVTG);
-            return View(donThuGom);
+            db.DonThuGoms.Add(donThuGom);
+            db.SaveChanges();
+            return RedirectToAction("Index", new { maDVTG = maDVTG });
         }
 
         // GET: Admin/DonThuGoms/Edit/5

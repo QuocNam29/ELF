@@ -30,6 +30,7 @@ namespace ELF.Models
         public string thanhPhan { get; set; }
         public string ghiChu { get; set; }
         public string khoiLuong { get; set; }
+        public Nullable<System.DateTime> ngayHenTG { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuans { get; set; }

@@ -198,6 +198,7 @@
           <Property Name="thanhPhan" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ghiChu" Type="nvarchar" MaxLength="200" />
           <Property Name="khoiLuong" Type="nvarchar" MaxLength="200" />
+          <Property Name="ngayHenTG" Type="datetime" />
         </EntityType>
         <EntityType Name="DonViThuGom">
           <Key>
@@ -1507,6 +1508,7 @@
           <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_DonThuGom" FromRole="DonThuGom" ToRole="BinhLuan" />
           <NavigationProperty Name="DonViThuGom" Relationship="Self.FK_DonThuGom_DonViThuGom" FromRole="DonThuGom" ToRole="DonViThuGom" />
           <Property Name="khoiLuong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ngayHenTG" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="DonViThuGom">
           <Key>
@@ -2800,6 +2802,7 @@
           <EntitySetMapping Name="DonThuGoms">
             <EntityTypeMapping TypeName="ELFVanLang2021Model.DonThuGom">
               <MappingFragment StoreEntitySet="DonThuGom">
+                <ScalarProperty Name="ngayHenTG" ColumnName="ngayHenTG" />
                 <ScalarProperty Name="khoiLuong" ColumnName="khoiLuong" />
                 <ScalarProperty Name="maDonTG" ColumnName="maDonTG" />
                 <ScalarProperty Name="maDVTG" ColumnName="maDVTG" />

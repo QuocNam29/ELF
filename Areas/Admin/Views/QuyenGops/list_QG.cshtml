@@ -7,17 +7,17 @@
 <ul class="nearby-contct">
     @foreach (var item in Model)
     {
-       
+        var myModal = "exampleModalCenter" + item.maQG;
 
-            string avt_BD = "";
-            if (item.NguoiDung.avatar != null)
-            {
-                avt_BD = item.NguoiDung.avatar;
-            }
-            else
-            {
-                avt_BD = "~/images/resources/User-avatar.svg";
-            }
+        string avt_BD = "";
+        if (item.NguoiDung.avatar != null)
+        {
+            avt_BD = item.NguoiDung.avatar;
+        }
+        else
+        {
+            avt_BD = "~/images/resources/User-avatar.svg";
+        }
             <li>
                 <div class="nearly-pepls">
                     <figure>
@@ -29,10 +29,10 @@
                         <span style="color: black">Quyên góp: @item.soLuong @item.donVi</span>
                         @if (item.trangThai == "Chờ duyệt")
                         {
-                            <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#exampleModal">Hủy đơn</a>
+                            <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#@myModal">Hủy đơn</a>
                             <a href="@Url.Action("DuyetBai_DonQG", "QuyenGops",  new { maQG = item.maQG })" title="" class="add-butn" data-ripple="">Xác nhận</a>
 
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">

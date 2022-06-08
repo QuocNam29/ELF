@@ -7,15 +7,13 @@
 
 <div class="usr-pnl">
     <div class="pnl-tl">
-        <h4>Đơn quên góp</h4>
-
-        <a href="#" title="" class="scrh-grp-btn"><i class="fa fa-plus"></i></a>
+        <h4>Đơn quên góp</h4>  
     </div><!-- Panel Title -->
     <div class="pnl-bdy" style="padding: 40px 40px 45px; text-align: center; ">
         <div class="editing-info">
             <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin quyên góp</h5>
             <div class="form-group">
-                <img width="300" src="@Url.Content(Model.DonViThuGom.logo)" alt="">
+                <img width="300" src="~/images/resources/@Model.DonViThuGom.logo" alt="">
             </div>
         </div>
 
@@ -36,20 +34,38 @@
             </div>
 
             <div class="setting-row">
+                <span>Ngày hẹn thu gom</span>
+                <p>@Html.DisplayFor(model => model.ngayHenTG)</p>
+            </div>
+
+            <div class="setting-row">
                 <span>Ngày gửi yêu cầu thu gom</span>
                 <p>@Html.DisplayFor(model => model.ngayGui)</p>
             </div>
 
             <div class="setting-row">
                 <span>Ngày xác nhận</span>
-                <p>@Html.DisplayFor(model => model.ngayXacNhan)</p>
+                @if (Model.ngayXacNhan != null)
+                {
+                    <p>@Html.DisplayFor(model => model.ngayXacNhan)</p>
+                }
+                else
+                {
+                    <p>Chưa xác nhận</p>
+                }
             </div>
 
             <div class="setting-row">
                 <span>Ngày hoàn tất</span>
-                <p>@Html.DisplayFor(model => model.ngayHoanTat)</p>
+                @if (Model.ngayHoanTat != null)
+                {
+                    <p>@Html.DisplayFor(model => model.ngayHoanTat)</p>
+                }
+                else
+                {
+                    <p>Chưa hoàn tất</p>
+                }
             </div>
-
             <div class="setting-row">
                 <span>Trạng thái</span>
                 <p>@Html.DisplayFor(model => model.trangThai)</p>
@@ -60,9 +76,11 @@
             </div>
             @if (Model.trangThai == "Gửi yêu cầu")
             {
-                <div class="submit-btns">
-                    <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal"><span>Xóa Yêu Cầu</span></button>
-                </div>
+        <div class="submit-btns" style="float:right">
+            <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG })'" style="float:left"><span>Quay lại</span></button>
+            <button type="button" class="mtr-btn scrh-grp-btn" style="width: auto"><span>Chỉnh sửa</span></button>
+            <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal" style="color:firebrick"><span>Xóa Yêu Cầu</span></button>
+        </div>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -72,17 +90,17 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-
                             @using (Html.BeginForm("Xoa_DTG", "DonThuGoms"))
                             {
                                 @Html.AntiForgeryToken()
-                                @Html.Hidden("maDonTG", Model.maDonTG)
+                                @Html.Hidden("id", Model.maDonTG)
                                 @Html.Hidden("maDVTG", Model.maDVTG)
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-group">
                                             <label for="message-text" class="col-form-label" style="float: left">Lý do:</label>
-                                            <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                                            <textarea class="form-control" id="message-text" name="lydo"
+                                                       required="required" oninvalid="this.setCustomValidity('Vui lòng nhập lý do hủy yêu cầu)" oninput="setCustomValidity('')"></textarea>
                                         </div>
 
                                         <div class="modal-footer">
@@ -91,19 +109,15 @@
                                         </div>
                                     </form>
                                 </div>
-
                             }
-
                         </div>
                     </div>
                 </div>
             }
             else
             {
-                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Details", "DonThuGoms", new { id = Model.maDonTG })'"><span>Quay lại</span></button>
+                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG})'" ><span>Quay lại</span></button>
             }
-
-
         </div>
     </div>
 </div>
@@ -115,68 +129,50 @@
             <div class="scrl" style="overflow: hidden; width: auto; height: 500px;">
                 <div class="usr-pnl">
                     <div class="pnl-tl">
-                        <h4>Thêm Đơn Vị Thu Gom</h4>
+                        <h4>Thêm Đơn Thu Gom </h4>
                         <ul class="brd-crmb">
                             <li><a href="#" title=""><i class="fa fa-home"></i></a></li>
                             <li>Locations</li>
                         </ul>
                     </div><!-- Panel Title -->
                     <div class="pnl-bdy">
+
                         <div class="adrs-frm">
-                            <h4>Thông Tin Đơn Vị Thu Gom</h4>
+                            <h4>Thông Tin Đơn Thu Gom</h4>
                             @using (Html.BeginForm("Create", "DonThuGoms", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
-
+                                @Html.Hidden("maDVTG", Model.maDVTG)
                                 <form>
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                    <input type="text" placeholder="Tên Đơn Vị Thu Gom" name="TenDVTG"
-                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập tên đơn vị thu gom)" oninput="setCustomValidity('')">
+                                                    <input type="text" placeholder="Thành phần rác thải" value="@Model.thanhPhan" name="thanhPhan"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập thành phần rác thải)" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" placeholder="Số điện thoại liên hệ" name="sdt"
-                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập số điện thoại liên hệ)" oninput="setCustomValidity('')">
+                                                    <input type="text" placeholder="Khối lượng" name="khoiLuong" value="@Model.khoiLuong"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập khối lượng rác thải)" oninput="setCustomValidity('')">
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <input type="Text" placeholder="Địa Chỉ" name="diaChi"
-                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập địa chỉ)" oninput="setCustomValidity('')">
+                                                    <input type="Text" placeholder="Vị trí thu gom" name="viTri" value="@Model.viTriTG"
+                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập vị trí thu gom)" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="Loại Thu Gom" name="LoaiTG"
+                                                    <a href="#">Ngày hẹn thu gom</a>
+                                                    <input type="datetime-local" placeholder="Ngày hẹn thu gom" name="ngayHenTG" value="@Model.ngayHenTG"
                                                            required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập loại thu gom)" oninput="setCustomValidity('')">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <input type="text" placeholder="Hình Thức Thu Gom" name="hinhThucTG"
-                                                           required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập hình thức thu gom)" oninput="setCustomValidity('')">
-                                                </div>
+
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="cmp-bnr">
-                                                        <label class="fileContainer">
-                                                            <i class="fa fa-camera" style="line-height: 128px;"></i>
-                                                            <input accept="image/*" id="chng2" type="file" name="img"
-                                                                   required="required" oninvalid="this.setCustomValidity('Bạn chưa chọn Logo của Đơn vị thu gom)" oninput="setCustomValidity('')">
-
-                                                            <script>
-                                                                chng2.onchange = evt => {
-                                                                    const [file] = chng2.files
-                                                                    if (file) {
-                                                                        blah.src = URL.createObjectURL(file)
-                                                                    }
-                                                                }
-                                                            </script>
-                                                        </label>
-                                                        <img id="utp2" src="~/images/resources/logo_elf_dark.png" alt="" />
-                                                    </div>
+                                                    <textarea placeholder="Ghi chú" name="ghiChu" value="@Model.ghiChu"></textarea>
                                                 </div>
-
                                             </div>
 
                                         </div>

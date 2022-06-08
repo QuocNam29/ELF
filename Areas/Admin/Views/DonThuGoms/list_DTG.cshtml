@@ -7,6 +7,7 @@
 <ul class="nearby-contct">
     @foreach (var item in Model)
     {
+
         <li>
             <div class="nearly-pepls">
                 <figure>
@@ -31,10 +32,11 @@
 
                     @if (item.trangThai == "Gửi yêu cầu")
                     {
-                        <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#exampleModal">Hủy yêu cầu quyên góp</a>
+                        var myModal = "exampleModalCenter" + item.maDonTG;
+                        <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#@myModal">Hủy yêu cầu quyên góp</a>
                         <a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title="" class="add-butn" data-ripple="">Chi tiết</a>
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -47,13 +49,14 @@
                                     @using (Html.BeginForm("Xoa_DTG", "DonThuGoms"))
                                     {
                                         @Html.AntiForgeryToken()
-                                        @Html.Hidden("maDonTG", item.maDonTG)
+                                        @Html.Hidden("id", item.maDonTG)
                                         @Html.Hidden("maDVTG", item.maDVTG)
                                         <div class="modal-body">
                                             <form>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="col-form-label">Lý do:</label>
-                                                    <textarea class="form-control" id="message-text" name="lydo"></textarea>
+                                                    <label for="message-text" class="col-form-label" style="float: left">Lý do:</label>
+                                                    <textarea class="form-control" id="message-text" name="lydo"
+                                                              required="required" oninvalid="this.setCustomValidity('Vui lòng nhập lý do hủy yêu cầu)" oninput="setCustomValidity('')"></textarea>
                                                 </div>
 
                                                 <div class="modal-footer">
@@ -62,7 +65,6 @@
                                                 </div>
                                             </form>
                                         </div>
-
                                     }
 
                                 </div>

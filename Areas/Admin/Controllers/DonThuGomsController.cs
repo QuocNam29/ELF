@@ -82,6 +82,7 @@ namespace ELF.Areas.Admin.Controllers
             donThuGom.viTriTG = viTri;
             donThuGom.ngayHenTG = ngayHenTG;
             donThuGom.ngayGui = DateTime.Now;
+           
             donThuGom.trangThai = "Gửi yêu cầu";
             if (ghiChu != null && ghiChu != "")
             {
@@ -126,26 +127,17 @@ namespace ELF.Areas.Admin.Controllers
         }
 
         // GET: Admin/DonThuGoms/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            Models.DonViThuGom donViThuGom = db.DonViThuGoms.Find(id);
-            donViThuGom.trangThai = "Đã xóa";
-            db.Entry(donViThuGom).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        // POST: Admin/DonThuGoms/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Xoa_DTG(int? id,int? maDVTG, string lydo)
         {
             DonThuGom donThuGom = db.DonThuGoms.Find(id);
-            db.DonThuGoms.Remove(donThuGom);
+            donThuGom.trangThai = "Đã hủy";
+            donThuGom.ghiChu = "ELF hủy yêu cầu với lý do: " + lydo;
+            db.Entry(donThuGom).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { maDVTG = maDVTG });
         }
 
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,0 +1,105 @@
+﻿@model List<ELF.Models.BinhLuan>
+
+@{
+    int maND = int.Parse(Session["maND"].ToString());
+   
+   
+    string avt_DVTG = "";
+    string name = Session["HoVaTen"].ToString();
+
+}
+
+@foreach (var item in Model)
+{
+
+    if (item.DonThuGom.DonViThuGom.logo != null)
+    {
+        avt_DVTG = item.DonThuGom.DonViThuGom.logo;
+    }
+    else
+    {      
+        avt_DVTG = "~/images/resources/logo_DVTG.jpg";
+    }
+    
+    if (item.trangThai == "Admin")
+    {
+        <li >
+            <div class="comet-avatar">
+                <img src="~/images/resources/logo_elf_hasBackgroundColor.png" alt="" style="width: 50%">
+            </div>
+            <div class="we-comment">
+                <div class="coment-head">
+                    <h5><a href="time-line.html" title="">ELF</a></h5>
+                    <span>@item.ngayBL</span>
+                    @*@if (item.maND == maND || item.BaiDangSanPham.maND == maND)
+                        {
+                            <div class="more">
+                                <div class="more-post-optns">
+                                    <i class="ti-more-alt"></i>
+                                    <ul>
+                                        <li> @Html.ActionLink("Xóa", "Delete", new { id_indexBDSP = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
+                                        @if (hidden == "An")
+                                        {
+                                            <li> @Html.ActionLink("Hiện comment", "Appear", new { id = item.maBL })</li>
+                                        }
+                                        else
+                                        {
+                                            <li> @Html.ActionLink("Ẩn comment", "Hidden", new { id = item.maBL })</li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                        }*@
+                </div>
+                <p>
+                    @item.noiDung
+
+                </p>
+            </div>
+        </li>
+    }
+    else if (item.trangThai == "DonViThuGom")
+    {
+        <li>
+            <div class="comet-avatar">
+                <img src="@Url.Content(avt_DVTG)" alt="" style="width: 50%">
+            </div>
+            <div class="we-comment">
+                <div class="coment-head">
+                    <h5><a href="time-line.html" title="">@item.DonThuGom.DonViThuGom.tenDVTG</a></h5>
+                    <span>@item.ngayBL </span>
+                  
+                    @* @if (item.maND == maND || item.BaiDangSanPham.maND == maND)
+                        {
+                            <div class="more">
+                                <div class="more-post-optns">
+                                    <i class="ti-more-alt"></i>
+                                    <ul>
+                                        <li> @Html.ActionLink("Xóa", "Delete","BinhLuans", new { maBL = item.maBL }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa comment');" })</li>
+                                        @if (hidden == "An")
+                                        {
+                                            <li> @Html.ActionLink("Hiện comment", "Appear", new { id = item.maBL })</li>
+                                        }
+                                        else
+                                        {
+                                            <li> @Html.ActionLink("Ẩn comment", "Hidden", new { id = item.maBL })</li>
+                                        }
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        }*@
+                </div>
+                <p>
+                    @item.noiDung
+
+                </p>
+            </div>
+        </li>
+
+    }
+
+}
+

@@ -94,37 +94,21 @@ namespace ELF.Areas.Admin.Controllers
         }
 
         // GET: Admin/DonThuGoms/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string thanhPhan, string khoiLuong, string viTri, DateTime ngayHenTG, string ghiChu)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             DonThuGom donThuGom = db.DonThuGoms.Find(id);
-            if (donThuGom == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.maDVTG = new SelectList(db.DonViThuGoms, "maDVTG", "tenDVTG", donThuGom.maDVTG);
-            return View(donThuGom);
+            donThuGom.thanhPhan = thanhPhan;
+            donThuGom.khoiLuong = khoiLuong;
+            donThuGom.viTriTG = viTri;
+            donThuGom.ngayHenTG = ngayHenTG;
+            donThuGom.ngayGui = DateTime.Now;
+            donThuGom.ghiChu = ghiChu;
+            db.Entry(donThuGom).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = id });
         }
 
-        // POST: Admin/DonThuGoms/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "maDonTG,maDVTG,trangThai,ngayGui,ngayXacNhan,ngayHoanTat,viTriTG,thanhPhan,khoiLuong,ghiChu")] DonThuGom donThuGom)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(donThuGom).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.maDVTG = new SelectList(db.DonViThuGoms, "maDVTG", "tenDVTG", donThuGom.maDVTG);
-            return View(donThuGom);
-        }
 
         // GET: Admin/DonThuGoms/Delete/5
         public ActionResult Xoa_DTG(int? id,int? maDVTG, string lydo)

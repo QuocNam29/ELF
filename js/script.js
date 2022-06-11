@@ -330,6 +330,7 @@ $(function() {
 		var txtMaND = "";
 		var URL = "";
 		var BD_cmt = "";
+		var style = "";
 		if (event.keyCode == 13) {
 			var comment = jQuery(this).val();
 
@@ -409,7 +410,32 @@ $(function() {
 
 					}
 				});
-            }
+			}
+			else if (BD_cmt == "3") {
+				var today = new Date();
+				var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+				var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+				var dateTime = date + ' ' + time;
+				style = "width: 50%";
+				//count Questions
+				var binhLuanDTG = {};
+				binhLuanDTG.noiDung = comment;
+				binhLuanDTG.maND = txtMaND;
+				binhLuanDTG.maDonTG = txtMaBD;
+				binhLuanDTG.ngayBL = dateTime;
+				binhLuanDTG.trangThai = "Admin";
+
+				$.ajax({
+					type: "POST",
+					url: URL,
+					data: JSON.stringify(binhLuanDTG),
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'json',
+					success: function (r) {
+
+					}
+				});
+			}
 			$('#name_cmt')
 				.keypress(function () {
 					value = $(this).val();
@@ -425,7 +451,7 @@ $(function() {
 
 
 			var parent = jQuery(".showmore").parent("li");
-			var comment_HTML = '	<li><div class="comet-avatar"><img src="' + avt + '" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">' + value + '</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' + comment + '</p></div></li>';
+			var comment_HTML = '	<li><div class="comet-avatar"><img src="' + avt + '" alt=""  style="'+ style +'" ></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">' + value + '</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' + comment + '</p></div></li>';
 			$(comment_HTML).insertBefore(parent);
 			jQuery(this).val('');
 		}

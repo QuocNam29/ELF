@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+
+    int maND = int.Parse(Session["maND"].ToString());
 }
 
 <div class="usr-pnl">
@@ -76,11 +78,11 @@
             </div>
             @if (Model.trangThai == "Gửi yêu cầu")
             {
-        <div class="submit-btns" style="float:right">
-            <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG })'" style="float:left"><span>Quay lại</span></button>
-            <button type="button" class="mtr-btn scrh-grp-btn" style="width: auto"><span>Chỉnh sửa</span></button>
-            <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal" style="color:firebrick"><span>Xóa Yêu Cầu</span></button>
-        </div>
+                <div class="submit-btns" style="float:right">
+                    <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG })'" style="float:left"><span>Quay lại</span></button>
+                    <button type="button" class="mtr-btn scrh-grp-btn" style="width: auto"><span>Chỉnh sửa</span></button>
+                    <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal" style="color:firebrick"><span>Xóa Yêu Cầu</span></button>
+                </div>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -100,7 +102,7 @@
                                         <div class="form-group">
                                             <label for="message-text" class="col-form-label" style="float: left">Lý do:</label>
                                             <textarea class="form-control" id="message-text" name="lydo"
-                                                       required="required" oninvalid="this.setCustomValidity('Vui lòng nhập lý do hủy yêu cầu)" oninput="setCustomValidity('')"></textarea>
+                                                      required="required" oninvalid="this.setCustomValidity('Vui lòng nhập lý do hủy yêu cầu)" oninput="setCustomValidity('')"></textarea>
                                         </div>
 
                                         <div class="modal-footer">
@@ -116,8 +118,39 @@
             }
             else
             {
-                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG})'" ><span>Quay lại</span></button>
+                <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG})'"><span>Quay lại</span></button>
             }
+
+            <div class="coment-area" style="text-align: left">
+                <ul class="we-comet">
+
+                    @Html.Action("listComment_DTG", "BinhLuans", new { maDTG = Model.maDonTG })
+
+
+                    <li>
+                        <a href="" title="" class="showmore underline"></a>
+                    </li>
+                    <li class="post-comment">
+                        <div class="comet-avatar" >
+                            <img src="~/images/resources/logo_elf_hasBackgroundColor.png" alt="" style="width: 70%" >
+                        </div>
+                        <div class="post-comt-box">
+                            <form method="post">
+                                <textarea placeholder="Post your comment" name="coment"></textarea>
+                                <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansDTG", "BinhLuans")">
+                                <input hidden type="text" id="MaND_cmt" value="@maND">
+                                <input hidden type="text" id="BD_cmt" value="3">
+                                <input hidden type="text" id="MaBD_cmt" value="@Model.maDonTG">
+                                <input hidden type="text" id="name_cmt" value="ELF">
+                                <input hidden type="text" id="avt_cmt" value="~/images/resources/logo_elf_hasBackgroundColor.png">
+                                <button type="submit"></button>
+                            </form>
+
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -139,10 +172,11 @@
 
                         <div class="adrs-frm">
                             <h4>Thông Tin Đơn Thu Gom</h4>
-                            @using (Html.BeginForm("Create", "DonThuGoms", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            @using (Html.BeginForm("Edit", "DonThuGoms", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.Hidden("maDVTG", Model.maDVTG)
+                                @Html.Hidden("id", Model.maDonTG)
                                 <form>
                                     <div class="row">
                                         <div class="col-md-8">
@@ -161,8 +195,9 @@
                                                            required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập vị trí thu gom)" oninput="setCustomValidity('')">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <a href="#">Ngày hẹn thu gom</a>
-                                                    <input type="datetime-local" placeholder="Ngày hẹn thu gom" name="ngayHenTG" value="@Model.ngayHenTG"
+                                                    <a href="#">Ngày hẹn thu gom:  </a>
+                                                    <input type="datetime-local" placeholder="Ngày hẹn thu gom" name="ngayHenTG"
+                                                           value="@String.Format("{0:yyyy-MM-ddTHH:mm:ss}",Model.ngayHenTG)"
                                                            required="required" oninvalid="this.setCustomValidity('Bạn chưa nhập loại thu gom)" oninput="setCustomValidity('')">
                                                 </div>
 

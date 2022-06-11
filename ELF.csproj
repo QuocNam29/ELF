@@ -287,6 +287,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AddCauHoisController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_DangNhapController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BinhLuansController.cs" />
     <Compile Include="Areas\Admin\Controllers\CauHoisController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChucNangTaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChuDeBaiQuizsController.cs" />
@@ -955,6 +956,12 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\DonThuGoms\list_DTG.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BinhLuans\listComment_DTG.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

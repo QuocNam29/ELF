@@ -14,9 +14,20 @@
                     <a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title=""><img width="40" src="~/images/resources/@item.DonViThuGom.logo" alt=""></a>
                 </figure>
                 <div class="pepl-info">
+
+
                     <h4><a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title="">Yêu cầu @item.maDonTG</a></h4>
-                    <span>Thành phần: @item.thanhPhan</span>
-                    <span>Khối lượng: @item.khoiLuong</span>
+                    @if (item.trangThai == "Đã hủy")
+                    {
+                        <span style="color: crimson">Thành phần: @item.thanhPhan</span>
+                        <span style="color: crimson">Khối lượng: @item.khoiLuong</span>
+                    }
+                    else
+                    {
+                        <span>Thành phần: @item.thanhPhan</span>
+                        <span>Khối lượng: @item.khoiLuong</span>
+                    }
+
                     @if (item.trangThai == "Gửi yêu cầu")
                     {
                         <span style="color: black">Ngày gửi yêu cầu: @item.ngayGui</span>
@@ -34,7 +45,7 @@
                     {
                         var myModal = "exampleModalCenter" + item.maDonTG;
                         <a href="#" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-toggle="modal" data-target="#@myModal">Hủy yêu cầu quyên góp</a>
-                        <a href="@Url.Action("Details", "DonThuGoms", new { id = item.maDonTG })" title="" class="add-butn" data-ripple="">Xác nhận</a>
+                        <a href="@Url.Action("XacNhan_DTG", "DonThuGoms", new { id = item.maDonTG, maDVTG = item.maDVTG })" title="" class="add-butn" data-ripple="">Xác nhận</a>
 
                         <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -70,6 +81,11 @@
                                 </div>
                             </div>
                         </div>
+                    }
+                    else if (item.trangThai == "Đã xác nhận")
+                    {
+                        <a href="@Url.Action("GuiYeuCau", "DonThuGoms", new { id = item.maDonTG })" style="position: absolute; right: 100px;" title="" class="add-butn more-action" data-ripple="">Hủy xác nhận</a>
+                        <a href="@Url.Action("XacNhan_DTG", "DonThuGoms", new { id = item.maDonTG, maDVTG = item.maDVTG })" title="" class="add-butn" data-ripple="">Hoàn tất</a>
                     }
                     else
                     {

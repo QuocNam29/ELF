@@ -76,7 +76,7 @@
         <div class="submit-btns" style="float:right">
             <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG })'" style="float:left"><span>Quay lại</span></button>
             <button type="button" class="mtr-btn scrh-grp-btn" style="width: auto"><span>Chỉnh sửa</span></button>
-            <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal" style="color:firebrick"><span>Xóa Yêu Cầu</span></button>
+            <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal" style="color:firebrick"><span>Hủy Yêu Cầu</span></button>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -116,7 +116,7 @@
         <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG})'"><span>Quay lại</span></button>
     }
 
-  @*  <div class="coment-area" style="text-align: left">
+    <div class="coment-area" style="text-align: left">
         <ul class="we-comet">
 
             @Html.Action("listComment_DTG", "BinhLuans", new { maDTG = Model.maDonTG })
@@ -127,17 +127,17 @@
             </li>
             <li class="post-comment">
                 <div class="comet-avatar">
-                    <img src="~/images/resources/logo_elf_hasBackgroundColor.png" alt="" style="width: 70%">
+                    <img src="~/images/resources/@Model.DonViThuGom.logo" alt="" style="width: 70%">
                 </div>
                 <div class="post-comt-box">
                     <form method="post">
                         <textarea placeholder="Post your comment" name="coment"></textarea>
                         <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansDTG", "BinhLuans")">
                         <input hidden type="text" id="MaND_cmt" value="@maND">
-                        <input hidden type="text" id="BD_cmt" value="3">
+                        <input hidden type="text" id="BD_cmt" value="4">
                         <input hidden type="text" id="MaBD_cmt" value="@Model.maDonTG">
-                        <input hidden type="text" id="name_cmt" value="ELF">
-                        <input hidden type="text" id="avt_cmt" value="~/images/resources/logo_elf_hasBackgroundColor.png">
+                        <input hidden type="text" id="name_cmt" value="@Model.DonViThuGom.tenDVTG">
+                        <input hidden type="text" id="avt_cmt" value="~/images/resources/@Model.DonViThuGom.logo">
                         <button type="submit"></button>
                     </form>
 
@@ -145,5 +145,5 @@
             </li>
 
         </ul>
-    </div>*@
+    </div>
 </div>

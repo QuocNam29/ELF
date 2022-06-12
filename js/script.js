@@ -436,6 +436,31 @@ $(function() {
 					}
 				});
 			}
+			else if (BD_cmt == "4") {
+				var today = new Date();
+				var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+				var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+				var dateTime = date + ' ' + time;
+				style = "width: 50%";
+				//count Questions
+				var binhLuanDTG = {};
+				binhLuanDTG.noiDung = comment;
+				binhLuanDTG.maND = txtMaND;
+				binhLuanDTG.maDonTG = txtMaBD;
+				binhLuanDTG.ngayBL = dateTime;
+				binhLuanDTG.trangThai = "DonViThuGom";
+
+				$.ajax({
+					type: "POST",
+					url: URL,
+					data: JSON.stringify(binhLuanDTG),
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'json',
+					success: function (r) {
+
+					}
+				});
+			}
 			$('#name_cmt')
 				.keypress(function () {
 					value = $(this).val();

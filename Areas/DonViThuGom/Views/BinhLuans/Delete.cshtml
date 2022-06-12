@@ -1,12 +1,13 @@
 ﻿@model ELF.Models.BinhLuan
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/DonViThuGom/Views/Shared/_Layout_DonViThuGom.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>BinhLuan</h4>
     <hr />
@@ -68,8 +69,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.maBL }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

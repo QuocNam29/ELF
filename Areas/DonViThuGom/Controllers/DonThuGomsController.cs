@@ -50,6 +50,44 @@ namespace ELF.Areas.DonViThuGom.Controllers
             return PartialView("list_DTG", links.ToList());
         }
 
+        // GET: DonViThuGom/DonThuGoms/Xoa_DTG
+        public ActionResult Xoa_DTG(int? id, int? maDVTG, string lydo)
+        {
+            DonThuGom donThuGom = db.DonThuGoms.Find(id);
+            donThuGom.trangThai = "Đã hủy";
+            donThuGom.ghiChu = "Đơn vị thu gom hủy yêu cầu với lý do: " + lydo;
+            db.Entry(donThuGom).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", new { maDVTG = maDVTG });
+        }
+        public ActionResult XacNhan_DTG(int? id, int? maDVTG)
+        {
+            DonThuGom donThuGom = db.DonThuGoms.Find(id);
+            if (donThuGom.trangThai == "Gửi yêu cầu")
+            {
+               donThuGom.trangThai = "Đã xác nhận";
+               donThuGom.ngayXacNhan = DateTime.Now;
+            }
+            else if (donThuGom.trangThai == "Đã xác nhận")
+            {
+                donThuGom.trangThai = "Hoàn tất";
+                donThuGom.ngayHoanTat = DateTime.Now;
+            }
+         
+            db.Entry(donThuGom).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", new { maDVTG = maDVTG });
+        }
+
+        public ActionResult GuiYeuCau(int? id, int? maDVTG)
+        {
+            DonThuGom donThuGom = db.DonThuGoms.Find(id);            
+                donThuGom.trangThai = "Gửi yêu cầu";                      
+            db.Entry(donThuGom).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", new { maDVTG = maDVTG });
+        }
+
         // GET: DonViThuGom/DonThuGoms/Details/5
         public ActionResult Details(int? id)
         {

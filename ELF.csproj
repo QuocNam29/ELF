@@ -299,6 +299,7 @@
     <Compile Include="Areas\Admin\Controllers\QuyenGopsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoansController.cs" />
     <Compile Include="Areas\Admin\Middleware\LoginVerification.cs" />
+    <Compile Include="Areas\DonViThuGom\Controllers\BinhLuansController.cs" />
     <Compile Include="Areas\DonViThuGom\Controllers\DonThuGomsController.cs" />
     <Compile Include="Areas\DonViThuGom\Controllers\DVTG_DangNhapController.cs" />
     <Compile Include="Areas\DonViThuGom\DonViThuGomAreaRegistration.cs" />
@@ -958,14 +959,15 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\DonThuGoms\list_DTG.cshtml" />
-    <Content Include="Areas\Admin\Views\BinhLuans\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\BinhLuans\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\BinhLuans\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\BinhLuans\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\BinhLuans\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BinhLuans\listComment_DTG.cshtml" />
     <Content Include="Areas\DonViThuGom\Views\DVTG_DangNhap\DVTG_DangNhap.cshtml" />
     <Content Include="Areas\DonViThuGom\Views\DonThuGoms\list_DTG.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\BinhLuans\Create.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\BinhLuans\Delete.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\BinhLuans\Details.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\BinhLuans\Edit.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\BinhLuans\Index.cshtml" />
+    <Content Include="Areas\DonViThuGom\Views\BinhLuans\listComment_DTG.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

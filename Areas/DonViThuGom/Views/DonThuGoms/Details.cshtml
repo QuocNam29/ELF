@@ -1,98 +1,149 @@
 ﻿@model ELF.Models.DonThuGom
 
 @{
-    Layout = null;
+    Layout = "~/Areas/DonViThuGom/Views/Shared/_Layout_DonViThuGom.cshtml";
+    int maDVTG = int.Parse(Session["maDVTG"].ToString());
+    int maND = int.Parse(Session["maND"].ToString());
+
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>DonThuGom</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.trangThai)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.trangThai)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.ngayGui)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.ngayGui)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.ngayXacNhan)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.ngayXacNhan)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.ngayHoanTat)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.ngayHoanTat)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.viTriTG)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.viTriTG)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.thanhPhan)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.thanhPhan)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.khoiLuong)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.khoiLuong)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.ghiChu)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.ghiChu)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DonViThuGom.tenDVTG)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DonViThuGom.tenDVTG)
-            </dd>
-    
-        </dl>
+<div class="editing-info" style=" text-align: center;">
+    <h5 class="f-title"><i class="ti-info-alt"></i>Thông tin quyên góp</h5>
+    <div class="form-group">
+        <img width="300" src="~/images/resources/@Model.DonViThuGom.logo" alt="">
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.maDonTG }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+</div>
+
+<div class="onoff-options" style=" text-align: center;">
+    <div class="setting-row">
+        <span>Thành phần thu gom</span>
+        <p>@Html.DisplayFor(model => model.thanhPhan)</p>
+    </div>
+
+    <div class="setting-row">
+        <span>Khối lượng thu gom</span>
+        <p>@Html.DisplayFor(model => model.khoiLuong)</p>
+    </div>
+
+    <div class="setting-row">
+        <span>Vị Trí thu gom</span>
+        <p>@Html.DisplayFor(model => model.viTriTG)</p>
+    </div>
+
+    <div class="setting-row">
+        <span>Ngày hẹn thu gom</span>
+        <p>@Html.DisplayFor(model => model.ngayHenTG)</p>
+    </div>
+
+    <div class="setting-row">
+        <span>Ngày gửi yêu cầu thu gom</span>
+        <p>@Html.DisplayFor(model => model.ngayGui)</p>
+    </div>
+
+    <div class="setting-row">
+        <span>Ngày xác nhận</span>
+        @if (Model.ngayXacNhan != null)
+        {
+            <p>@Html.DisplayFor(model => model.ngayXacNhan)</p>
+        }
+        else
+        {
+            <p>Chưa xác nhận</p>
+        }
+    </div>
+
+    <div class="setting-row">
+        <span>Ngày hoàn tất</span>
+        @if (Model.ngayHoanTat != null)
+        {
+            <p>@Html.DisplayFor(model => model.ngayHoanTat)</p>
+        }
+        else
+        {
+            <p>Chưa hoàn tất</p>
+        }
+    </div>
+    <div class="setting-row">
+        <span>Trạng thái</span>
+        <p>@Html.DisplayFor(model => model.trangThai)</p>
+    </div>
+    <div class="setting-row">
+        <span>Ghi chú</span>
+        <p>@Html.DisplayFor(model => model.ghiChu)</p>
+    </div>
+    @if (Model.trangThai == "Gửi yêu cầu")
+    {
+        <div class="submit-btns" style="float:right">
+            <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG })'" style="float:left"><span>Quay lại</span></button>
+            <button type="button" class="mtr-btn scrh-grp-btn" style="width: auto"><span>Chỉnh sửa</span></button>
+            <button type="button" class="mtr-btn" data-toggle="modal" data-target="#exampleModal" style="color:firebrick"><span>Xóa Yêu Cầu</span></button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @using (Html.BeginForm("Xoa_DTG", "DonThuGoms"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("id", Model.maDonTG)
+                        @Html.Hidden("maDVTG", Model.maDVTG)
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label" style="float: left">Lý do:</label>
+                                    <textarea class="form-control" id="message-text" name="lydo"
+                                              required="required" oninvalid="this.setCustomValidity('Vui lòng nhập lý do hủy yêu cầu)" oninput="setCustomValidity('')"></textarea>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                    <button type="submit" class="btn btn-primary" id="btn btn-primary">Xác nhận</button>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <button type="button" class="mtr-btn" onclick="location.href='@Url.Action("Index", "DonThuGoms", new { maDVTG = Model.maDVTG})'"><span>Quay lại</span></button>
+    }
+
+  @*  <div class="coment-area" style="text-align: left">
+        <ul class="we-comet">
+
+            @Html.Action("listComment_DTG", "BinhLuans", new { maDTG = Model.maDonTG })
+
+
+            <li>
+                <a href="" title="" class="showmore underline"></a>
+            </li>
+            <li class="post-comment">
+                <div class="comet-avatar">
+                    <img src="~/images/resources/logo_elf_hasBackgroundColor.png" alt="" style="width: 70%">
+                </div>
+                <div class="post-comt-box">
+                    <form method="post">
+                        <textarea placeholder="Post your comment" name="coment"></textarea>
+                        <input hidden type="text" id="URL_CMT" value="@Url.Action("InsertBinhLuansDTG", "BinhLuans")">
+                        <input hidden type="text" id="MaND_cmt" value="@maND">
+                        <input hidden type="text" id="BD_cmt" value="3">
+                        <input hidden type="text" id="MaBD_cmt" value="@Model.maDonTG">
+                        <input hidden type="text" id="name_cmt" value="ELF">
+                        <input hidden type="text" id="avt_cmt" value="~/images/resources/logo_elf_hasBackgroundColor.png">
+                        <button type="submit"></button>
+                    </form>
+
+                </div>
+            </li>
+
+        </ul>
+    </div>*@
+</div>

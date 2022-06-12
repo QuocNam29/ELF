@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ELF.Areas.DonViThuGom.Middleware;
 using ELF.Models;
 
 namespace ELF.Areas.DonViThuGom.Controllers
 {
+    [LoginVerification]
     public class DonThuGomsController : Controller
     {
         private ELFVanLang2021Entities db = new ELFVanLang2021Entities();

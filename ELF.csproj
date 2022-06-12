@@ -302,6 +302,7 @@
     <Compile Include="Areas\DonViThuGom\Controllers\DonThuGomsController.cs" />
     <Compile Include="Areas\DonViThuGom\Controllers\DVTG_DangNhapController.cs" />
     <Compile Include="Areas\DonViThuGom\DonViThuGomAreaRegistration.cs" />
+    <Compile Include="Areas\DonViThuGom\Middleware\LoginVerification.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_BaiDangsController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_DonQuasController.cs" />
     <Compile Include="Areas\KiemDuyets\Controllers\KD_LoaiQG_BDController.cs" />
